@@ -2462,204 +2462,255 @@ msgstr "显示在末尾"
 #: 
 msgctxt "ResetDueTo|"
 msgid "Reset Due To"
+msgstr ""
 
 #: 
 msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
+msgstr ""
 
 #: 
 msgctxt "Application|"
 msgid "Background Sync"
+msgstr ""
 
 #: 
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
+msgstr ""
 
 #: 
 msgctxt "Application|"
 msgid "Quit"
+msgstr ""
 
 #: 
 msgctxt "CopyItemQuery|"
 msgid "Copy of"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Connection Settings"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Trouble Signing In?"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Authorize..."
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Open Browser"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Copy Link"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Copied!"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Name:"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Dropbox"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Connection Settings"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Trouble Signing In?"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Authorize..."
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Open Browser"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Copy Link"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Copied!"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Name:"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Dropbox"
+msgstr ""
 
 #: 
 msgctxt "OpenTodoList::Translations|"
 msgid "System Language"
+msgstr ""
 
 #: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
 msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
+msgstr ""
 
 #: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs until %1."
+msgstr ""
 
 #: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
+msgstr ""
 
 #: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
+msgstr ""
 
 #: 
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
+msgstr ""
 
 #: 
 msgctxt "StartPage|"
 msgid "Libraries"
+msgstr ""
 
 #: 
 msgctxt "StartPage|"
 msgid "Add a new library"
+msgstr ""
 
 #: 
 msgctxt "StartPage|"
 msgid "Accounts"
+msgstr ""
 
 #: 
 msgctxt "StartPage|"
 msgid "Add an account"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Debugging information"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Warning"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Error"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Download"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Upload"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Create local folder"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
+msgstr ""
 
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
+msgstr ""
 
 #: 
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
+msgstr ""
 
 #: 
 msgctxt "ProblemsPage|"
 msgid "Retry Sync"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
+msgstr ""
 

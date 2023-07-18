@@ -2665,56 +2665,70 @@ msgstr "Ajouter un compte"
 #: 
 msgctxt "LogViewPage|"
 msgid "Debugging information"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Warning"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Error"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Download"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Upload"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Create local folder"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
+msgstr ""
 
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
+msgstr ""
 
 #: 
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
+msgstr ""
 
 #: 
 msgctxt "ProblemsPage|"
 msgid "Retry Sync"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
+msgstr ""
 

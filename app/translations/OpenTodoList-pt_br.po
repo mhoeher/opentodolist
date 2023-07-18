@@ -2717,4 +2717,5 @@ msgstr "Repetir Sincronização"
 #: 
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
+msgstr ""
 
