@@ -23,13 +23,10 @@ project(OpenTodoList)
 include(cmake/options.cmake)
 include(cmake/version.cmake)
 include(cmake/Flatpak.cmake)
+include(3rdparty/android-openssl/android_openssl.cmake)
 
 # Enable unit tests:
 enable_testing()
-
-if (ANDROID)
-    include(3rdparty/android-openssl/CMakeLists.txt)
-endif()
 
 if(NOT OPENTODOLIST_QT_VERSIONS)
     # If OPENTODOLIST_QT_VERSIONS is not set by user, first, look for Qt6, followed by Qt5:
