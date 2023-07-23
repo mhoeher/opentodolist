@@ -109,7 +109,16 @@ CenteredDialog {
         }
 
         C.Label {
-            text: qsTr("Number of days:")
+            text: {
+                switch (dialog.recurrencePattern) {
+                case OTL.ComplexItem.RecurEveryNDays:
+                    return qsTr("Number of days:")
+                case OTL.ComplexItem.RecurEveryNWeeks:
+                    return qsTr("Number of weeks:")
+                case OTL.ComplexItem.RecurEveryNMonths:
+                    return qsTr("Number of months:")
+                }
+            }
             visible: dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNDays
                      || dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNWeeks
                      || dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNMonths
