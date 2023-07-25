@@ -742,68 +742,68 @@
 <context>
     <name>LibrariesSideBar</name>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="63"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="263"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="62"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="262"/>
         <source>Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="75"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="74"/>
         <source>New Library</source>
         <translation type="unfinished">Nova Biblioteca</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="82"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="81"/>
         <source>Accounts</source>
         <translation type="unfinished">Contas</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="89"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="88"/>
         <source>Edit List</source>
         <translation type="unfinished">Editar Lista</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="95"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="94"/>
         <source>Settings</source>
         <translation type="unfinished">Configurações</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="101"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="100"/>
         <source>Translate The App...</source>
         <translation type="unfinished">Traduza o aplicativo...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="108"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="107"/>
         <source>Donate</source>
         <translation type="unfinished">Doar</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="116"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="115"/>
         <source>About...</source>
         <translation type="unfinished">Sobre...</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="124"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="123"/>
         <source>Create Default Library</source>
         <translation type="unfinished">Criar biblioteca padrão</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
         <source>Hide Schedule</source>
         <translation type="unfinished">Ocultar Cronograma</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
         <source>Show Schedule</source>
         <translation type="unfinished">Mostrar Cronograma</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="237"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
         <source>Move Up</source>
         <translation type="unfinished">Mover para Cima</translation>
     </message>
     <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="248"/>
+        <location filename="../Widgets/LibrariesSideBar.qml" line="247"/>
         <source>Move Down</source>
         <translation type="unfinished">Mover para Baixo</translation>
     </message>
@@ -1533,12 +1533,22 @@
         <translation type="unfinished">Se repete:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="112"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="115"/>
         <source>Number of days:</source>
         <translation type="unfinished">Número de dias:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="130"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="117"/>
+        <source>Number of weeks:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/RecurrenceDialog.qml" line="119"/>
+        <source>Number of months:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/RecurrenceDialog.qml" line="139"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished">Repetir baseado na data de finalização</translation>
     </message>
