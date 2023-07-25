@@ -702,6 +702,7 @@ msgstr "Додати нове завдання..."
 #: 
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
+msgstr ""
 
 #: 
 msgctxt "Colors|"
@@ -711,6 +712,7 @@ msgstr "Система"
 #: 
 msgctxt "Colors|"
 msgid "Light"
+msgstr ""
 
 #: 
 msgctxt "Colors|"
@@ -1547,6 +1549,7 @@ msgstr "Виберіть тип облікового запису"
 #: 
 msgctxt "AccountTypeSelectionPage|"
 msgid "Account Type"
+msgstr ""
 
 #: 
 msgctxt "AccountTypeSelectionPage|"
@@ -2118,324 +2121,404 @@ msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
 "<em>Requires a restart of the app.</em>"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Reduce the padding in todo and task listings to fit more items on the screen."
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Override Scaling Factor"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Scale Factor:"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
 "This requires a restart of the app."
+msgstr ""
 
 #: 
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Scroll to Top"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Scroll to Bottom"
+msgstr ""
 
 #: 
 msgctxt "ProblemsPage|"
 msgid "Synchronization failed for library"
+msgstr ""
 
 #: 
 msgctxt "PromoteTask|"
 msgid "Promote"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Library Item Size:"
+msgstr ""
 
 #: ../../lib/sync/webdavsynchronizer.cpp:177
 msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
+msgstr ""
 
 #: 
 msgctxt "AboutPage|"
 msgid "Copy System Information"
+msgstr ""
 
 #: 
 msgctxt "AppStartup|"
 msgid "Quick Note"
+msgstr ""
 
 #: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every year."
+msgstr ""
 
 #: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 weeks."
+msgstr ""
 
 #: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 months."
+msgstr ""
 
 #: ../Windows/MainWindow.qml:301 ../Windows/MainWindow.qml:511
 msgctxt "MainWindow|"
 msgid "Undo"
+msgstr ""
 
 #: 
 msgctxt "QObject|"
 msgid "unknown"
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes"
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes Editor"
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Open the main window"
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note Title"
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Save"
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Save the entered notes to the selected library. Press and hold the button to get more options for saving."
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Save as Note"
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Save as Todo List"
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Quick Todo List"
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note"
+msgstr ""
 
 #: 
 msgctxt "QuickNoteWindow|"
 msgid "Type your notes here..."
+msgstr ""
 
 #: 
 msgctxt "RecurrenceDialog|"
 msgid "Yearly"
+msgstr ""
 
 #: 
 msgctxt "RecurrenceDialog|"
 msgid "Every N Weeks"
+msgstr ""
 
 #: 
 msgctxt "RecurrenceDialog|"
 msgid "Every N Months"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "System Tray:"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Open Quick Notes Editor on Click"
+msgstr ""
 
 #: 
 msgctxt "NoteItem|"
 msgid "Due on %1"
+msgstr ""
 
 #: 
 msgctxt "TodoListItem|"
 msgid "Due on %1"
+msgstr ""
 
 #: 
 msgctxt "CopyTodo|"
 msgid "Copy"
+msgstr ""
 
 #: 
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
+msgstr ""
 
 #: ../Pages/LibraryPage.qml:258
 msgctxt "LibraryPage|"
 msgid "Copy"
+msgstr ""
 
 #: ../Windows/MainWindow.qml:330
 msgctxt "MainWindow|"
 msgid "Copy"
+msgstr ""
 
 #: 
 msgctxt "SelectLibraryDialog|"
 msgid "Select Library"
+msgstr ""
 
 #: 
 msgctxt "SelectTopLevelItemDialog|"
 msgid "Select Item"
+msgstr ""
 
 #: 
 msgctxt "ApplicationShortcuts|"
 msgid "Ctrl+,"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBar|"
 msgid "Synchronizing library..."
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Undo"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Rename"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Move"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Copy"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Color"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Add Tag"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Attach File"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Search"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Sort"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Due Date"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Delete Completed Items"
+msgstr ""
 
 #: 
 msgctxt "ApplicationToolBarActions|"
 msgid "Set Progress"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Desktop Mode"
+msgstr ""
 
 #: 
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
+msgstr ""
 
 #: 
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
+msgstr ""
 
 #: 
 msgctxt "NewLibraryInFolderPage|"
 msgid "Select a Folder"
+msgstr ""
 
 #: ../Pages/LibraryPage.qml:275
 msgctxt "LibraryPage|"
 msgid "Select Image"
+msgstr ""
 
 #: 
 msgctxt "TodoListPage|"
 msgid "Show Completed"
+msgstr ""
 
 #: 
 msgctxt "TodoListPage|"
 msgid "Show At The End"
+msgstr ""
 
 #: 
 msgctxt "TodoPage|"
 msgid "Show Completed"
+msgstr ""
 
 #: 
 msgctxt "TodoPage|"
 msgid "Show At The End"
+msgstr ""
 
 #: 
 msgctxt "ResetDueTo|"
 msgid "Reset Due To"
+msgstr ""
 
 #: 
 msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
+msgstr ""
 
 #: 
 msgctxt "Application|"
 msgid "Background Sync"
+msgstr ""
 
 #: 
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
+msgstr ""
 
 #: 
 msgctxt "Application|"
 msgid "Quit"
+msgstr ""
 
 #: 
 msgctxt "CopyItemQuery|"
 msgid "Copy of"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Connection Settings"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Trouble Signing In?"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Authorize..."
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Open Browser"
+msgstr ""
 
 #: 
 msgctxt "EditDropboxAccountPage|"
@@ -2455,70 +2538,87 @@ msgstr "Назва"
 #: 
 msgctxt "EditDropboxAccountPage|"
 msgid "Dropbox"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Connection Settings"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Trouble Signing In?"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "We have tried to open your browser to log you in to your Dropbox account. Please log in and grant access to OpenTodoList in order to proceed."
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Didn't your browser open? You can retry opening it or copy the required URL manually to your browser."
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Authorize..."
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Open Browser"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Copy Link"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Copied!"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Name:"
+msgstr ""
 
 #: 
 msgctxt "NewDropboxAccountPage|"
 msgid "Dropbox"
+msgstr ""
 
 #: 
 msgctxt "OpenTodoList::Translations|"
 msgid "System Language"
+msgstr ""
 
 #: ../Windows/EmbeddedWebViewDialog/EmbeddedWebViewDialog.qml:15
 msgctxt "EmbeddedWebViewDialog|"
 msgid "Loading..."
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Show notes excerpt in listings"
+msgstr ""
 
 #: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs until %1."
+msgstr ""
 
 #: 
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs indefinitely"
+msgstr ""
 
 #: 
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
+msgstr ""
 
 #: 
 msgctxt "ScheduleViewPage|"
@@ -2548,6 +2648,7 @@ msgstr "Додати акаунт"
 #: 
 msgctxt "LogViewPage|"
 msgid "Debugging information"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
@@ -2582,14 +2683,17 @@ msgstr "Створити віддалену папку"
 #: 
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
+msgstr ""
 
 #: 
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
+msgstr ""
 
 #: ../Widgets/TodosWidgetDelegate.qml:238
 msgctxt "TodosWidgetDelegate|"
@@ -2599,12 +2703,15 @@ msgstr "Більше дій"
 #: 
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
+msgstr ""
 
 #: 
 msgctxt "ProblemsPage|"
 msgid "Retry Sync"
+msgstr ""
 
 #: 
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
+msgstr ""
 

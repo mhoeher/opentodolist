@@ -350,3 +350,9 @@ install(
 
 set(QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}
     CACHE PATH "QML search path for project local files")
+
+if (ANDROID)
+    set(Qt6_VERSION "${QT_VERSION}")
+    set(CMAKE_ANDROID_ARCH_ABI "${ANDROID_ABI}")
+    add_android_openssl_libraries(OpenTodoList)
+endif()

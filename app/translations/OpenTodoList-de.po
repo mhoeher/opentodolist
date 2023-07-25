@@ -2722,4 +2722,5 @@ msgstr "Synchronisation erneut versuchen"
 #: 
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
+msgstr ""
 
