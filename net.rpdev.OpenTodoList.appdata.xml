@@ -40,6 +40,13 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
+    <release version="3.45.1" date="2023-07-25">
+        <p>This release includes the following changes:</p>
+        <ul>
+            <li>Updates for the Android release to ship the proper OpenSSL library</li>
+            <li>#626: Wrong text in number of days label in the recurrence editor</li>
+        </ul>
+    </release>
     <release version="3.45.0" date="2023-07-16">
         <p>This release includes the following changes:</p>
         <ul>

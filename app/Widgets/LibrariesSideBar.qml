@@ -29,7 +29,6 @@ C.Pane {
     function showSettings() {
         sidebar.settingsPageRequested()
     }
-
         function showAccounts() {
             sidebar.accountsPageRequested()
         }
