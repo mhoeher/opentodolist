@@ -18,6 +18,7 @@ C.Page {
 
     property OTL.Library library: null
     property string tag: ""
+    property bool untaggedOnly: false
 
     signal closePage
     signal openPage(var component, var properties)
@@ -30,6 +31,7 @@ C.Page {
         if (page.tag !== "") {
             result.tag = page.tag
         }
+        result.untaggedOnly = page.untaggedOnly
         return result
     }
 
@@ -43,6 +45,7 @@ C.Page {
         if (tag) {
             page.tag = tag
         }
+        page.untaggedOnly = !!data.untaggedOnly
     }
 
     restoreUrl: Qt.resolvedUrl("./LibraryPage.qml")
@@ -333,6 +336,7 @@ C.Page {
         sourceModel: OTL.ItemsModel {
             cache: OTL.Application.cache
             tag: page.tag
+            untaggedOnly: page.untaggedOnly
             searchString: filterBar.text
             parentItem: page.library?.uid ?? ""
         }

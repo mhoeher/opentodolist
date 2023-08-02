@@ -39,6 +39,8 @@ private slots:
     void init();
     void testAddItems();
     void testDeleteItems();
+    void testFilterByTag();
+    void testFilterByNoTags();
     void cleanup();
     void cleanupTestCase() {}
 
@@ -162,6 +164,68 @@ void ItemsModelTest::testDeleteItems()
 
     QVERIFY(countChanged.wait());
     QCOMPARE(model.count(), 0);
+}
+
+void ItemsModelTest::testFilterByTag()
+{
+    Library lib;
+    Note note1, note2;
+    note1.setLibraryId(lib.uid());
+    note1.setTitle("Note 1");
+    note2.setLibraryId(lib.uid());
+    note2.setTitle("Note 2");
+    note2.setTags({ "A Tag" });
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        q->add(&lib);
+        q->add(&note1);
+        q->add(&note2);
+        m_cache->run(q);
+        QVERIFY(finished.wait());
+    }
+
+    ItemsModel model;
+    QSignalSpy countChanged(&model, &ItemsModel::countChanged);
+    model.setTag("A Tag");
+    model.setCache(m_cache);
+    model.setParentItem(lib.uid());
+    QVERIFY(countChanged.wait());
+    QCOMPARE(model.count(), 1);
+    QCOMPARE(model.data(model.index(0, 0), ItemsModel::ItemRole).value<Note*>()->uid(),
+             note2.uid());
+}
+
+void ItemsModelTest::testFilterByNoTags()
+{
+    Library lib;
+    Note note1, note2;
+    note1.setLibraryId(lib.uid());
+    note1.setTitle("Note 1");
+    note2.setLibraryId(lib.uid());
+    note2.setTitle("Note 2");
+    note2.setTags({ "A Tag" });
+
+    {
+        auto q = new InsertOrUpdateItemsQuery;
+        QSignalSpy finished(q, &InsertOrUpdateItemsQuery::finished);
+        q->add(&lib);
+        q->add(&note1);
+        q->add(&note2);
+        m_cache->run(q);
+        QVERIFY(finished.wait());
+    }
+
+    ItemsModel model;
+    QSignalSpy countChanged(&model, &ItemsModel::countChanged);
+    model.setUntaggedOnly(true);
+    model.setCache(m_cache);
+    model.setParentItem(lib.uid());
+    QVERIFY(countChanged.wait());
+    QCOMPARE(model.count(), 1);
+    QCOMPARE(model.data(model.index(0, 0), ItemsModel::ItemRole).value<Note*>()->uid(),
+             note1.uid());
 }
 
 void ItemsModelTest::cleanup()

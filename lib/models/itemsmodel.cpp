@@ -45,6 +45,7 @@ ItemsModel::ItemsModel(QObject* parent)
       m_onlyWithDueDate(false),
       m_defaultSearchResult(true),
       m_recursive(false),
+      m_untaggedOnly(false),
       m_updating(false)
 {
     m_fetchTimer.setInterval(100);
@@ -430,6 +431,29 @@ void ItemsModel::setItemsToExclude(const QList<QUuid>& newItemsToExclude)
     emit itemsToExcludeChanged();
 }
 
+/**
+ * @brief Return only items with no tags set.
+ *
+ * If this is set to true, only items which have no tags set on them will be returned.
+ *
+ * The default is false.
+ */
+bool ItemsModel::untaggedOnly() const
+{
+    return m_untaggedOnly;
+}
+
+/**
+ * @brief Set if only untagged items shall be returned.
+ */
+void ItemsModel::setUntaggedOnly(bool newUntaggedOnly)
+{
+    if (m_untaggedOnly == newUntaggedOnly)
+        return;
+    m_untaggedOnly = newUntaggedOnly;
+    emit untaggedOnlyChanged();
+}
+
 bool ItemsModel::itemMatches(ItemPtr item, QStringList words)
 {
     for (const auto& word : words) {
@@ -507,6 +531,7 @@ void ItemsModel::fetch()
         auto itemMatchesFilter = getFilterFn();
         auto defaultSearchResultValue = m_defaultSearchResult;
         auto itemTypeValue = m_itemType.split(",", Qt::SkipEmptyParts);
+        auto untaggedOnly_ = m_untaggedOnly;
         QSet<QUuid> itemUidsToExclude(m_itemsToExclude.constBegin(), m_itemsToExclude.constEnd());
 
         q->setItemFilter([=](ItemPtr item, GetItemsQuery* query) {
@@ -541,6 +566,9 @@ void ItemsModel::fetch()
                 if (!item->property("tags").toStringList().contains(tagValue)) {
                     result = false;
                 }
+            }
+            if (untaggedOnly_ && !item->property("tags").toStringList().isEmpty()) {
+                result = false;
             }
             return result;
         });
