@@ -410,6 +410,7 @@ QStringList Library::tags() const
 void Library::setTags(const QStringList& tags)
 {
     m_tags = tags;
+    m_tags.sort(Qt::CaseInsensitive);
     emit tagsChanged();
 }
 

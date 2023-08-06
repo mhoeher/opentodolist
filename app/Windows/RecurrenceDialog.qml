@@ -117,6 +117,8 @@ CenteredDialog {
                     return qsTr("Number of weeks:")
                 case OTL.ComplexItem.RecurEveryNMonths:
                     return qsTr("Number of months:")
+                default:
+                    return ""
                 }
             }
             visible: dialog.recurrencePattern === OTL.ComplexItem.RecurEveryNDays

@@ -32,11 +32,22 @@ C.ApplicationWindow {
                           OTL.Application.syncAllLibraries()
                       }
 
-    function viewLibrary(lib, tag) {
+    function viewLibrary(lib, attributes) {
         stackView.clear()
-        stackView.push(Qt.resolvedUrl("../Pages/LibraryPage.qml"), {
-                           "library": lib,
-                           "tag": tag
+        if (!attributes) {
+            attributes = {}
+        }
+        attributes.library = lib
+
+        stackView.push(Qt.resolvedUrl("../Pages/LibraryPage.qml"), attributes)
+    }
+
+    function viewItem(library, item) {
+        stackView.clear()
+        stackView.push(Qt.resolvedUrl(
+                           "../Pages/" + item.itemType + "Page.qml"), {
+                           "item": OTL.Application.cloneItem(item),
+                           "library": library
                        })
     }
 
@@ -201,7 +212,8 @@ C.ApplicationWindow {
         anchors.fill: parent
         compact: window.width < 600
         stack: stackView
-        onShowLibrary: window.viewLibrary(library, tag)
+        onShowLibrary: window.viewLibrary(library, attributes)
+        onShowItem: (library, item) => window.viewItem(library, item)
         onShowSchedule: window.viewSchedule(library)
         onNewLibrary: {
             stackView.clear()

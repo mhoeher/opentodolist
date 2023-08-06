@@ -60,6 +60,8 @@ class ItemsModel : public QAbstractListModel
             QString overdueLabel READ overdueLabel WRITE setOverdueLabel NOTIFY overdueLabelChanged)
     Q_PROPERTY(QVariantMap timeSpans READ timeSpans WRITE setTimeSpans NOTIFY timeSpansChanged)
     Q_PROPERTY(QString itemType READ itemType WRITE setItemType NOTIFY itemTypeChanged)
+    Q_PROPERTY(bool untaggedOnly READ untaggedOnly WRITE setUntaggedOnly NOTIFY untaggedOnlyChanged
+                       FINAL)
 public:
     enum Roles {
         ItemRole = Qt::UserRole,
@@ -128,6 +130,9 @@ public:
     const QList<QUuid>& itemsToExclude() const;
     void setItemsToExclude(const QList<QUuid>& newItemsToExclude);
 
+    bool untaggedOnly() const;
+    void setUntaggedOnly(bool newUntaggedOnly);
+
 signals:
 
     void cacheChanged();
@@ -145,6 +150,8 @@ signals:
     void itemTypeChanged();
 
     void itemsToExcludeChanged();
+
+    void untaggedOnlyChanged();
 
 public slots:
 
@@ -164,6 +171,7 @@ private:
     bool m_onlyWithDueDate;
     bool m_defaultSearchResult;
     bool m_recursive;
+    bool m_untaggedOnly;
 
     bool m_updating;
 
