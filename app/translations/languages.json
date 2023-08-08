@@ -16,9 +16,9 @@
     {
         "name": "Basque",
         "code": "eu",
-        "translations": 89,
-        "percentage": 16.45,
-        "updated": "2020-06-28T20:23:00+0000"
+        "translations": 125,
+        "percentage": 23.11,
+        "updated": "2023-07-27T17:34:47+0000"
     },
     {
         "name": "Breton",
@@ -65,9 +65,9 @@
     {
         "name": "Dutch",
         "code": "nl",
-        "translations": 539,
-        "percentage": 99.63,
-        "updated": "2023-03-04T16:24:16+0000"
+        "translations": 541,
+        "percentage": 100,
+        "updated": "2023-08-05T20:35:46+0000"
     },
     {
         "name": "English",

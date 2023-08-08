@@ -178,17 +178,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Ghi chú"
 
-#: ../Widgets/LibrariesSideBar.qml:63 ../Widgets/LibrariesSideBar.qml:263
+#: ../Widgets/LibrariesSideBar.qml:62 ../Widgets/LibrariesSideBar.qml:262
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Lịch trình"
 
-#: ../Widgets/LibrariesSideBar.qml:75
+#: ../Widgets/LibrariesSideBar.qml:74
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Thư viện mới"
 
-#: ../Widgets/LibrariesSideBar.qml:116
+#: ../Widgets/LibrariesSideBar.qml:115
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Về ứng dụng"
@@ -343,7 +343,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Thanh mở &bên trái"
 
-#: ../Windows/MainWindow.qml:238
+#: ../Windows/MainWindow.qml:250
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Bắt đầu bằng cách <a href='#newL Library'> tạo thư viện mới </a>. Thư viện được sử dụng để lưu trữ các loại mặt hàng khác nhau như ghi chú, danh sách việc cần làm và hình ảnh."
@@ -715,7 +715,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Tối"
 
-#: ../Widgets/LibrariesSideBar.qml:95
+#: ../Widgets/LibrariesSideBar.qml:94
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Cài đặt"
@@ -745,7 +745,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Chủ đề:"
 
-#: ../Widgets/LibrariesSideBar.qml:124
+#: ../Widgets/LibrariesSideBar.qml:123
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Tạo thư viện mặc định"
@@ -1021,12 +1021,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Không thể kết nối với máy chủ. Vui lòng kiểm tra tên người dùng, mật khẩu và địa chỉ máy chủ và thử lại."
 
-#: ../Widgets/LibrariesSideBar.qml:82
+#: ../Widgets/LibrariesSideBar.qml:81
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Tài khoản"
 
-#: ../Widgets/LibrariesSideBar.qml:101
+#: ../Widgets/LibrariesSideBar.qml:100
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Dịch ứng dụng ..."
@@ -1472,7 +1472,7 @@ msgctxt "RecurrenceDialog|"
 msgid "Number of days:"
 msgstr "Số ngày:"
 
-#: ../Windows/RecurrenceDialog.qml:139
+#: ../Windows/RecurrenceDialog.qml:141
 msgctxt "RecurrenceDialog|"
 msgid "Recur relative to the date when marking as done"
 msgstr "Tái diễn liên quan đến ngày khi đánh dấu là xong"
@@ -1673,27 +1673,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Không thể kết nối đến server. Bạn hãy thử kiểm tra lại tên người dùng/mật khẩu  hoặc địa chỉ server và sau đó thử lại."
 
-#: ../Widgets/LibrariesSideBar.qml:89
+#: ../Widgets/LibrariesSideBar.qml:88
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:237
+#: ../Widgets/LibrariesSideBar.qml:236
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:248
+#: ../Widgets/LibrariesSideBar.qml:247
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr ""
@@ -1864,7 +1864,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:108
+#: ../Widgets/LibrariesSideBar.qml:107
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr ""

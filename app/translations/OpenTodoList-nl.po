@@ -177,17 +177,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Notities"
 
-#: ../Widgets/LibrariesSideBar.qml:63 ../Widgets/LibrariesSideBar.qml:263
+#: ../Widgets/LibrariesSideBar.qml:62 ../Widgets/LibrariesSideBar.qml:262
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Schema"
 
-#: ../Widgets/LibrariesSideBar.qml:75
+#: ../Widgets/LibrariesSideBar.qml:74
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nieuwe verzameling"
 
-#: ../Widgets/LibrariesSideBar.qml:116
+#: ../Widgets/LibrariesSideBar.qml:115
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "Over…"
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "&Linkerzijbalk openen"
 
-#: ../Windows/MainWindow.qml:238
+#: ../Windows/MainWindow.qml:250
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "<a href='#newLibrary'>Maak een verzameling aan</a>. Verzamelingen worden gebruikt om items in op te slaan, zoals notities, takenlijsten en afbeeldingen."
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Donker"
 
-#: ../Widgets/LibrariesSideBar.qml:95
+#: ../Widgets/LibrariesSideBar.qml:94
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Instellingen"
@@ -744,7 +744,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Thema:"
 
-#: ../Widgets/LibrariesSideBar.qml:124
+#: ../Widgets/LibrariesSideBar.qml:123
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Standaardverzameling aanmaken"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Er kan geen verbinding worden gemaakt met de server. Controleer uw gebruikersnaam, wachtwoord en serveradres en probeer het opnieuw."
 
-#: ../Widgets/LibrariesSideBar.qml:82
+#: ../Widgets/LibrariesSideBar.qml:81
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Accounts"
 
-#: ../Widgets/LibrariesSideBar.qml:101
+#: ../Widgets/LibrariesSideBar.qml:100
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Vertaal deze app…"
@@ -1471,7 +1471,7 @@ msgctxt "RecurrenceDialog|"
 msgid "Number of days:"
 msgstr "Aantal dagen:"
 
-#: ../Windows/RecurrenceDialog.qml:139
+#: ../Windows/RecurrenceDialog.qml:141
 msgctxt "RecurrenceDialog|"
 msgid "Recur relative to the date when marking as done"
 msgstr "Herhaling ten opzichte van de datum bij het markeren als afgerond"
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Er kan geen verbinding worden gemaakt met de server. Controleer uw gebruikersnaam, wachtwoord en serveradres en probeer het opnieuw."
 
-#: ../Widgets/LibrariesSideBar.qml:89
+#: ../Widgets/LibrariesSideBar.qml:88
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "Lijst aanpassen"
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "Planning verbergen"
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "Planning tonen"
 
-#: ../Widgets/LibrariesSideBar.qml:237
+#: ../Widgets/LibrariesSideBar.qml:236
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Omhoog verplaatsen"
 
-#: ../Widgets/LibrariesSideBar.qml:248
+#: ../Widgets/LibrariesSideBar.qml:247
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Omlaag verplaatsen"
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Taak verplaatsen naar…"
 
-#: ../Widgets/LibrariesSideBar.qml:108
+#: ../Widgets/LibrariesSideBar.qml:107
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "Doneren"
@@ -2722,10 +2722,10 @@ msgstr "Monochroom pictogram"
 #: ../Windows/RecurrenceDialog.qml:117
 msgctxt "RecurrenceDialog|"
 msgid "Number of weeks:"
-msgstr ""
+msgstr "Aantal weken:"
 
 #: ../Windows/RecurrenceDialog.qml:119
 msgctxt "RecurrenceDialog|"
 msgid "Number of months:"
-msgstr ""
+msgstr "Aantal maanden:"
 

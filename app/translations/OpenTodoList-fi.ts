@@ -740,75 +740,6 @@
     </message>
 </context>
 <context>
-    <name>LibrariesSideBar</name>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="62"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="262"/>
-        <source>Schedule</source>
-        <translation type="unfinished">Aikataulu</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="74"/>
-        <source>New Library</source>
-        <translation type="unfinished">Uusi kirjasto</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="81"/>
-        <source>Accounts</source>
-        <translation type="unfinished">Tilit</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="88"/>
-        <source>Edit List</source>
-        <translation type="unfinished">Muokkaa listaa</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="94"/>
-        <source>Settings</source>
-        <translation type="unfinished">Asetukset</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="100"/>
-        <source>Translate The App...</source>
-        <translation type="unfinished">Käännä sovellus...</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="107"/>
-        <source>Donate</source>
-        <translation type="unfinished">Lahjoita</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="115"/>
-        <source>About...</source>
-        <translation type="unfinished">Tietoja...</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="123"/>
-        <source>Create Default Library</source>
-        <translation type="unfinished">Luo oletuskirjasto:</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
-        <source>Hide Schedule</source>
-        <translation type="unfinished">Piilota aikataulu</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
-        <source>Show Schedule</source>
-        <translation type="unfinished">Näytä aikataulu</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
-        <source>Move Up</source>
-        <translation type="unfinished">Siirrä ylös</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="247"/>
-        <source>Move Down</source>
-        <translation type="unfinished">Siirrä alas</translation>
-    </message>
-</context>
-<context>
     <name>LibraryPageActions</name>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="35"/>
@@ -907,7 +838,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="238"/>
+        <location filename="../Windows/MainWindow.qml" line="250"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1547,7 +1478,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="139"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="141"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished"></translation>
     </message>

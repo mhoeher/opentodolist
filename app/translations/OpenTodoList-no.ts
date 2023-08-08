@@ -740,75 +740,6 @@
     </message>
 </context>
 <context>
-    <name>LibrariesSideBar</name>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="62"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="262"/>
-        <source>Schedule</source>
-        <translation type="unfinished">Rute</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="74"/>
-        <source>New Library</source>
-        <translation type="unfinished">Nytt bibliotek</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="81"/>
-        <source>Accounts</source>
-        <translation type="unfinished">kontoer</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="88"/>
-        <source>Edit List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="94"/>
-        <source>Settings</source>
-        <translation type="unfinished">Innstillinger</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="100"/>
-        <source>Translate The App...</source>
-        <translation type="unfinished">Oversett appen ...</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="107"/>
-        <source>Donate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="115"/>
-        <source>About...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="123"/>
-        <source>Create Default Library</source>
-        <translation type="unfinished">Lag standardbibliotek</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
-        <source>Hide Schedule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
-        <source>Show Schedule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
-        <source>Move Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="247"/>
-        <source>Move Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>LibraryPageActions</name>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="35"/>
@@ -907,7 +838,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="238"/>
+        <location filename="../Windows/MainWindow.qml" line="250"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Begynn med å &lt;a href=&apos;#newLibrary&apos;&gt; lage et nytt bibliotek &lt;/a&gt;. Biblioteker brukes til å lagre forskjellige typer elementer som notater, todo lister og bilder.</translation>
     </message>
@@ -1547,7 +1478,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="139"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="141"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished">Gjentas i forhold til datoen når markeringen er gjort</translation>
     </message>

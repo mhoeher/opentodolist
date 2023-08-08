@@ -177,17 +177,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "Note"
 
-#: ../Widgets/LibrariesSideBar.qml:63 ../Widgets/LibrariesSideBar.qml:263
+#: ../Widgets/LibrariesSideBar.qml:62 ../Widgets/LibrariesSideBar.qml:262
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "Programmazione"
 
-#: ../Widgets/LibrariesSideBar.qml:75
+#: ../Widgets/LibrariesSideBar.qml:74
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "Nuova Raccolta"
 
-#: ../Widgets/LibrariesSideBar.qml:116
+#: ../Widgets/LibrariesSideBar.qml:115
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "A proposito di..."
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "Aprire &Left Side Bar"
 
-#: ../Windows/MainWindow.qml:238
+#: ../Windows/MainWindow.qml:250
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "Inizia con <a href='#newLibrary'>creare una nuova raccolta</a>. Le librerie sono utilizzate per memorizzare diversi tipi di oggetti come note, elenchi di cose da fare e immagini."
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "Scuro"
 
-#: ../Widgets/LibrariesSideBar.qml:95
+#: ../Widgets/LibrariesSideBar.qml:94
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "Impostazioni"
@@ -744,7 +744,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "Tema:"
 
-#: ../Widgets/LibrariesSideBar.qml:124
+#: ../Widgets/LibrariesSideBar.qml:123
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "Creare una Raccolta predefinita"
@@ -1021,12 +1021,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Collegamento al server non riuscito. Si prega di controllare il nome utente, la password e l'indirizzo del server e di riprovare."
 
-#: ../Widgets/LibrariesSideBar.qml:82
+#: ../Widgets/LibrariesSideBar.qml:81
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "Account"
 
-#: ../Widgets/LibrariesSideBar.qml:101
+#: ../Widgets/LibrariesSideBar.qml:100
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "Tradurre l'App..."
@@ -1472,7 +1472,7 @@ msgctxt "RecurrenceDialog|"
 msgid "Number of days:"
 msgstr "Numero di giorni:"
 
-#: ../Windows/RecurrenceDialog.qml:139
+#: ../Windows/RecurrenceDialog.qml:141
 msgctxt "RecurrenceDialog|"
 msgid "Recur relative to the date when marking as done"
 msgstr "Ricorre relativamente alla data di completamento"
@@ -1673,27 +1673,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Connessione al server fallita. Controllare il nome utente, la password e l'indirizzo del server, quindi riprovare."
 
-#: ../Widgets/LibrariesSideBar.qml:89
+#: ../Widgets/LibrariesSideBar.qml:88
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "Modifica Liste"
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "Nascondi Programmazione"
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "Mostra Programmazione"
 
-#: ../Widgets/LibrariesSideBar.qml:237
+#: ../Widgets/LibrariesSideBar.qml:236
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "Sposta in alto"
 
-#: ../Widgets/LibrariesSideBar.qml:248
+#: ../Widgets/LibrariesSideBar.qml:247
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "Sposta giù"
@@ -1865,7 +1865,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Sposta TODO in..."
 
-#: ../Widgets/LibrariesSideBar.qml:108
+#: ../Widgets/LibrariesSideBar.qml:107
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "Donazioni"

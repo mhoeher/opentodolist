@@ -177,17 +177,17 @@ msgctxt "ItemNotesEditor|"
 msgid "Notes"
 msgstr "笔记"
 
-#: ../Widgets/LibrariesSideBar.qml:63 ../Widgets/LibrariesSideBar.qml:263
+#: ../Widgets/LibrariesSideBar.qml:62 ../Widgets/LibrariesSideBar.qml:262
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
 msgstr "时间表"
 
-#: ../Widgets/LibrariesSideBar.qml:75
+#: ../Widgets/LibrariesSideBar.qml:74
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
 msgstr "新资料库"
 
-#: ../Widgets/LibrariesSideBar.qml:116
+#: ../Widgets/LibrariesSideBar.qml:115
 msgctxt "LibrariesSideBar|"
 msgid "About..."
 msgstr "关于..."
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr "左开侧边栏(&L)"
 
-#: ../Windows/MainWindow.qml:238
+#: ../Windows/MainWindow.qml:250
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr "首先<a href='#newLibrary'>创建一个新资料库</a>。资料库用于存储各种项目，例如笔记、待办事项列表和图像。"
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr "黑暗"
 
-#: ../Widgets/LibrariesSideBar.qml:95
+#: ../Widgets/LibrariesSideBar.qml:94
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr "设置"
@@ -744,7 +744,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr "主题:"
 
-#: ../Widgets/LibrariesSideBar.qml:124
+#: ../Widgets/LibrariesSideBar.qml:123
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr "创建默认资料库"
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "未能连接到服务器。请检查您的用户名、密码和服务器地址，然后重试。"
 
-#: ../Widgets/LibrariesSideBar.qml:82
+#: ../Widgets/LibrariesSideBar.qml:81
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr "账户"
 
-#: ../Widgets/LibrariesSideBar.qml:101
+#: ../Widgets/LibrariesSideBar.qml:100
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr "帮助我们翻译这个应用..."
@@ -1471,7 +1471,7 @@ msgctxt "RecurrenceDialog|"
 msgid "Number of days:"
 msgstr "天数:"
 
-#: ../Windows/RecurrenceDialog.qml:139
+#: ../Windows/RecurrenceDialog.qml:141
 msgctxt "RecurrenceDialog|"
 msgid "Recur relative to the date when marking as done"
 msgstr "相对于标记为完成的日期重复"
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "未能连接到服务器。请检查您的用户名、密码和服务器地址，然后重试。"
 
-#: ../Widgets/LibrariesSideBar.qml:89
+#: ../Widgets/LibrariesSideBar.qml:88
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr "编辑列表"
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr "隐藏时间表"
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr "显示时间表"
 
-#: ../Widgets/LibrariesSideBar.qml:237
+#: ../Widgets/LibrariesSideBar.qml:236
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr "向上移动"
 
-#: ../Widgets/LibrariesSideBar.qml:248
+#: ../Widgets/LibrariesSideBar.qml:247
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr "向下移动"
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "移动待办事项至..."
 
-#: ../Widgets/LibrariesSideBar.qml:108
+#: ../Widgets/LibrariesSideBar.qml:107
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr "捐助"

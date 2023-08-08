@@ -740,75 +740,6 @@
     </message>
 </context>
 <context>
-    <name>LibrariesSideBar</name>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="62"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="262"/>
-        <source>Schedule</source>
-        <translation type="unfinished">Schema</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="74"/>
-        <source>New Library</source>
-        <translation type="unfinished">Nieuwe verzameling</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="81"/>
-        <source>Accounts</source>
-        <translation type="unfinished">Accounts</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="88"/>
-        <source>Edit List</source>
-        <translation type="unfinished">Lijst aanpassen</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="94"/>
-        <source>Settings</source>
-        <translation type="unfinished">Instellingen</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="100"/>
-        <source>Translate The App...</source>
-        <translation type="unfinished">Vertaal deze app…</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="107"/>
-        <source>Donate</source>
-        <translation type="unfinished">Doneren</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="115"/>
-        <source>About...</source>
-        <translation type="unfinished">Over…</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="123"/>
-        <source>Create Default Library</source>
-        <translation type="unfinished">Standaardverzameling aanmaken</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
-        <source>Hide Schedule</source>
-        <translation type="unfinished">Planning verbergen</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
-        <source>Show Schedule</source>
-        <translation type="unfinished">Planning tonen</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
-        <source>Move Up</source>
-        <translation type="unfinished">Omhoog verplaatsen</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="247"/>
-        <source>Move Down</source>
-        <translation type="unfinished">Omlaag verplaatsen</translation>
-    </message>
-</context>
-<context>
     <name>LibraryPageActions</name>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="35"/>
@@ -907,7 +838,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="238"/>
+        <location filename="../Windows/MainWindow.qml" line="250"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">&lt;a href=&apos;#newLibrary&apos;&gt;Maak een verzameling aan&lt;/a&gt;. Verzamelingen worden gebruikt om items in op te slaan, zoals notities, takenlijsten en afbeeldingen.</translation>
     </message>
@@ -1539,15 +1470,15 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="117"/>
         <source>Number of weeks:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aantal weken:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="119"/>
         <source>Number of months:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aantal maanden:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="139"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="141"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished">Herhaling ten opzichte van de datum bij het markeren als afgerond</translation>
     </message>

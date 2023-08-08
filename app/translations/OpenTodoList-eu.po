@@ -10,7 +10,7 @@ msgstr ""
 #: ../Pages/AboutPage.qml:15
 msgctxt "AboutPage|"
 msgid "About..."
-msgstr ""
+msgstr "Honi buruz"
 
 #: ../Pages/AboutPage.qml:29
 msgctxt "AboutPage|"
@@ -35,12 +35,12 @@ msgstr "Erabilitako liburutegiak eta baliabideak"
 #: ../Pages/AboutThirdPartyPage.qml:47
 msgctxt "AboutThirdPartyPage|"
 msgid "Author: <a href='%2'>%1</a>"
-msgstr ""
+msgstr "Egilea: <a href='%2'>%1</a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:54
 msgctxt "AboutThirdPartyPage|"
 msgid "License: <a href='%1'>%2</a>"
-msgstr ""
+msgstr "Lizentzia: <a href='%1'>%2</a>"
 
 #: ../Pages/AboutThirdPartyPage.qml:61
 msgctxt "AboutThirdPartyPage|"
@@ -70,27 +70,27 @@ msgstr "eranskinak"
 #: ../Menues/ColorMenu.qml:15
 msgctxt "ColorMenu|"
 msgid "Color"
-msgstr "Kolore"
+msgstr "Kolorea"
 
 #: ../Menues/ColorMenu.qml:19
 msgctxt "ColorMenu|"
 msgid "White"
-msgstr "White"
+msgstr "Zuria"
 
 #: ../Menues/ColorMenu.qml:26
 msgctxt "ColorMenu|"
 msgid "Red"
-msgstr "Red"
+msgstr "Gorria"
 
 #: ../Menues/ColorMenu.qml:33
 msgctxt "ColorMenu|"
 msgid "Green"
-msgstr "Green"
+msgstr "Berdea"
 
 #: ../Menues/ColorMenu.qml:40
 msgctxt "ColorMenu|"
 msgid "Blue"
-msgstr ""
+msgstr "Urdina"
 
 #: ../Menues/ColorMenu.qml:47
 msgctxt "ColorMenu|"
@@ -100,22 +100,22 @@ msgstr "Horia"
 #: ../Menues/ColorMenu.qml:54
 msgctxt "ColorMenu|"
 msgid "Orange"
-msgstr ""
+msgstr "Laranja"
 
 #: ../Menues/ColorMenu.qml:61
 msgctxt "ColorMenu|"
 msgid "Lilac"
-msgstr "lila"
+msgstr "Lila"
 
 #: ../Windows/DeleteItemDialog.qml:19
 msgctxt "DeleteItemDialog|"
 msgid "Delete Item?"
-msgstr "Elementua ezabatu nahi duzu?"
+msgstr "Elementua ezabatu nahi al duzu?"
 
 #: ../Windows/DeleteItemDialog.qml:32
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
-msgstr ""
+msgstr "Egia al da <strong>%1</strong> irudia ezabatu nahi duzula? Ezingo da desegin."
 
 #: ../Windows/DeleteItemDialog.qml:36
 msgctxt "DeleteItemDialog|"
@@ -140,7 +140,7 @@ msgstr ""
 #: ../Windows/DeleteLibraryDialog.qml:19
 msgctxt "DeleteLibraryDialog|"
 msgid "Delete Library?"
-msgstr "Liburutegia ezabatu nahi duzu?"
+msgstr "Liburutegia ezabatu nahi al duzu?"
 
 #: ../Windows/DeleteLibraryDialog.qml:33
 msgctxt "DeleteLibraryDialog|"
@@ -160,12 +160,12 @@ msgstr "Hautatu Karpeta"
 #: ../Widgets/ItemCreatedNotification.qml:66
 msgctxt "ItemCreatedNotification|"
 msgid "<strong>%1</strong> has been created."
-msgstr ""
+msgstr "<strong>%1</strong> sortu da."
 
 #: ../Widgets/ItemCreatedNotification.qml:72
 msgctxt "ItemCreatedNotification|"
 msgid "Open"
-msgstr ""
+msgstr "Ireki"
 
 #: ../Widgets/ItemDueDateEditor.qml:32
 msgctxt "ItemDueDateEditor|"
@@ -175,77 +175,77 @@ msgstr ""
 #: ../Widgets/ItemNotesEditor.qml:32
 msgctxt "ItemNotesEditor|"
 msgid "Notes"
-msgstr ""
+msgstr "Oharrak"
 
-#: ../Widgets/LibrariesSideBar.qml:63 ../Widgets/LibrariesSideBar.qml:263
+#: ../Widgets/LibrariesSideBar.qml:62 ../Widgets/LibrariesSideBar.qml:262
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
-msgstr ""
+msgstr "Antolaketa"
 
-#: ../Widgets/LibrariesSideBar.qml:75
+#: ../Widgets/LibrariesSideBar.qml:74
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
-msgstr ""
+msgstr "Biblioteka Berria"
 
-#: ../Widgets/LibrariesSideBar.qml:116
+#: ../Widgets/LibrariesSideBar.qml:115
 msgctxt "LibrariesSideBar|"
 msgid "About..."
-msgstr ""
+msgstr "Honi buruz"
 
 #: ../Pages/LibraryPage.qml:201
 msgctxt "LibraryPage|"
 msgid "Red"
-msgstr ""
+msgstr "Gorria"
 
 #: ../Pages/LibraryPage.qml:208
 msgctxt "LibraryPage|"
 msgid "Green"
-msgstr ""
+msgstr "Berdea"
 
 #: ../Pages/LibraryPage.qml:215
 msgctxt "LibraryPage|"
 msgid "Blue"
-msgstr ""
+msgstr "Urdina"
 
 #: ../Pages/LibraryPage.qml:222
 msgctxt "LibraryPage|"
 msgid "Yellow"
-msgstr ""
+msgstr "Horia"
 
 #: ../Pages/LibraryPage.qml:229
 msgctxt "LibraryPage|"
 msgid "Orange"
-msgstr ""
+msgstr "Laranja"
 
 #: ../Pages/LibraryPage.qml:236
 msgctxt "LibraryPage|"
 msgid "Lilac"
-msgstr ""
+msgstr "Lila"
 
 #: ../Pages/LibraryPage.qml:243
 msgctxt "LibraryPage|"
 msgid "White"
-msgstr ""
+msgstr "Zuria"
 
 #: ../Pages/LibraryPage.qml:253
 msgctxt "LibraryPage|"
 msgid "Rename"
-msgstr ""
+msgstr "Berrizendatu"
 
 #: ../Pages/LibraryPage.qml:263
 msgctxt "LibraryPage|"
 msgid "Delete"
-msgstr ""
+msgstr "Ezabatu"
 
 #: ../Pages/LibraryPage.qml:344
 msgctxt "LibraryPage|"
 msgid "Note Title"
-msgstr "Oharra Izenburua"
+msgstr "Oharraren Izenburua"
 
 #: ../Pages/LibraryPage.qml:357
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
-msgstr "Todo List izenburua"
+msgstr "Todo List-aren Izenburua"
 
 #: ../Pages/LibraryPage.qml:370
 msgctxt "LibraryPage|"
@@ -295,7 +295,7 @@ msgstr "Sinkronizazioen erregistroa"
 #: ../Pages/LogViewPage.qml:22
 msgctxt "LogViewPage|"
 msgid "Copy Log"
-msgstr ""
+msgstr "Kopiatu erregistroa"
 
 #: ../Windows/MainWindow.qml:24
 msgctxt "MainWindow|"
@@ -305,32 +305,32 @@ msgstr ""
 #: ../Windows/MainWindow.qml:451
 msgctxt "MainWindow|"
 msgid "New &Library"
-msgstr ""
+msgstr "&Biblioteka berria"
 
 #: ../Windows/MainWindow.qml:462
 msgctxt "MainWindow|"
 msgid "New &Note"
-msgstr ""
+msgstr "&Ohar berria"
 
 #: ../Windows/MainWindow.qml:470
 msgctxt "MainWindow|"
 msgid "New &Todo List"
-msgstr ""
+msgstr "&Todo List berria"
 
 #: ../Windows/MainWindow.qml:478
 msgctxt "MainWindow|"
 msgid "New &Image"
-msgstr ""
+msgstr "&Irudi berria"
 
 #: ../Windows/MainWindow.qml:486
 msgctxt "MainWindow|"
 msgid "&Quit"
-msgstr ""
+msgstr "&Utzi"
 
 #: ../Windows/MainWindow.qml:503
 msgctxt "MainWindow|"
 msgid "&Find"
-msgstr ""
+msgstr "&Bilatu"
 
 #: ../Windows/MainWindow.qml:545
 msgctxt "MainWindow|"
@@ -342,7 +342,7 @@ msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
 msgstr ""
 
-#: ../Windows/MainWindow.qml:238
+#: ../Windows/MainWindow.qml:250
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
 msgstr ""
@@ -395,42 +395,42 @@ msgstr ""
 #: ../Widgets/NewTopLevelItemButton.qml:54
 msgctxt "NewTopLevelItemButton|"
 msgid "Note"
-msgstr ""
+msgstr "Oharra"
 
 #: ../Widgets/NewTopLevelItemButton.qml:43
 msgctxt "NewTopLevelItemButton|"
 msgid "Todo List"
-msgstr ""
+msgstr "Todo List"
 
 #: ../Widgets/NewTopLevelItemButton.qml:58
 msgctxt "NewTopLevelItemButton|"
 msgid "Image"
-msgstr ""
+msgstr "Irudia"
 
 #: ../Windows/OpenFileDialog.qml:18
 msgctxt "OpenFileDialog|"
 msgid "Select a File"
-msgstr ""
+msgstr "Artxiboa aukeratu"
 
 #: ../Windows/+ios/OpenImageDialog.qml:19 ../Windows/OpenImageDialog.qml:19
 msgctxt "OpenImageDialog|"
 msgid "Select Image"
-msgstr ""
+msgstr "Irudia aukeratu"
 
 #: ../Windows/RenameItemDialog.qml:22
 msgctxt "RenameItemDialog|"
 msgid "Rename Item"
-msgstr ""
+msgstr "Elementua berrizendatu"
 
 #: ../Windows/RenameItemDialog.qml:33
 msgctxt "RenameItemDialog|"
 msgid "Enter item title..."
-msgstr ""
+msgstr "Idatzi elementuaren izenburua..."
 
 #: ../Windows/RenameLibraryDialog.qml:20
 msgctxt "RenameLibraryDialog|"
 msgid "Rename Library"
-msgstr ""
+msgstr "Biblioteka berrizendatu"
 
 #: ../Windows/RenameLibraryDialog.qml:37
 msgctxt "RenameLibraryDialog|"
@@ -714,7 +714,7 @@ msgctxt "Colors|"
 msgid "Dark"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:95
+#: ../Widgets/LibrariesSideBar.qml:94
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
 msgstr ""
@@ -744,7 +744,7 @@ msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:124
+#: ../Widgets/LibrariesSideBar.qml:123
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
 msgstr ""
@@ -1020,12 +1020,12 @@ msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:82
+#: ../Widgets/LibrariesSideBar.qml:81
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:101
+#: ../Widgets/LibrariesSideBar.qml:100
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
 msgstr ""
@@ -1471,7 +1471,7 @@ msgctxt "RecurrenceDialog|"
 msgid "Number of days:"
 msgstr "Egun kopurua:"
 
-#: ../Windows/RecurrenceDialog.qml:139
+#: ../Windows/RecurrenceDialog.qml:141
 msgctxt "RecurrenceDialog|"
 msgid "Recur relative to the date when marking as done"
 msgstr "Noiz errepikatzen da markaketa egin bezala"
@@ -1672,27 +1672,27 @@ msgctxt "EditNextCloudAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:89
+#: ../Widgets/LibrariesSideBar.qml:88
 msgctxt "LibrariesSideBar|"
 msgid "Edit List"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Hide Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:226
+#: ../Widgets/LibrariesSideBar.qml:225
 msgctxt "LibrariesSideBar|"
 msgid "Show Schedule"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:237
+#: ../Widgets/LibrariesSideBar.qml:236
 msgctxt "LibrariesSideBar|"
 msgid "Move Up"
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:248
+#: ../Widgets/LibrariesSideBar.qml:247
 msgctxt "LibrariesSideBar|"
 msgid "Move Down"
 msgstr ""
@@ -1863,7 +1863,7 @@ msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr ""
 
-#: ../Widgets/LibrariesSideBar.qml:108
+#: ../Widgets/LibrariesSideBar.qml:107
 msgctxt "LibrariesSideBar|"
 msgid "Donate"
 msgstr ""

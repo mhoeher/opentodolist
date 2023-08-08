@@ -6,7 +6,7 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="15"/>
         <source>About...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Honi buruz</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="29"/>
@@ -141,7 +141,7 @@
     <message>
         <location filename="../appstartup.cpp" line="372"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ireki</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="379"/>
@@ -198,7 +198,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="23"/>
         <source>Rename</source>
-        <translation type="unfinished">Izena aldatu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="33"/>
@@ -214,7 +214,7 @@
         <location filename="../Components/ApplicationToolBarActions.qml" line="53"/>
         <location filename="../Components/ApplicationToolBarActions.qml" line="64"/>
         <source>Color</source>
-        <translation type="unfinished">Kolore</translation>
+        <translation type="unfinished">Kolorea</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
@@ -244,7 +244,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="116"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ezabatu</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="124"/>
@@ -285,27 +285,27 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="15"/>
         <source>Color</source>
-        <translation type="unfinished">Kolore</translation>
+        <translation type="unfinished">Kolorea</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished">White</translation>
+        <translation type="unfinished">Zuria</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
         <source>Red</source>
-        <translation type="unfinished">Red</translation>
+        <translation type="unfinished">Gorria</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="33"/>
         <source>Green</source>
-        <translation type="unfinished">Green</translation>
+        <translation type="unfinished">Berdea</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="40"/>
         <source>Blue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Urdina</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="47"/>
@@ -315,12 +315,12 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="54"/>
         <source>Orange</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Laranja</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
         <source>Lilac</source>
-        <translation type="unfinished">lila</translation>
+        <translation type="unfinished">Lila</translation>
     </message>
 </context>
 <context>
@@ -409,7 +409,7 @@
     <message>
         <location filename="../Actions/DeleteItem.qml" line="8"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ezabatu</translation>
     </message>
 </context>
 <context>
@@ -417,12 +417,12 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="19"/>
         <source>Delete Item?</source>
-        <translation type="unfinished">Elementua ezabatu nahi duzu?</translation>
+        <translation type="unfinished">Elementua ezabatu nahi al duzu?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="32"/>
         <source>Do you really want to delete the image &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Egia al da &lt;strong&gt;%1&lt;/strong&gt; irudia ezabatu nahi duzula? Ezingo da desegin.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="36"/>
@@ -455,7 +455,7 @@
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="19"/>
         <source>Delete Library?</source>
-        <translation type="unfinished">Liburutegia ezabatu nahi duzu?</translation>
+        <translation type="unfinished">Liburutegia ezabatu nahi al duzu?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="33"/>
@@ -640,12 +640,12 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt; has been created.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;strong&gt;%1&lt;/strong&gt; sortu da.</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="72"/>
         <source>Open</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ireki</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="77"/>
@@ -740,75 +740,6 @@
     </message>
 </context>
 <context>
-    <name>LibrariesSideBar</name>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="62"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="262"/>
-        <source>Schedule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="74"/>
-        <source>New Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="81"/>
-        <source>Accounts</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="88"/>
-        <source>Edit List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="94"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="100"/>
-        <source>Translate The App...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="107"/>
-        <source>Donate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="115"/>
-        <source>About...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="123"/>
-        <source>Create Default Library</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
-        <source>Hide Schedule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="225"/>
-        <source>Show Schedule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="236"/>
-        <source>Move Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="247"/>
-        <source>Move Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>LibraryPageActions</name>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="35"/>
@@ -836,7 +767,7 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="22"/>
         <source>Copy Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopiatu erregistroa</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="28"/>
@@ -907,7 +838,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="238"/>
+        <location filename="../Windows/MainWindow.qml" line="250"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1274,7 +1205,7 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Todo List</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
@@ -1284,12 +1215,12 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
         <source>Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oharra</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="58"/>
         <source>Image</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Irudia</translation>
     </message>
 </context>
 <context>
@@ -1547,7 +1478,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="139"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="141"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished">Noiz errepikatzen da markaketa egin bezala</translation>
     </message>
@@ -1557,7 +1488,7 @@
     <message>
         <location filename="../Actions/RenameItem.qml" line="8"/>
         <source>Rename</source>
-        <translation type="unfinished">Izena aldatu</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1565,12 +1496,12 @@
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="22"/>
         <source>Rename Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Elementua berrizendatu</translation>
     </message>
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="33"/>
         <source>Enter item title...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Idatzi elementuaren izenburua...</translation>
     </message>
 </context>
 <context>
@@ -1578,7 +1509,7 @@
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="20"/>
         <source>Rename Library</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Biblioteka berrizendatu</translation>
     </message>
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="37"/>
@@ -1599,7 +1530,7 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="56"/>
         <source>Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Antolaketa</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="136"/>
