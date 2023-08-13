@@ -123,8 +123,8 @@ install(
     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/
 )
 install(
-    FILES net.rpdev.OpenTodoList.appdata.xml
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/appdata
+    FILES net.rpdev.OpenTodoList.metainfo.xml
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo
 )
 install(
     FILES ${CMAKE_CURRENT_BINARY_DIR}/net.rpdev.OpenTodoList.desktop
@@ -148,7 +148,7 @@ file(GLOB_RECURSE OTHER_FILES
     COPYING
     Doxyfile
     net.rpdev.OpenTodoList.json
-    net.rpdev.OpenTodoList.appdata.xml
+    net.rpdev.OpenTodoList.metainfo.xml
     snapcraft.yaml
     doc/*
     .gitlab-ci.yml
