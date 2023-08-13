@@ -40,13 +40,25 @@
   <update_contact>martin_AT_rpdev.net</update_contact>
 
   <releases>
-    <release version="3.45.1" date="2023-07-25">
-        <p>This release includes the following changes:</p>
-        <ul>
-            <li>Updates for the Android release to ship the proper OpenSSL library</li>
-            <li>#626: Wrong text in number of days label in the recurrence editor</li>
-        </ul>
+    <!-- Format releases according to this: https://www.freedesktop.org/software/appstream/docs/sect-Metadata-Releases.html#spec-releases-example -->
+    <release version="3.45.2" date="2023-08-13">
+        <description>
+            <p>This is a bug fix release, which adds HTTPS support back to the Snap edition of the app.</p>
+        </description>
+        <issues>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/633">#633: Cannot connect to WebDAV server with Snap Edition</issue>
+        </issues>
     </release>
+    <release version="3.45.1" date="2023-07-25">
+        <description>
+            <p>This is a bug fix release, which mainly targets an issue in the Android version of the app.</p>
+        </description>
+        <issues>
+            <issue>Updates for the Android release to ship the proper OpenSSL library</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/626">#626: Wrong text in number of days label in the recurrence editor</issue>
+        </issues>
+    </release>
+    <!--
     <release version="3.45.0" date="2023-07-16">
         <p>This release includes the following changes:</p>
         <ul>
@@ -866,5 +878,6 @@
             collections and so on).
         </p>
     </release>
+  -->
   </releases>
 </component>
