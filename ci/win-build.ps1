@@ -28,8 +28,6 @@ if(-Not (Test-Path -Path "$PERL_PATH")) {
     }
 }
 
-
-
 if(-Not (Test-Path -Path "$NSIS_PATH")) {
     # Install NSIS installer framework:
     choco install -y nsis
@@ -73,11 +71,17 @@ if (-not $?) {
     Write-Error -Message "Failed to deploy Qt binaries for OpenTodoList."
 }
 
+# Prepare portable version of the app:
+$OPENTODOLIST_VERSION = git describe --tags
+Copy-Item -Path deploy-win64 -Destination .\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit
+Compress-Archive `
+    -Path OpenTodoList-Windows-64bit `
+    -DestinationPath OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.zip
+
+# Copy NSIS config and build installer:
 Copy-Item -Path templates\nsis\win64-installer.nsis -Destination deploy-win64
 
 Set-Location -Path deploy-win64
-
-$OPENTODOLIST_VERSION = git describe --tags
 
 makensis win64-installer.nsis
 
@@ -86,3 +90,6 @@ if (-not $?) {
 }
 
 Rename-Item OpenTodoList-Windows-64bit.exe OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.exe
+
+# Copy portable version to this folder for pickup later:
+Move-Item -Path ..\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.zip -Destination .
