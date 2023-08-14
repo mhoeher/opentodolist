@@ -93,3 +93,15 @@ Rename-Item OpenTodoList-Windows-64bit.exe OpenTodoList-$OPENTODOLIST_VERSION-Wi
 
 # Copy portable version to this folder for pickup later:
 Move-Item -Path ..\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.zip -Destination .
+
+
+# Check if the build was successful. Sometimes, installations fail, but
+# it seems we get no indication in the form of a non-zero return code.
+# In this case, as a last resort, check if we were able to build
+# our desired deployables and - if not - error out.
+if(-Not (Test-Path -Path "OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.zip")) {
+    Write-Error -Message "No portable OpenTodoList found - the build probably failed!"
+}
+if(-Not (Test-Path -Path "OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.exe")) {
+    Write-Error -Message "No OpenTodoList installer found - the build probably failed!"
+}

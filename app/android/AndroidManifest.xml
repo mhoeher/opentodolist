@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.rpdev.opentodolist"
-    android:versionCode="-- %%INSERT_VERSION_CODE%% --"
-    android:versionName="-- %%INSERT_VERSION_NAME%% --"
-    android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="net.rpdev.opentodolist" android:versionCode="-- %%INSERT_VERSION_CODE%% --" android:versionName="-- %%INSERT_VERSION_NAME%% --" android:installLocation="auto">
 
     <!-- The following comment will be replaced upon deployment with default permissions based on the dependencies of the application.
          Remove the comment if you do not require these default permissions. -->
@@ -15,29 +11,10 @@
          Remove the comment if you do not require these default features. -->
     <!-- %%INSERT_FEATURES -->
 
-    <supports-screens
-        android:largeScreens="true"
-        android:normalScreens="true"
-        android:anyDensity="true"
-        android:smallScreens="true" />
+    <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
 
-    <application
-        android:name="org.qtproject.qt.android.bindings.QtApplication"
-        android:hardwareAccelerated="true"
-        android:label="OpenTodoList"
-        android:requestLegacyExternalStorage="true"
-        android:allowNativeHeapPointerTagging="false"
-        android:allowBackup="false"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true">
-        <activity
-            android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
-            android:name="net.rpdev.OpenTodoList.MainActivity"
-            android:label="OpenTodoList"
-            android:screenOrientation="unspecified"
-            android:launchMode="singleTop"
-            android:exported="true">
+    <application android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="OpenTodoList" android:requestLegacyExternalStorage="true" android:allowNativeHeapPointerTagging="false" android:allowBackup="false" android:icon="@drawable/icon" android:usesCleartextTraffic="true">
+        <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="net.rpdev.OpenTodoList.MainActivity" android:label="OpenTodoList" android:screenOrientation="unspecified" android:launchMode="singleTop" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -51,43 +28,26 @@
             <!-- Application arguments -->
             <!-- meta-data android:name="android.app.arguments" android:value="arg1 arg2 arg3"/ -->
             <!-- Application arguments -->
-            <meta-data
-                android:name="android.app.arguments"
-                android:value="--gui" />
-            <meta-data
-                android:name="android.app.extract_android_style"
-                android:value="minimal" />
+            <meta-data android:name="android.app.arguments" android:value="--gui"/>
+            <meta-data android:name="android.app.extract_android_style" android:value="minimal"/>
             <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
-
             <!-- Background running -->
             <!-- Warning: changing this value to true may cause unexpected crashes if the
                           application still try to draw after
                           "applicationStateChanged(Qt::ApplicationSuspended)"
                           signal is sent! -->
-            <meta-data
-                android:name="android.app.background_running"
-                android:value="false" />
+            <meta-data android:name="android.app.background_running" android:value="false"/>
         </activity>
 
         <!-- For adding service(s) please check: https://wiki.qt.io/AndroidServices -->
-        <service
-            android:name="net.rpdev.OpenTodoList.BackgroundService"
-            android:process=":qt_service">
-            <meta-data
-                android:name="android.app.background_running"
-                android:value="true" />
-            <meta-data
-                android:name="android.app.arguments"
-                android:value="--service" />
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="-- %%INSERT_APP_LIB_NAME%% --" />
+        <service android:name="net.rpdev.OpenTodoList.BackgroundService" android:process=":qt_service">
+            <meta-data android:name="android.app.background_running" android:value="true"/>
+            <meta-data android:name="android.app.arguments" android:value="--service"/>
+            <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
         </service>
 
         <!-- Start the service at boot time -->
-        <receiver
-            android:name="net.rpdev.OpenTodoList.QtBroadcastReceiver"
-            android:exported="true">
+        <receiver android:name="net.rpdev.OpenTodoList.QtBroadcastReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="net.rpdev.OpenTodoList.QtBroadcastReceiver.ACTION_QUIT"/>

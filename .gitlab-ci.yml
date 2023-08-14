@@ -12,7 +12,7 @@ variables:
   CCACHE_DIR: $CI_PROJECT_DIR/ccache
   ANDROID_MIN_SDK_INT: 21
   OPENTODOLIST_WEBDAV_TEST_SERVERS_TEMPLATE: "nextcloud://admin:admin@nextcloud/;owncloud://admin:admin@owncloud/;generic://admin:admin@nextcloud/remote.php/webdav/;generic://admin:admin@owncloud/remote.php/webdav/"
-  QT_VERSION: "6.5.1"
+  QT_VERSION: "6.5.2"
   # Exit PowerShell scripts with an error when an error occurs:
   ErrorActionPreference: STOP
 
