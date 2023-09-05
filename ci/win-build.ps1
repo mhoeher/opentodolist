@@ -73,10 +73,11 @@ if (-not $?) {
 
 # Prepare portable version of the app:
 $OPENTODOLIST_VERSION = git describe --tags
-Copy-Item -Path deploy-win64 -Destination .\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit
+New-Item -Type Directory -Path OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit
+Copy-Item -Path deploy-win64\bin\* -Destination .\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit\ -Recurse
 Compress-Archive `
-    -Path OpenTodoList-Windows-64bit `
-    -DestinationPath OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.zip
+    -Path .\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit `
+    -DestinationPath deploy-win64\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.zip
 
 # Copy NSIS config and build installer:
 Copy-Item -Path templates\nsis\win64-installer.nsis -Destination deploy-win64
@@ -90,10 +91,6 @@ if (-not $?) {
 }
 
 Rename-Item OpenTodoList-Windows-64bit.exe OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.exe
-
-# Copy portable version to this folder for pickup later:
-Move-Item -Path ..\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.zip -Destination .
-
 
 # Check if the build was successful. Sometimes, installations fail, but
 # it seems we get no indication in the form of a non-zero return code.

@@ -14,7 +14,7 @@ variables:
   OPENTODOLIST_WEBDAV_TEST_SERVERS_TEMPLATE: "nextcloud://admin:admin@nextcloud/;owncloud://admin:admin@owncloud/;generic://admin:admin@nextcloud/remote.php/webdav/;generic://admin:admin@owncloud/remote.php/webdav/"
   QT_VERSION: "6.5.2"
   # Exit PowerShell scripts with an error when an error occurs:
-  ErrorActionPreference: STOP
+  ErrorActionPreference: Stop
 
 
 stages:
