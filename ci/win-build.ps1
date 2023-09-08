@@ -28,8 +28,6 @@ if(-Not (Test-Path -Path "$PERL_PATH")) {
     }
 }
 
-
-
 if(-Not (Test-Path -Path "$NSIS_PATH")) {
     # Install NSIS installer framework:
     choco install -y nsis
@@ -73,11 +71,18 @@ if (-not $?) {
     Write-Error -Message "Failed to deploy Qt binaries for OpenTodoList."
 }
 
+# Prepare portable version of the app:
+$OPENTODOLIST_VERSION = git describe --tags
+New-Item -Type Directory -Path OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit
+Copy-Item -Path deploy-win64\bin\* -Destination .\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit\ -Recurse
+Compress-Archive `
+    -Path .\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit `
+    -DestinationPath deploy-win64\OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.zip
+
+# Copy NSIS config and build installer:
 Copy-Item -Path templates\nsis\win64-installer.nsis -Destination deploy-win64
 
 Set-Location -Path deploy-win64
-
-$OPENTODOLIST_VERSION = git describe --tags
 
 makensis win64-installer.nsis
 
@@ -86,3 +91,14 @@ if (-not $?) {
 }
 
 Rename-Item OpenTodoList-Windows-64bit.exe OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.exe
+
+# Check if the build was successful. Sometimes, installations fail, but
+# it seems we get no indication in the form of a non-zero return code.
+# In this case, as a last resort, check if we were able to build
+# our desired deployables and - if not - error out.
+if(-Not (Test-Path -Path "OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.zip")) {
+    Write-Error -Message "No portable OpenTodoList found - the build probably failed!"
+}
+if(-Not (Test-Path -Path "OpenTodoList-$OPENTODOLIST_VERSION-Windows-64bit.exe")) {
+    Write-Error -Message "No OpenTodoList installer found - the build probably failed!"
+}
