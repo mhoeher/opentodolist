@@ -149,6 +149,19 @@ void Account::load(QSettings* settings)
 }
 
 /**
+ * @brief The preferred minimum sync interval in seconds.
+ *
+ * This method returns the preferred minimum sync interval for libraries to be used in background
+ * sync for this account. The default implementation returns a sane value that should fit
+ * most use cases. Concrete sub-classes can override this method to provide customized
+ * behaviour if needed.
+ */
+int Account::preferredSyncIntervalInSec() const
+{
+    return 15 * 60; // Sync every 15min
+}
+
+/**
  * @brief The name of the account.
  *
  * This is the human readable name of the account. It is used inside

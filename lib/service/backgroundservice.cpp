@@ -70,6 +70,8 @@ BackgroundService::BackgroundService(Cache* cache, QObject* parent)
         for (const auto& lib : m_appSettings->librariesFromConfig()) {
             QScopedPointer<Synchronizer> sync(lib->createSynchronizer());
             if (sync) {
+                QScopedPointer<Account> account(m_appSettings->loadAccount(sync->accountUid()));
+                auto syncIntervalInS = account ? account->preferredSyncIntervalInSec() : 15 * 60;
                 auto lastSync = sync->lastSync();
                 bool runSync = false;
                 if (!lastSync.isValid()) {
@@ -77,10 +79,9 @@ BackgroundService::BackgroundService(Cache* cache, QObject* parent)
                 } else {
                     auto currentDateTime = QDateTime::currentDateTime();
                     auto diff = currentDateTime.toMSecsSinceEpoch() - lastSync.toMSecsSinceEpoch();
-                    if (diff >= (1000 * 60 * 15)) {
-                        // Sync every 15min
+                    if (diff >= syncIntervalInS * 1000) {
                         qCDebug(log) << "Library" << lib << lib->name() << "has not been synced for"
-                                     << "more than 15min,"
+                                     << "more than " << (syncIntervalInS / 60) << "min,"
                                      << "starting sync now";
                         runSync = true;
                     }

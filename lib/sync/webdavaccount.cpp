@@ -198,6 +198,26 @@ void WebDAVAccount::load(QSettings* settings)
     m_backendSpecificData = settings->value("backendSpecificData", m_backendSpecificData).toMap();
 }
 
+/**
+ * @brief Implementation of Account::preferredSyncIntervalInSec().
+ *
+ * This method provides a specific implementation for a suitable minimum sync interval for the
+ * background sync. The implementation uses specifics about the server used to increase the sync
+ * interval (and hence limit data usage) in case we have a non-WebDAV-compliant server.
+ */
+int WebDAVAccount::preferredSyncIntervalInSec() const
+{
+    auto workarounds = static_cast<SynqClient::WebDAVWorkarounds>(
+            m_backendSpecificData.value("workarounds", 0).toInt());
+    if (workarounds.testAnyFlag(SynqClient::WebDAVWorkaround::NoRecursiveFolderETags)) {
+        // The server does not provide etags on folders. This causes the sync to go through all
+        // folders on each sync (and hence, this leads to increased data usage for the background
+        // sync). So in this case, sync only every 2 hours in case such a server is used.
+        return 2 * 60 * 60;
+    }
+    return Account::preferredSyncIntervalInSec();
+}
+
 QString WebDAVAccount::accountSecrets() const
 {
     return m_password;
