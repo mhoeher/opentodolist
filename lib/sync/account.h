@@ -62,6 +62,7 @@ public:
 
     virtual void save(QSettings* settings);
     virtual void load(QSettings* settings);
+    virtual int preferredSyncIntervalInSec() const;
 
     Q_INVOKABLE virtual void login();
     Q_INVOKABLE virtual void findExistingLibraries();
