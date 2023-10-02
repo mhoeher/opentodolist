@@ -29,6 +29,10 @@ Item {
 
     signal openPage(var component, var properties)
 
+    OTL.ShareUtils {
+        id: shareUtils
+    }
+
     C.Action {
         id: syncNowAction
 
@@ -60,16 +64,7 @@ Item {
         id: openLibraryInFileExplorerAction
 
         text: qsTr("Open Library Folder")
-        enabled: {
-            switch (Qt.platform.os) {
-            case "ios":
-            case "android":
-                return false
-            default:
-                return true
-            }
-        }
-        onTriggered: Qt.openUrlExternally(OTL.Application.localFileToUrl(
-                                              root.library.directory))
+        enabled: shareUtils.canOpenFolders
+        onTriggered: shareUtils.openFolder(root.library.directory)
     }
 }

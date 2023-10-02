@@ -51,11 +51,6 @@ void DropboxSynchronizer::synchronize()
     }
 }
 
-QVariantMap DropboxSynchronizer::toMap() const
-{
-    return Synchronizer::toMap();
-}
-
 void DropboxSynchronizer::fromMap(const QVariantMap& map)
 {
     Synchronizer::fromMap(map);

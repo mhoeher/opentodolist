@@ -151,10 +151,10 @@ void LibraryLoader::itemUidsLoaded(QSet<QUuid> uids)
         }
         result.query = q;
         result.itemsToDelete = uids;
-        auto years = Library::years(directory);
-        for (const auto& year : qAsConst(years)) {
-            auto months = Library::months(directory, year);
-            for (const auto& month : qAsConst(months)) {
+        const auto years = Library::years(directory);
+        for (const auto& year : years) {
+            const auto months = Library::months(directory, year);
+            for (const auto& month : months) {
                 QDir dir(directory + "/" + year + "/" + month);
                 qCDebug(log) << "Checking directory" << dir;
                 const auto itemFiles = Library::itemFiles(directory, year, month);
@@ -208,7 +208,8 @@ void LibraryLoader::itemsInserted()
     } else {
         qCDebug(log) << "Removing deleted items from cache for" << this;
         auto q = new DeleteItemsQuery();
-        for (auto id : qAsConst(m_itemsToDelete)) {
+        const auto& itemsToDelete = m_itemsToDelete;
+        for (auto id : itemsToDelete) {
             q->deleteItem(id);
         }
         connect(q, &DeleteItemsQuery::finished, this, &LibraryLoader::scanFinished,

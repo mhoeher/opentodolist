@@ -1,11 +1,14 @@
 package net.rpdev.OpenTodoList;
 
 import android.content.Intent;
+import android.net.Uri;
+import androidx.core.content.FileProvider;
 
 import org.qtproject.qt.android.bindings.QtActivity;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.io.File;
 
 public class MainActivity extends QtActivity
 {
@@ -61,5 +64,25 @@ public class MainActivity extends QtActivity
         if (link != null) {
             m_pendingAppLinks.add(link);
         }
+    }
+
+    /**
+     * @brief Open a file in a suitable app.
+     *
+     * @param path The path to the file to open.
+     * @return True if opening was successful or false otherwise.
+     */
+    public boolean openFile(String path) {
+        File file = new File(path);
+
+        Uri uri = FileProvider.getUriForFile(this, "net.rpdev.opentodolist", file);
+        String mimeType = getContentResolver().getType(uri);
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setDataAndType(uri, mimeType);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(intent);
+        return true;
     }
 }

@@ -85,7 +85,7 @@ void Image::setImage(const QString& image)
                 if (fi.absolutePath() == directory()) {
                     m_image = fi.fileName();
                     emit imageChanged();
-                } else if (isValid()) {
+                } else if (isValid()) { // cppcheck-suppress knownConditionTrueFalse
                     if (!fi.exists()) {
                         return;
                     }

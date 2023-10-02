@@ -81,6 +81,10 @@ ItemPage {
         property var restoreImageUid
     }
 
+    OTL.ShareUtils {
+        id: shareUtils
+    }
+
     LibraryPageActions {
         id: libraryActions
 
@@ -148,7 +152,7 @@ ItemPage {
 
                     MouseArea {
                         anchors.fill: image
-                        onClicked: OTL.Application.openUrl(item.imageUrl)
+                        onClicked: shareUtils.openFile(item.imageUrl)
                     }
                 }
 

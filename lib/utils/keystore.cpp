@@ -398,9 +398,11 @@ void KeyStore::deleteCredentials(const QString& key)
     });
 #else
     // Remove from fallback (in case we stored twice):
-    m_settings->beginGroup("Fallback");
-    m_settings->remove(key);
-    m_settings->endGroup();
+    if (m_settings) {
+        m_settings->beginGroup("Fallback");
+        m_settings->remove(key);
+        m_settings->endGroup();
+    }
 
     // Try to remove from platform specific key store:
     auto job = new QKeychain::DeletePasswordJob(ServiceName);

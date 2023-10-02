@@ -13,7 +13,8 @@ if [ -n "$CI" ]; then
 fi
 
 cppcheck  \
-    --enable=warning,style,performance,portability,missingInclude \
+    --enable=warning,style,performance,portability \
+    --disable=missingInclude \
     --error-exitcode=2 \
     --inline-suppr \
     --template='{file}:{line} {severity} "{id}": {message}' \

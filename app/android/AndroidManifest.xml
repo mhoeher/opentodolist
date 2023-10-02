@@ -13,7 +13,7 @@
 
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
 
-    <application android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="OpenTodoList" android:requestLegacyExternalStorage="true" android:allowNativeHeapPointerTagging="false" android:allowBackup="false" android:icon="@mipmap/ic_launcher" android:usesCleartextTraffic="true">
+    <application android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="OpenTodoList" android:allowNativeHeapPointerTagging="false" android:allowBackup="false" android:usesCleartextTraffic="true">
         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="net.rpdev.OpenTodoList.MainActivity" android:label="OpenTodoList" android:screenOrientation="unspecified" android:launchMode="singleTop" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -53,6 +53,17 @@
                 <action android:name="net.rpdev.OpenTodoList.QtBroadcastReceiver.ACTION_QUIT"/>
             </intent-filter>
         </receiver>
+
+        <!-- File Provider -->
+        <provider
+           android:name="net.rpdev.OpenTodoList.AppFileProvider"
+           android:authorities="net.rpdev.opentodolist"
+           android:exported="false"
+           android:grantUriPermissions="true">
+           <meta-data
+            android:name="android.support.FILE_PROVIDER_PATHS"
+            android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

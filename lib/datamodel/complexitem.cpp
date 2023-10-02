@@ -764,7 +764,8 @@ void ComplexItem::markItemAsDone()
 bool ComplexItem::deleteItem()
 {
     if (isValid()) {
-        for (const auto& attachment : qAsConst(m_attachments)) {
+        const auto& attachments_ = m_attachments;
+        for (const auto& attachment : attachments_) {
             auto path = attachmentFileName(attachment);
             QFile file(path);
             if (file.exists()) {

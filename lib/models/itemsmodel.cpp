@@ -454,7 +454,7 @@ void ItemsModel::setUntaggedOnly(bool newUntaggedOnly)
     emit untaggedOnlyChanged();
 }
 
-bool ItemsModel::itemMatches(ItemPtr item, QStringList words)
+bool ItemsModel::itemMatches(ItemPtr item, const QStringList& words)
 {
     for (const auto& word : words) {
         if (item->title().indexOf(word, 0, Qt::CaseInsensitive) >= 0) {
@@ -506,7 +506,8 @@ void ItemsModel::reset()
 {
     beginResetModel();
     m_ids.clear();
-    for (const auto& item : qAsConst(m_items)) {
+    const auto& items = m_items;
+    for (const auto& item : items) {
         delete item;
     }
     m_items.clear();
@@ -633,7 +634,7 @@ void ItemsModel::triggerFetch()
     m_fetchTimer.start();
 }
 
-void ItemsModel::update(QVariantList items)
+void ItemsModel::update(const QVariantList& items)
 {
     m_updating = true;
 #if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0))
@@ -642,7 +643,7 @@ void ItemsModel::update(QVariantList items)
     auto idsToDelete = QSet<QUuid>(m_ids.begin(), m_ids.end());
 #endif
     QList<Item*> newItems;
-    for (const auto& dataValue : qAsConst(items)) {
+    for (const auto& dataValue : items) {
         auto item = Item::decache(dataValue, this);
         auto id = item->uid();
         if (m_items.contains(id)) {
@@ -657,7 +658,8 @@ void ItemsModel::update(QVariantList items)
     }
 
     if (!idsToDelete.isEmpty()) {
-        for (const auto& id : qAsConst(idsToDelete)) {
+        const auto& idsToDelete_ = idsToDelete;
+        for (const auto& id : idsToDelete_) {
             auto index = static_cast<int>(m_ids.indexOf(id));
             beginRemoveRows(QModelIndex(), index, index);
             auto item = m_items.take(id);
@@ -670,7 +672,8 @@ void ItemsModel::update(QVariantList items)
     if (!newItems.isEmpty()) {
         beginInsertRows(QModelIndex(), static_cast<int>(m_ids.length()),
                         static_cast<int>(m_ids.length() + newItems.length() - 1));
-        for (const auto& item : qAsConst(newItems)) {
+        const auto newItems_ = newItems;
+        for (const auto& item : newItems_) {
             connect(item, &Item::changed, this, &ItemsModel::itemChanged);
             // Note: The updatedAt property might change intependent from the generic changed
             // signal. To still be able to properly notify about any data change (esp. for sorting

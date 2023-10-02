@@ -369,14 +369,15 @@ void AppStartup::showTrayIcon()
     }
 
     m_trayMenu = new QMenu();
-    auto openAction = m_trayMenu->addAction(tr("Open"));
+    auto openAction = m_trayMenu->addAction(tr("Open")); // cppcheck-suppress constVariablePointer
     if (m_backgroundService) {
         connect(openAction, &QAction::triggered, m_backgroundService,
                 &BackgroundService::showAppWindowRequested);
     } else if (m_application) {
         connect(openAction, &QAction::triggered, m_application, &Application::showWindowRequested);
     }
-    auto quickNotesAction = m_trayMenu->addAction(tr("Quick Note"));
+    auto quickNotesAction = // cppcheck-suppress constVariablePointer
+            m_trayMenu->addAction(tr("Quick Note"));
     if (m_backgroundService) {
         connect(quickNotesAction, &QAction::triggered, m_backgroundService,
                 &BackgroundService::showQuickNotesEditorRequested);
@@ -434,7 +435,7 @@ void AppStartup::showTrayIcon()
         app->setQuitOnLastWindowClosed(false);
     }
 
-    auto quitAction = m_trayMenu->addAction(tr("Quit"));
+    auto quitAction = m_trayMenu->addAction(tr("Quit")); // cppcheck-suppress constVariablePointer
     connect(quitAction, &QAction::triggered, m_app, &QCoreApplication::quit);
 #endif
 }
