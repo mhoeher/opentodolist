@@ -14,6 +14,10 @@ C.Page {
 
     title: qsTr("About...")
 
+    OTL.ShareUtils {
+        id: shareUtils
+    }
+
     C.ScrollView {
         id: scrollView
 
@@ -68,8 +72,8 @@ C.Page {
                 onLinkActivated: {
                     switch (link) {
                     case "app-license":
-                        Qt.openUrlExternally(
-                                    "https://gitlab.com/rpdev/opentodolist/" + "raw/stable/COPYING")
+                        shareUtils.openLink(
+                                    "https://gitlab.com/rpdev/opentodolist/raw/stable/COPYING")
                         break
                     }
                 }
@@ -79,8 +83,8 @@ C.Page {
             C.Button {
                 anchors.right: parent.right
                 text: qsTr("Report an Issue")
-                onClicked: Qt.openUrlExternally(
-                               "https://gitlab.com/rpdev/opentodolist/" + "issues/new")
+                onClicked: shareUtils.openLink(
+                               "https://gitlab.com/rpdev/opentodolist/issues/new")
             }
 
             C.Button {

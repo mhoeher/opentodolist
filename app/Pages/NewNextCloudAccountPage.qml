@@ -154,7 +154,7 @@ C.Page {
                                     let url = serverAddressEdit.text
                                     url = d.urlForCreatingAppSpecificPasswords(
                                                 url)
-                                    Qt.openUrlExternally(url)
+                                    shareUtils.openLink(url)
                                     console.debug(url)
                                 }
                             }
@@ -280,7 +280,7 @@ C.Page {
         }
 
         function onReceivedLoginUrl(loginUrl) {
-            Qt.openUrlExternally(loginUrl)
+            shareUtils.openLink(loginUrl)
         }
     }
 
@@ -304,5 +304,9 @@ C.Page {
         property: "enabled"
         value: serverAddressEdit.text !== "" && usernameEdit.text !== ""
                && passwordEdit.text !== ""
+    }
+
+    OTL.ShareUtils {
+        id: shareUtils
     }
 }

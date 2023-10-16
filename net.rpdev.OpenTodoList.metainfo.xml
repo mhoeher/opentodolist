@@ -41,6 +41,19 @@
 
   <releases>
     <!-- Format releases according to this: https://www.freedesktop.org/software/appstream/docs/sect-Metadata-Releases.html#spec-releases-example -->
+    <release version="3.46.0" date="2023-10-16">
+        <description>
+            <p>This is a feature release, which mainly fixes some smaller issues, but also brings in some nice new goodies.</p>
+        </description>
+        <issues>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/439">#439: Clicking on an image or an attachment not opens it properly on iOS and Android and allows sharing/sending these files to other installed apps.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/634">#634: Prevent high data usage or the app in the background when using a WebDAV server for sync which does not support e-tags on folders.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/631">#631: Update the PKGBUILD file.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/464">#464: Provide the Windows build as a portable Zip distribution.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/630">#630: The icon of the app should now be shown on all Android devices.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/491">#491: The sidebar items can now be expanded to show the top level items directly in the sidebar.</issue>
+        </issues>
+    </release>
     <release version="3.45.2" date="2023-08-13">
         <description>
             <p>This is a bug fix release, which adds HTTPS support back to the Snap edition of the app.</p>

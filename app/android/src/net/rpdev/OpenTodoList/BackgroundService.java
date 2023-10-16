@@ -7,8 +7,8 @@ import android.app.PendingIntent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import android.util.Log;
 import android.content.Context;
 import android.content.Intent;
@@ -85,9 +85,9 @@ public class BackgroundService extends QtService
         }
 
         m_notificationBuilder
-                .setSmallIcon(R.mipmap.icon)
+                .setSmallIcon(R.drawable.icon)
                 .setLargeIcon(BitmapFactory.decodeResource(
-                        context.getResources(), R.mipmap.badge))
+                        context.getResources(), R.drawable.badge))
                 .setContentTitle("Background Sync")
                 .setContentText("App continues to sync your data in the background")
                 .setPriority(NotificationManagerCompat.IMPORTANCE_LOW)
@@ -108,7 +108,7 @@ public class BackgroundService extends QtService
         quitAppIntent.setAction(QtBroadcastReceiver.ACTION_QUIT);
         PendingIntent pendingQuitAppIntent = PendingIntent.getBroadcast(
                 context, 0, quitAppIntent, additionalFlags);
-        m_notificationBuilder.addAction(R.mipmap.icon, "Quit", pendingQuitAppIntent);
+        m_notificationBuilder.addAction(R.drawable.icon, "Quit", pendingQuitAppIntent);
 
         Notification notification = m_notificationBuilder.build();
         m_notificationManager.notify(notificationId, notification);

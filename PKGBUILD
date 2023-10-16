@@ -6,17 +6,11 @@ pkgdesc="Maintain todo lists, notes and images in libraries, which can be synced
 arch=('x86_64')
 url="https://opentodolist.rpdev.net/"
 license=('GPL')
-groups=()
-depends=('cmake' 'ninja' 'qt6-base' 'qt6-tools' 'qt6-quickcontrols2' 'qt6-remoteobjects' 'qt6-networkauth' 'libsecret' 'ttf-roboto' 'noto-fonts' 'qtkeychain-qt6')
-makedepends=('git')
+depends=('qt6-base' 'qt6-quickcontrols2' 'qt6-remoteobjects' 'qt6-networkauth' 'libsecret' 'ttf-roboto' 'noto-fonts' 'qtkeychain-qt6')
+makedepends=('git' 'cmake' 'ninja' 'qt6-tools')
 provides=("${pkgname%}")
 conflicts=("${pkgname%}")
-replaces=()
-backup=()
-options=()
-install=
 source=("${pkgname}::git+https://gitlab.com/rpdev/opentodolist.git#commit=${pkgver}")
-noextract=()
 md5sums=('SKIP')
 
 # Please refer to the 'USING VCS SOURCES' section of the PKGBUILD man page for

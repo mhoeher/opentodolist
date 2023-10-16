@@ -12,9 +12,9 @@ variables:
   CCACHE_DIR: $CI_PROJECT_DIR/ccache
   ANDROID_MIN_SDK_INT: 21
   OPENTODOLIST_WEBDAV_TEST_SERVERS_TEMPLATE: "nextcloud://admin:admin@nextcloud/;owncloud://admin:admin@owncloud/;generic://admin:admin@nextcloud/remote.php/webdav/;generic://admin:admin@owncloud/remote.php/webdav/"
-  QT_VERSION: "6.5.1"
+  QT_VERSION: "6.5.3"
   # Exit PowerShell scripts with an error when an error occurs:
-  ErrorActionPreference: STOP
+  ErrorActionPreference: Stop
 
 
 stages:
@@ -155,6 +155,7 @@ windows-mingw-w64:
   artifacts:
     paths:
       - deploy-win64/OpenTodoList-*-Windows-64bit.exe
+      - deploy-win64/OpenTodoList-*-Windows-64bit.zip
     expire_in: 1 week
 
 # macOS build:
@@ -288,6 +289,7 @@ github:
         - mkdir uploads
         - cp build-ubuntu/OpenTodoList-*-x86_64.AppImage uploads
         - cp deploy-win64/OpenTodoList-*-Windows-64bit.exe uploads
+        - cp deploy-win64/OpenTodoList-*-Windows-64bit.zip uploads
         - cp build-android/*.apk uploads
         - cp build-macos/app/OpenTodoList.dmg uploads
         - cp OpenTodoList-Source-*.zip uploads

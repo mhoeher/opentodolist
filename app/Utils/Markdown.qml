@@ -14,33 +14,12 @@ Item {
     readonly property string stylesheet: "<style type='text/css' rel='stylesheet'>"
                                          + stylesheetContent + "</style>"
 
-    readonly property string stylesheetContent: "
-a, a:visited {
-color: %1;
-text-decoration: none;
-}
-h6 {
-font-style: italic;
-}
-
-code {
-color: %2;
-white-space: pre-wrap;
-}
-
-pre {
-white-space: pre-wrap;
-}
-
-table {
-margin-top: 0.5em;
-margin-bottom: 0.5em;
-}
-td, th {
-padding-left: 0.4em;
-padding-right: 0.4em;
-}
-".arg(Colors.linkColor).arg(Colors.color(Colors.negativeColor))
+    readonly property string stylesheetContent: OTL.Application.loadFile(
+                                                    Qt.resolvedUrl(
+                                                        "./text-style.css")).arg(
+                                                    Colors.linkColor).arg(
+                                                    Colors.color(
+                                                        Colors.negativeColor))
 
     function markdownToHtml(text) {
         if (text === "" || !text) {

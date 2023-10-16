@@ -170,5 +170,6 @@
         <file>Widgets/ItemDragButton.qml</file>
         <file>Components/Tooltips/AllSubtasksDone.qml</file>
         <file>Components/Tooltips/MarkFutureInstanceAsDone.qml</file>
+        <file>Utils/text-style.css</file>
     </qresource>
 </RCC>

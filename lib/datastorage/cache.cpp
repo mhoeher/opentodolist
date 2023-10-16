@@ -180,7 +180,8 @@ bool Cache::open()
     } while (m_context == nullptr);
 
     if (m_context != nullptr) {
-        if (openDBs() && initVersion0() && initVersion1()) {
+        if (openDBs() && initVersion0() // cppcheck-suppress knownConditionTrueFalse
+            && initVersion1()) { // cppcheck-suppress knownConditionTrueFalse
             // Clear the file timestamps cache - simply to avoid any issues across app
             // restarts.
             if (m_fileTimestamps->clear()) {

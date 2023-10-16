@@ -740,75 +740,6 @@
     </message>
 </context>
 <context>
-    <name>LibrariesSideBar</name>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="63"/>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="263"/>
-        <source>Schedule</source>
-        <translation type="unfinished">Iskedyul</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="75"/>
-        <source>New Library</source>
-        <translation type="unfinished">Bagong Library</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="82"/>
-        <source>Accounts</source>
-        <translation type="unfinished">Mga Account</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="89"/>
-        <source>Edit List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="95"/>
-        <source>Settings</source>
-        <translation type="unfinished">Mga setting</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="101"/>
-        <source>Translate The App...</source>
-        <translation type="unfinished">Isalin ang App ...</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="108"/>
-        <source>Donate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="116"/>
-        <source>About...</source>
-        <translation type="unfinished">Tungkol sa ...</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="124"/>
-        <source>Create Default Library</source>
-        <translation type="unfinished">Lumikha ng Default Library</translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
-        <source>Hide Schedule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="226"/>
-        <source>Show Schedule</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="237"/>
-        <source>Move Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Widgets/LibrariesSideBar.qml" line="248"/>
-        <source>Move Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>LibraryPageActions</name>
     <message>
         <location filename="../Menues/LibraryPageActions.qml" line="35"/>
@@ -907,7 +838,7 @@
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Windows/MainWindow.qml" line="238"/>
+        <location filename="../Windows/MainWindow.qml" line="250"/>
         <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
         <translation type="unfinished">Magsimula sa pamamagitan ng &lt;a href=&apos;#newLibrary&apos;&gt; paglikha ng isang bagong library &lt;/a&gt;. Ginagamit ang mga aklatan upang mag-imbak ng iba&apos;t ibang uri ng mga item tulad ng mga tala, listahan ng todo at imahe.</translation>
     </message>
@@ -1532,12 +1463,22 @@
         <translation type="unfinished">Mga Recurs:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="112"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="115"/>
         <source>Number of days:</source>
         <translation type="unfinished">Bilang ng mga araw:</translation>
     </message>
     <message>
-        <location filename="../Windows/RecurrenceDialog.qml" line="130"/>
+        <location filename="../Windows/RecurrenceDialog.qml" line="117"/>
+        <source>Number of weeks:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/RecurrenceDialog.qml" line="119"/>
+        <source>Number of months:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Windows/RecurrenceDialog.qml" line="141"/>
         <source>Recur relative to the date when marking as done</source>
         <translation type="unfinished">Ulitin ang kamag-anak sa petsa kung kailan nagmarka kung tapos na</translation>
     </message>

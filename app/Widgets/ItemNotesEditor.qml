@@ -86,7 +86,7 @@ Column {
                                     if (hoveredLink === "") {
                                         root.editing = true
                                     } else {
-                                        Qt.openUrlExternally(hoveredLink)
+                                        shareUtils.openLink(hoveredLink)
                                     }
                                 }
                             }
@@ -160,5 +160,9 @@ Column {
         fileMode: FileDialog.SaveFile
         onAccepted: OTL.Application.saveTextToFile(
                         file, "# " + root.item.title + "\n\n" + root.item.notes)
+    }
+
+    OTL.ShareUtils {
+        id: shareUtils
     }
 }

@@ -983,6 +983,35 @@ QVariant Application::loadValue(const QString& name, const QVariant& defaultValu
 }
 
 /**
+ * @brief Load the contents of a file and return it.
+ *
+ * @param filename The file to read from.
+ * @return The content of the file as UTF-8 decoded string or an empty string on error.
+ */
+QString Application::loadFile(const QString& filename) const
+{
+    QFile file(filename);
+    if (file.open(QIODevice::ReadOnly)) {
+        return QString::fromUtf8(file.readAll());
+    }
+    return QString();
+}
+
+/**
+ * @brief Load the contents of a file and return it.
+ *
+ * This is an overloaded version which takes the filename as a URL.
+ */
+QString Application::loadFile(const QUrl& filename) const
+{
+    if (filename.scheme() == "qrc") {
+        return loadFile(":" + filename.path());
+    } else {
+        return loadFile(filename.toLocalFile());
+    }
+}
+
+/**
  * @brief A list of all 3rd party information found in the apps resource system.
  */
 QVariant Application::find3rdPartyInfos() const
@@ -1256,31 +1285,6 @@ void Application::syncAllLibraries()
             runSyncForLibrary(library);
         }
     }
-}
-
-/**
- * @brief Drop in replacement for QDesktopServices::openUrl()
- *
- * This is a workaround for https://bugreports.qt.io/browse/QTBUG-83939. See also
- * https://forum.snapcraft.io/t/xdg-open-or-gvfs-open-qdesktopservices-openurl-file-somelocation-file-txt-wont-open-the-file/16824.
- * We basically try to detect if we run inside a snap and - if so - open file URLs using xdg-open
- * directly.
- *
- * @param url
- */
-bool Application::openUrl(const QUrl& url)
-{
-#ifdef Q_OS_LINUX
-    // Is this a file URL?
-    if (url.isLocalFile()) {
-        // Check if we run inside a snap:
-        if (!qgetenv("SNAP").isNull()) {
-            // Run "xdg-open" to open the file:
-            return QProcess::startDetached("xdg-open", { url.toString() });
-        }
-    }
-#endif
-    return QDesktopServices::openUrl(url);
 }
 
 #ifdef Q_OS_ANDROID
