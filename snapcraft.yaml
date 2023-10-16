@@ -25,7 +25,7 @@ parts:
     opentodolist:
         plugin: dump
         source: ./
-        parse-info: [net.rpdev.OpenTodoList.appdata.xml]
+        parse-info: [net.rpdev.OpenTodoList.metainfo.xml]
         override-build: ./ci/snapcraft-build.sh
         stage-packages:
             - libx11-6
