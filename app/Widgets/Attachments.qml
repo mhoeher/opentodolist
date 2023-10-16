@@ -27,6 +27,10 @@ Item {
 
     height: childrenRect.height
 
+    OTL.ShareUtils {
+        id: shareUtils
+    }
+
     Dialogs.FilesDialog {
         id: dialog
 
@@ -78,9 +82,8 @@ Item {
             delegate: MouseArea {
                 width: parent.width
                 height: childrenRect.height
-                onClicked: OTL.Application.openUrl(
-                               OTL.Application.localFileToUrl(
-                                   item.item.attachmentFileName(modelData)))
+                onClicked: shareUtils.openFile(item.item.attachmentFileName(
+                                                   modelData))
 
                 RowLayout {
                     width: parent.width

@@ -101,7 +101,7 @@ C.Pane {
                 LibrarySideBarButton {
                     text: qsTr("Translate The App...")
                     symbol: Icons.mdiTranslate
-                    onClicked: Qt.openUrlExternally(
+                    onClicked: shareUtils.openLink(
                                    "https://poeditor.com/join/project/ztvOymGNxn")
                 }
 
@@ -109,7 +109,7 @@ C.Pane {
                     text: qsTr("Donate")
                     symbol: Icons.mdiSavings
                     visible: Qt.platform.os != "ios"
-                    onClicked: Qt.openUrlExternally(
+                    onClicked: shareUtils.openLink(
                                    "https://opentodolist.rpdev.net/donate/")
                 }
 
@@ -395,6 +395,10 @@ C.Pane {
         function onShowSchedule() {
             sidebar.close()
         }
+
+        function onShowItem() {
+            sidebar.close()
+        }
     }
 
     Connections {
@@ -499,5 +503,9 @@ C.Pane {
 
         // Update the sort/filter model on changes:
         onLibraryWeightsChanged: sortFilterModel.update()
+    }
+
+    OTL.ShareUtils {
+        id: shareUtils
     }
 }

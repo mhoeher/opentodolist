@@ -1,0 +1,25 @@
+a, a:visited {
+color: %1;
+text-decoration: none;
+}
+h6 {
+font-style: italic;
+}
+
+code {
+color: %2;
+white-space: pre-wrap;
+}
+
+pre {
+white-space: pre-wrap;
+}
+
+table {
+margin-top: 0.5em;
+margin-bottom: 0.5em;
+}
+td, th {
+padding-left: 0.4em;
+padding-right: 0.4em;
+}

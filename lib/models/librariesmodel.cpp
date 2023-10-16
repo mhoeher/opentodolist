@@ -60,7 +60,8 @@ void LibrariesModel::setCache(Cache* cache)
         } else {
             beginResetModel();
             m_uids.clear();
-            for (const auto& lib : qAsConst(m_libraries)) {
+            const auto& libraries = m_libraries;
+            for (const auto& lib : libraries) {
                 delete lib;
             }
             m_libraries.clear();

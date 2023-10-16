@@ -51,6 +51,8 @@ target_sources(
         datastorage/librariesitemsquery.h
         datastorage/libraryloader.cpp
         datastorage/libraryloader.h
+        datastorage/loadlibraryquery.cpp
+        datastorage/loadlibraryquery.h
         datastorage/movetodoquery.cpp
         datastorage/movetodoquery.h
         datastorage/promotetaskquery.cpp
@@ -69,58 +71,89 @@ target_sources(
         service/backgroundservice.h
         sync/account.cpp
         sync/account.h
+        sync/dropboxaccount.cpp
+        sync/dropboxaccount.h
         sync/dropboxsynchronizer.cpp
         sync/dropboxsynchronizer.h
+        sync/nextcloudaccount.cpp
+        sync/nextcloudaccount.h
+        sync/owncloudaccount.cpp
+        sync/owncloudaccount.h
+        sync/remotelibraryinfo.cpp
+        sync/remotelibraryinfo.h
         sync/synchronizer.cpp
         sync/synchronizer.h
         sync/syncjob.cpp
         sync/syncjob.h
         sync/syncrunner.cpp
         sync/syncrunner.h
+        sync/synqclientsynchronizer.cpp
+        sync/synqclientsynchronizer.h
+        sync/webdavaccount.cpp
+        sync/webdavaccount.h
         sync/webdavsynchronizer.cpp
         sync/webdavsynchronizer.h
-        utils/colors.h
         utils/colors.cpp
+        utils/colors.h
         utils/directorywatcher.cpp
         utils/directorywatcher.h
+        utils/fileeditobserver.cpp
+        utils/fileeditobserver.h
+        utils/fontutils.cpp
+        utils/fontutils.h
         utils/htmlsyntaxhighlighter.cpp
         utils/htmlsyntaxhighlighter.h
         utils/jsonutils.cpp
         utils/jsonutils.h
         utils/keystore.cpp
         utils/keystore.h
+        utils/platformshareutils.cpp
+        utils/platformshareutils.h
         utils/problem.cpp
         utils/problem.h
         utils/problemmanager.cpp
         utils/problemmanager.h
+        utils/shareutils.cpp
+        utils/shareutils.h
         utils/syntaxhighlighting.cpp
         utils/syntaxhighlighting.h
+        utils/textutils.cpp
+        utils/textutils.h
         utils/translations.cpp
         utils/translations.h
         utils/updateservice.cpp
         utils/updateservice.h
-        sync/webdavaccount.h
-        sync/webdavaccount.cpp
-        sync/nextcloudaccount.h
-        sync/nextcloudaccount.cpp
-        sync/owncloudaccount.h
-        sync/owncloudaccount.cpp
-        sync/dropboxaccount.h
-        sync/dropboxaccount.cpp
-        sync/remotelibraryinfo.h
-        sync/remotelibraryinfo.cpp
-        sync/synqclientsynchronizer.h
-        sync/synqclientsynchronizer.cpp
-        datastorage/loadlibraryquery.h
-        datastorage/loadlibraryquery.cpp
-        utils/textutils.h
-        utils/textutils.cpp
-        utils/fontutils.h
-        utils/fontutils.cpp
 
         # Include SimpleCrypt source:
         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp
 )
+
+if(IOS)
+    target_sources(
+        opentodolist-common
+        PRIVATE
+            utils/iosplatformshareutils.h
+            utils/iosplatformshareutils.cpp
+            utils/iosplatformshareutils.mm
+            utils/ios/shareutilsdocviewcontroller.h
+            utils/ios/shareutilsdocviewcontroller.mm
+    )
+elseif(ANDROID)
+    target_sources(
+        opentodolist-common
+        PRIVATE
+            utils/androidplatformshareutils.h
+            utils/androidplatformshareutils.cpp
+    )
+else()
+    target_sources(
+        opentodolist-common
+        PRIVATE
+            utils/genericplatformshareutils.h
+            utils/genericplatformshareutils.cpp
+    )
+endif()
+
 
 target_compile_features(
     opentodolist-common PRIVATE cxx_std_14

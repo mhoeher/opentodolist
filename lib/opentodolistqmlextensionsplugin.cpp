@@ -50,6 +50,8 @@
 #include "utils/colors.h"
 #include "utils/textutils.h"
 #include "utils/fontutils.h"
+#include "utils/shareutils.h"
+#include "utils/fileeditobserver.h"
 
 #include "SynqClient/NextCloudLoginFlow"
 
@@ -113,6 +115,8 @@ void OpenTodoListQmlExtensionsPlugin::registerTypes(const char* uri)
     qmlRegisterType<SyntaxHighlighter>(uri, 1, 0, "SyntaxHighlighter");
     qmlRegisterType<TextUtils>(uri, 1, 0, "TextUtils");
     qmlRegisterType<FontUtils>(uri, 1, 0, "FontUtils");
+    qmlRegisterType<ShareUtils>(uri, 1, 0, "ShareUtils");
+    qmlRegisterType<FileEditObserver>(uri, 1, 0, "FileEditObserver");
 
 #ifdef Q_OS_ANDROID
     qmlRegisterType<AndroidFileDialog>(uri, 1, 0, "AndroidFileDialog");

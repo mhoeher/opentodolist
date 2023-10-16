@@ -178,7 +178,7 @@ private:
     QString m_overdueLabel;
     QVariantMap m_timeSpans;
 
-    static bool itemMatches(ItemPtr item, QStringList words);
+    static bool itemMatches(ItemPtr item, const QStringList& words);
 
     QString timeSpanLabel(Item* item, int role) const;
 
@@ -192,7 +192,7 @@ private slots:
     void reset();
     void fetch();
     void triggerFetch();
-    void update(QVariantList items);
+    void update(const QVariantList& items);
     void itemChanged();
 };
 

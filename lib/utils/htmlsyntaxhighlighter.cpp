@@ -110,7 +110,8 @@ void HtmlHighlighter::applyFormat(int offset, int length, const KSyntaxHighlight
 
     if (!formatOutput.isEmpty()) {
         *d->out << "<span style=\"";
-        for (const auto& out : qAsConst(formatOutput)) {
+        const auto& formatOutput_ = formatOutput;
+        for (const auto& out : formatOutput_) {
             *d->out << out;
         }
         *d->out << "\">";

@@ -385,15 +385,15 @@ void DropboxAccount::findExistingLibraries()
 
     QSharedPointer<QList<RemoteLibraryInfo>> existingLibraries(new QList<RemoteLibraryInfo>);
 
-    QStringList dirsToCheck { "/OpenTodoList" };
-    for (const auto& dir : qAsConst(dirsToCheck)) {
+    const QStringList dirsToCheck { "/OpenTodoList" };
+    for (const auto& dir : dirsToCheck) {
         auto listFilesJob = factory->listFiles(compositeJob);
         listFilesJob->setPath(dir);
         compositeJob->addJob(listFilesJob);
         connect(listFilesJob, &SynqClient::ListFilesJob::finished, this, [=]() {
             if (listFilesJob->error() == SynqClient::JobError::NoError) {
-                auto entries = listFilesJob->entries();
-                for (const auto& entry : qAsConst(entries)) {
+                const auto entries = listFilesJob->entries();
+                for (const auto& entry : entries) {
                     if (entry.isDirectory() && entry.name().endsWith(".otl")) {
                         // The entry is a folder, most likely containing OpenTodoList data.
                         // Try to download the contained "library.json" file:

@@ -26,9 +26,9 @@ C.Pane {
         id: updateService
 
         onUpdateAvailable: {
-            updateNotificationBar.version = version;
-            updateNotificationBar.downloadUrl = url;
-            updateNotificationBar.shown = true;
+            updateNotificationBar.version = version
+            updateNotificationBar.downloadUrl = url
+            updateNotificationBar.shown = true
         }
     }
 
@@ -53,10 +53,13 @@ C.Pane {
         C.Button {
             text: qsTr("Download")
             onClicked: {
-                Qt.openUrlExternally(updateNotificationBar.downloadUrl);
-                updateNotificationBar.shown = false;
+                shareUtils.openLink(updateNotificationBar.downloadUrl)
+                updateNotificationBar.shown = false
             }
         }
     }
-}
 
+    OTL.ShareUtils {
+        id: shareUtils
+    }
+}

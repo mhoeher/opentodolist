@@ -188,6 +188,10 @@ C.Page {
             }
         }
 
+        OTL.ShareUtils {
+            id: shareUtils
+        }
+
         Connections {
             target: d.loginFlow
 
@@ -198,7 +202,7 @@ C.Page {
             }
 
             function onReceivedLoginUrl(loginUrl) {
-                Qt.openUrlExternally(loginUrl)
+                shareUtils.openLink(loginUrl)
             }
         }
 
