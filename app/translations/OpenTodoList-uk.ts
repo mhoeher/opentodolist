@@ -9,62 +9,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="29"/>
+        <location filename="../Pages/AboutPage.qml" line="33"/>
         <source>OpenTodoList</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="36"/>
+        <location filename="../Pages/AboutPage.qml" line="40"/>
         <source>A todo and task managing application.</source>
         <translation type="unfinished">Додаток для керування діями та завданнями.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="64"/>
+        <location filename="../Pages/AboutPage.qml" line="68"/>
         <source>OpenTodoList is released under the terms of the &lt;a href=&apos;app-license&apos;&gt;GNU General Public License&lt;/a&gt; version 3 or (at your choice) any later version.</source>
         <translation type="unfinished">OpenTodoList випущено згідно з умовами &lt;a href=&apos;app-license&apos;&gt;Загальної публічної ліцензії GNU&lt;/a&gt; версії 3 або (на ваш вибір) будь-якої пізнішої версії.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="81"/>
+        <location filename="../Pages/AboutPage.qml" line="85"/>
         <source>Report an Issue</source>
         <translation type="unfinished">Повідомити про проблему</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="88"/>
+        <location filename="../Pages/AboutPage.qml" line="92"/>
         <source>Copy System Information</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копиювати системну інформацію</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="110"/>
+        <location filename="../Pages/AboutPage.qml" line="114"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">Бібліотеки та ресурси сторонніх розробників</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="147"/>
+        <location filename="../Pages/AboutPage.qml" line="151"/>
         <source>Author:</source>
         <translation type="unfinished">Автор</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="152"/>
+        <location filename="../Pages/AboutPage.qml" line="156"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="159"/>
+        <location filename="../Pages/AboutPage.qml" line="163"/>
         <source>License:</source>
         <translation type="unfinished">Ліцензія</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="164"/>
+        <location filename="../Pages/AboutPage.qml" line="168"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="170"/>
+        <location filename="../Pages/AboutPage.qml" line="174"/>
         <source>Download:</source>
         <translation type="unfinished">Завантажити</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="174"/>
+        <location filename="../Pages/AboutPage.qml" line="178"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -144,12 +144,12 @@
         <translation type="unfinished">Відкрити</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="379"/>
+        <location filename="../appstartup.cpp" line="380"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="437"/>
+        <location filename="../appstartup.cpp" line="438"/>
         <source>Quit</source>
         <translation type="unfinished">Вийти</translation>
     </message>
@@ -260,22 +260,22 @@
 <context>
     <name>Attachments</name>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="33"/>
+        <location filename="../Widgets/Attachments.qml" line="37"/>
         <source>Attach File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="48"/>
+        <location filename="../Widgets/Attachments.qml" line="52"/>
         <source>Delete Attachment?</source>
         <translation type="unfinished">Видалити вкладення?</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="52"/>
+        <location filename="../Widgets/Attachments.qml" line="56"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
         <translation type="unfinished">Ви впевнені, що хочете видалити вкладення &lt;strong&gt;%1&lt;/strong&gt;? Це вже не можна буде скасувати.</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="66"/>
+        <location filename="../Widgets/Attachments.qml" line="70"/>
         <source>Attachments</source>
         <translation type="unfinished">Вкладення</translation>
     </message>
@@ -742,17 +742,17 @@
 <context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="35"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="39"/>
         <source>Sync Now</source>
         <translation type="unfinished">Синхронізувати зараз</translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="52"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="56"/>
         <source>Sync Log</source>
         <translation type="unfinished">Журнал синхронізації</translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="62"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="66"/>
         <source>Open Library Folder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1700,7 +1700,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="214"/>
         <source>Use compact todo lists</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Компактний вид списка</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="224"/>
@@ -1722,7 +1722,9 @@
         <source>Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.
 
 This requires a restart of the app.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Використовуйте для ручного масштабування інтерфейсу користувача. За замовчуванням програма автоматично адаптувується відповідно до конфігурації вашого пристрою. Якщо автоматичне налаштування не працює належним чином, можна встановити свій коефіцієнт масштабування.
+
+Потребує перезапуску програми.</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="267"/>

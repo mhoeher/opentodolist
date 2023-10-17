@@ -9,62 +9,62 @@
         <translation type="unfinished">Ról ről...</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="29"/>
+        <location filename="../Pages/AboutPage.qml" line="33"/>
         <source>OpenTodoList</source>
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="36"/>
+        <location filename="../Pages/AboutPage.qml" line="40"/>
         <source>A todo and task managing application.</source>
         <translation type="unfinished">Teendő és feladatkezelő alkalmazás.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="64"/>
+        <location filename="../Pages/AboutPage.qml" line="68"/>
         <source>OpenTodoList is released under the terms of the &lt;a href=&apos;app-license&apos;&gt;GNU General Public License&lt;/a&gt; version 3 or (at your choice) any later version.</source>
         <translation type="unfinished">Az OpenTodoList a &lt;a href=&apos;app-license&apos;&gt; GNU Általános Nyilvános Licenc &lt;/a&gt; 3. verziója vagy (az Ön választása szerint) bármely későbbi verziója alapján kerül kiadásra.</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="81"/>
+        <location filename="../Pages/AboutPage.qml" line="85"/>
         <source>Report an Issue</source>
         <translation type="unfinished">Jelentsen egy problémát</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="88"/>
+        <location filename="../Pages/AboutPage.qml" line="92"/>
         <source>Copy System Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="110"/>
+        <location filename="../Pages/AboutPage.qml" line="114"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">Harmadik féltől származó könyvtárak és források</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="147"/>
+        <location filename="../Pages/AboutPage.qml" line="151"/>
         <source>Author:</source>
         <translation type="unfinished">Szerző:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="152"/>
+        <location filename="../Pages/AboutPage.qml" line="156"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="159"/>
+        <location filename="../Pages/AboutPage.qml" line="163"/>
         <source>License:</source>
         <translation type="unfinished">Engedély:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="164"/>
+        <location filename="../Pages/AboutPage.qml" line="168"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="170"/>
+        <location filename="../Pages/AboutPage.qml" line="174"/>
         <source>Download:</source>
         <translation type="unfinished">Letöltés:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="174"/>
+        <location filename="../Pages/AboutPage.qml" line="178"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
@@ -74,12 +74,12 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="21"/>
         <source>Select Account Type</source>
-        <translation type="unfinished">Válassza a Fiók típusát</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="56"/>
         <source>Account Type</source>
-        <translation type="unfinished">Fiók Típus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="62"/>
@@ -116,42 +116,42 @@
     <message>
         <location filename="../appstartup.cpp" line="205"/>
         <source>Manage your personal data.</source>
-        <translation type="unfinished">Kezelje személyes adatait.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="211"/>
         <source>Switch on some optimizations for touchscreens.</source>
-        <translation type="unfinished">Kapcsolja be az érintőképernyők néhány optimalizálását.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="214"/>
         <source>Only run the app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">A program csak a háttérben fusson</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="216"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Csak az alkalmazás grafikus felhasználói felülete fusson, de csatlakozzon egy meglévő alkalmazás háttérszolgáltatásához</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="221"/>
         <source>Enable a console on Windows to gather debug output</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">A hibakeresési kimenet összegyűjtéséhez - a Windows rendszeren - a konzol engedélyezett</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="372"/>
         <source>Open</source>
-        <translation type="unfinished">Nyisd ki</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="379"/>
+        <location filename="../appstartup.cpp" line="380"/>
         <source>Quick Note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="437"/>
+        <location filename="../appstartup.cpp" line="438"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kilépés</translation>
     </message>
 </context>
 <context>
@@ -169,7 +169,7 @@
     <message>
         <location filename="../../lib/application.cpp" line="211"/>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kilépés</translation>
     </message>
 </context>
 <context>
@@ -198,7 +198,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="23"/>
         <source>Rename</source>
-        <translation type="unfinished">átnevezés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="33"/>
@@ -249,7 +249,7 @@
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="124"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Elkészült elemek törlése</translation>
     </message>
     <message>
         <location filename="../Components/ApplicationToolBarActions.qml" line="132"/>
@@ -260,22 +260,22 @@
 <context>
     <name>Attachments</name>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="33"/>
+        <location filename="../Widgets/Attachments.qml" line="37"/>
         <source>Attach File</source>
         <translation type="unfinished">Fájl csatolása</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="48"/>
+        <location filename="../Widgets/Attachments.qml" line="52"/>
         <source>Delete Attachment?</source>
         <translation type="unfinished">Törli a mellékletet?</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="52"/>
+        <location filename="../Widgets/Attachments.qml" line="56"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
         <translation type="unfinished">Biztosan törli a &lt;strong&gt;%1&lt;/strong&gt; mellékletet? Ez a művelet nem visszavonható.</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="66"/>
+        <location filename="../Widgets/Attachments.qml" line="70"/>
         <source>Attachments</source>
         <translation type="unfinished">Mellékletek</translation>
     </message>
@@ -383,7 +383,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Elkészült elemek törlése</translation>
     </message>
 </context>
 <context>
@@ -391,17 +391,17 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="18"/>
         <source>Delete Completed Items?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Törli a kész elemeket?</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
         <source>Do you really want to delete all done todos in the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Biztosan törölni szeretné az összes elvégzett feladatot a &lt;strong&gt;%1&lt;/strong&gt; teendőlistában? Ezt nem lehet visszacsinálni.</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="43"/>
         <source>Do you really want to delete all done tasks in the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Biztosan törölni szeretné az összes elvégzett feladatot a &lt;strong&gt;%1&lt;/strong&gt; feladatban? Ezt nem lehet visszacsinálni.</translation>
     </message>
 </context>
 <context>
@@ -474,12 +474,12 @@
         <location filename="../Pages/EditDropboxAccountPage.qml" line="27"/>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="67"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Csatlakozás beállításai</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="75"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Problémák a bejelentkezéssel?</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="86"/>
@@ -504,12 +504,12 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="112"/>
         <source>Copy Link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kapcsolat másolása</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="116"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lemásolva!</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="125"/>
@@ -538,7 +538,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="76"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Szerver címe:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="83"/>
@@ -548,7 +548,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="91"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bejelentkezés</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="104"/>
@@ -558,7 +558,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="111"/>
         <source>User Name</source>
-        <translation type="unfinished">Felhasználónév</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="117"/>
@@ -578,7 +578,7 @@
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="142"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, jelszavát és a szerver címét, majd próbálja újra.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -597,7 +597,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="135"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Szerver címe:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="141"/>
@@ -612,7 +612,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="154"/>
         <source>User Name</source>
-        <translation type="unfinished">Felhasználónév</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="161"/>
@@ -632,7 +632,7 @@
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="186"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, jelszavát és a szerver címét, majd próbálja újra.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -645,12 +645,12 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="72"/>
         <source>Open</source>
-        <translation type="unfinished">Nyisd ki</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="77"/>
         <source>Dismiss</source>
-        <translation type="unfinished">elvetése</translation>
+        <translation type="unfinished">Elvetés</translation>
     </message>
 </context>
 <context>
@@ -742,17 +742,17 @@
 <context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="35"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="39"/>
         <source>Sync Now</source>
-        <translation type="unfinished">Szinkronizálás most</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="52"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="56"/>
         <source>Sync Log</source>
         <translation type="unfinished">Szinkronizálási napló</translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="62"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="66"/>
         <source>Open Library Folder</source>
         <translation type="unfinished"></translation>
     </message>
@@ -857,12 +857,12 @@
         <location filename="../Pages/NewDropboxAccountPage.qml" line="21"/>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="55"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Csatlakozás beállításai</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="63"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Problémák a bejelentkezéssel?</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="74"/>
@@ -887,12 +887,12 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="102"/>
         <source>Copy Link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kapcsolat másolása</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="106"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lemásolva!</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="115"/>
@@ -968,7 +968,7 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="91"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
-        <translation type="unfinished">Egy fiókban létrehozott könyvtár szinkronizálva van vele. Ez lehetővé teszi a könyvtár könnyű biztonsági mentését egy kiszolgálóra, majd későbbi onnan történő visszaállítását. Ezenkívül az ilyen könyvtárak megoszthatók más felhasználókkal (ha a szerver ezt megengedi).</translation>
+        <translation type="unfinished">Egy fiókban létrehozott könyvtár szinkronizálva van vele. Ez lehetővé teszi a könyvtár könnyű mentését a szerveren, majd későbbi onnan történő visszaállítását. Ezenkívül az ilyen könyvtárak megoszthatók más felhasználókkal (ha a szerver ezt megengedi).</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="99"/>
@@ -993,12 +993,12 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="165"/>
         <source>Create a New Library</source>
-        <translation type="unfinished">Hozzon létre egy új könyvtárat</translation>
+        <translation type="unfinished">Új könyvtár létrehozása</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="173"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
-        <translation type="unfinished">Hozzon létre egy új könyvtárat, amelyet szinkronizál a szerverrel. Egy ilyen könyvtár hozzáadható az alkalmazáshoz más eszközökön is, az adatok szinkronizálása céljából.</translation>
+        <translation type="unfinished">Új könyvtár létrehozása, amelye szinkronizálva lesz a szerverrel. Egy ilyen könyvtár hozzáadható az alkalmazáshoz más eszközökön is, az adatok szinkronizálása céljából.</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="187"/>
@@ -1026,7 +1026,7 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="113"/>
         <source>Folder:</source>
-        <translation type="unfinished">Folder:</translation>
+        <translation type="unfinished">Mappa:</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="118"/>
@@ -1088,7 +1088,7 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="70"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
-        <translation type="unfinished">A helyi könyvtárat kizárólag az Ön készüléke tárolja - ez tökéletesvé teszi az adatvédelem tömörítését! &lt;br/&gt; &lt;br/&gt; Használja azt, ha csak helyi információt szeretne tárolni, és minden adatáról más mechanizmusok segítségével rendszeresen biztonsági másolatot készít. Ha több eszközön keresztül kell elérnie adatait, hozzon létre egy könyvtárat, amelyet ehelyett szinkronizál.</translation>
+        <translation type="unfinished">A helyi könyvtárat kizárólag az Ön készüléke tárolja - ez a legjobb azoknak, akiknek az adatvédelem igen fontos! &lt;br/&gt; &lt;br/&gt;Használja ezt, ha csak helyi információt szeretne tárolni, és minden adatáról más mechanizmusok segítségével rendszeresen biztonsági másolatot készít. Ha több eszközön keresztül kell elérnie adatait, hozzon létre egy könyvtárat, amelyet ehelyett szinkronizál.</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
@@ -1107,57 +1107,57 @@
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="20"/>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="73"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Csatlakozás beállításai</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="79"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Szerver címe:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="93"/>
         <source>Login</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bejelentkezés</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="109"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Problémák a bejelentkezéssel?</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="120"/>
         <source>We have tried to open your browser to log you in to your NextCloud instance. Please log in and grant access to OpenTodoList in order to proceed. Trouble accessing your NextCloud in the browser? You can manually enter your username and password as well.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Megpróbáltuk megnyitni a böngészőt a NextCloudba való bejelentkezéshez. Kérjük, jelentkezzen be, és adjon hozzáférést az OpenTodoListhez a folytatáshoz. Problémája van a NextCloud elérésével a böngészőben? Manuálisan is megadhatja felhasználónevét és jelszavát.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="128"/>
         <source>Log in Manually</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Manuális bejelentkezés</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="134"/>
         <source>Ideally, you use app specific passwords instead of your user password. In case your login is protected with 2 Factor Authentication (2FA) you even must use app specific passwords to access your NextCloud. You can create such passwords in your user settings.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Az az ideális eset, ha a felhasználói jelszavak helyett alkalmazásspecifikus jelszavakat használ. Abban az esetben, ha bejelentkezési adatait 2 faktoros hitelesítés (2FA) védi, még alkalmazásspecifikus jelszavakat is kell használnia a NextCloud eléréséhez. Ilyen jelszavakat a felhasználói beállításaiban hozhat létre.</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="143"/>
         <source>Create App Password</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alkalmazásjelszó létrehozása</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="152"/>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fiók beállítások</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="162"/>
         <source>Copy Link</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kapcsolat másolása</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="168"/>
         <source>Copied!</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lemásolva!</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="177"/>
@@ -1167,7 +1167,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="184"/>
         <source>User Name</source>
-        <translation type="unfinished">Felhasználónév</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="191"/>
@@ -1192,12 +1192,12 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="225"/>
         <source>Account Name</source>
-        <translation type="unfinished">Felhasználónév</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="235"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, jelszavát és a szerver címét, majd próbálja újra.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1205,12 +1205,12 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
-        <translation type="unfinished">Feladatlista</translation>
+        <translation type="unfinished">Tennivalók lista</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
         <source>Todo</source>
-        <translation type="unfinished">Todo</translation>
+        <translation type="unfinished">Tennivaló</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
@@ -1229,12 +1229,12 @@
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="29"/>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="101"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Csatlakozás beállításai</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="107"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Szerver címe:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="113"/>
@@ -1249,7 +1249,7 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="125"/>
         <source>User Name</source>
-        <translation type="unfinished">Felhasználónév</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="131"/>
@@ -1274,12 +1274,12 @@
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="163"/>
         <source>Account Name</source>
-        <translation type="unfinished">Felhasználónév</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="173"/>
         <source>Failed to connect to the server. Please check your user name, password and the server address and retry.</source>
-        <translation type="unfinished">Nem sikerült kapcsolódni a szerverhez. Ellenőrizze felhasználónevét, jelszavát és a szerver címét, majd próbálja újra.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1488,7 +1488,7 @@
     <message>
         <location filename="../Actions/RenameItem.qml" line="8"/>
         <source>Rename</source>
-        <translation type="unfinished">átnevezés</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1589,7 +1589,7 @@
     <message>
         <location filename="../Actions/SetDueNextWeek.qml" line="8"/>
         <source>Set Due This Week</source>
-        <translation type="unfinished">Lejárt ezen a héten</translation>
+        <translation type="unfinished">Ezen a héten esedékes</translation>
     </message>
 </context>
 <context>
@@ -1605,7 +1605,7 @@
     <message>
         <location filename="../Actions/SetDueTo.qml" line="8"/>
         <source>Select Due Date</source>
-        <translation type="unfinished">Válassza az Esedékesség dátumot</translation>
+        <translation type="unfinished">Esedékesség dátum beállítása</translation>
     </message>
 </context>
 <context>
@@ -1652,7 +1652,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="119"/>
         <source>Theme:</source>
-        <translation type="unfinished">Téma:</translation>
+        <translation type="unfinished">Külalak:</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="143"/>
@@ -1672,7 +1672,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Font Size:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Betűnagyság</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="179"/>
@@ -1772,7 +1772,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="53"/>
         <source>View</source>
-        <translation type="unfinished">Kilátás</translation>
+        <translation type="unfinished">Nézet</translation>
     </message>
 </context>
 <context>
@@ -1841,7 +1841,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="261"/>
         <source>Todos</source>
-        <translation type="unfinished">Todos</translation>
+        <translation type="unfinished">Tennivalók</translation>
     </message>
     <message>
         <location filename="../Pages/TodoListPage.qml" line="281"/>

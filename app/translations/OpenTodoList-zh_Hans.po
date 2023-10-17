@@ -12,12 +12,12 @@ msgctxt "AboutPage|"
 msgid "About..."
 msgstr "关于..."
 
-#: ../Pages/AboutPage.qml:29
+#: ../Pages/AboutPage.qml:33
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
-#: ../Pages/AboutPage.qml:36
+#: ../Pages/AboutPage.qml:40
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
 msgstr "一个待办事项和任务管理应用。"
@@ -47,22 +47,22 @@ msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr "下载: <a href='%1'>%1</a>"
 
-#: ../Widgets/Attachments.qml:33
+#: ../Widgets/Attachments.qml:37
 msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "附加文件"
 
-#: ../Widgets/Attachments.qml:48
+#: ../Widgets/Attachments.qml:52
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "删除附件？"
 
-#: ../Widgets/Attachments.qml:52
+#: ../Widgets/Attachments.qml:56
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "您确定要删除附件<strong>％1 </ strong>吗？此操作无法撤消。"
 
-#: ../Widgets/Attachments.qml:66
+#: ../Widgets/Attachments.qml:70
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "附件"
@@ -884,47 +884,47 @@ msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
 msgstr "（c）RPdev 2013-2020，版本 %1"
 
-#: ../Pages/AboutPage.qml:64
+#: ../Pages/AboutPage.qml:68
 msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr "OpenTodoList 是根据<a href='app-license'> GNU通用公共许可证</a>第3版或（根据您的选择）任何更高版本的条款发行的。"
 
-#: ../Pages/AboutPage.qml:81
+#: ../Pages/AboutPage.qml:85
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "报告问题"
 
-#: ../Pages/AboutPage.qml:110
+#: ../Pages/AboutPage.qml:114
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "第三方库和资源"
 
-#: ../Pages/AboutPage.qml:147
+#: ../Pages/AboutPage.qml:151
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "作者:"
 
-#: ../Pages/AboutPage.qml:152
+#: ../Pages/AboutPage.qml:156
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
-#: ../Pages/AboutPage.qml:159
+#: ../Pages/AboutPage.qml:163
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "许可:"
 
-#: ../Pages/AboutPage.qml:164
+#: ../Pages/AboutPage.qml:168
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a> "
 
-#: ../Pages/AboutPage.qml:170
+#: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "下载："
 
-#: ../Pages/AboutPage.qml:174
+#: ../Pages/AboutPage.qml:178
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1 </a>"
@@ -1516,12 +1516,12 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "滑动以标记为完成"
 
-#: ../Menues/LibraryPageActions.qml:35
+#: ../Menues/LibraryPageActions.qml:39
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "立即同步"
 
-#: ../Menues/LibraryPageActions.qml:52
+#: ../Menues/LibraryPageActions.qml:56
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "同步日志"
@@ -1591,7 +1591,7 @@ msgctxt "AppStartup|"
 msgid "Open"
 msgstr "打开"
 
-#: ../appstartup.cpp:437
+#: ../appstartup.cpp:438
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "退出"
@@ -2186,12 +2186,12 @@ msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr "创建同步锁失败:"
 
-#: ../Pages/AboutPage.qml:88
+#: ../Pages/AboutPage.qml:92
 msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "复制系统信息"
 
-#: ../appstartup.cpp:379
+#: ../appstartup.cpp:380
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "快捷笔记"
@@ -2703,7 +2703,7 @@ msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
 msgstr ""
 
-#: ../Menues/LibraryPageActions.qml:62
+#: ../Menues/LibraryPageActions.qml:66
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
 msgstr ""

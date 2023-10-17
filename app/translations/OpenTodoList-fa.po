@@ -12,12 +12,12 @@ msgctxt "AboutPage|"
 msgid "About..."
 msgstr "درباره..."
 
-#: ../Pages/AboutPage.qml:29
+#: ../Pages/AboutPage.qml:33
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
 msgstr "اپن تودو لیست"
 
-#: ../Pages/AboutPage.qml:36
+#: ../Pages/AboutPage.qml:40
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
 msgstr "برنامه ای برای مدیریت فهرست کارها و برنامه ها"
@@ -47,22 +47,22 @@ msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr ""
 
-#: ../Widgets/Attachments.qml:33
+#: ../Widgets/Attachments.qml:37
 msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "اتچ فایل"
 
-#: ../Widgets/Attachments.qml:48
+#: ../Widgets/Attachments.qml:52
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "فایل اتچ پاک شود؟"
 
-#: ../Widgets/Attachments.qml:52
+#: ../Widgets/Attachments.qml:56
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr ""
 
-#: ../Widgets/Attachments.qml:66
+#: ../Widgets/Attachments.qml:70
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "اتچ ها"
@@ -884,47 +884,47 @@ msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:64
+#: ../Pages/AboutPage.qml:68
 msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr ""
 
-#: ../Pages/AboutPage.qml:81
+#: ../Pages/AboutPage.qml:85
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:110
+#: ../Pages/AboutPage.qml:114
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:147
+#: ../Pages/AboutPage.qml:151
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:152
+#: ../Pages/AboutPage.qml:156
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:159
+#: ../Pages/AboutPage.qml:163
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:164
+#: ../Pages/AboutPage.qml:168
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:170
+#: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:174
+#: ../Pages/AboutPage.qml:178
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr ""
@@ -1516,12 +1516,12 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr ""
 
-#: ../Menues/LibraryPageActions.qml:35
+#: ../Menues/LibraryPageActions.qml:39
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr ""
 
-#: ../Menues/LibraryPageActions.qml:52
+#: ../Menues/LibraryPageActions.qml:56
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr ""
@@ -1591,7 +1591,7 @@ msgctxt "AppStartup|"
 msgid "Open"
 msgstr ""
 
-#: ../appstartup.cpp:437
+#: ../appstartup.cpp:438
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr ""
@@ -2182,12 +2182,12 @@ msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:88
+#: ../Pages/AboutPage.qml:92
 msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr ""
 
-#: ../appstartup.cpp:379
+#: ../appstartup.cpp:380
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr ""
@@ -2699,7 +2699,7 @@ msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
 msgstr ""
 
-#: ../Menues/LibraryPageActions.qml:62
+#: ../Menues/LibraryPageActions.qml:66
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
 msgstr ""

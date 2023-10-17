@@ -12,12 +12,12 @@ msgctxt "AboutPage|"
 msgid "About..."
 msgstr "Про додаток"
 
-#: ../Pages/AboutPage.qml:29
+#: ../Pages/AboutPage.qml:33
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
-#: ../Pages/AboutPage.qml:36
+#: ../Pages/AboutPage.qml:40
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
 msgstr "Додаток для керування діями та завданнями."
@@ -47,22 +47,22 @@ msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr "Завантажити: <a href='%1'>%1</a>"
 
-#: ../Widgets/Attachments.qml:33
+#: ../Widgets/Attachments.qml:37
 msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Прикріпити файл"
 
-#: ../Widgets/Attachments.qml:48
+#: ../Widgets/Attachments.qml:52
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Видалити вкладення?"
 
-#: ../Widgets/Attachments.qml:52
+#: ../Widgets/Attachments.qml:56
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "Ви впевнені, що хочете видалити вкладення <strong>%1</strong>? Це вже не можна буде скасувати."
 
-#: ../Widgets/Attachments.qml:66
+#: ../Widgets/Attachments.qml:70
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Вкладення"
@@ -889,47 +889,47 @@ msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
 msgstr "(c) RPdev 2013-2020, version %1"
 
-#: ../Pages/AboutPage.qml:64
+#: ../Pages/AboutPage.qml:68
 msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr "OpenTodoList випущено згідно з умовами <a href='app-license'>Загальної публічної ліцензії GNU</a> версії 3 або (на ваш вибір) будь-якої пізнішої версії."
 
-#: ../Pages/AboutPage.qml:81
+#: ../Pages/AboutPage.qml:85
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "Повідомити про проблему"
 
-#: ../Pages/AboutPage.qml:110
+#: ../Pages/AboutPage.qml:114
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "Бібліотеки та ресурси сторонніх розробників"
 
-#: ../Pages/AboutPage.qml:147
+#: ../Pages/AboutPage.qml:151
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "Автор"
 
-#: ../Pages/AboutPage.qml:152
+#: ../Pages/AboutPage.qml:156
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
-#: ../Pages/AboutPage.qml:159
+#: ../Pages/AboutPage.qml:163
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "Ліцензія"
 
-#: ../Pages/AboutPage.qml:164
+#: ../Pages/AboutPage.qml:168
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
 
-#: ../Pages/AboutPage.qml:170
+#: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "Завантажити"
 
-#: ../Pages/AboutPage.qml:174
+#: ../Pages/AboutPage.qml:178
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
@@ -1521,12 +1521,12 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Проведіть пальцем, щоб позначити як виконане"
 
-#: ../Menues/LibraryPageActions.qml:35
+#: ../Menues/LibraryPageActions.qml:39
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "Синхронізувати зараз"
 
-#: ../Menues/LibraryPageActions.qml:52
+#: ../Menues/LibraryPageActions.qml:56
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "Журнал синхронізації"
@@ -1596,7 +1596,7 @@ msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Відкрити"
 
-#: ../appstartup.cpp:437
+#: ../appstartup.cpp:438
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Вийти"
@@ -2128,7 +2128,7 @@ msgstr ""
 #: ../Pages/SettingsPage.qml:214
 msgctxt "SettingsPage|"
 msgid "Use compact todo lists"
-msgstr ""
+msgstr "Компактний вид списка"
 
 #: ../Pages/SettingsPage.qml:224
 msgctxt "SettingsPage|"
@@ -2150,7 +2150,9 @@ msgctxt "SettingsPage|"
 msgid "Use this to manually scale the user interface. By default, the app should adapt automatically according to your device configuration. If this does not work properly, you can set a custom scaling factor here.\n"
 "\n"
 "This requires a restart of the app."
-msgstr ""
+msgstr "Використовуйте для ручного масштабування інтерфейсу користувача. За замовчуванням програма автоматично адаптувується відповідно до конфігурації вашого пристрою. Якщо автоматичне налаштування не працює належним чином, можна встановити свій коефіцієнт масштабування.\n"
+"\n"
+"Потребує перезапуску програми."
 
 #: ../Utils/ItemUtils.qml:189
 msgctxt "ItemUtils|"
@@ -2187,12 +2189,12 @@ msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr ""
 
-#: ../Pages/AboutPage.qml:88
+#: ../Pages/AboutPage.qml:92
 msgctxt "AboutPage|"
 msgid "Copy System Information"
-msgstr ""
+msgstr "Копиювати системну інформацію"
 
-#: ../appstartup.cpp:379
+#: ../appstartup.cpp:380
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr ""
@@ -2704,7 +2706,7 @@ msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
 msgstr "Більше дій"
 
-#: ../Menues/LibraryPageActions.qml:62
+#: ../Menues/LibraryPageActions.qml:66
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
 msgstr ""

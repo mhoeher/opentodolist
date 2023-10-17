@@ -9,62 +9,62 @@
         <translation type="unfinished">关于...</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="29"/>
+        <location filename="../Pages/AboutPage.qml" line="33"/>
         <source>OpenTodoList</source>
         <translation type="unfinished">OpenTodoList</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="36"/>
+        <location filename="../Pages/AboutPage.qml" line="40"/>
         <source>A todo and task managing application.</source>
         <translation type="unfinished">一个待办事项和任务管理应用。</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="64"/>
+        <location filename="../Pages/AboutPage.qml" line="68"/>
         <source>OpenTodoList is released under the terms of the &lt;a href=&apos;app-license&apos;&gt;GNU General Public License&lt;/a&gt; version 3 or (at your choice) any later version.</source>
         <translation type="unfinished">OpenTodoList 是根据&lt;a href=&apos;app-license&apos;&gt; GNU通用公共许可证&lt;/a&gt;第3版或（根据您的选择）任何更高版本的条款发行的。</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="81"/>
+        <location filename="../Pages/AboutPage.qml" line="85"/>
         <source>Report an Issue</source>
         <translation type="unfinished">报告问题</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="88"/>
+        <location filename="../Pages/AboutPage.qml" line="92"/>
         <source>Copy System Information</source>
         <translation type="unfinished">复制系统信息</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="110"/>
+        <location filename="../Pages/AboutPage.qml" line="114"/>
         <source>Third Party Libraries and Resources</source>
         <translation type="unfinished">第三方库和资源</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="147"/>
+        <location filename="../Pages/AboutPage.qml" line="151"/>
         <source>Author:</source>
         <translation type="unfinished">作者:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="152"/>
+        <location filename="../Pages/AboutPage.qml" line="156"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="159"/>
+        <location filename="../Pages/AboutPage.qml" line="163"/>
         <source>License:</source>
         <translation type="unfinished">许可:</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="164"/>
+        <location filename="../Pages/AboutPage.qml" line="168"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt; </translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="170"/>
+        <location filename="../Pages/AboutPage.qml" line="174"/>
         <source>Download:</source>
         <translation type="unfinished">下载：</translation>
     </message>
     <message>
-        <location filename="../Pages/AboutPage.qml" line="174"/>
+        <location filename="../Pages/AboutPage.qml" line="178"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
         <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1 &lt;/a&gt;</translation>
     </message>
@@ -144,12 +144,12 @@
         <translation type="unfinished">打开</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="379"/>
+        <location filename="../appstartup.cpp" line="380"/>
         <source>Quick Note</source>
         <translation type="unfinished">快捷笔记</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="437"/>
+        <location filename="../appstartup.cpp" line="438"/>
         <source>Quit</source>
         <translation type="unfinished">退出</translation>
     </message>
@@ -260,22 +260,22 @@
 <context>
     <name>Attachments</name>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="33"/>
+        <location filename="../Widgets/Attachments.qml" line="37"/>
         <source>Attach File</source>
         <translation type="unfinished">附加文件</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="48"/>
+        <location filename="../Widgets/Attachments.qml" line="52"/>
         <source>Delete Attachment?</source>
         <translation type="unfinished">删除附件？</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="52"/>
+        <location filename="../Widgets/Attachments.qml" line="56"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
         <translation type="unfinished">您确定要删除附件&lt;strong&gt;％1 &lt;/ strong&gt;吗？此操作无法撤消。</translation>
     </message>
     <message>
-        <location filename="../Widgets/Attachments.qml" line="66"/>
+        <location filename="../Widgets/Attachments.qml" line="70"/>
         <source>Attachments</source>
         <translation type="unfinished">附件</translation>
     </message>
@@ -742,17 +742,17 @@
 <context>
     <name>LibraryPageActions</name>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="35"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="39"/>
         <source>Sync Now</source>
         <translation type="unfinished">立即同步</translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="52"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="56"/>
         <source>Sync Log</source>
         <translation type="unfinished">同步日志</translation>
     </message>
     <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="62"/>
+        <location filename="../Menues/LibraryPageActions.qml" line="66"/>
         <source>Open Library Folder</source>
         <translation type="unfinished"></translation>
     </message>

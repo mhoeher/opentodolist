@@ -13,12 +13,12 @@ msgctxt "AboutPage|"
 msgid "About..."
 msgstr "À propos..."
 
-#: ../Pages/AboutPage.qml:29
+#: ../Pages/AboutPage.qml:33
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
-#: ../Pages/AboutPage.qml:36
+#: ../Pages/AboutPage.qml:40
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
 msgstr "Une application de gestion des tâches et listes de tâches."
@@ -48,22 +48,22 @@ msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr "Télécharger : <a href='%1'>%1</a>"
 
-#: ../Widgets/Attachments.qml:33
+#: ../Widgets/Attachments.qml:37
 msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Joindre fichier"
 
-#: ../Widgets/Attachments.qml:48
+#: ../Widgets/Attachments.qml:52
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Supprimer pièce jointe ?"
 
-#: ../Widgets/Attachments.qml:52
+#: ../Widgets/Attachments.qml:56
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "Êtes-vous sûr de vouloir supprimer la pièce jointe <strong>%1</strong> ? Cette action ne peut pas être annulée."
 
-#: ../Widgets/Attachments.qml:66
+#: ../Widgets/Attachments.qml:70
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Fichiers joints"
@@ -895,47 +895,47 @@ msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
 msgstr "(c) RPdev 2013-2020, version %1"
 
-#: ../Pages/AboutPage.qml:64
+#: ../Pages/AboutPage.qml:68
 msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr "OpenTodoList est publié sous les termes de la <a href='app-license'>GNU General Public License</a> version 3 ou (à votre choix) toute version ultérieure."
 
-#: ../Pages/AboutPage.qml:81
+#: ../Pages/AboutPage.qml:85
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "Signaler un problème"
 
-#: ../Pages/AboutPage.qml:110
+#: ../Pages/AboutPage.qml:114
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "Bibliothèques et ressources tierces"
 
-#: ../Pages/AboutPage.qml:147
+#: ../Pages/AboutPage.qml:151
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "Auteur:"
 
-#: ../Pages/AboutPage.qml:152
+#: ../Pages/AboutPage.qml:156
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
-#: ../Pages/AboutPage.qml:159
+#: ../Pages/AboutPage.qml:163
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "Licence:"
 
-#: ../Pages/AboutPage.qml:164
+#: ../Pages/AboutPage.qml:168
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
 
-#: ../Pages/AboutPage.qml:170
+#: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "Télécharger :"
 
-#: ../Pages/AboutPage.qml:174
+#: ../Pages/AboutPage.qml:178
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
@@ -1533,12 +1533,12 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Faire glisser si réalisé"
 
-#: ../Menues/LibraryPageActions.qml:35
+#: ../Menues/LibraryPageActions.qml:39
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "Synchroniser maintenant"
 
-#: ../Menues/LibraryPageActions.qml:52
+#: ../Menues/LibraryPageActions.qml:56
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "Journal de synchronisation"
@@ -1608,7 +1608,7 @@ msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Ouvrir"
 
-#: ../appstartup.cpp:437
+#: ../appstartup.cpp:438
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Quitter"
@@ -2204,12 +2204,12 @@ msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr "Échec de la création d'un verrou de synchronisation :"
 
-#: ../Pages/AboutPage.qml:88
+#: ../Pages/AboutPage.qml:92
 msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Copier les Informations Système"
 
-#: ../appstartup.cpp:379
+#: ../appstartup.cpp:380
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Note Rapide"
@@ -2721,7 +2721,7 @@ msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
 msgstr ""
 
-#: ../Menues/LibraryPageActions.qml:62
+#: ../Menues/LibraryPageActions.qml:66
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
 msgstr ""
