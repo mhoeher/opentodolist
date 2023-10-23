@@ -41,6 +41,14 @@
 
   <releases>
     <!-- Format releases according to this: https://www.freedesktop.org/software/appstream/docs/sect-Metadata-Releases.html#spec-releases-example -->
+    <release version="3.46.1" date="2023-10-23">
+        <description>
+            <p>This is a feature release, which mainly fixes some smaller issues, but also brings in some nice new goodies.</p>
+        </description>
+        <issues>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/640">#640: Missing icon on Android.</issue>
+        </issues>
+    </release>
     <release version="3.46.0" date="2023-10-16">
         <description>
             <p>This is a feature release, which mainly fixes some smaller issues, but also brings in some nice new goodies.</p>
