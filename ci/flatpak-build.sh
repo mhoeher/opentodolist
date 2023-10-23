@@ -8,7 +8,7 @@ if [ -n "$CI" ]; then
     rm flatpak-signing-key.asc
 fi
 
-appstream-util validate-relax net.rpdev.OpenTodoList.appdata.xml
+appstream-util validate-relax net.rpdev.OpenTodoList.metainfo.xml
 
 mkdir -p fp-app fp-repo
 flatpak-builder \
