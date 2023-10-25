@@ -337,6 +337,18 @@ void BackgroundService::checkConnectivityOfAccount(Account* account)
         syncLibrariesOfAccount(account->uid());
     });
     m_accountsCheckingConnectivity.insert(account->uid());
+
+    // Setup watchdog (see rpdev/opentodolist#641). If the online check does not finish within the
+    // given time, stop it (and retry on next occasion):
+    auto timer = new QTimer(account);
+    timer->setInterval(60000); // Wait at most 1min
+    timer->setSingleShot(true);
+    connect(timer, &QTimer::timeout, account, [=]() {
+        qCDebug(log) << "Watchdog expired for online check for account" << account->uid();
+        emit account->connectivityCheckFinished(false);
+    });
+    timer->start();
+
     account->checkConnectivity();
 }
 
