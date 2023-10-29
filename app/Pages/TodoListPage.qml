@@ -1,9 +1,9 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.12
 import QtQuick.Controls.Material 2.0
-import Qt.labs.settings 1.0
+import QtCore
 
-import OpenTodoList 1.0 as OTL
+import OpenTodoList as OTL
 
 import "../Components"
 import "../Components/Tooltips" as Tooltips
@@ -18,11 +18,10 @@ import "../Actions" as Actions
 ItemPage {
     id: page
 
-    property var library: null
-    property OTL.TodoList item: OTL.TodoList {}
-    property alias pageActions: libraryActions.actions
-
+    property OTL.TodoList item: null
+    property OTL.Library library: null
     signal closePage
+
     signal openPage(var component, var properties)
 
     function deleteItem() {
@@ -45,22 +44,9 @@ ItemPage {
         filterBar.edit.forceActiveFocus()
     }
 
-    property var goBack: d.editingNotes ? function () {
-        todosWidget.headerItem.item.itemNotesEditor.finishEditing()
-    } : undefined
-
-    property var undo: {
-        if (d.savedTodoStates.length > 0) {
-            return function () {
-                if (d.savedTodoStates.length > 0) {
-                    let list = d.savedTodoStates.slice()
-                    let todoData = list.pop()
-                    OTL.Application.restoreItem(todoData)
-                    d.savedTodoStates = list
-                }
-            }
-        } else {
-            return null
+    property var goBack: {
+        if (d.editingNotes) {
+            return () => todosWidget.headerItem.item.itemNotesEditor.finishEditing()
         }
     }
 
@@ -73,9 +59,9 @@ ItemPage {
     }
 
 
-    /*
-      Attaches the list of files to the todo list.
-      */
+    /**
+     * @brief Attaches the list of files to the todo list.
+     */
     function attachFiles(fileUrls) {
         d.attachFiles(fileUrls)
     }
@@ -104,20 +90,11 @@ ItemPage {
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
 
-    LibraryPageActions {
-        id: libraryActions
-
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
-    }
-
     QtObject {
         id: d
 
         property int sortTodosRole: ItemUtils.todosSortRoleFromString(
                                         AppSettings.todoListPageSettings.sortTodosBy)
-
-        property var savedTodoStates: []
 
         property var restoreLibraryUid
         property var restoreTodoListUid
@@ -295,11 +272,6 @@ ItemPage {
                                                    properties)
                 itemCreatedNotification.show(todo)
             }
-            onItemSaved: {
-                let list = d.savedTodoStates.slice()
-                list.push(itemData)
-                d.savedTodoStates = list
-            }
             headerComponent: Column {
                 id: column
 
@@ -367,7 +339,7 @@ ItemPage {
 
     PullToRefreshOverlay {
         anchors.fill: scrollView
-        refreshEnabled: page.library.hasSynchronizer
+        refreshEnabled: page.library?.hasSynchronizer ?? false
         flickable: todosWidget
         onRefresh: OTL.Application.syncLibrary(page.library)
     }

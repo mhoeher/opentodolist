@@ -38,19 +38,6 @@ C.Page {
         return result
     }
 
-    property alias pageActions: libraryActions.actions
-    property var undo: {
-        if (d.savedItemStates.length > 0) {
-            return function () {
-                let list = d.savedItemStates.slice()
-                OTL.Application.restoreItem(list.pop())
-                d.savedItemStates = list
-            }
-        } else {
-            return null
-        }
-    }
-
     signal openPage(var component, var properties)
 
     title: library ? library.name : qsTr("Schedule")
@@ -99,16 +86,6 @@ C.Page {
         }
     }
 
-    LibraryPageActions {
-        id: libraryActions
-
-        library: page.library
-        syncNowFunction: function () {
-            d.triggerRefresh()
-        }
-        onOpenPage: page.openPage(component, properties)
-    }
-
     C.ItemDelegate {
         id: sampleItemDelegate
         visible: false
@@ -149,7 +126,6 @@ C.Page {
 
         property int hasScheduledItems: items.count > 0
         property var locale: Qt.locale()
-        property var savedItemStates: []
 
         property var restoreLibraryUid
 
@@ -300,15 +276,10 @@ C.Page {
             }
         }
 
-        onTodoClicked: {
-            let clone = OTL.Application.cloneItem(todo)
-            d.openItemInPage(clone)
-        }
-        onItemSaved: {
-            let list = d.savedItemStates.slice()
-            list.push(itemData)
-            d.savedItemStates = list
-        }
+        onTodoClicked: todo => {
+                           let clone = OTL.Application.cloneItem(todo)
+                           d.openItemInPage(clone)
+                       }
         itemsModel: sortedItems
         section {
             property: "effectiveDueToSpan"

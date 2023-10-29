@@ -21,10 +21,11 @@ ItemPage {
     signal closePage
     signal openPage(var component, var properties)
 
-    property var goBack: itemNotesEditor.editing ? function () {
-        itemNotesEditor.finishEditing()
-    } : undefined
-    property alias pageActions: libraryActions.actions
+    property var goBack: {
+        if (itemNotesEditor.editing) {
+            return () => itemNotesEditor.finishEditing()
+        }
+    }
 
     function deleteItem() {
         confirmDeleteDialog.deleteItem(item)
@@ -82,13 +83,6 @@ ItemPage {
 
         property var restoreLibraryUid
         property var restoreNoteUid
-    }
-
-    LibraryPageActions {
-        id: libraryActions
-
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
     }
 
     DeleteItemDialog {

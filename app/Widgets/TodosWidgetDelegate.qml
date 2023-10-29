@@ -29,9 +29,6 @@ C.SwipeDelegate {
     signal itemPressedAndHold
     signal itemClicked
 
-    // The item has been saved (for later undo)
-    signal itemSaved(var itemData)
-
     width: parent ? parent.width : implicitWidth
     padding: 0
     topPadding: AppSettings.effectiveFontMetrics.height / (AppSettings.useCompactTodoLists ? 8 : 2)
@@ -71,7 +68,6 @@ C.SwipeDelegate {
                     return
                 }
 
-                let data = OTL.Application.saveItem(swipeDelegate.item)
                 switch (swipeDelegate.item.itemType) {
                 case "Task":
                 case "Todo":
@@ -85,7 +81,6 @@ C.SwipeDelegate {
                 default:
                     return
                 }
-                swipeDelegate.itemSaved(data)
             }
         }
         Column {

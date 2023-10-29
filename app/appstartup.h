@@ -38,9 +38,6 @@
 #include <QScreen>
 #include <QSslSocket>
 #include <QSysInfo>
-#ifdef Q_OS_MACOS
-#    include <QMenuBar>
-#endif
 
 #ifdef OPENTODOLIST_WITH_KNOTIFICATIONS
 #    include <KStatusNotifierItem>
@@ -93,9 +90,6 @@ private:
 #endif
     QPointer<QMenu> m_trayMenu;
     static QVector<QtMessageHandler> s_prevMessageHandler;
-#ifdef Q_OS_MACOS
-    QMenuBar* m_menuBar;
-#endif
 
     QCommandLineParser m_parser;
     QQmlApplicationEngine* m_engine;

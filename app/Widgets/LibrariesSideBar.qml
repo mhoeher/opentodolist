@@ -1,5 +1,5 @@
 import QtQuick 2.5
-import Qt.labs.settings 1.0
+import QtCore
 
 import "../Components"
 import "../Controls" as C
@@ -12,28 +12,18 @@ import OpenTodoList 1.0 as OTL
 C.Pane {
     id: sidebar
 
+    property ApplicationShortcuts appShortcuts
+
     property alias numberOfLibraries: librariesModel.count
 
     property bool compact: false
 
     property C.StackView stack: null
 
-    signal newLibrary
-    signal aboutPageRequested
-    signal settingsPageRequested
-    signal accountsPageRequested
     signal close
     signal showLibrary(var library, var attributes)
     signal showItem(var library, var item)
     signal showSchedule(var library)
-
-    function showSettings() {
-        sidebar.settingsPageRequested()
-    }
-
-    function showAccounts() {
-        sidebar.accountsPageRequested()
-    }
 
     clip: true
     padding: 0
@@ -73,17 +63,14 @@ C.Pane {
                 width: parent.width
 
                 LibrarySideBarButton {
-                    text: qsTr("New Library")
-                    symbol: Icons.mdiAdd
+                    action: appShortcuts.newLibrary
                     highlighted: d.bottommostPage instanceof Pages.NewLibraryPage
-                    onClicked: sidebar.newLibrary()
                 }
 
                 LibrarySideBarButton {
-                    text: qsTr("Accounts")
-                    symbol: Icons.mdiAccountCircle
+                    action: appShortcuts.accounts
+
                     highlighted: d.bottommostPage instanceof Pages.AccountsPage
-                    onClicked: sidebar.showAccounts()
                 }
 
                 LibrarySideBarButton {
@@ -93,16 +80,12 @@ C.Pane {
                 }
 
                 LibrarySideBarButton {
+                    action: sidebar.appShortcuts.settings
                     text: qsTr("Settings")
-                    symbol: Icons.mdiSettings
-                    onClicked: sidebar.showSettings()
                 }
 
                 LibrarySideBarButton {
-                    text: qsTr("Translate The App...")
-                    symbol: Icons.mdiTranslate
-                    onClicked: shareUtils.openLink(
-                                   "https://poeditor.com/join/project/ztvOymGNxn")
+                    action: appShortcuts.translateTheApp
                 }
 
                 LibrarySideBarButton {
@@ -114,10 +97,8 @@ C.Pane {
                 }
 
                 LibrarySideBarButton {
-                    text: qsTr("About...")
-                    symbol: Icons.mdiInfo
+                    action: appShortcuts.aboutApp
                     highlighted: d.bottommostPage instanceof Pages.AboutPage
-                    onClicked: sidebar.aboutPageRequested()
                 }
 
                 LibrarySideBarButton {
@@ -270,7 +251,7 @@ C.Pane {
                 visible: !librarySection.collapsed
                          && librarySection.scheduleEnabled
                 highlighted: d.bottommostPage instanceof Pages.ScheduleViewPage
-                             && d.bottommostPage.library.uid === library.uid
+                             && d.bottommostPage?.library?.uid === library.uid
                 leftColorSwatch.color: library.color
                 onClicked: sidebar.showSchedule(library)
             }
@@ -366,38 +347,6 @@ C.Pane {
                     }
                 }
             }
-        }
-    }
-
-    Connections {
-        target: sidebar
-
-        function onNewLibrary() {
-            sidebar.close()
-        }
-
-        function onAboutPageRequested() {
-            sidebar.close()
-        }
-
-        function onSettingsPageRequested() {
-            sidebar.close()
-        }
-
-        function onAccountsPageRequested() {
-            sidebar.close()
-        }
-
-        function onShowLibrary() {
-            sidebar.close()
-        }
-
-        function onShowSchedule() {
-            sidebar.close()
-        }
-
-        function onShowItem() {
-            sidebar.close()
         }
     }
 

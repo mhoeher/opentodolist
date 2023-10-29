@@ -5,25 +5,19 @@ import OpenTodoList 1.0 as OTL
 
 import "../Utils" as Utils
 import "../Controls" as C
+import "../Menues" as Menues
 
 C.Page {
     property OTL.TopLevelItem topLevelItem: null
 
-    property bool syncRunning: {
-        return library &&
-                OTL.Application.directoriesWithRunningSync.indexOf(
-                    library.directory) >= 0;
-    }
-    property int syncProgress: {
-        let result = -1;
-        if (library) {
-            result = OTL.Application.syncProgress[library.directory];
-            if (result === undefined) {
-                result = -1;
-            }
-        }
-        return result;
-    }
+    property var selectColor: topLevelItem ? function () {
+        colorMenu.popup()
+    } : null
 
     Material.background: Utils.Colors.materialItemBackgroundColor(topLevelItem)
+
+    Menues.ColorMenu {
+        id: colorMenu
+        item: topLevelItem
+    }
 }

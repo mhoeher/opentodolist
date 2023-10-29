@@ -157,6 +157,8 @@ file(GLOB_RECURSE OTHER_FILES
     ci/*
     cmake/*
     app/android/*
+    lib/*
+    test/*
 )
 
 add_custom_target(OtherFiles SOURCES ${OTHER_FILES})

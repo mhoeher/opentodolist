@@ -8,4 +8,3 @@ Components.ItemAction {
     text: qsTr("Delete Completed Items")
     onTriggered: Utils.ItemUtils.deleteCompletedItems(item)
 }
-
