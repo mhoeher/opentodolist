@@ -12,14 +12,14 @@ import "../Windows"
 
 Column {
     id: editor
-    
+
     property OTL.TopLevelItem item: null
     property var library: null
 
     function addTag() {
-        newTagDialog.open();
+        newTagDialog.open()
     }
-    
+
     width: parent.width
 
     CenteredDialog {
@@ -37,24 +37,27 @@ Column {
             C.ComboBox {
                 id: comboBox
 
+                implicitWidth: Math.min(C.ApplicationWindow.window.width * 0.8,
+                                        800)
+
                 model: {
-                    var library = editor.library;
-                    var result = [];
+                    var library = editor.library
+                    var result = []
                     if (library) {
                         for (var i = 0; i < library.tags.length; ++i) {
-                            var attached = false;
+                            var attached = false
                             for (var j = 0; j < item.tags.length; ++j) {
                                 if (library.tags[i] === item.tags[j]) {
-                                    attached = true;
-                                    break;
+                                    attached = true
+                                    break
                                 }
                             }
                             if (!attached) {
-                                result.push(library.tags[i]);
+                                result.push(library.tags[i])
                             }
                         }
                     }
-                    return result;
+                    return result
                 }
                 editable: true
             }
@@ -63,9 +66,9 @@ Column {
         standardButtons: C.Dialog.Ok | C.Dialog.Cancel
         onAccepted: {
             if (comboBox.editText !== "") {
-                editor.item.addTag(comboBox.editText);
+                editor.item.addTag(comboBox.editText)
             }
-            comboBox.editText = "";
+            comboBox.editText = ""
         }
         onRejected: comboBox.editText = ""
     }

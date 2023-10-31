@@ -124,6 +124,8 @@ public:
     Q_INVOKABLE Item* cloneItem(Item* item);
     Q_INVOKABLE QString saveItem(Item* item);
     Q_INVOKABLE void restoreItem(const QString& data);
+    Q_INVOKABLE void markAllItemsAsDone(Item* item);
+    Q_INVOKABLE void markAllItemsAsUndone(Item* item);
 
     Q_INVOKABLE void saveValue(const QString& name, const QVariant& value);
     Q_INVOKABLE QVariant loadValue(const QString& name, const QVariant& defaultValue = QVariant());
@@ -166,6 +168,8 @@ public:
     createNextCloudLoginFlow(bool ignoreSslErrors) const;
 
     Q_INVOKABLE void syncAllLibraries();
+
+    Q_INVOKABLE void aboutQt() const;
 
 #ifdef Q_OS_ANDROID
     Q_INVOKABLE void finishActivity();

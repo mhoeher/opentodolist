@@ -25,7 +25,7 @@ Example:
 """
 
 CMAKE = """\
-find_package(Qt5Test REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR}Test REQUIRED)
 add_executable(
     test_${name.lower()}
 
@@ -39,7 +39,7 @@ target_link_libraries(
     opentodolist-common
 
     # Qt Libraries
-    Qt5::Test
+    Qt::Test
 )
 
 add_test(

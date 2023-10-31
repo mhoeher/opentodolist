@@ -1,6 +1,6 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
-import Qt.labs.settings 1.0
+import QtCore
 import "../Dialogs" as Dialogs
 
 import OpenTodoList 1.0 as OTL
@@ -82,7 +82,7 @@ C.Page {
     }
 
     function sort() {
-        sortByMenu.open()
+        sortByMenu.popup()
     }
 
     property bool syncRunning: {
@@ -100,8 +100,6 @@ C.Page {
         return result
     }
 
-    property alias pageActions: libraryActions.actions
-
     clip: true
     title: library?.name ?? ""
 
@@ -111,13 +109,6 @@ C.Page {
         property string sortBy: "weight"
 
         category: "LibraryPage"
-    }
-
-    LibraryPageActions {
-        id: libraryActions
-
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
     }
 
     QtObject {
@@ -505,7 +496,6 @@ C.Page {
         id: sortByMenu
 
         title: qsTr("Sort By")
-        anchors.centerIn: parent
         modal: true
 
         C.MenuItem {

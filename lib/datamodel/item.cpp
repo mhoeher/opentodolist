@@ -89,6 +89,11 @@ QByteArray ItemCacheEntry::toJson() const
 
 ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray& data, const QByteArray& id)
 {
+    return fromByteArray(data, QUuid::fromString(id));
+}
+
+ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray& data, const QUuid& id)
+{
     ItemCacheEntry result;
     // Make a copy of the data - this ensures the data is properly aligned:
     QByteArray alignedData(data.constData(), data.length());
@@ -98,7 +103,7 @@ ItemCacheEntry ItemCacheEntry::fromByteArray(const QByteArray& data, const QByte
         auto map = cbor.toMap().toVariantMap();
         if (map["type"] == Item::staticMetaObject.className()) {
             result.valid = true;
-            result.id = QUuid(id);
+            result.id = id;
             result.data = map["data"];
             result.metaData = map["meta"];
             result.parentId = map["parent"].toUuid();

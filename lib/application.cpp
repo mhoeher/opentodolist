@@ -19,6 +19,7 @@
 
 #include "application.h"
 
+#include <QApplication>
 #include <QClipboard>
 #include <QCoreApplication>
 #include <QDateTime>
@@ -71,6 +72,7 @@
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/movetodoquery.h"
 #include "datastorage/promotetaskquery.h"
+#include "datastorage/updateitemquery.h"
 #include "rep_backgroundservice_replica.h"
 #include "sync/account.h"
 #include "sync/synchronizer.h"
@@ -956,6 +958,32 @@ void Application::restoreItem(const QString& data)
 }
 
 /**
+ * @brief Mark all items within an @p item recursively as done.
+ */
+void Application::markAllItemsAsDone(Item* item)
+{
+    if (item) {
+        auto q = new UpdateItemQuery;
+        q->setUid(item->uid());
+        q->setScript(UpdateItemQuery::MarkAllTodosAndTasksAsDone);
+        m_cache->run(q);
+    }
+}
+
+/**
+ * @brief Mark all items within an @p item recursively as undone.
+ */
+void Application::markAllItemsAsUndone(Item* item)
+{
+    if (item) {
+        auto q = new UpdateItemQuery;
+        q->setUid(item->uid());
+        q->setScript(UpdateItemQuery::MarkAllTodosAndTasksAsUndone);
+        m_cache->run(q);
+    }
+}
+
+/**
  * @brief Save a value to the application settings
  *
  * This method is used to save a value to the application settings. Settings
@@ -1285,6 +1313,11 @@ void Application::syncAllLibraries()
             runSyncForLibrary(library);
         }
     }
+}
+
+void Application::aboutQt() const
+{
+    QApplication::aboutQt();
 }
 
 #ifdef Q_OS_ANDROID

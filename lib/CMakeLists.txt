@@ -57,6 +57,8 @@ target_sources(
         datastorage/movetodoquery.h
         datastorage/promotetaskquery.cpp
         datastorage/promotetaskquery.h
+        datastorage/updateitemquery.cpp
+        datastorage/updateitemquery.h
         fileutils.cpp
         fileutils.h
         models/itemsmodel.cpp
@@ -242,6 +244,7 @@ target_link_libraries(opentodolist-common
         Qt${QT_VERSION_MAJOR}::Xml
         Qt${QT_VERSION_MAJOR}::Concurrent
         Qt${QT_VERSION_MAJOR}::Sql
+        Qt${QT_VERSION_MAJOR}::Widgets
         Qt${QT_VERSION_MAJOR}::RemoteObjects
         Qt${QT_VERSION_MAJOR}::NetworkAuth
         $<$<BOOL:${ANDROID}>:Qt${QT_VERSION_MAJOR}::CorePrivate>

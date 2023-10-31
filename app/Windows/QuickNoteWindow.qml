@@ -2,7 +2,7 @@ import QtQuick 2.10
 import QtQuick.Window 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls.Material 2.0 as M
-import Qt.labs.settings 1.0
+import QtCore
 
 import "../Components" as Components
 import "../Controls" as C
@@ -14,7 +14,7 @@ import OpenTodoList 1.0 as OTL
 Window {
     id: root
 
-    signal openMainWindow()
+    signal openMainWindow
 
     title: qsTr("Quick Notes")
     width: 400
@@ -22,14 +22,17 @@ Window {
 
     M.Material.theme: {
         switch (Utils.Colors.theme) {
-        case Utils.Colors.lightTheme: return M.Material.Light;
-        case Utils.Colors.darkTheme: return M.Material.Dark;
-        case Utils.Colors.systemTheme: return M.Material.System;
+        case Utils.Colors.lightTheme:
+            return M.Material.Light
+        case Utils.Colors.darkTheme:
+            return M.Material.Dark
+        case Utils.Colors.systemTheme:
+            return M.Material.System
         }
     }
 
     onVisibleChanged: if (visible) {
-                          noteText.forceActiveFocus();
+                          noteText.forceActiveFocus()
                       }
 
     C.Page {
@@ -95,16 +98,16 @@ Window {
                 valueRole: "library"
                 onCurrentValueChanged: {
                     if (currentValue !== null) {
-                        settings.lastLibraryUid = currentValue.uid;
+                        settings.lastLibraryUid = currentValue.uid
                     }
                 }
                 onCountChanged: {
                     if (settings.lastLibraryUid) {
                         for (var i = 0; i < count; ++i) {
-                            let lib = model.get(i);
+                            let lib = model.get(i)
                             if (lib.uid === settings.lastLibraryUid) {
-                                currentIndex = i;
-                                return;
+                                currentIndex = i
+                                return
                             }
                         }
                     }
@@ -115,19 +118,20 @@ Window {
                 id: saveButton
 
                 function getCreateArgs(defaultTitlePrefix) {
-                    let title = noteTitle.text;
+                    let title = noteTitle.text
                     if (title === "") {
-                        title = defaultTitlePrefix + " - " + (new Date()).toLocaleString();
-                    };
+                        title = defaultTitlePrefix + " - " + (new Date()).toLocaleString()
+                    }
+                    ;
                     return {
                         "title": title,
                         "notes": noteText.text
-                    };
+                    }
                 }
 
                 function clear() {
-                    noteTitle.clear();
-                    noteText.clear();
+                    noteTitle.clear()
+                    noteText.clear()
                 }
 
                 text: qsTr("Save")
@@ -137,8 +141,9 @@ Window {
                 hoverEnabled: true
                 C.ToolTip.timeout: Utils.AppSettings.tooltipTimeout
                 C.ToolTip.delay: Utils.AppSettings.tooltipDelay
-                C.ToolTip.text: qsTr("Save the entered notes to the selected library. " +
-                                     "Press and hold the button to get more options for saving.")
+                C.ToolTip.text: qsTr(
+                                    "Save the entered notes to the selected library. "
+                                    + "Press and hold the button to get more options for saving.")
                 C.ToolTip.visible: Utils.AppSettings.desktopMode && hovered
 
                 C.Menu {
@@ -146,8 +151,12 @@ Window {
 
                     modal: true
 
-                    C.MenuItem { action: createNoteAction }
-                    C.MenuItem { action: createTodoListAction }
+                    C.MenuItem {
+                        action: createNoteAction
+                    }
+                    C.MenuItem {
+                        action: createTodoListAction
+                    }
                 }
             }
         }
@@ -158,8 +167,10 @@ Window {
         text: qsTr("Save as Note")
         enabled: saveButton.enabled
         onTriggered: {
-            OTL.Application.addNote(librarySelector.currentValue, saveButton.getCreateArgs(qsTr("Quick Note")));
-            saveButton.clear();
+            OTL.Application.addNote(librarySelector.currentValue,
+                                    saveButton.getCreateArgs(qsTr(
+                                                                 "Quick Note")))
+            saveButton.clear()
         }
         shortcut: StandardKey.Save
     }
@@ -168,8 +179,10 @@ Window {
         id: createTodoListAction
         text: qsTr("Save as Todo List")
         onTriggered: {
-            OTL.Application.addTodoList(librarySelector.currentValue, saveButton.getCreateArgs(qsTr("Quick Todo List")));
-            saveButton.clear();
+            OTL.Application.addTodoList(librarySelector.currentValue,
+                                        saveButton.getCreateArgs(
+                                            qsTr("Quick Todo List")))
+            saveButton.clear()
         }
     }
 

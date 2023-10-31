@@ -2,7 +2,7 @@ pragma Singleton
 
 import QtQuick 2.10
 import QtQuick.Controls.Material 2.12
-import Qt.labs.settings 1.0
+import QtCore
 
 import OpenTodoList 1.0 as OTL
 

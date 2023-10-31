@@ -28,7 +28,6 @@
         <file>Pages/TodoListPage.qml</file>
         <file>Pages/TodoPage.qml</file>
         <file>Widgets/UpdateNotificationBar.qml</file>
-        <file>Menues/LibraryPageActions.qml</file>
         <file>Windows/CenteredDialog.qml</file>
         <file>Windows/DateSelectionDialog.qml</file>
         <file>Windows/FolderSelectionDialog.qml</file>
@@ -146,7 +145,6 @@
         <file>Controls/Drawer.qml</file>
         <file>3rdpartyinfo/material-design-icons/3rdpartyinfo.json</file>
         <file>Components/ApplicationToolBar.qml</file>
-        <file>Components/ApplicationToolBarActions.qml</file>
         <file>Components/ApplicationShortcuts.qml</file>
         <file>Controls/PasswordField.qml</file>
         <file>Windows/+android/FolderSelectionDialog.qml</file>
@@ -171,5 +169,7 @@
         <file>Components/Tooltips/AllSubtasksDone.qml</file>
         <file>Components/Tooltips/MarkFutureInstanceAsDone.qml</file>
         <file>Utils/text-style.css</file>
+        <file>Widgets/ApplicationMenu.qml</file>
+        <file>Controls/ProgressBar.qml</file>
     </qresource>
 </RCC>

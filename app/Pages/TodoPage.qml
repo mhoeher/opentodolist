@@ -1,5 +1,5 @@
 import QtQuick 2.5
-import Qt.labs.settings 1.0
+import QtCore
 
 import OpenTodoList 1.0 as OTL
 
@@ -77,18 +77,6 @@ ItemPage {
         todosWidget.headerItem.item.itemNotesEditor.finishEditing()
     } : undefined
 
-    property var undo: {
-        if (d.savedTaskStates.length > 0) {
-            return function () {
-                let list = d.savedTaskStates.slice()
-                OTL.Application.restoreItem(list.pop())
-                d.savedTaskStates = list
-            }
-        } else {
-            return null
-        }
-    }
-
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: todoList
 
@@ -115,8 +103,6 @@ ItemPage {
         id: d
 
         property bool editingNotes: false
-
-        property var savedTaskStates: []
 
         property var restoreLibraryUid
         property var restoreTodoListUid
@@ -206,11 +192,6 @@ ItemPage {
                 }
                 var task = OTL.Application.addTask(page.library, page.item,
                                                    properties)
-            }
-            onItemSaved: {
-                let list = d.savedTaskStates.slice()
-                list.push(itemData)
-                d.savedTaskStates = list
             }
 
             headerComponent: Column {

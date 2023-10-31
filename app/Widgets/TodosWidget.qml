@@ -53,8 +53,6 @@ ListView {
     signal headerButton2Clicked
     signal todoClicked(var todo)
     signal createNewItem(string title, var args)
-    signal itemSaved(var itemData)
-    // Item has been saved (for undo)
 
 
     /*
@@ -305,7 +303,6 @@ ListView {
             onItemClicked: {
                 root.todoClicked(item)
             }
-            onItemSaved: root.itemSaved(itemData)
 
             Connections {
                 target: root.model
