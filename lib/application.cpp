@@ -19,7 +19,6 @@
 
 #include "application.h"
 
-#include <QApplication>
 #include <QClipboard>
 #include <QCoreApplication>
 #include <QDateTime>
@@ -1317,7 +1316,7 @@ void Application::syncAllLibraries()
 
 void Application::aboutQt() const
 {
-    QApplication::aboutQt();
+    QMetaObject::invokeMethod(QCoreApplication::instance(), "aboutQt");
 }
 
 #ifdef Q_OS_ANDROID

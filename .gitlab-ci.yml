@@ -158,6 +158,16 @@ windows-mingw-w64:
       - deploy-win64/OpenTodoList-*-Windows-64bit.zip
     expire_in: 1 week
 
+# Sanity check to ensure the Windows build successfully produced its artifacts:
+windows-mingw-w64-filecheck:
+    image: fedora
+    needs:
+        - windows-mingw-w64
+    stage: build
+    script:
+        - test -f deploy-win64/OpenTodoList-*-Windows-64bit.exe
+        - test -f deploy-win64/OpenTodoList-*-Windows-64bit.zip
+
 # macOS build:
 macos:
   stage: build

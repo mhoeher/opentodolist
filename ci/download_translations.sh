@@ -26,7 +26,10 @@ pip install poeditor fire
 
 if [ -n "$CI" ]; then
     eval $(ssh-agent -s)
-    ssh-add - <<< "${OPENTODOLIST_DEPLOY_KEY}"
+    export SECURE_FILES_DOWNLOAD_PATH=.secure-files
+    curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    chmod go-rwx $SECURE_FILES_DOWNLOAD_PATH/opentodolist_deploy_key
+    ssh-add $SECURE_FILES_DOWNLOAD_PATH/opentodolist_deploy_key
     mkdir -p ~/.ssh
     ssh-keyscan -t rsa gitlab.com >> ~/.ssh/known_hosts
     git config --global user.name "Martin Hoeher"
