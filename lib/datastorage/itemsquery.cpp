@@ -44,6 +44,7 @@ ItemsQuery::ItemsQuery(QObject* parent)
       m_global(),
       m_items(),
       m_children(),
+      m_uid(QUuid::createUuid()),
       m_dataChanged(false),
       m_isNonDBQuery(false),
       m_changedLibrariesUids(),
@@ -461,6 +462,25 @@ bool ItemsQuery::isNonDBQuery() const
 void ItemsQuery::setIsNonDBQuery(bool newIsNonDBQuery)
 {
     m_isNonDBQuery = newIsNonDBQuery;
+}
+
+/**
+ * @brief A unique ID identifying the query instance.
+ */
+QUuid ItemsQuery::queryUid() const
+{
+    return m_uid;
+}
+
+/**
+ * @brief Set the query uid.
+ */
+void ItemsQuery::setQueryUid(const QUuid& newUid)
+{
+    if (m_uid == newUid)
+        return;
+    m_uid = newUid;
+    emit queryUidChanged();
 }
 
 /**

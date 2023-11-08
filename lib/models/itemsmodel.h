@@ -157,6 +157,7 @@ public slots:
 
 private:
     QPointer<Cache> m_cache;
+    QUuid m_currentItemsQuery;
     QHash<QUuid, Item*> m_items;
     QList<QUuid> m_ids;
     QTimer m_fetchTimer;
@@ -192,7 +193,7 @@ private slots:
     void reset();
     void fetch();
     void triggerFetch();
-    void update(const QVariantList& items);
+    void update(const QVariantList& items, const QUuid& queryUid);
     void itemChanged();
 };
 

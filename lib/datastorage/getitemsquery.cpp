@@ -100,7 +100,7 @@ void GetItemsQuery::run()
         }
     }
     m_transaction = nullptr;
-    emit itemsAvailable(result);
+    emit itemsAvailable(result, queryUid());
 }
 
 std::function<bool(ItemPtr, GetItemsQuery*)> GetItemsQuery::itemFilter() const
