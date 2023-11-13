@@ -4,6 +4,6 @@ Accounts 1.0 Accounts.qml
 singleton AppSettings 1.0 AppSettings.qml
 singleton Colors 1.0 Colors.qml
 singleton DateUtils 1.0 DateUtils.qml
-singleton ItemUtils 1.0 ItemUtils.qml
+ItemUtils 1.0 ItemUtils.qml
 singleton Markdown 1.0 Markdown.qml
 singleton SyntaxHighlighter 1.0 SyntaxHighlighter.qml

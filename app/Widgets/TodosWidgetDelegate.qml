@@ -371,14 +371,17 @@ C.SwipeDelegate {
     Actions.RenameItem {
         id: renameAction
         item: swipeDelegate.item
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
     Actions.SetDueTo {
         id: setDueToAction
         item: swipeDelegate.item
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
     Actions.DeleteItem {
         id: deleteAction
         item: swipeDelegate.item
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
     Actions.SetDueToday {
         id: setDueTodayAction
@@ -410,11 +413,13 @@ C.SwipeDelegate {
         item: swipeDelegate.item
         library: swipeDelegate.library
         enabled: item.itemType === "Todo"
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
     Actions.CopyTodo {
         id: copyTodoAction
         item: swipeDelegate.item
         enabled: item.itemType === "Todo"
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
     Actions.PromoteTask {
         id: promoteTaskAction
@@ -422,6 +427,7 @@ C.SwipeDelegate {
         library: swipeDelegate.library
         enabled: item.itemType === "Task"
         todoList: swipeDelegate.parentItem
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
 
     Tooltips.MarkFutureInstanceAsDone {

@@ -58,6 +58,14 @@ ItemPage {
         dueDateSelectionDialog.open()
     }
 
+    function openInNewWindow() {
+        openStackViewWindow(restoreUrl, {
+                                "item": OTL.Application.cloneItem(page.item),
+                                "library": OTL.Application.cloneLibrary(
+                                               page.library)
+                            })
+    }
+
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
 
@@ -181,6 +189,7 @@ ItemPage {
     Actions.CopyTopLevelItem {
         id: copyTopLevelItemAction
         item: page.item
+        itemUtils: page.C.ApplicationWindow.window.itemUtils
     }
 
     Connections {

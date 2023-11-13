@@ -29,7 +29,7 @@ ItemPage {
     }
 
     function deleteCompletedItems() {
-        ItemUtils.deleteCompletedItems(item)
+        C.ApplicationWindow.window.itemUtils.deleteCompletedItems(item)
     }
 
     function renameItem() {
@@ -71,6 +71,14 @@ ItemPage {
         dueDateSelectionDialog.open()
     }
 
+    function openInNewWindow() {
+        openStackViewWindow(restoreUrl, {
+                                "item": OTL.Application.cloneItem(page.item),
+                                "library": OTL.Application.cloneLibrary(
+                                               page.library)
+                            })
+    }
+
     savePage: function () {
         return {
             "library": OTL.Application.uuidToString(page.library.uid),
@@ -93,7 +101,7 @@ ItemPage {
     QtObject {
         id: d
 
-        property int sortTodosRole: ItemUtils.todosSortRoleFromString(
+        property int sortTodosRole: page.C.ApplicationWindow.window.itemUtils.todosSortRoleFromString(
                                         AppSettings.todoListPageSettings.sortTodosBy)
 
         property var restoreLibraryUid
@@ -360,6 +368,7 @@ ItemPage {
     Actions.CopyTopLevelItem {
         id: copyTopLevelItemAction
         item: page.item
+        itemUtils: page.C.ApplicationWindow.window.itemUtils
     }
 
     Connections {

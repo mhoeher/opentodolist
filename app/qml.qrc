@@ -171,5 +171,6 @@
         <file>Utils/text-style.css</file>
         <file>Widgets/ApplicationMenu.qml</file>
         <file>Controls/ProgressBar.qml</file>
+        <file>Windows/StackViewWindow.qml</file>
     </qresource>
 </RCC>

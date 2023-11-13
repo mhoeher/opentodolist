@@ -250,7 +250,8 @@ C.Page {
 
         C.MenuItem {
             text: qsTr("Copy")
-            onTriggered: ItemUtils.copyTopLevelItem(itemContextMenu.item)
+            onTriggered: C.ApplicationWindow.window.itemUtils.copyTopLevelItem(
+                             itemContextMenu.item)
         }
 
         C.MenuItem {

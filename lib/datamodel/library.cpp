@@ -177,6 +177,23 @@ Library* Library::decache(const QVariant& entry, QObject* parent)
     return decache(entry.value<LibraryCacheEntry>(), parent);
 }
 
+/**
+ * @brief Clone the library.
+ *
+ * This returns a clone of the library, i.e. a new instance of the Library class with the
+ * same attributes.
+ *
+ * The caller assumes ownership of the returned library.
+ */
+Library* Library::clone()
+{
+    auto result = Library::decache(this->encache());
+    if (result) {
+        result->setCache(cache());
+    }
+    return result;
+}
+
 void Library::setName(const QString& name)
 {
     if (m_name != name) {
