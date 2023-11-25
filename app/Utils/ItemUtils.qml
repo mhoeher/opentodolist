@@ -1,5 +1,3 @@
-pragma Singleton
-
 import QtQuick 2.0
 import QtQuick.Window 2.0
 
@@ -7,11 +5,12 @@ import OpenTodoList 1.0 as OTL
 
 import "." as Utils
 import "../Windows" as Windows
+import "../Controls" as C
 
 Item {
     id: root
 
-    property Window window: null
+    property var window: null
 
     function renameItem(item) {
         if (d.renameItemDialog === null) {
@@ -160,8 +159,8 @@ Item {
             property var item: null
 
             onAccepted: if (item !== null) {
-                item.dueTo = selectedDate
-            }
+                            item.dueTo = selectedDate
+                        }
         }
     }
 

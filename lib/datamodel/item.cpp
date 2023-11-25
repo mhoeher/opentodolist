@@ -295,21 +295,25 @@ void Item::fromVariant(QVariant data)
  *
  * This returns a clone of the item, i.e. a new instance (of the same type) with all the properties
  * cloned from the other item.
+ *
+ * The caller assumes ownership of the returned item.
  */
 Item* Item::clone()
 {
     auto result = Item::decache(this->encache());
-    result->finishCloning(this);
-    result->setCache(this->cache());
+    if (result) {
+        result->finishCloning(this);
+        result->setCache(this->cache());
+    }
     return result;
 }
 
 /**
  * @brief Create a copy of the item.
  *
- * This creates a copy of this item in the @p targetDirectory. The item will belong to the library
- * with the @p targetLibraryUid. If the item is not a TopLevelItem, it will be a child of the item
- * identified by the @p targetItemUid.
+ * This creates a copy of this item in the @p targetDirectory. The item will belong to the
+ * library with the @p targetLibraryUid. If the item is not a TopLevelItem, it will be a child
+ * of the item identified by the @p targetItemUid.
  *
  * On success, the instance of the created item is returned. On failure, a nullptr is returned.
  */
@@ -368,9 +372,9 @@ void Item::fromMap(QVariantMap map)
 /**
  * @brief Finish cloning the item.
  *
- * This method is called by Item::clone() on the cloned instance. @p source is the item that this
- * one has just been cloned from. This method can be used to copy over calculated properties from
- * the source item.
+ * This method is called by Item::clone() on the cloned instance. @p source is the item that
+ * this one has just been cloned from. This method can be used to copy over calculated
+ * properties from the source item.
  */
 void Item::finishCloning(Item* source)
 {
@@ -381,9 +385,9 @@ void Item::finishCloning(Item* source)
 /**
  * @brief Get meta information stored along the item when caching.
  *
- * This returns a map which contains data that is stored together with other data when the item is
- * encached. This can be used to add additional information that must be preserved "in memory", but
- * must not be included in the actual data cache on disk.
+ * This returns a map which contains data that is stored together with other data when the item
+ * is encached. This can be used to add additional information that must be preserved "in
+ * memory", but must not be included in the actual data cache on disk.
  *
  * Concrete subclasses shall override this method and add any information needed on top.
  */

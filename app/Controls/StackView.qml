@@ -204,6 +204,28 @@ QQC2.StackView {
         }
     }
 
+    Connections {
+        target: stack.currentItem
+        ignoreUnknownSignals: true
+
+        function onClosePage() {
+            stack.goBack()
+        }
+
+        function onReturnToPage(page) {
+            stack.goBack(page)
+        }
+
+        function onOpenPage(component, properties) {
+            stack.push(component, properties)
+        }
+
+        function onClearAndOpenPage(component, properties) {
+            stack.clear()
+            stack.push(component, properties)
+        }
+    }
+
     Component.onCompleted: {
         try {
             if (stack.stackId !== "") {

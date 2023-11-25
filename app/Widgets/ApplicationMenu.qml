@@ -163,6 +163,10 @@ P.MenuBar {
             action: menuBar.shortcuts.scrollToBottom
         }
 
+        ActionMenuItem {
+            action: menuBar.shortcuts.openInNewWindow
+        }
+
         Separator {}
 
         ActionMenuItem {

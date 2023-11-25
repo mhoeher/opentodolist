@@ -33,7 +33,7 @@ ItemPage {
     }
 
     function deleteCompletedItems() {
-        ItemUtils.deleteCompletedItems(item)
+        C.ApplicationWindow.window.itemUtils.deleteCompletedItems(item)
     }
 
     function renameItem() {
@@ -73,9 +73,25 @@ ItemPage {
         d.attachFiles(fileUrls)
     }
 
-    property var goBack: editingNotes ? function () {
-        todosWidget.headerItem.item.itemNotesEditor.finishEditing()
-    } : undefined
+    property var goBack: {
+        if (editingNotes) {
+            return function () {
+                todosWidget.headerItem.item.itemNotesEditor.finishEditing()
+            }
+        } else {
+            return undefined
+        }
+    }
+
+    function openInNewWindow() {
+        openStackViewWindow(restoreUrl, {
+                                "item": OTL.Application.cloneItem(page.item),
+                                "todoList": OTL.Application.cloneItem(
+                                                page.todoList),
+                                "library": OTL.Application.cloneLibrary(
+                                               page.library)
+                            })
+    }
 
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: todoList
@@ -116,6 +132,7 @@ ItemPage {
         id: moveTodoAction
         library: page.library
         item: page.item
+        itemUtils: page.C.ApplicationWindow.window.itemUtils
     }
 
     Actions.SetManualProgressAction {
@@ -294,6 +311,7 @@ ItemPage {
     Actions.CopyTodo {
         id: copyTodoAction
         item: page.item
+        itemUtils: page.C.ApplicationWindow.window.itemUtils
     }
 
     Connections {

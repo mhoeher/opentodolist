@@ -9,13 +9,16 @@ QQC2.ApplicationWindow {
 
     Material.theme: {
         switch (Utils.Colors.theme) {
-        case Utils.Colors.lightTheme: return Material.Light;
-        case Utils.Colors.darkTheme: return Material.Dark;
-        case Utils.Colors.systemTheme: return Material.System;
+        case Utils.Colors.lightTheme:
+            return Material.Light
+        case Utils.Colors.darkTheme:
+            return Material.Dark
+        case Utils.Colors.systemTheme:
+            return Material.System
         }
     }
 
-    Component.onCompleted: {
-        Utils.ItemUtils.window = appWindow
+    property Utils.ItemUtils itemUtils: Utils.ItemUtils {
+        window: appWindow
     }
 }

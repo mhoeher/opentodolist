@@ -91,6 +91,7 @@ public:
     LibraryCacheEntry encache() const;
     static Library* decache(const LibraryCacheEntry& entry, QObject* parent = nullptr);
     static Library* decache(const QVariant& entry, QObject* parent = nullptr);
+    Library* clone();
 
     /**
      * @brief The name of the libary as used in the user interface.

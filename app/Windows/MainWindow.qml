@@ -273,28 +273,6 @@ C.ApplicationWindow {
         y: window.header.height
     }
 
-    Connections {
-        target: stackView.currentItem
-        ignoreUnknownSignals: true
-
-        function onClosePage() {
-            stackView.goBack()
-        }
-
-        function onReturnToPage(page) {
-            stackView.goBack(page)
-        }
-
-        function onOpenPage(component, properties) {
-            stackView.push(component, properties)
-        }
-
-        function onClearAndOpenPage(component, properties) {
-            stackView.clear()
-            stackView.push(component, properties)
-        }
-    }
-
     UpdateNotificationBar {}
 
     Component {

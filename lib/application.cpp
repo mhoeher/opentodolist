@@ -916,7 +916,26 @@ Item* Application::cloneItem(Item* item)
     Item* result = nullptr;
     if (item != nullptr) {
         result = item->clone();
-        if (result->cache() == nullptr) {
+        if (result && result->cache() == nullptr) {
+            result->setCache(m_cache);
+        }
+    }
+    return result;
+}
+
+/**
+ * @brief Clone a library.
+ *
+ * This creates a clone of the given @p library. In addition, the resulting library will be setup to
+ * track changes in the library cache, so whenever there are any updates (e.g. due to sync) the
+ * library gets updated as well.
+ */
+Library* Application::cloneLibrary(Library* library)
+{
+    Library* result = nullptr;
+    if (library != nullptr) {
+        result = library->clone();
+        if (result && result->cache() == nullptr) {
             result->setCache(m_cache);
         }
     }

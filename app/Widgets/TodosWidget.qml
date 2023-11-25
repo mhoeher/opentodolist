@@ -329,7 +329,7 @@ ListView {
             MouseArea {
                 anchors.fill: parent
                 acceptedButtons: Qt.RightButton
-                onClicked: showContextMenu(mouse)
+                onClicked: mouse => showContextMenu(mouse)
             }
         }
     }

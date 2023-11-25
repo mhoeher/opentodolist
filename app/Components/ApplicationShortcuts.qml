@@ -9,6 +9,8 @@ import OpenTodoList as OTL
 Item {
     id: shortcuts
 
+    property bool isSecondaryWindow: false
+
     property C.StackView stackView
     property C.ApplicationWindow window
 
@@ -17,6 +19,7 @@ Item {
         text: qsTr("About")
         shortcut: StandardKey.HelpContents
         symbol: Fonts.Icons.mdiInfo
+        enabled: !isSecondaryWindow
         onTriggered: stackView.clearAndOpenPage(Qt.resolvedUrl(
                                                     "../Pages/AboutPage.qml"))
     }
@@ -24,12 +27,14 @@ Item {
     property C.Action aboutQt: C.Action {
         text: qsTr("About Qt")
         symbol: Fonts.Icons.mdiInfo
-        enabled: Qt.platform.os !== "ios" && Qt.platform.os !== "android"
+        enabled: !isSecondaryWindow && Qt.platform.os !== "ios"
+                 && Qt.platform.os !== "android"
         onTriggered: OTL.Application.aboutQt()
     }
 
     property C.Action accounts: C.Action {
         text: qsTr("Accounts")
+        enabled: !isSecondaryWindow
         symbol: Fonts.Icons.mdiAccountCircle
         onTriggered: stackView.clearAndOpenPage(
                          Qt.resolvedUrl("../Pages/AccountsPage.qml"))
@@ -54,7 +59,7 @@ Item {
     property C.Action close: C.Action {
         text: qsTr("Close")
         shortcut: StandardKey.Close
-        enabled: Qt.platform.os != "android" && Qt.platform.os != "ios"
+        enabled: Qt.platform.os !== "android" && Qt.platform.os !== "ios"
         onTriggered: window.close()
     }
 
@@ -155,6 +160,7 @@ Item {
     property C.Action newLibrary: C.Action {
         text: qsTr("New Library")
         shortcut: "Ctrl+Shift+N"
+        enabled: !isSecondaryWindow
         symbol: Fonts.Icons.mdiAdd
         onTriggered: stackView.clearAndOpenPage(newLibraryPage)
     }
@@ -164,6 +170,14 @@ Item {
         shortcut: StandardKey.Open
         enabled: !!window?.itemCreatedNotification
         onTriggered: window.itemCreatedNotification.trigger()
+    }
+
+    property C.Action openInNewWindow: C.Action {
+        text: qsTr("Open In New Window")
+        shortcut: StandardKey.AddTab
+        enabled: !isSecondaryWindow && Application.supportsMultipleWindows
+                 && typeof (stackView?.currentItem?.openInNewWindow) === "function"
+        onTriggered: stackView.currentItem.openInNewWindow()
     }
 
     property C.Action openLibraryFolder: C.Action {
@@ -188,6 +202,7 @@ Item {
 
     property C.Action settings: C.Action {
         text: qsTr("Preferences")
+        enabled: !isSecondaryWindow
         shortcut: "Ctrl+,"
         symbol: Fonts.Icons.mdiSettings
         onTriggered: {
@@ -268,6 +283,7 @@ Item {
 
     property C.Action translateTheApp: C.Action {
         text: qsTr("Translate The App...")
+        enabled: !isSecondaryWindow
         symbol: Fonts.Icons.mdiTranslate
         onTriggered: shareUtils.openLink(
                          "https://poeditor.com/join/project/ztvOymGNxn")
