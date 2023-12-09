@@ -32,7 +32,7 @@ Item {
                         window)
         }
         d.dateSelectionDialog.item = item
-        d.dateSelectionDialog.selectedDate = item.dueTo
+        d.dateSelectionDialog.selectedDate = item.effectiveDueTo
         d.dateSelectionDialog.open()
     }
 
