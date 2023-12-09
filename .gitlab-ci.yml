@@ -1,8 +1,9 @@
 # yaml-language-server: $schema=https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json
 
 variables:
-  UBUNTU_IMAGE: registry.gitlab.com/rpdev/docker/qt6-ubuntu
-  ANDROID_IMAGE: registry.gitlab.com/rpdev/docker/qt6-android
+  QT_VERSION: "6.6.1"
+  UBUNTU_IMAGE: registry.gitlab.com/rpdev/docker/qt6-ubuntu:$QT_VERSION
+  ANDROID_IMAGE: registry.gitlab.com/rpdev/docker/qt6-android:$QT_VERSION
   FLATPAK_IMAGE: registry.gitlab.com/rpdev/docker/flatpak-builder-kde-qt6
   SNAPCRAFT_IMAGE: registry.gitlab.com/rpdev/docker/snapcraft
   NEXTCLOUD_IMAGE: nextcloud
@@ -12,7 +13,6 @@ variables:
   CCACHE_DIR: $CI_PROJECT_DIR/ccache
   ANDROID_MIN_SDK_INT: 21
   OPENTODOLIST_WEBDAV_TEST_SERVERS_TEMPLATE: "nextcloud://admin:admin@nextcloud/;owncloud://admin:admin@owncloud/;generic://admin:admin@nextcloud/remote.php/webdav/;generic://admin:admin@owncloud/remote.php/webdav/"
-  QT_VERSION: "6.5.3"
   # Exit PowerShell scripts with an error when an error occurs:
   ErrorActionPreference: Stop
 
