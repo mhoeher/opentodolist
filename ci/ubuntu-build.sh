@@ -120,4 +120,9 @@ export QMAKE=$QT_INSTALL_ROOT/$QT_VERSION/gcc_64/bin/qmake
 
 # export EXTRA_PLATFORM_PLUGINS="libqwayland-generic.so;libqwayland-egl.so"
 
+# Remove libqsqlmimer.so - it fails to deploy due to dependencies:
+if [ -n "$CI" ]; then
+    find $QT_INSTALL_ROOT/$QT_VERSION/gcc_64 -name libqsqlmimer.so -delete
+fi
+
 linuxdeploy --appdir AppImageBuild --plugin qt --output appimage

@@ -44,6 +44,7 @@ $QT_DIR/bin/qt-cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DOPENTODOLIST_WITH_UPDATE_SERVICE=ON \
     -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" \
+    --fresh \
     ..
 cmake --build .
 # TODO: Tests on macos currently fail sometimes - this probably is a race condition that we should urgently fix!
@@ -57,26 +58,39 @@ cmake --build . --target test || cmake --build . --target test || cmake --build 
 
 # Include Qt Runtime in App Bundle. Also sign the bundle
 # and prepare it for notarization:
-mkdir -p dist-web
-cp -r app/OpenTodoList.app dist-web
-pushd dist-web
-$QT_DIR/bin/macdeployqt \
-    OpenTodoList.app/ \
-    -qmldir=../../app \
-    -appstore-compliant \
-    -sign-for-notarization="Developer ID Application: Martin Hoeher (786Z636JV9)"
-popd
+rm -rf dist-web
 
-# Create a zip archive suitable for uploading to the notarization
-# service:
-ditto \
-    -ck --rsrc \
-    --sequesterRsrc \
-    --keepParent \
-    "dist-web/OpenTodoList.app" "dist-web/OpenTodoList.zip"
+for i in initial retry; do
+    mkdir -p dist-web
+    cp -r app/OpenTodoList.app dist-web
+    pushd dist-web
+    $QT_DIR/bin/macdeployqt \
+        OpenTodoList.app/ \
+        -qmldir=../../app \
+        -appstore-compliant \
+        -sign-for-notarization="Developer ID Application: Martin Hoeher (786Z636JV9)"
+    find OpenTodoList.app -name "*.dSYM" -type d | xargs rm -rf
+    popd
 
-# Make sure the app has been signed:
-codesign -v dist-web/OpenTodoList.app
+    # Create a zip archive suitable for uploading to the notarization
+    # service:
+    ditto \
+        -ck --rsrc \
+        --sequesterRsrc \
+        --keepParent \
+        "dist-web/OpenTodoList.app" "dist-web/OpenTodoList.zip"
+
+    # Make sure the app has been signed:
+    if [ $i == "initial" ]; then
+        # On first attempt, if we succeed, leave the loop:
+        if codesign -v dist-web/OpenTodoList.app; then
+            break
+        fi
+    else
+        # Fail if second attempt failed
+        codesign -v dist-web/OpenTodoList.app
+    fi
+done
 
 # Upload the archive for notarization (see
 # https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution/customizing_the_notarization_workflow
@@ -124,7 +138,10 @@ cp dist-web/OpenTodoList.dmg app/
 # Create Package for Distribution via App Store #
 #################################################
 
-mkdir dist-store
+# Currently, this is not working - skip here
+exit 0
+
+mkdir -p dist-store
 cp -r app/OpenTodoList.app dist-store
 
 pushd dist-store
@@ -133,6 +150,7 @@ $QT_DIR/bin/macdeployqt \
     -qmldir=../../app \
     -appstore-compliant \
     -sign-for-notarization="Apple Distribution: Martin Hoeher (786Z636JV9)"
+find OpenTodoList.app -name "*.dSYM" -type d | xargs rm -rf
 popd
 xcrun codesign \
     -s "Apple Distribution: Martin Hoeher (786Z636JV9)" \
