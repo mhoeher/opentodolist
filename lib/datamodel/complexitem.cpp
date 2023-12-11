@@ -95,7 +95,7 @@ QDateTime ComplexItem::dueTo() const
  */
 void ComplexItem::setDueTo(const QDateTime& dueTo)
 {
-    if (m_dueTo != dueTo) {
+    if (m_dueTo != dueTo || effectiveDueTo() != dueTo) {
         if (m_nextDueTo.isValid()) {
             // Reset next due to as soon as user explicitly selects a new date:
             setNextDueTo(QDateTime());
