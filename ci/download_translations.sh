@@ -14,7 +14,8 @@ if [ -n "$CI" ]; then
         python3-pip \
         openssh-clients \
         git \
-        curl
+        curl \
+        which
 fi
 
 export QT_QPA_PLATFORM=minimal
