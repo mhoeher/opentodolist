@@ -45,6 +45,10 @@ P.MenuBar {
             action: menuBar.shortcuts.accounts
         }
 
+        ActionMenuItem {
+            action: menuBar.shortcuts.createSampleLibrary
+        }
+
         Separator {}
 
         ActionMenuItem {

@@ -71,6 +71,55 @@ Item {
         onTriggered: stackView.currentItem.copyItem()
     }
 
+    property C.Action createSampleLibrary: C.Action {
+        text: qsTr("Create Sample Library")
+        onTriggered: {
+            var lib = OTL.Application.addLocalLibrary("My Library")
+
+            var note = OTL.Application.addNote(lib, {
+                                                   "title": "A Note",
+                                                   "notes": ["* This is a note.", "* Notes are used to store text.", "* Text can be **styles** as well 😎", "* On top, additional pages can be added, which actually makes them *notebooks* 😉"].join(
+                                                       "\n")
+                                               })
+            OTL.Application.addNotePage(lib, note, {
+                                            "title": "A second page",
+                                            "notes": "This is another *page* added to the same notebook."
+                                        })
+
+            var todoList = OTL.Application.addTodoList(lib, {
+                                                           "title": "A todo list",
+                                                           "notes": ["* A todo list contains todos.", "* Additionally, notes can be set on them, too.", "* If needed, todos can be further divided by adding tasks to them."].join(
+                                                               "\n")
+                                                       })
+
+            OTL.Application.addTodo(lib, todoList, {
+                                        "title": "A todo",
+                                        "notes": "A simple todo with some notes added to it."
+                                    })
+            let todoWithTasks = OTL.Application.addTodo(lib, todoList, {
+                                                            "title": "A todo with tasks",
+                                                            "notes": "This todo contains additional tasks - this can be used to further break down what needs to be done for a single item in a todo list."
+                                                        })
+            OTL.Application.addTask(lib, todoWithTasks, {
+                                        "title": "A task"
+                                    })
+            OTL.Application.addTask(lib, todoWithTasks, {
+                                        "title": "Another task"
+                                    })
+            OTL.Application.addTask(lib, todoWithTasks, {
+                                        "title": "A task already done",
+                                        "done": true
+                                    })
+
+            var image = OTL.Application.addImage(lib, {
+                                                     "title": "An image",
+                                                     "image": ":/sample.png",
+                                                     "notes": ["* This is an image", "* Images wrap a single image which is prominently shown within a library.", "* As with other top level items, you can add arbitrary notes to them 😉"].join(
+                                                         "\n")
+                                                 })
+        }
+    }
+
     property C.Action deleteItem: C.Action {
         text: qsTr("Delete")
         shortcut: StandardKey.Delete
@@ -182,7 +231,7 @@ Item {
 
     property C.Action openLibraryFolder: C.Action {
         text: qsTr("Open Library Folder")
-        enabled: !!stackView.topmostLibrary
+        enabled: !!stackView.topmostLibrary && shareUtils.canOpenFolders
         onTriggered: shareUtils.openFolder(stackView.topmostLibrary.directory)
     }
 
