@@ -71,8 +71,9 @@ Column {
             width: parent.width
             textFormat: Text.RichText
             wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-            placeholderText: qsTr(
-                                 "No notes added yet - click here to add some.")
+            placeholderText: root.item?.notes
+                             !== "" ? "" : qsTr(
+                                          "No notes added yet - click here to add some.")
             C.ToolTip.text: hoveredLink
             C.ToolTip.delay: 500
             text: Markdown.markdownToHtml(root.item?.notes ?? "")

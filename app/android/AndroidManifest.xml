@@ -13,7 +13,7 @@
 
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
 
-    <application android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="OpenTodoList" android:allowNativeHeapPointerTagging="false" android:allowBackup="false" android:usesCleartextTraffic="true" android:icon="@mipmap/ic_launcher">
+    <application android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="OpenTodoList" android:allowNativeHeapPointerTagging="false" android:allowBackup="false" android:usesCleartextTraffic="true" android:icon="@mipmap/ic_launcher" android:theme="@android:style/Theme.NoTitleBar">
         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="net.rpdev.OpenTodoList.MainActivity" android:label="OpenTodoList" android:screenOrientation="unspecified" android:launchMode="singleTop" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

@@ -42,6 +42,8 @@ C.Pane {
         anchors.fill: parent
 
         ListView {
+            id: listView
+
             width: scrollView.availableWidth
             model: sortFilterModel
             implicitWidth: childrenRect.width
@@ -100,33 +102,6 @@ C.Pane {
                     action: appShortcuts.aboutApp
                     highlighted: d.bottommostPage instanceof Pages.AboutPage
                 }
-
-                LibrarySideBarButton {
-                    visible: isDebugBuild
-                    text: qsTr("Create Default Library")
-                    onClicked: {
-                        var lib = OTL.Application.addLocalLibrary("My Library")
-
-                        var note = OTL.Application.addNote(lib, {})
-                        note.title = "A Note"
-                        note.notes = "* This is a note\n* It stores arbitrary text"
-
-                        var todoList = OTL.Application.addTodoList(lib, {})
-                        todoList.title = "A Todo List"
-                        todoList.notes = "* Todo lists contain todos.\n"
-                                + "* Todos in turn can contain tasks."
-
-                        var todo1 = OTL.Application.addTodo(lib, todoList, {})
-                        todo1.title = "A todo"
-
-                        var todo2 = OTL.Application.addTodo(lib, todoList, {})
-                        todo2.title = "Another Todo"
-
-                        var image = OTL.Application.addImage(lib, {})
-                        image.title = "An Image"
-                        image.image = ":/sample.png"
-                    }
-                }
             }
         }
     }
@@ -167,7 +142,7 @@ C.Pane {
                 return true
             }
 
-            width: parent.width
+            width: listView.width
 
             Settings {
                 id: perLibrarySettings

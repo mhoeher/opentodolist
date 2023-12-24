@@ -103,7 +103,10 @@ C.ToolBar {
 
                                 DelegateChoice {
                                     roleValue: "separator"
-                                    C.MenuSeparator {}
+                                    C.MenuSeparator {
+                                        visible: false
+                                        height: 0
+                                    }
                                 }
 
                                 DelegateChoice {
@@ -112,6 +115,8 @@ C.ToolBar {
                                         text: modelData.text
                                         onTriggered: modelData.triggered()
                                         enabled: modelData.enabled
+                                        visible: enabled
+                                        height: visible ? implicitHeight : 0
                                     }
                                 }
                             }
