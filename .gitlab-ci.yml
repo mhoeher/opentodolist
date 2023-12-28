@@ -345,6 +345,18 @@ aur_release:
         - archlinux-pkgbuild
     when: manual
 
+playstore:
+  stage: deploy
+  image: fedora
+  when: manual
+  script:
+    - ci/upload-to-play-store.sh
+  needs:
+    - android_armv7
+    - android_arm64_v8a
+    - android_x86
+    - android_x64
+
 upload_translations:
   stage: deploy
   image: fedora
