@@ -16,7 +16,8 @@ if [ -n "$CI" ]; then
         git \
         git-lfs \
         curl \
-        which
+        which \
+        ncurses
     git lfs install --skip-repo
 fi
 
