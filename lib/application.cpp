@@ -167,7 +167,13 @@ void Application::initialize()
     m_useMonochromeTrayIcon =
             m_settings->value("useMonochromeTrayIcon", m_useMonochromeTrayIcon).toBool();
     m_settings->endGroup();
+
+    disableIOSBackup();
 }
+
+#ifndef Q_OS_IOS
+void Application::disableIOSBackup() {}
+#endif
 
 /**
  * @brief Internally add the @p library.
