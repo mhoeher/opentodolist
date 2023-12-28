@@ -14,8 +14,10 @@ if [ -n "$CI" ]; then
         python3-pip \
         openssh-clients \
         git \
+        git-lfs \
         curl \
         which
+    git lfs install --skip-repo
 fi
 
 export QT_QPA_PLATFORM=minimal

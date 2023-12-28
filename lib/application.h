@@ -274,6 +274,7 @@ private:
     bool m_useMonochromeTrayIcon;
 
     void initialize();
+    void disableIOSBackup();
 
     void connectItemToCache(Item* item);
 

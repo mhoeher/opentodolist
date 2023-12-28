@@ -139,6 +139,7 @@ if(IOS)
             utils/iosplatformshareutils.mm
             utils/ios/shareutilsdocviewcontroller.h
             utils/ios/shareutilsdocviewcontroller.mm
+            utils/ios/application.mm
     )
 elseif(ANDROID)
     target_sources(
