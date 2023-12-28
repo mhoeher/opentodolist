@@ -114,42 +114,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="205"/>
+        <location filename="../appstartup.cpp" line="195"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Beheer uw persoonlijke gegevens.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="211"/>
+        <location filename="../appstartup.cpp" line="201"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished">Schakel touchscreen-optimalisaties in.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="214"/>
+        <location filename="../appstartup.cpp" line="204"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Alleen achtergronddienst starten</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="216"/>
+        <location filename="../appstartup.cpp" line="206"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Alleen venster tonen en verbinding maken met een reeds opgestarte achtergronddienst</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="221"/>
+        <location filename="../appstartup.cpp" line="211"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Windows-opdrachtprompt openen om foutopsporingsuitvoer te tonen</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="372"/>
+        <location filename="../appstartup.cpp" line="362"/>
         <source>Open</source>
         <translation type="unfinished">Openen</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="380"/>
+        <location filename="../appstartup.cpp" line="370"/>
         <source>Quick Note</source>
         <translation type="unfinished">Snelle notitie</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="438"/>
+        <location filename="../appstartup.cpp" line="428"/>
         <source>Quit</source>
         <translation type="unfinished">Afsluiten</translation>
     </message>
@@ -157,104 +157,19 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../../lib/application.cpp" line="203"/>
+        <location filename="../../lib/application.cpp" line="210"/>
         <source>Background Sync</source>
         <translation type="unfinished">Achtergrondsynchronisatie</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="207"/>
+        <location filename="../../lib/application.cpp" line="214"/>
         <source>App continues to sync your data in the background</source>
         <translation type="unfinished">De app synchroniseert op de achtergrond</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="211"/>
+        <location filename="../../lib/application.cpp" line="218"/>
         <source>Quit</source>
         <translation type="unfinished">Afsluiten</translation>
-    </message>
-</context>
-<context>
-    <name>ApplicationShortcuts</name>
-    <message>
-        <location filename="../Components/ApplicationShortcuts.qml" line="15"/>
-        <source>Ctrl+,</source>
-        <translation type="unfinished">Ctrl+,</translation>
-    </message>
-</context>
-<context>
-    <name>ApplicationToolBar</name>
-    <message>
-        <location filename="../Components/ApplicationToolBar.qml" line="164"/>
-        <source>Synchronizing library...</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ApplicationToolBarActions</name>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="16"/>
-        <source>Undo</source>
-        <translation type="unfinished">Ongedaan maken</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="23"/>
-        <source>Rename</source>
-        <translation type="unfinished">Naam wijzigen</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="33"/>
-        <source>Move</source>
-        <translation type="unfinished">Verplaatsen</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="43"/>
-        <source>Copy</source>
-        <translation type="unfinished">Kopiëren</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="53"/>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="64"/>
-        <source>Color</source>
-        <translation type="unfinished">Kleur</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="74"/>
-        <source>Add Tag</source>
-        <translation type="unfinished">Label toekennen</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="82"/>
-        <source>Attach File</source>
-        <translation type="unfinished">Bestand bijvoegen</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="92"/>
-        <source>Search</source>
-        <translation type="unfinished">Zoeken</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="100"/>
-        <source>Sort</source>
-        <translation type="unfinished">Sorteren</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="108"/>
-        <source>Set Due Date</source>
-        <translation type="unfinished">Einddatum instellen</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="116"/>
-        <source>Delete</source>
-        <translation type="unfinished">Verwijderen</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="124"/>
-        <source>Delete Completed Items</source>
-        <translation type="unfinished">Afgeronde items verwijderen</translation>
-    </message>
-    <message>
-        <location filename="../Components/ApplicationToolBarActions.qml" line="132"/>
-        <source>Set Progress</source>
-        <translation type="unfinished">Voortgang instellen</translation>
     </message>
 </context>
 <context>
@@ -352,7 +267,7 @@
 <context>
     <name>CopyTodo</name>
     <message>
-        <location filename="../Actions/CopyTodo.qml" line="11"/>
+        <location filename="../Actions/CopyTodo.qml" line="13"/>
         <source>Copy</source>
         <translation type="unfinished">Kopiëren</translation>
     </message>
@@ -360,7 +275,7 @@
 <context>
     <name>CopyTopLevelItem</name>
     <message>
-        <location filename="../Actions/CopyTopLevelItem.qml" line="11"/>
+        <location filename="../Actions/CopyTopLevelItem.qml" line="13"/>
         <source>Copy</source>
         <translation type="unfinished">Kopiëren</translation>
     </message>
@@ -381,7 +296,7 @@
 <context>
     <name>DeleteCompletedChildren</name>
     <message>
-        <location filename="../Actions/DeleteCompletedChildren.qml" line="8"/>
+        <location filename="../Actions/DeleteCompletedChildren.qml" line="11"/>
         <source>Delete Completed Items</source>
         <translation type="unfinished">Afgeronde items verwijderen</translation>
     </message>
@@ -407,7 +322,7 @@
 <context>
     <name>DeleteItem</name>
     <message>
-        <location filename="../Actions/DeleteItem.qml" line="8"/>
+        <location filename="../Actions/DeleteItem.qml" line="11"/>
         <source>Delete</source>
         <translation type="unfinished">Verwijderen</translation>
     </message>
@@ -719,42 +634,24 @@
 <context>
     <name>ItemUtils</name>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="174"/>
+        <location filename="../Utils/ItemUtils.qml" line="173"/>
         <source>Move Todo Into...</source>
         <translation type="unfinished">Taak verplaatsen naar…</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="189"/>
+        <location filename="../Utils/ItemUtils.qml" line="188"/>
         <source>Convert Task to Todo and Move Into...</source>
         <translation type="unfinished">Taak op takenlijst zetten en verplaatsen naar…</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="205"/>
+        <location filename="../Utils/ItemUtils.qml" line="204"/>
         <source>Copy Item Into...</source>
         <translation type="unfinished">Item kopiëren naar…</translation>
     </message>
     <message>
-        <location filename="../Utils/ItemUtils.qml" line="222"/>
+        <location filename="../Utils/ItemUtils.qml" line="221"/>
         <source>Copy Todo Into...</source>
         <translation type="unfinished">Taak kopiëren naar…</translation>
-    </message>
-</context>
-<context>
-    <name>LibraryPageActions</name>
-    <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="39"/>
-        <source>Sync Now</source>
-        <translation type="unfinished">Nu synchroniseren</translation>
-    </message>
-    <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="56"/>
-        <source>Sync Log</source>
-        <translation type="unfinished">Synchronisatielogboek</translation>
-    </message>
-    <message>
-        <location filename="../Menues/LibraryPageActions.qml" line="66"/>
-        <source>Open Library Folder</source>
-        <translation type="unfinished">Verzamelingsmap openen</translation>
     </message>
 </context>
 <context>
@@ -765,88 +662,60 @@
         <translation type="unfinished">Synchronisatielogboek</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="22"/>
-        <source>Copy Log</source>
-        <translation type="unfinished">Logboek kopiëren</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LogViewPage.qml" line="28"/>
-        <source>Scroll to Top</source>
-        <translation type="unfinished">Naar bovenkant</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LogViewPage.qml" line="34"/>
-        <source>Scroll to Bottom</source>
-        <translation type="unfinished">Naar onderkant</translation>
-    </message>
-    <message>
-        <location filename="../Pages/LogViewPage.qml" line="78"/>
+        <location filename="../Pages/LogViewPage.qml" line="70"/>
         <source>Debugging information</source>
         <translation type="unfinished">Foutopsporingsinformatie</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="80"/>
+        <location filename="../Pages/LogViewPage.qml" line="72"/>
         <source>Warning</source>
         <translation type="unfinished">Waarschuwing</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="82"/>
+        <location filename="../Pages/LogViewPage.qml" line="74"/>
         <source>Error</source>
         <translation type="unfinished">Foutmelding</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="84"/>
+        <location filename="../Pages/LogViewPage.qml" line="76"/>
         <source>Download</source>
         <translation type="unfinished">Downloaden</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="86"/>
+        <location filename="../Pages/LogViewPage.qml" line="78"/>
         <source>Upload</source>
         <translation type="unfinished">Uploaden</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="88"/>
+        <location filename="../Pages/LogViewPage.qml" line="80"/>
         <source>Create local folder</source>
         <translation type="unfinished">Lokale map aanmaken</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="90"/>
+        <location filename="../Pages/LogViewPage.qml" line="82"/>
         <source>Create remote folder</source>
         <translation type="unfinished">Externe map aanmaken</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="92"/>
+        <location filename="../Pages/LogViewPage.qml" line="84"/>
         <source>Deleting locally</source>
         <translation type="unfinished">Bezig met verwijderen van lokale kopie…</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="94"/>
+        <location filename="../Pages/LogViewPage.qml" line="86"/>
         <source>Deleting remotely</source>
         <translation type="unfinished">Bezig met verwijderen van externe kopie…</translation>
     </message>
     <message>
-        <location filename="../Pages/LogViewPage.qml" line="96"/>
+        <location filename="../Pages/LogViewPage.qml" line="88"/>
         <source>Unknown log message type</source>
         <translation type="unfinished">Onbekend soort logbericht</translation>
     </message>
 </context>
 <context>
-    <name>MainWindow</name>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="24"/>
-        <source>OpenTodoList</source>
-        <translation type="unfinished">OpenTodoList</translation>
-    </message>
-    <message>
-        <location filename="../Windows/MainWindow.qml" line="250"/>
-        <source>Start by &lt;a href=&apos;#newLibrary&apos;&gt;creating a new library&lt;/a&gt;. Libraries are used to store different kinds of items like notes, todo lists and images.</source>
-        <translation type="unfinished">&lt;a href=&apos;#newLibrary&apos;&gt;Maak een verzameling aan&lt;/a&gt;. Verzamelingen worden gebruikt om items in op te slaan, zoals notities, takenlijsten en afbeeldingen.</translation>
-    </message>
-</context>
-<context>
     <name>MoveTodo</name>
     <message>
-        <location filename="../Actions/MoveTodo.qml" line="11"/>
+        <location filename="../Actions/MoveTodo.qml" line="13"/>
         <source>Move</source>
         <translation type="unfinished">Verplaatsen</translation>
     </message>
@@ -1293,12 +1162,12 @@
 <context>
     <name>NotePage</name>
     <message>
-        <location filename="../Pages/NotePage.qml" line="162"/>
+        <location filename="../Pages/NotePage.qml" line="164"/>
         <source>Main Page</source>
         <translation type="unfinished">Hoofdpagina</translation>
     </message>
     <message>
-        <location filename="../Pages/NotePage.qml" line="229"/>
+        <location filename="../Pages/NotePage.qml" line="231"/>
         <source>New Page</source>
         <translation type="unfinished">Nieuwe pagina</translation>
     </message>
@@ -1338,7 +1207,7 @@
 <context>
     <name>PromoteTask</name>
     <message>
-        <location filename="../Actions/PromoteTask.qml" line="12"/>
+        <location filename="../Actions/PromoteTask.qml" line="14"/>
         <source>Promote</source>
         <translation type="unfinished">Promoten</translation>
     </message>
@@ -1346,8 +1215,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="317"/>
-        <location filename="../appstartup.cpp" line="324"/>
+        <location filename="../appstartup.cpp" line="307"/>
+        <location filename="../appstartup.cpp" line="314"/>
         <source>unknown</source>
         <translation type="unfinished">Onbekend</translation>
     </message>
@@ -1360,52 +1229,52 @@
         <translation type="unfinished">Snelle notities</translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="46"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="49"/>
         <source>Quick Notes Editor</source>
         <translation type="unfinished">Snelle notities bewerken</translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="57"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="60"/>
         <source>Open the main window</source>
         <translation type="unfinished">Hoofdvenster openen</translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="70"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="73"/>
         <source>Quick Note Title</source>
         <translation type="unfinished">Naam van snelle notitie</translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="83"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="86"/>
         <source>Type your notes here...</source>
         <translation type="unfinished">Type hier uw notities…</translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="133"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="137"/>
         <source>Save</source>
         <translation type="unfinished">Opslaan</translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="140"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="144"/>
         <source>Save the entered notes to the selected library. Press and hold the button to get more options for saving.</source>
         <translation type="unfinished">Sla de notities op in de gekozen verzameling. Houd de knop ingedrukt om meer opties omtrent opslaan te tonen.</translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="158"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="167"/>
         <source>Save as Note</source>
         <translation type="unfinished">Opslaan als notitie</translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="161"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="171"/>
         <source>Quick Note</source>
         <translation type="unfinished">Snelle notitie</translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="169"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="180"/>
         <source>Save as Todo List</source>
         <translation type="unfinished">Opslaan als takenlijst</translation>
     </message>
     <message>
-        <location filename="../Windows/QuickNoteWindow.qml" line="171"/>
+        <location filename="../Windows/QuickNoteWindow.qml" line="184"/>
         <source>Quick Todo List</source>
         <translation type="unfinished">Snelle takenlijst</translation>
     </message>
@@ -1486,7 +1355,7 @@
 <context>
     <name>RenameItem</name>
     <message>
-        <location filename="../Actions/RenameItem.qml" line="8"/>
+        <location filename="../Actions/RenameItem.qml" line="11"/>
         <source>Rename</source>
         <translation type="unfinished">Naam wijzigen</translation>
     </message>
@@ -1528,42 +1397,42 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="56"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="43"/>
         <source>Schedule</source>
         <translation type="unfinished">Schema</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="136"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="113"/>
         <source>Overdue</source>
         <translation type="unfinished">Verstreken</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="160"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="136"/>
         <source>Today</source>
         <translation type="unfinished">Vandaag</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="161"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="137"/>
         <source>Tomorrow</source>
         <translation type="unfinished">Morgen</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="197"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="173"/>
         <source>Later This Week</source>
         <translation type="unfinished">Later deze week</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="199"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="175"/>
         <source>Next Week</source>
         <translation type="unfinished">Volgende week</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="200"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="176"/>
         <source>Coming Next</source>
         <translation type="unfinished">Aankomend</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="279"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="255"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Er is niks ingepland. Ken een einddatum toe aan items om ze hier te tonen.</translation>
     </message>
@@ -1603,7 +1472,7 @@
 <context>
     <name>SetDueTo</name>
     <message>
-        <location filename="../Actions/SetDueTo.qml" line="8"/>
+        <location filename="../Actions/SetDueTo.qml" line="11"/>
         <source>Select Due Date</source>
         <translation type="unfinished">Kies een einddatum</translation>
     </message>
@@ -1801,82 +1670,29 @@ Herstart OpenTodoList om de wijziging toe te passen.</translation>
     </message>
 </context>
 <context>
-    <name>TodoListPage</name>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="173"/>
-        <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="185"/>
-        <source>Manually</source>
-        <translation type="unfinished">Handmatig</translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="191"/>
-        <source>Name</source>
-        <translation type="unfinished">Naam</translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="197"/>
-        <source>Due Date</source>
-        <translation type="unfinished">Einddatum</translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="203"/>
-        <source>Created At</source>
-        <translation type="unfinished">Aanmaakdatum</translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="209"/>
-        <source>Updated At</source>
-        <translation type="unfinished">Bijwerkdatum</translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="222"/>
-        <source>Show Completed</source>
-        <translation type="unfinished">Afgeronde taken tonen</translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="230"/>
-        <source>Show At The End</source>
-        <translation type="unfinished">Tonen aan einde van lijst</translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="261"/>
-        <source>Todos</source>
-        <translation type="unfinished">Taken</translation>
-    </message>
-    <message>
-        <location filename="../Pages/TodoListPage.qml" line="281"/>
-        <source>Add new todo...</source>
-        <translation type="unfinished">Taak toevoegen…</translation>
-    </message>
-</context>
-<context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="169"/>
+        <location filename="../Pages/TodoPage.qml" line="172"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="195"/>
+        <location filename="../Pages/TodoPage.qml" line="198"/>
         <source>Tasks</source>
         <translation type="unfinished">Taken</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="201"/>
+        <location filename="../Pages/TodoPage.qml" line="204"/>
         <source>Add new task...</source>
         <translation type="unfinished">Taak toevoegen…</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="297"/>
+        <location filename="../Pages/TodoPage.qml" line="295"/>
         <source>Show Completed</source>
         <translation type="unfinished">Afgeronde taken tonen</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="304"/>
+        <location filename="../Pages/TodoPage.qml" line="302"/>
         <source>Show At The End</source>
         <translation type="unfinished">Tonen aan einde van lijst</translation>
     </message>
@@ -1884,7 +1700,7 @@ Herstart OpenTodoList om de wijziging toe te passen.</translation>
 <context>
     <name>TodosWidget</name>
     <message>
-        <location filename="../Widgets/TodosWidget.qml" line="217"/>
+        <location filename="../Widgets/TodosWidget.qml" line="215"/>
         <source>Due on: %1</source>
         <translation type="unfinished">Einddatum: %1</translation>
     </message>

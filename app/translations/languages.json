@@ -49,6 +49,13 @@
         "updated": "2022-01-07T07:17:07+0000"
     },
     {
+        "name": "Chinese (TW)",
+        "code": "zh-TW",
+        "translations": 268,
+        "percentage": 49.54,
+        "updated": "2023-12-23T02:49:53+0000"
+    },
+    {
         "name": "Czech",
         "code": "cs",
         "translations": 0,

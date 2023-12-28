@@ -5,1516 +5,1517 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: OpenTodoList\n"
-"Language: tk\n"
+"Language: zh-TW\n"
 
 #: ../Pages/AboutPage.qml:15
 msgctxt "AboutPage|"
 msgid "About..."
-msgstr "About..."
+msgstr "關於"
 
 #: ../Pages/AboutPage.qml:33
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
-msgstr "OpenTodoList"
+msgstr ""
 
 #: ../Pages/AboutPage.qml:40
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
-msgstr "Todo we meseläni dolandyrmak programmasy."
+msgstr "一個待辦事項和任務管理的應用程式"
 
 #: ../Pages/AboutPage.qml:60
 msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the GNU General Public License version 3 or (at your choice) any later version. You can find a copy of the license below. Additionally, several libraries and resources are used. For detailed information about their license terms, please refer to the <a href='3rdparty'>3rd Party Software</a> page."
-msgstr "OpenTodoList, GNU General Public License 3 wersiýasynyň ýa-da soňraky islendik wersiýasynyň şertlerinde goýberilýär. Ygtyýarnamanyň göçürmesini aşakda tapyp bilersiňiz. Mundan başga-da, birnäçe kitaphanalar we çeşmeler ulanylýar. Ygtyýarnama şertleri barada has giňişleýin maglumat üçin <a href='3rdparty'> 3-nji tarap programma üpjünçiligi </a> sahypasyna serediň."
+msgstr "OpenTodoList是根據GNU通用公眾授權條款第三版或是任何更新的版本（由你選擇）發行。你可以在下方找到授權的副本。此外，數個函式庫和資源被使用。詳細的授權條款資訊，請參考<a href='3rdparty'>3rd Party Software</a> 頁面。"
 
 #: ../Pages/AboutThirdPartyPage.qml:11
 msgctxt "AboutThirdPartyPage|"
 msgid "Used Libraries and Resources"
-msgstr "Ulanylan kitaphanalar we çeşmeler"
+msgstr "使用的函式庫和資源"
 
 #: ../Pages/AboutThirdPartyPage.qml:47
 msgctxt "AboutThirdPartyPage|"
 msgid "Author: <a href='%2'>%1</a>"
-msgstr "Awtory: <a href='%2'>% 1 </a>"
+msgstr "作者"
 
 #: ../Pages/AboutThirdPartyPage.qml:54
 msgctxt "AboutThirdPartyPage|"
 msgid "License: <a href='%1'>%2</a>"
-msgstr "Ygtyýarnama: <a href='%1'>% 2 </a>"
+msgstr "授權"
 
 #: ../Pages/AboutThirdPartyPage.qml:61
 msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
-msgstr "Ükle: <a href='%1'>% 1 </a>"
+msgstr "下載"
 
 #: ../Widgets/Attachments.qml:37
 msgctxt "Attachments|"
 msgid "Attach File"
-msgstr "Faýl dakyň"
+msgstr "附加檔案"
 
 #: ../Widgets/Attachments.qml:52
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
-msgstr "Goşundyny pozuň?"
+msgstr "刪除附加檔案？"
 
 #: ../Widgets/Attachments.qml:56
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
-msgstr "Goşundyny <strong>%1</strong> pozmak isleýändigiňize ynanýarsyňyzmy? Bu hereketi yzyna gaýtaryp bolmaz."
+msgstr "你確定你想要刪除這個附加檔案嗎？"
 
 #: ../Widgets/Attachments.qml:70
 msgctxt "Attachments|"
 msgid "Attachments"
-msgstr "Goşundylar"
+msgstr "附加檔案"
 
 #: ../Menues/ColorMenu.qml:15
 msgctxt "ColorMenu|"
 msgid "Color"
-msgstr "Reňk"
+msgstr "顏色"
 
 #: ../Menues/ColorMenu.qml:19
 msgctxt "ColorMenu|"
 msgid "White"
-msgstr "Ak"
+msgstr "白色"
 
 #: ../Menues/ColorMenu.qml:26
 msgctxt "ColorMenu|"
 msgid "Red"
-msgstr "Gyzyl"
+msgstr "紅色"
 
 #: ../Menues/ColorMenu.qml:33
 msgctxt "ColorMenu|"
 msgid "Green"
-msgstr "Greenaşyl"
+msgstr "綠色"
 
 #: ../Menues/ColorMenu.qml:40
 msgctxt "ColorMenu|"
 msgid "Blue"
-msgstr "Gök"
+msgstr "藍色"
 
 #: ../Menues/ColorMenu.qml:47
 msgctxt "ColorMenu|"
 msgid "Yellow"
-msgstr "Sary"
+msgstr "黃色"
 
 #: ../Menues/ColorMenu.qml:54
 msgctxt "ColorMenu|"
 msgid "Orange"
-msgstr "Mämişi"
+msgstr "橘色"
 
 #: ../Menues/ColorMenu.qml:61
 msgctxt "ColorMenu|"
 msgid "Lilac"
-msgstr "Kirpik"
+msgstr "紫丁香色"
 
 #: ../Windows/DeleteItemDialog.qml:19
 msgctxt "DeleteItemDialog|"
 msgid "Delete Item?"
-msgstr "Öçürmek?"
+msgstr "刪除項目？"
 
 #: ../Windows/DeleteItemDialog.qml:32
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the image <strong>%1</strong>? This cannot be undone."
-msgstr "Goşundyny <strong>%1</strong> pozmak isleýändigiňize ynanýarsyňyzmy? Bu hereketi yzyna gaýtaryp bolmaz."
+msgstr "你確定你想要刪除這個圖片 <strong>%1</strong>嗎？這沒辦法復原。"
 
 #: ../Windows/DeleteItemDialog.qml:36
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo list <strong>%1</strong>? This cannot be undone."
-msgstr "Todo sanawyny <strong>%1</strong> pozmak isleýärsiňizmi? Muny yzyna gaýtaryp bolmaz."
+msgstr "你確定你想要刪除這個待辦事項清單<strong>%1</strong>嗎？這沒辦法復原。"
 
 #: ../Windows/DeleteItemDialog.qml:40
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the todo <strong>%1</strong>? This cannot be undone."
-msgstr "Hakykatdanam todo <strong>%1</strong> pozmak isleýärsiňizmi? Muny yzyna gaýtaryp bolmaz."
+msgstr "你確定你想要刪除這個待辦事項<strong>%1</strong>嗎？這沒辦法復原。"
 
 #: ../Windows/DeleteItemDialog.qml:44
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the task <strong>%1</strong>? This cannot be undone."
-msgstr "Hakykatdanam <strong>%1</strong> meseläni pozmak isleýärsiňizmi? Muny yzyna gaýtaryp bolmaz."
+msgstr "你確定你想要刪除這個任務<strong>%1</strong>嗎？這沒辦法復原。"
 
 #: ../Windows/DeleteItemDialog.qml:48
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the note <strong>%1</strong>? This cannot be undone."
-msgstr "Hakykatdanam <strong>%1</strong> belligi pozmak isleýärsiňizmi? Muny yzyna gaýtaryp bolmaz."
+msgstr "你確定你想要刪除筆記<strong>%1</strong>嗎？這沒辦法復原。"
 
 #: ../Windows/DeleteLibraryDialog.qml:19
 msgctxt "DeleteLibraryDialog|"
 msgid "Delete Library?"
-msgstr "Kitaphanany pozuň?"
+msgstr "刪除書庫？"
 
 #: ../Windows/DeleteLibraryDialog.qml:33
 msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from  the application? <em>This will remove any files belonging to the library.</em>"
-msgstr "Hitaphanany <strong>%1</strong> programmadan aýyrmak isleýärsiňizmi? <em> Bu kitaphana degişli islendik faýly aýyrar. </em>"
+msgstr "你確定想要從應用程式中移除書庫<strong>%1</strong>嗎？ <em>這將會移除任何屬於此書庫的檔案。</em>"
 
 #: ../Windows/DeleteLibraryDialog.qml:40
 msgctxt "DeleteLibraryDialog|"
 msgid "Do you really want to remove the library <strong>%1</strong> from the application? Note that the files inside the library will not be removed, so you can restore the library later on."
-msgstr "Kitaphanany <strong>%1</strong> programmadan aýyrmak isleýärsiňizmi? Kitaphananyň içindäki faýllaryň aýrylmajakdygyna üns beriň, soň bolsa kitaphanany dikeldip bilersiňiz."
+msgstr "你確定想要從應用程式中移除書庫<strong>%1</strong>嗎？注意在此書庫中的檔案將不會被移除，所以你之後可以復原此書庫。"
 
 #: ../Windows/FolderSelectionDialog.qml:18
 msgctxt "FolderSelectionDialog|"
 msgid "Select a Folder"
-msgstr "Papka saýlaň"
+msgstr "選擇資料夾"
 
 #: ../Widgets/ItemCreatedNotification.qml:66
 msgctxt "ItemCreatedNotification|"
 msgid "<strong>%1</strong> has been created."
-msgstr "<strong>%1</strong> döredildi."
+msgstr "<strong>%1</strong> 已經被創造"
 
 #: ../Widgets/ItemCreatedNotification.qml:72
 msgctxt "ItemCreatedNotification|"
 msgid "Open"
-msgstr "Aç"
+msgstr "開啟"
 
 #: ../Widgets/ItemDueDateEditor.qml:32
 msgctxt "ItemDueDateEditor|"
 msgid "Due on"
-msgstr "Berilmeli"
+msgstr "截止時間"
 
 #: ../Widgets/ItemNotesEditor.qml:32
 msgctxt "ItemNotesEditor|"
 msgid "Notes"
-msgstr "Bellikler"
+msgstr "筆記"
 
 #: ../Widgets/LibrariesSideBar.qml:62 ../Widgets/LibrariesSideBar.qml:262
 msgctxt "LibrariesSideBar|"
 msgid "Schedule"
-msgstr "Iş tertibi"
+msgstr "時程表"
 
 #: ../Widgets/LibrariesSideBar.qml:74
 msgctxt "LibrariesSideBar|"
 msgid "New Library"
-msgstr "Täze kitaphana"
+msgstr "新書庫"
 
 #: ../Widgets/LibrariesSideBar.qml:115
 msgctxt "LibrariesSideBar|"
 msgid "About..."
-msgstr "About ..."
+msgstr "關於"
 
 #: ../Pages/LibraryPage.qml:201
 msgctxt "LibraryPage|"
 msgid "Red"
-msgstr "Gyzyl"
+msgstr "紅色"
 
 #: ../Pages/LibraryPage.qml:208
 msgctxt "LibraryPage|"
 msgid "Green"
-msgstr "Greenaşyl"
+msgstr "綠色"
 
 #: ../Pages/LibraryPage.qml:215
 msgctxt "LibraryPage|"
 msgid "Blue"
-msgstr "Gök"
+msgstr "藍色"
 
 #: ../Pages/LibraryPage.qml:222
 msgctxt "LibraryPage|"
 msgid "Yellow"
-msgstr "Sary"
+msgstr "黃色"
 
 #: ../Pages/LibraryPage.qml:229
 msgctxt "LibraryPage|"
 msgid "Orange"
-msgstr "Mämişi"
+msgstr "橘色"
 
 #: ../Pages/LibraryPage.qml:236
 msgctxt "LibraryPage|"
 msgid "Lilac"
-msgstr "Kirpik"
+msgstr "紫丁香色"
 
 #: ../Pages/LibraryPage.qml:243
 msgctxt "LibraryPage|"
 msgid "White"
-msgstr "Ak"
+msgstr "白色"
 
 #: ../Pages/LibraryPage.qml:253
 msgctxt "LibraryPage|"
 msgid "Rename"
-msgstr "Adyny üýtgetmek"
+msgstr "重新命名"
 
 #: ../Pages/LibraryPage.qml:263
 msgctxt "LibraryPage|"
 msgid "Delete"
-msgstr "Öçür"
+msgstr "刪除"
 
 #: ../Pages/LibraryPage.qml:344
 msgctxt "LibraryPage|"
 msgid "Note Title"
-msgstr "Bellik ady"
+msgstr "筆記標題"
 
 #: ../Pages/LibraryPage.qml:357
 msgctxt "LibraryPage|"
 msgid "Todo List Title"
-msgstr "Todo sanawyň ady"
+msgstr "待辦事項清單標題"
 
 #: ../Pages/LibraryPage.qml:370
 msgctxt "LibraryPage|"
 msgid "Search term 1, search term 2, ..."
-msgstr "Search term 1, search term 2, ..."
+msgstr "搜尋項目1、項目2……"
 
 #: ../Pages/LibraryPage.qml:447
 msgctxt "LibraryPage|"
 msgid "Nothing here yet! Start by adding a <a href='#note'>note</a>, <a href='#todolist'>todo list</a> or <a href='#image'>image</a>."
-msgstr "Bu ýerde entek hiç zat ýok! <a href='#note'> bellik </a>, <a href='#todolist'> todo sanawy </a> ýa-da <a href='#image'> surat </a> goşmak bilen başlaň."
+msgstr "這裡還沒有任何東西！開始加入一個<a href='#note'>筆記</a>、<a href='#todolist'>待辦事項清單</a>或<a href='#image'>圖片</a>。"
 
 #: ../Menues/LibraryPageMenu.qml:18
 msgctxt "LibraryPageMenu|"
 msgid "Edit Sync Settings"
-msgstr "Sinhron sazlamalaryny redaktirläň"
+msgstr "編輯同步設定"
 
 #: ../Menues/LibraryPageMenu.qml:20
 msgctxt "LibraryPageMenu|"
 msgid "Sync Now"
-msgstr "Indi sinhronlaň"
+msgstr "現在同步"
 
 #: ../Menues/LibraryPageMenu.qml:29
 msgctxt "LibraryPageMenu|"
 msgid "Sync Log"
-msgstr "Sinhron ýazgysy"
+msgstr "同步日誌"
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:36
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "The secrets for synchronizing the library %1 are missing."
-msgstr "Kitaphana% 1 sinhronlamagyň syrlary ýok."
+msgstr "同步圖書館 %1 的密碼已遺失。"
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:41
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "Ignore"
-msgstr "Üns berme"
+msgstr "忽略"
 
 #: ../Widgets/LibrarySecretsMissingNotificationBar.qml:45
 msgctxt "LibrarySecretsMissingNotificationBar|"
 msgid "Enter Secrets"
-msgstr "Gizlinleri giriziň"
+msgstr "輸入密碼"
 
 #: ../Pages/LogViewPage.qml:14
 msgctxt "LogViewPage|"
 msgid "Synchronization Log"
-msgstr "Sinhronizasiýa gündeligi"
+msgstr "同步日誌"
 
 #: ../Pages/LogViewPage.qml:22
 msgctxt "LogViewPage|"
 msgid "Copy Log"
-msgstr "Logurnaldan göçüriň"
+msgstr "副本日誌"
 
 #: ../Windows/MainWindow.qml:24
 msgctxt "MainWindow|"
 msgid "OpenTodoList"
-msgstr "OpenTodoList"
+msgstr ""
 
 #: ../Windows/MainWindow.qml:451
 msgctxt "MainWindow|"
 msgid "New &Library"
-msgstr "Täze &Kitaphana"
+msgstr "新＆書庫"
 
 #: ../Windows/MainWindow.qml:462
 msgctxt "MainWindow|"
 msgid "New &Note"
-msgstr "Täze &Bellik"
+msgstr "新＆筆記"
 
 #: ../Windows/MainWindow.qml:470
 msgctxt "MainWindow|"
 msgid "New &Todo List"
-msgstr "Täze &Todo sanawy"
+msgstr "新＆待辦事項清單"
 
 #: ../Windows/MainWindow.qml:478
 msgctxt "MainWindow|"
 msgid "New &Image"
-msgstr "Täze &Surat"
+msgstr "新＆圖片"
 
 #: ../Windows/MainWindow.qml:486
 msgctxt "MainWindow|"
 msgid "&Quit"
-msgstr "&Taşla"
+msgstr "＆離開"
 
 #: ../Windows/MainWindow.qml:503
 msgctxt "MainWindow|"
 msgid "&Find"
-msgstr "&Tapmak"
+msgstr "&找到"
 
 #: ../Windows/MainWindow.qml:545
 msgctxt "MainWindow|"
 msgid "Open Last &Created Item"
-msgstr "Soňky açyň &Döredilen element"
+msgstr "開啟最後＆創造項目"
 
 #: ../Windows/MainWindow.qml:553
 msgctxt "MainWindow|"
 msgid "Open &Left Side Bar"
-msgstr "Açyň &Çep tarap"
+msgstr "開啟＆左側邊欄"
 
 #: ../Windows/MainWindow.qml:250
 msgctxt "MainWindow|"
 msgid "Start by <a href='#newLibrary'>creating a new library</a>. Libraries are used to store different kinds of items like notes, todo lists and images."
-msgstr "<a href='#newLibrary'> täze kitaphana döretmekden başlaň </a>. Kitaphanalar bellikler, sanawlar we suratlar ýaly dürli zatlary saklamak üçin ulanylýar."
+msgstr "開始<a href='#newLibrary'>創造一個新書庫</a>。書庫被用來儲存不同類型的項目，像是筆記、待辦事項清單和圖片。"
 
 #: ../Pages/NewLibraryPage.qml:23 ../Pages/NewLibraryPage.qml:63
 msgctxt "NewLibraryPage|"
 msgid "Create Library"
-msgstr "Kitaphana dörediň"
+msgstr "創造書庫"
 
 #: ../Pages/NewLibraryPage.qml:23
 msgctxt "NewLibraryPage|"
 msgid "Create"
-msgstr "Dörediň"
+msgstr "創造"
 
 #: ../Pages/NewLibraryPage.qml:39
 msgctxt "NewLibraryPage|"
 msgid "Cancel"
-msgstr "Elatyr"
+msgstr "取消"
 
 #: ../Pages/NewLibraryPage.qml:58
 msgctxt "NewLibraryPage|"
 msgid "Library Name:"
-msgstr "Kitaphananyň ady:"
+msgstr "書庫名稱："
 
 #: ../Pages/NewLibraryPage.qml:66
 msgctxt "NewLibraryPage|"
 msgid "My New Library"
-msgstr "Täze kitaphanam"
+msgstr "我的新書庫"
 
 #: ../Pages/NewLibraryPage.qml:73
 msgctxt "NewLibraryPage|"
 msgid "Create Library in Default Location"
-msgstr "Bellenen ýerde kitaphana dörediň"
+msgstr "在預設的位置創造新書庫"
 
 #: ../Pages/NewLibraryPage.qml:80
 msgctxt "NewLibraryPage|"
 msgid "The items you add to the library will be stored in the default location for libraries."
-msgstr "Kitaphana goşýan zatlaryňyz kitaphanalar üçin deslapky ýerde saklanar."
+msgstr "你加入到此書庫的項目將會被儲存在預設的位置。"
 
 #: ../Pages/NewLibraryPage.qml:82
 msgctxt "NewLibraryPage|"
 msgid "Please select a directory into which the library items shall be saved. You can also select an existing library directory. In this case, the library will be imported."
-msgstr "Kitaphana elementleriniň saklanjak bukjasyny saýlaň. Şeýle hem bar bolan kitaphananyň katalogyny saýlap bilersiňiz. Bu ýagdaýda kitaphana import ediler."
+msgstr "請選擇一個書庫的項目應該被儲存的資料夾。你也可以選擇一個已經存在的書庫資料夾。在這情況下，書庫將會被輸入。"
 
 #: ../Pages/NewLibraryPage.qml:110
 msgctxt "NewLibraryPage|"
 msgid "Please select a library location"
-msgstr "Kitaphananyň ýerleşýän ýerini saýlaň"
+msgstr "請選擇一個書庫的位置"
 
 #: ../Widgets/NewTopLevelItemButton.qml:54
 msgctxt "NewTopLevelItemButton|"
 msgid "Note"
-msgstr "Bellik"
+msgstr "筆記"
 
 #: ../Widgets/NewTopLevelItemButton.qml:43
 msgctxt "NewTopLevelItemButton|"
 msgid "Todo List"
-msgstr "Todo sanawy"
+msgstr "待辦事項清單"
 
 #: ../Widgets/NewTopLevelItemButton.qml:58
 msgctxt "NewTopLevelItemButton|"
 msgid "Image"
-msgstr "Surat"
+msgstr "圖片"
 
 #: ../Windows/OpenFileDialog.qml:18
 msgctxt "OpenFileDialog|"
 msgid "Select a File"
-msgstr "Faýl saýlaň"
+msgstr "選擇一個檔案"
 
 #: ../Windows/+ios/OpenImageDialog.qml:19 ../Windows/OpenImageDialog.qml:19
 msgctxt "OpenImageDialog|"
 msgid "Select Image"
-msgstr "Surat saýlaň"
+msgstr "選擇圖片"
 
 #: ../Windows/RenameItemDialog.qml:22
 msgctxt "RenameItemDialog|"
 msgid "Rename Item"
-msgstr "Harydyň adyny üýtgediň"
+msgstr "重新命名項目"
 
 #: ../Windows/RenameItemDialog.qml:33
 msgctxt "RenameItemDialog|"
 msgid "Enter item title..."
-msgstr "Harydyň adyny giriziň ..."
+msgstr "輸入項目標題……"
 
 #: ../Windows/RenameLibraryDialog.qml:20
 msgctxt "RenameLibraryDialog|"
 msgid "Rename Library"
-msgstr "Kitaphananyň adyny üýtgediň"
+msgstr "重新命名書庫"
 
 #: ../Windows/RenameLibraryDialog.qml:37
 msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
-msgstr "Kitaphananyň adyny giriziň ..."
+msgstr "輸入書庫標題……"
 
 #: ../Pages/ScheduleViewPage.qml:136
 msgctxt "ScheduleViewPage|"
 msgid "Today"
-msgstr "Bu gün"
+msgstr "今天"
 
 #: ../Pages/ScheduleViewPage.qml:137
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
-msgstr "Ertir"
+msgstr "明天"
 
 #: ../Pages/ScheduleViewPage.qml:173
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
-msgstr "Bu hepde soň"
+msgstr "這週稍候的時間"
 
 #: ../Pages/ScheduleViewPage.qml:175
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
-msgstr "Indiki hepde"
+msgstr "下週"
 
 #: ../Pages/ScheduleViewPage.qml:176
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
-msgstr "Indiki"
+msgstr "即將到來的"
 
 #: ../Pages/ScheduleViewPage.qml:255
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
-msgstr "Hiç zat meýilleşdirilmedi ... Bu ýerde peýda bolmagy üçin elementlere bellenilen senäni goşuň."
+msgstr "沒有任何被計畫的事情……加入一個項目的截止期限，以在此顯示。"
 
 #: ../Pages/ScheduleViewPage.qml:113
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
-msgstr "Wagtyň geçmegi"
+msgstr "逾期"
 
 #: ../Widgets/SyncErrorNotificationBar.qml:43
 msgctxt "SyncErrorNotificationBar|"
 msgid "There were errors when synchronizing the library. Please ensure that the library settings are up to date."
-msgstr "Kitaphanany sinhronlamakda ýalňyşlyklar boldy. Kitaphana sazlamalarynyň täzelenendigine göz ýetiriň."
+msgstr "當同步書庫時有錯誤。請確定書庫設定是最新的。"
 
 #: ../Widgets/SyncErrorNotificationBar.qml:49
 msgctxt "SyncErrorNotificationBar|"
 msgid "Ignore"
-msgstr "Üns berme"
+msgstr "忽略"
 
 #: ../Widgets/SyncErrorNotificationBar.qml:53
 msgctxt "SyncErrorNotificationBar|"
 msgid "View"
-msgstr "Gör"
+msgstr "查看"
 
 #: ../Widgets/SyncIndicatorBar.qml:63
 msgctxt "SyncIndicatorBar|"
 msgid "Synchronizing library..."
-msgstr "Sinhronlaşdyryş kitaphanasy ..."
+msgstr "同步書庫……"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:17
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Create Library"
-msgstr "Kitaphana dörediň"
+msgstr "創造書庫"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:29
 msgctxt "SyncLibrarySelectionPage|"
 msgid "OK"
-msgstr "Bolýar"
+msgstr ""
 
 #: ../Pages/SyncLibrarySelectionPage.qml:46
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Cancel"
-msgstr "Elatyr"
+msgstr "取消"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:79
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Create new library on server"
-msgstr "Serwerde täze kitaphana dörediň"
+msgstr "在伺服器上創造書庫"
 
 #: ../Pages/SyncLibrarySelectionPage.qml:97
 msgctxt "SyncLibrarySelectionPage|"
 msgid "Searching for existing libraries..."
-msgstr "Bar bolan kitaphanalary gözlemek ..."
+msgstr "搜尋已存在的書庫"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:16
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Cancel"
-msgstr "Elatyr"
+msgstr "取消"
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:21
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:45
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "NextCloud"
-msgstr "NextCloud"
+msgstr ""
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:52
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "ownCloud"
-msgstr "ownCloud"
+msgstr ""
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:59
 #: ../Pages/SynchronizerBackendSelectionPage.qml:60
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "WebDAV"
-msgstr "WebDAV"
+msgstr ""
 
 #: ../Pages/SynchronizerBackendSelectionPage.qml:66
 #: ../Pages/SynchronizerBackendSelectionPage.qml:67
 msgctxt "SynchronizerBackendSelectionPage|"
 msgid "Local Library"
-msgstr "Libraryerli kitaphana"
+msgstr "本地書庫"
 
 #: ../Widgets/TodoListItem.qml:132
 msgctxt "TodoListItem|"
 msgid "✔ No open todos - everything done"
-msgstr "Open Açyk todos ýok - hemme zat ýerine ýetirildi"
+msgstr "沒有開啟的待辦事項——所有事情做完了"
 
 #: ../Pages/TodoListPage.qml:173
 msgctxt "TodoListPage|"
 msgid "Search term 1, search term 2, ..."
-msgstr "Gözleg termini 1, gözleg termini 2, ..."
+msgstr "搜尋項目1、項目2……"
 
 #: ../Pages/TodoListPage.qml:261
 msgctxt "TodoListPage|"
 msgid "Todos"
-msgstr "Todos"
+msgstr "待辦事項"
 
 #: ../Pages/TodoListPage.qml:290
 msgctxt "TodoListPage|"
 msgid "Completed Todos"
-msgstr "Tamamlanan Todos"
+msgstr "完成的待辦事項"
 
 #: ../Pages/TodoPage.qml:172
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
-msgstr "Gözleg termini 1, gözleg termini 2, ..."
+msgstr "搜尋項目1、項目2……"
 
 #: ../Pages/TodoPage.qml:198
 msgctxt "TodoPage|"
 msgid "Tasks"
-msgstr "Wezipeler"
+msgstr "任務"
 
 #: ../Widgets/UpdateNotificationBar.qml:44
 msgctxt "UpdateNotificationBar|"
 msgid "An update to OpenTodoList %1 is available."
-msgstr "OpenTodoList %1 täzelenmesi bar."
+msgstr "可更新到 OpenTodoList %1 。"
 
 #: ../Widgets/UpdateNotificationBar.qml:50
 msgctxt "UpdateNotificationBar|"
 msgid "Ignore"
-msgstr "Üns berme"
+msgstr "忽略"
 
 #: ../Widgets/UpdateNotificationBar.qml:54
 msgctxt "UpdateNotificationBar|"
 msgid "Download"
-msgstr "Göçürip al"
+msgstr "下載"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:22
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "OK"
-msgstr "Bolýar"
+msgstr ""
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:22
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Validate"
-msgstr "Barlamak"
+msgstr "使有效"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:40
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Cancel"
-msgstr "Elatyr"
+msgstr "取消"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:86
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Server Address:"
-msgstr "Serweriň salgysy:"
+msgstr "伺服器網址："
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:92
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "https://..."
-msgstr "https://..."
+msgstr ""
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:98
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "User name:"
-msgstr "Ulanyjynyň ady:"
+msgstr "使用者名稱："
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:110
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Password:"
-msgstr "Parol:"
+msgstr "密碼："
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:124
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Ignore SSL Errors"
-msgstr "SSL säwliklerine ähmiýet bermäň"
+msgstr "忽略SSL錯誤"
 
 #: ../Pages/WebDAVConnectionSettingsPage.qml:130
 msgctxt "WebDAVConnectionSettingsPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Serwere birikdirilmedi. Ulanyjy adyňyzy, parolyňyzy we serwer salgyňyzy barlaň we gaýtadan synanyşyň."
+msgstr "無法連接伺服器。請確認你的使用者名稱、密碼和伺服器網址，然後重試。"
 
 #: ../Pages/WebDAVSynchronizerSettingsPage.qml:40
 msgctxt "WebDAVSynchronizerSettingsPage|"
 msgid "User name"
-msgstr "Ulanyjynyň ady"
+msgstr "使用者名稱："
 
 #: ../Pages/WebDAVSynchronizerSettingsPage.qml:53
 msgctxt "WebDAVSynchronizerSettingsPage|"
 msgid "Password"
-msgstr "Parol"
+msgstr "密碼："
 
 #: ../main.cpp:102
 msgctxt "main|"
 msgid "Manage your personal data."
-msgstr "Şahsy maglumatlaryňyzy dolandyryň."
+msgstr "管理你的個人資料。"
 
 #: ../main.cpp:108
 msgctxt "main|"
 msgid "QML Root Directory"
-msgstr "QML kök katalogy"
+msgstr ""
 
 #: ../main.cpp:109
 msgctxt "main|"
 msgid "DIR"
-msgstr "DIR"
+msgstr ""
 
 #: ../main.cpp:116
 msgctxt "main|"
 msgid "Switch on some optimizations for touchscreens."
-msgstr "Duýgur ekranlar üçin käbir optimizasiýalary açyň."
+msgstr "開啟觸控螢幕最佳化。"
 
 #: ../main.cpp:128
 msgctxt "main|"
 msgid "Remove shortcuts to the AppImage."
-msgstr "AppImage salgylanmalaryny aýyryň."
+msgstr "移除AppImage的捷徑。"
 
 #: ../Widgets/ItemNotesEditor.qml:86
 msgctxt "ItemNotesEditor|"
 msgid "No notes added yet - click here to add some."
-msgstr "Entek bellikler goşulmady - käbirlerini goşmak üçin şu ýere basyň."
+msgstr "還沒有加入任何筆記——點擊這裡加入。"
 
 #: ../Widgets/TagsEditor.qml:34
 msgctxt "TagsEditor|"
 msgid "Add Tag"
-msgstr "Bellik goşuň"
+msgstr "加入標籤"
 
 #: ../Pages/TodoListPage.qml:281
 msgctxt "TodoListPage|"
 msgid "Add new todo..."
-msgstr "Täze todo goşuň ..."
+msgstr "加入新的待辦事項"
 
 #: ../Pages/TodoPage.qml:204
 msgctxt "TodoPage|"
 msgid "Add new task..."
-msgstr "Täze wezipe goşuň ..."
+msgstr "加入新的任務"
 
 #: ../Widgets/TodosWidget.qml:215
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
-msgstr "Berilmeli: %1"
+msgstr "截止期限 %1"
 
 #: ../Utils/Colors.qml:15
 msgctxt "Colors|"
 msgid "System"
-msgstr "Ulgam"
+msgstr "系統"
 
 #: ../Utils/Colors.qml:16
 msgctxt "Colors|"
 msgid "Light"
-msgstr "Lightagtylyk"
+msgstr "亮的"
 
 #: ../Utils/Colors.qml:17
 msgctxt "Colors|"
 msgid "Dark"
-msgstr "Garaňky"
+msgstr "暗的"
 
 #: ../Widgets/LibrariesSideBar.qml:94
 msgctxt "LibrariesSideBar|"
 msgid "Settings"
-msgstr "Sazlamalar"
+msgstr "設定"
 
 #: ../Windows/MainWindow.qml:443
 msgctxt "MainWindow|"
 msgid "Settings"
-msgstr "Sazlamalar"
+msgstr "設定"
 
 #: ../Windows/MainWindow.qml:444
 msgctxt "MainWindow|"
 msgid "Ctrl+,"
-msgstr "Ctrl +"
+msgstr ""
 
 #: ../Pages/SettingsPageForm.ui.qml:33
 msgctxt "SettingsPageForm.ui|"
 msgid "Settings"
-msgstr "Sazlamalar"
+msgstr "設定"
 
 #: ../Pages/SettingsPageForm.ui.qml:39
 msgctxt "SettingsPageForm.ui|"
 msgid "User Interface"
-msgstr "Ulanyjy interfeýsi"
+msgstr "使用者介面"
 
 #: ../Pages/SettingsPageForm.ui.qml:56
 msgctxt "SettingsPageForm.ui|"
 msgid "Theme:"
-msgstr "Mowzuk:"
+msgstr "主題："
 
 #: ../Widgets/LibrariesSideBar.qml:123
 msgctxt "LibrariesSideBar|"
 msgid "Create Default Library"
-msgstr "Bellenen kitaphanany dörediň"
+msgstr "創造預設的書庫"
 
 #: ../Pages/LibraryPage.qml:503
 msgctxt "LibraryPage|"
 msgid "Sort By"
-msgstr "Sort boýunça"
+msgstr "分類"
 
 #: ../Pages/LibraryPage.qml:508
 msgctxt "LibraryPage|"
 msgid "Manually"
-msgstr "El bilen"
+msgstr "手動"
 
 #: ../Pages/LibraryPage.qml:515
 msgctxt "LibraryPage|"
 msgid "Title"
-msgstr "Ady"
+msgstr "標題"
 
 #: ../Pages/LibraryPage.qml:522
 msgctxt "LibraryPage|"
 msgid "Due To"
-msgstr "Sebäbi"
+msgstr "截止期限"
 
 #: ../Pages/LibraryPage.qml:529
 msgctxt "LibraryPage|"
 msgid "Created At"
-msgstr "Döredildi"
+msgstr "創造於"
 
 #: ../Pages/LibraryPage.qml:536
 msgctxt "LibraryPage|"
 msgid "Updated At"
-msgstr "Täzelendi"
+msgstr "更新於"
 
 #: ../Windows/MainWindow.qml:308
 msgctxt "MainWindow|"
 msgid "Rename"
-msgstr "Adyny üýtgetmek"
+msgstr "重新命名"
 
 #: ../Windows/MainWindow.qml:341
 msgctxt "MainWindow|"
 msgid "Color"
-msgstr "Reňk"
+msgstr "顏色"
 
 #: ../Windows/MainWindow.qml:352
 msgctxt "MainWindow|"
 msgid "Add Tag"
-msgstr "Bellik goşuň"
+msgstr "加入標籤"
 
 #: ../Windows/MainWindow.qml:359
 msgctxt "MainWindow|"
 msgid "Attach File"
-msgstr "Faýl dakyň"
+msgstr "附加檔案"
 
 #: ../Windows/MainWindow.qml:368
 msgctxt "MainWindow|"
 msgid "Search"
-msgstr "Gözlemek"
+msgstr "搜尋"
 
 #: ../Windows/MainWindow.qml:375
 msgctxt "MainWindow|"
 msgid "Sort"
-msgstr "Sort"
+msgstr "分類"
 
 #: ../Windows/MainWindow.qml:383
 msgctxt "MainWindow|"
 msgid "Set Due Date"
-msgstr "Berlen senäni belläň"
+msgstr "設定截止期限"
 
 #: ../Windows/MainWindow.qml:391
 msgctxt "MainWindow|"
 msgid "Delete"
-msgstr "Öçür"
+msgstr "刪除"
 
 #: ../Pages/SettingsPageForm.ui.qml:47
 msgctxt "SettingsPageForm.ui|"
 msgid "Language:"
-msgstr "Dil:"
+msgstr "語言："
 
 #: ../Pages/TodoListPage.qml:185
 msgctxt "TodoListPage|"
 msgid "Manually"
-msgstr "El bilen"
+msgstr "手動"
 
 #: ../Pages/TodoListPage.qml:191
 msgctxt "TodoListPage|"
 msgid "Name"
-msgstr "Ady"
+msgstr "名稱"
 
 #: ../Pages/TodoListPage.qml:197
 msgctxt "TodoListPage|"
 msgid "Due Date"
-msgstr "Berlen senesi"
+msgstr "截止期限"
 
 #: ../Pages/TodoListPage.qml:203
 msgctxt "TodoListPage|"
 msgid "Created At"
-msgstr "Döredildi"
+msgstr "創造於"
 
 #: ../Pages/TodoListPage.qml:209
 msgctxt "TodoListPage|"
 msgid "Updated At"
-msgstr "Täzelendi"
+msgstr "更新於"
 
 #: ../Widgets/TodosWidget.qml:309
 msgctxt "TodosWidget|"
 msgid "Swipe to mark undone"
-msgstr "Yzyna gaýtarylmagyny belläň"
+msgstr "滑動以標記復原"
 
 #: ../Widgets/TodosWidget.qml:310
 msgctxt "TodosWidget|"
 msgid "Swipe to mark done"
-msgstr "Doneerine ýetirilendigini bellemek üçin süpüriň"
+msgstr "滑動以標記完成"
 
 #: ../Utils/Translations.qml:16
 msgctxt "Translations|"
 msgid "System Language"
-msgstr "Ulgam dili"
+msgstr "系統語言"
 
 #: ../Utils/Translations.qml:32
 msgctxt "Translations|"
 msgid "German"
-msgstr "Nemes"
+msgstr "德文"
 
 #: ../Utils/Translations.qml:40
 msgctxt "Translations|"
 msgid "English"
-msgstr "Iňlis"
+msgstr "英文"
 
 #: ../Utils/Translations.qml:60
 msgctxt "Translations|"
 msgid "French"
-msgstr "Fransuz"
+msgstr "法文"
 
 #: ../Pages/AboutPage.qml:43
 msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
-msgstr "(c) RPdew 2013-2020, %1 wersiýasy"
+msgstr ""
 
 #: ../Pages/AboutPage.qml:68
 msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
-msgstr "OpenTodoList <a href='app-license'> GNU General Public License </a> 3-nji wersiýasy ýa-da soňraky wersiýasy boýunça goýberilýär."
+msgstr "OpenTodoList是根據<a href='app-license'>GNU通用公眾授權條款</a> 第三版或是任何更新的版本（由你選擇）發行。\n"
+""
 
 #: ../Pages/AboutPage.qml:85
 msgctxt "AboutPage|"
 msgid "Report an Issue"
-msgstr "Bir mesele barada habar beriň"
+msgstr "回報問題"
 
 #: ../Pages/AboutPage.qml:114
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
-msgstr "Üçünji tarapyň kitaphanalary we çeşmeleri"
+msgstr "第三方函式庫和資源"
 
 #: ../Pages/AboutPage.qml:151
 msgctxt "AboutPage|"
 msgid "Author:"
-msgstr "Awtor:"
+msgstr "作者："
 
 #: ../Pages/AboutPage.qml:156
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
-msgstr "<a href='%2'>%1</a>"
+msgstr ""
 
 #: ../Pages/AboutPage.qml:163
 msgctxt "AboutPage|"
 msgid "License:"
-msgstr "Ygtyýarnama:"
+msgstr "授權："
 
 #: ../Pages/AboutPage.qml:168
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
-msgstr "<a href='%1'>%2</a>"
+msgstr ""
 
 #: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "Download:"
-msgstr "Göçürip al:"
+msgstr "下載："
 
 #: ../Pages/AboutPage.qml:178
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
-msgstr "<a href='%1'>%1</a>"
+msgstr ""
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:17
 msgctxt "AccountTypeSelectionPageForm.ui|"
 msgid "Select Account Type"
-msgstr "Hasap görnüşini saýlaň"
+msgstr "選擇帳號類型"
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:28
 msgctxt "AccountTypeSelectionPageForm.ui|"
 msgid "Account Type"
-msgstr "Hasap görnüşi"
+msgstr "帳號類型"
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:46
 msgctxt "AccountTypeSelectionPageForm.ui|"
 msgid "NextCloud"
-msgstr "NextCloud"
+msgstr ""
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:51
 msgctxt "AccountTypeSelectionPageForm.ui|"
 msgid "ownCloud"
-msgstr "ownCloud"
+msgstr ""
 
 #: ../Pages/AccountTypeSelectionPageForm.ui.qml:56
 msgctxt "AccountTypeSelectionPageForm.ui|"
 msgid "WebDAV"
-msgstr "WebDAV"
+msgstr ""
 
 #: ../Pages/AccountsPageForm.ui.qml:16 ../Pages/AccountsPageForm.ui.qml:24
 msgctxt "AccountsPageForm.ui|"
 msgid "Accounts"
-msgstr "Hasaplar"
+msgstr "帳號"
 
 #: ../Windows/DeleteAccountDialog.qml:19
 msgctxt "DeleteAccountDialog|"
 msgid "Delete Account?"
-msgstr "Hasaby pozuň?"
+msgstr "刪除帳號？"
 
 #: ../Windows/DeleteAccountDialog.qml:36
 msgctxt "DeleteAccountDialog|"
 msgid "Do you really want to remove the account <strong>%1</strong>? This will remove all libraries belonging to the account from your device?<br/><br/><i>Note: You can restore them from the server by adding back the account.</i>"
-msgstr "Hakykatdanam <strong>%1</strong> hasaby aýyrmak isleýärsiňizmi? Bu hasabyňyza degişli ähli kitaphanalary enjamyňyzdan aýyrar? <br/> <br/> <i> Bellik: Hasaby yzyna goşup serwerden dikeldip bilersiňiz. </i>"
+msgstr "你確定想要移除帳號<strong>%1</strong>嗎？這將會從你的裝置中移除全部屬於此帳號的書庫。<br/><br/><i>注意：你可以藉由把帳號加回來從伺服器恢復它們。</i>"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:23
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:43
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Edit Account"
-msgstr "Hasaby redaktirläň"
+msgstr "編輯帳號"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:49
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Name:"
-msgstr "Ady:"
+msgstr "名稱："
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:59
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Server Address:"
-msgstr "Serweriň salgysy:"
+msgstr "伺服器網址："
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:65
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "https://myserver.example.com"
-msgstr "https://myserver.example.com"
+msgstr ""
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:71
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "User:"
-msgstr "Ulanyjy:"
+msgstr "使用者："
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:77
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "User Name"
-msgstr "Ulanyjynyň ady"
+msgstr "使用者名稱"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:83
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Password:"
-msgstr "Parol:"
+msgstr "密碼："
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:89
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Password"
-msgstr "Parol"
+msgstr "密碼"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:103
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Disable Certificate Checks"
-msgstr "Şahadatnamalary barlaň"
+msgstr "關閉證明確認"
 
 #: ../Pages/EditWebDAVAccountPageForm.ui.qml:111
 msgctxt "EditWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Serwere birikdirilmedi. Ulanyjy adyňyzy, parolyňyzy we serwer salgyňyzy barlaň we gaýtadan synanyşyň."
+msgstr "無法連接伺服器。請確認你的使用者名稱、密碼和伺服器網址，然後重試。"
 
 #: ../Widgets/LibrariesSideBar.qml:81
 msgctxt "LibrariesSideBar|"
 msgid "Accounts"
-msgstr "Hasaplar"
+msgstr "帳號"
 
 #: ../Widgets/LibrariesSideBar.qml:100
 msgctxt "LibrariesSideBar|"
 msgid "Translate The App..."
-msgstr "Programmany terjime et ..."
+msgstr "翻譯此應用程式"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:44
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Create Library in Account"
-msgstr "Hasapda kitaphana dörediň"
+msgstr "在帳號裡創造書庫"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:53
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this)."
-msgstr "Hasapda döredilen kitaphana onuň bilen sinhronlaşdyrylýar. Bu kitaphanany serwere aňsatlyk bilen ätiýaçlamaga we soňra şol ýerden dikeltmäge mümkinçilik berýär. Mundan başga-da, şeýle kitaphanalary beýleki ulanyjylar bilen paýlaşyp bolýar (serwer muňa rugsat berse)."
+msgstr "創造到一個帳號裡的一個書庫和它同步。這允許輕鬆的備份一個書庫到一個伺服器以及之後從那恢復它。此外，這樣的書庫可以被分享到其他使用者（如果伺服器允許的話）。"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:62
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Existing Libraries"
-msgstr "Bar bolan kitaphanalar"
+msgstr "已存在的書庫"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:70
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Select an existing library on the server to add it to the app."
-msgstr "Programma goşmak üçin serwerde bar bolan kitaphanany saýlaň."
+msgstr "選擇一個在伺服器上已存在的書庫，以加入到應用程式中。"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:77
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "No libraries were found on the server."
-msgstr "Serwerde kitaphanalar tapylmady."
+msgstr "在伺服器上沒有找到書庫。"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:84
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Searching existing libraries..."
-msgstr "Bar bolan kitaphanalary gözlemek ..."
+msgstr "搜尋已存在的書庫……"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:114
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Create a New Library"
-msgstr "Täze kitaphana dörediň"
+msgstr "創造一個新書庫"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:122
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data."
-msgstr "Serwer bilen sinhronlanjak täze kitaphana dörediň. Şeýle kitaphanany beýleki enjamlardaky programma goşmak bilen maglumatlary sinhronlamak üçin hem goşup bolýar."
+msgstr "創造一個書庫，這將會被同步到伺服器。這樣的一個書庫可以被加入到在其他裝置的應用程式裡，也同步資料。"
 
 #: ../Pages/NewLibraryFromAccountPageForm.ui.qml:137
 msgctxt "NewLibraryFromAccountPageForm.ui|"
 msgid "My new library's name"
-msgstr "Täze kitaphanamyň ady"
+msgstr "我的新書庫的名稱"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:31
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Open a Folder as a Library"
-msgstr "Kitaphana hökmünde bukjany açyň"
+msgstr "開啟一個作為書庫的資料夾"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:39
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "You can use any folder as a location for a library.<br/><br/>This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server."
-msgstr "Islendik bukjany kitaphananyň ýerleşýän ýeri hökmünde ulanyp bilersiňiz. <br/> <br/> Maglumatlaryňyzy serwer bilen sinhronlamak üçin başga bir gural (bulut üpjünçisiniň sinhron müşderisi ýaly) ulanmak isleseňiz has peýdalydyr."
+msgstr "你可以使用任何資料夾作為一個書庫的一個位置。<br/><br/>這尤其在當你想要用另一個工具（像是一個雲端提供者的一個同步客戶）同步你的資料到一個伺服器時有用。"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:44
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Folder:"
-msgstr "Papka:"
+msgstr "資料夾："
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:49
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Path to a folder to use as a library"
-msgstr "Kitaphana hökmünde ulanmak üçin bukja barýan ýol"
+msgstr "用來作為書庫的資料夾路徑"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:55
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Select"
-msgstr "Saýlaň"
+msgstr "選擇"
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:59
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "Name:"
-msgstr "Ady:"
+msgstr "名稱："
 
 #: ../Pages/NewLibraryInFolderPageForm.ui.qml:64
 msgctxt "NewLibraryInFolderPageForm.ui|"
 msgid "My Local Library Name"
-msgstr "Localerli kitaphanamyň ady"
+msgstr "我的本地書庫名稱"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:16 ../Pages/NewLibraryPageForm.ui.qml:25
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Create Library"
-msgstr "Kitaphana dörediň"
+msgstr "創造書庫"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:32
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Local Library"
-msgstr "Libraryerli kitaphana"
+msgstr "本地書庫"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:38
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Use Folder as Library"
-msgstr "Papkany kitaphana hökmünde ulanyň"
+msgstr "使用資料夾作為書庫"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:44
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Add Libraries From Your Accounts"
-msgstr "Hasabyňyzdan kitaphanalary goşuň"
+msgstr "從你的帳號中加入書庫"
 
 #: ../Pages/NewLibraryPageForm.ui.qml:79
 msgctxt "NewLibraryPageForm.ui|"
 msgid "Add Account"
-msgstr "Hasap goşuň"
+msgstr "加入帳號"
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:29
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "Create a Local Library"
-msgstr "Libraryerli kitaphana dörediň"
+msgstr "創造一個本地書庫"
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:37
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "A local library is stored solely on your device - this makes it perfect for the privacy concise!<br/><br/>Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead."
-msgstr "Libraryerli kitaphana diňe enjamyňyzda saklanýar - bu gizlinlik gysga bolmagy üçin ajaýyp edýär! <br/> <br/> Maglumatlary diňe ýerli derejede saklamak we ähli maglumatlaryňyzy beýleki mehanizmler arkaly yzygiderli ätiýaçlandyrmak isleseňiz ulanyň. Maglumatlaryňyza birnäçe enjamda girmek zerur bolsa, ýerine sinhronlanan kitaphanany dörediň."
+msgstr "一個本地書庫被單獨的儲存在你的裝置上——這使隱私簡潔完美！<br/><br/>當你只想要在本地儲存資訊和經由其他的機制定期的備份你的全部資料時，使用它。如果你需要垮越數個裝置存取你的資訊、創造一個同步的書庫代替。"
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:48
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "Name:"
-msgstr "Ady:"
+msgstr "名稱："
 
 #: ../Pages/NewLocalLibraryPageForm.ui.qml:53
 msgctxt "NewLocalLibraryPageForm.ui|"
 msgid "My Local Library Name"
-msgstr "Localerli kitaphanamyň ady"
+msgstr "我的本地書庫名稱"
 
 #: ../Pages/NewWebDAVAccountPage.qml:163
 msgctxt "NewWebDAVAccountPage|"
 msgid "Account Name"
-msgstr "Hasabyň ady"
+msgstr "帳號名稱"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:23
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:43
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Connection Settings"
-msgstr "Birikdiriş sazlamalary"
+msgstr "連接設定"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:49
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Server Address:"
-msgstr "Serweriň salgysy:"
+msgstr "伺服器網址："
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:55
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "https://myserver.example.com"
-msgstr "https://myserver.example.com"
+msgstr ""
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:61
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "User:"
-msgstr "Ulanyjy:"
+msgstr "使用者："
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:67
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "User Name"
-msgstr "Ulanyjynyň ady"
+msgstr "使用者名稱："
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:73
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Password:"
-msgstr "Parol:"
+msgstr "密碼："
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:79
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Password"
-msgstr "Parol"
+msgstr "密碼"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:93
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Disable Certificate Checks"
-msgstr "Şahadatnamalary barlaň"
+msgstr "關閉證明確認"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:97
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Name:"
-msgstr "Ady:"
+msgstr "名稱"
 
 #: ../Pages/NewWebDAVAccountPageForm.ui.qml:111
 msgctxt "NewWebDAVAccountPageForm.ui|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
-msgstr "Serwere birikdirilmedi. Ulanyjy adyňyzy, parolyňyzy we serwer salgyňyzy barlaň we gaýtadan synanyşyň."
+msgstr "無法連接到伺服器。請確認你的使用者名稱、密碼和伺服器網址，然後重試。"
 
 #: ../Windows/DeleteItemDialog.qml:52
 msgctxt "DeleteItemDialog|"
 msgid "Do you really want to delete the page <strong>%1</strong>? This cannot be undone."
-msgstr "Sahypany hakykatdanam pozmak isleýärsiňizmi? <strong>%1</strong>? Muny yzyna gaýtaryp bolmaz."
+msgstr "你真的想要刪除此頁面<strong>%1</strong>嗎？這不能被復原。"
 
 #: ../Windows/MainWindow.qml:109
 msgctxt "MainWindow|"
 msgid "Synchronizing library..."
-msgstr "Sinhronlaşdyryş kitaphanasy..."
+msgstr "同步書庫……"
 
 #: ../Pages/NotePage.qml:164
 msgctxt "NotePage|"
 msgid "Main Page"
-msgstr "Baş sahypa"
+msgstr "主要頁面"
 
 #: ../Pages/NotePage.qml:231
 msgctxt "NotePage|"
 msgid "New Page"
-msgstr "Täze sahypa"
+msgstr "新的頁面"
 
 #: ../Widgets/ItemNotesEditor.qml:115
 msgctxt "ItemNotesEditor|"
 msgid "Export to File..."
-msgstr "Faýla eksport ..."
+msgstr "輸出檔案……"
 
 #: ../Widgets/ItemNotesEditor.qml:119
 msgctxt "ItemNotesEditor|"
 msgid "Markdown files"
-msgstr "Markdown faýllary"
+msgstr ""
 
 #: ../Widgets/ItemNotesEditor.qml:120
 msgctxt "ItemNotesEditor|"
 msgid "All files"
-msgstr "Fileshli faýllar"
+msgstr "所有檔案"
 
 #: ../Pages/ProblemsPage.qml:42
 msgctxt "ProblemsPage|"
 msgid "Missing secrets for account"
-msgstr "Hasap üçin giriş maglumatlary ýok"
+msgstr "帳戶的密碼遺失"
 
 #: ../Pages/ProblemsPageForm.ui.qml:13 ../Pages/ProblemsPageForm.ui.qml:23
 msgctxt "ProblemsPageForm.ui|"
 msgid "Problems Detected"
-msgstr "Meseleler tapyldy"
+msgstr ""
 
 #: ../Utils/Translations.qml:28
 msgctxt "Translations|"
 msgid "Danish"
-msgstr "Daniýaly"
+msgstr "丹麥語"
 
 #: ../Utils/Translations.qml:36
 msgctxt "Translations|"
 msgid "Greek"
-msgstr "Grek"
+msgstr "希臘語"
 
 #: ../Utils/Translations.qml:56
 msgctxt "Translations|"
 msgid "Filipino"
-msgstr "Filippinler"
+msgstr "菲律賓語"
 
 #: ../Utils/Translations.qml:64
 msgctxt "Translations|"
 msgid "Hungarian"
-msgstr "Wenger"
+msgstr "匈牙利語"
 
 #: ../Utils/Translations.qml:68
 msgctxt "Translations|"
 msgid "Italian"
-msgstr "Italýan"
+msgstr "義大利語"
 
 #: ../Utils/Translations.qml:120
 msgctxt "Translations|"
 msgid "Vietnamese"
-msgstr "Wýetnamly"
+msgstr "越南語"
 
 #: ../Utils/Translations.qml:44
 msgctxt "Translations|"
 msgid "Spanish"
-msgstr "Ispan"
+msgstr "西班牙語"
 
 #: ../Utils/Translations.qml:80
 msgctxt "Translations|"
 msgid "Dutch"
-msgstr "Gollandiýaly"
+msgstr "荷蘭語"
 
 #: ../Utils/Translations.qml:84
 msgctxt "Translations|"
 msgid "Norwegian"
-msgstr "Norweg"
+msgstr "挪威語"
 
 #: ../Utils/Translations.qml:88
 msgctxt "Translations|"
 msgid "Polish"
-msgstr "Polýak"
+msgstr "波蘭語"
 
 #: ../Utils/Translations.qml:92
 msgctxt "Translations|"
 msgid "Portuguese"
-msgstr "Portugaliýa"
+msgstr "葡萄牙語"
 
 #: ../Utils/Translations.qml:96
 msgctxt "Translations|"
 msgid "Portuguese (Brazil)"
-msgstr "Portugaliýa (Braziliýa)"
+msgstr "葡萄牙語（巴西）"
 
 #: ../Utils/Translations.qml:112
 msgctxt "Translations|"
 msgid "Turkish"
-msgstr "Türk"
+msgstr "土耳其語"
 
 #: ../Widgets/ItemCreatedNotification.qml:77
 msgctxt "ItemCreatedNotification|"
 msgid "Dismiss"
-msgstr "Işden aýyrmak"
+msgstr "拋棄"
 
 #: ../Utils/Translations.qml:48
 msgctxt "Translations|"
 msgid "Spanish (Latin America & Caribbean)"
-msgstr "Ispan (Latyn Amerikasy we Karib deňzi)"
+msgstr "西班牙語（拉丁美洲＆加勒比地區）"
 
 #: ../Utils/Translations.qml:100
 msgctxt "Translations|"
 msgid "Russian"
-msgstr "Rus"
+msgstr "俄語"
 
 #: ../Utils/Translations.qml:104
 msgctxt "Translations|"
 msgid "Swedish"
-msgstr "Şwes"
+msgstr "瑞典語"
 
 #: ../Utils/Translations.qml:108
 msgctxt "Translations|"
 msgid "Turkmen"
-msgstr "Türkmenler"
+msgstr "土庫曼語"
 
 #: ../Actions/DeleteItem.qml:11
 msgctxt "DeleteItem|"
 msgid "Delete"
-msgstr "Öçür"
+msgstr "刪除"
 
 #: ../Widgets/ItemDueDateEditor.qml:71
 msgctxt "ItemDueDateEditor|"
 msgid "First due on %1."
-msgstr "Ilki bilen %1 tölemeli."
+msgstr "最先到期%1。"
 
 #: ../Widgets/ItemDueDateEditor.qml:90
 msgctxt "ItemDueDateEditor|"
 msgid "No recurrence pattern set..."
-msgstr "Gaýtalanma nusgasy ýok ..."
+msgstr "沒有設定反復發生的模式……"
 
 #: ../Widgets/ItemDueDateEditor.qml:92
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every day."
-msgstr "Her gün gaýtalanýar."
+msgstr "每天反復發生。"
 
 #: ../Widgets/ItemDueDateEditor.qml:94
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every week."
-msgstr "Her hepde gaýtalanýar."
+msgstr "每週反復發生。"
 
 #: ../Widgets/ItemDueDateEditor.qml:96
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every month."
-msgstr "Her aý gaýtalanýar."
+msgstr "每月反復發生。"
 
 #: ../Widgets/ItemDueDateEditor.qml:100
 msgctxt "ItemDueDateEditor|"
 msgid "Recurs every %1 days."
-msgstr "Her %1 günden gaýtalanýar."
+msgstr "每%1 天反復發生。"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:105
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Today"
-msgstr "Bu gün"
+msgstr "今天"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:106
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Tomorrow"
-msgstr "Ertir"
+msgstr "明天"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:107
 msgctxt "NewItemWithDueDateDialog|"
 msgid "This Week"
-msgstr "Bu hepde"
+msgstr "這週"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:108
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Next Week"
-msgstr "Indiki hepde"
+msgstr "下週"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:109
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Select..."
-msgstr "Saýlaň ..."
+msgstr "選擇……"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:139
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Title:"
-msgstr "Ady:"
+msgstr "標題："
 
 #: ../Windows/NewItemWithDueDateDialog.qml:144
 msgctxt "NewItemWithDueDateDialog|"
 msgid "The title for your new item..."
-msgstr "Täze elementiňiziň ady ..."
+msgstr "新項目的標題……"
 
 #: ../Windows/NewItemWithDueDateDialog.qml:186
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Create in:"
-msgstr "Dörediň:"
+msgstr "在……中創造："
 
 #: ../Windows/NewItemWithDueDateDialog.qml:227
 msgctxt "NewItemWithDueDateDialog|"
 msgid "Due on:"
-msgstr "Berilmeli:"
+msgstr "截止期限："
 
 #: ../Widgets/NewTopLevelItemButton.qml:48
 msgctxt "NewTopLevelItemButton|"
 msgid "Todo"
-msgstr "Todo"
+msgstr "待辦事項"
 
 #: ../Windows/RecurrenceDialog.qml:29
 msgctxt "RecurrenceDialog|"
 msgid "Edit Recurrence"
-msgstr "Urrygy-ýygydan redaktirläň"
+msgstr "編輯反復發生"
 
 #: ../Windows/RecurrenceDialog.qml:43
 msgctxt "RecurrenceDialog|"
 msgid "Never"
-msgstr "Hiç haçan"
+msgstr "從不"
 
 #: ../Windows/RecurrenceDialog.qml:47
 msgctxt "RecurrenceDialog|"
 msgid "Daily"
-msgstr "Her gün"
+msgstr "每天"
 
 #: ../Windows/RecurrenceDialog.qml:51
 msgctxt "RecurrenceDialog|"
 msgid "Weekly"
-msgstr "Hepdelik"
+msgstr "每週"
 
 #: ../Windows/RecurrenceDialog.qml:55
 msgctxt "RecurrenceDialog|"
 msgid "Monthly"
-msgstr "Aýlyk"
+msgstr "每月"
 
 #: ../Windows/RecurrenceDialog.qml:63
 msgctxt "RecurrenceDialog|"
 msgid "Every N Days"
-msgstr "Her N gün"
+msgstr "每 N 天"
 
 #: ../Windows/RecurrenceDialog.qml:97
 msgctxt "RecurrenceDialog|"
 msgid "Recurs:"
-msgstr "Gaýtalama:"
+msgstr "反復發生："
 
 #: ../Windows/RecurrenceDialog.qml:115
 msgctxt "RecurrenceDialog|"
 msgid "Number of days:"
-msgstr "Günleriň sany:"
+msgstr ""
 
 #: ../Windows/RecurrenceDialog.qml:141
 msgctxt "RecurrenceDialog|"
 msgid "Recur relative to the date when marking as done"
-msgstr "Edilişi ýaly bellik edilende senä görä gaýtalaň"
+msgstr ""
 
 #: ../Actions/RenameItem.qml:11
 msgctxt "RenameItem|"
 msgid "Rename"
-msgstr "Adyny üýtgetmek"
+msgstr ""
 
 #: ../Actions/SetDueNextWeek.qml:8
 msgctxt "SetDueNextWeek|"
 msgid "Set Due This Week"
-msgstr "Şu hepde bellemeli"
+msgstr ""
 
 #: ../Actions/SetDueThisWeek.qml:8
 msgctxt "SetDueThisWeek|"
 msgid "Set Due Next Week"
-msgstr "Geljek hepde bellemeli"
+msgstr ""
 
 #: ../Actions/SetDueTo.qml:11
 msgctxt "SetDueTo|"
 msgid "Select Due Date"
-msgstr "Berlen senäni saýlaň"
+msgstr ""
 
 #: ../Actions/SetDueToday.qml:8
 msgctxt "SetDueToday|"
 msgid "Set Due Today"
-msgstr "Şu gün bellemeli"
+msgstr ""
 
 #: ../Actions/SetDueTomorrow.qml:8
 msgctxt "SetDueTomorrow|"
 msgid "Set Due Tomorrow"
-msgstr "Ertir bermeli"
+msgstr ""
 
 #: ../Widgets/TodosWidgetDelegate.qml:286
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark undone"
-msgstr "Yzyna gaýtarylmagyny belläň"
+msgstr ""
 
 #: ../Widgets/TodosWidgetDelegate.qml:288
 msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
-msgstr "Doneerine ýetirilenini bellemek üçin süpüriň"
+msgstr ""
 
 #: ../Menues/LibraryPageActions.qml:39
 msgctxt "LibraryPageActions|"

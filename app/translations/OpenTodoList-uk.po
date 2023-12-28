@@ -442,37 +442,37 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Введіть назву бібліотеки..."
 
-#: ../Pages/ScheduleViewPage.qml:160
+#: ../Pages/ScheduleViewPage.qml:136
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Сьогодні"
 
-#: ../Pages/ScheduleViewPage.qml:161
+#: ../Pages/ScheduleViewPage.qml:137
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Завтра"
 
-#: ../Pages/ScheduleViewPage.qml:197
+#: ../Pages/ScheduleViewPage.qml:173
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "Пізніше цього тижня"
 
-#: ../Pages/ScheduleViewPage.qml:199
+#: ../Pages/ScheduleViewPage.qml:175
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "Наступного тижня"
 
-#: ../Pages/ScheduleViewPage.qml:200
+#: ../Pages/ScheduleViewPage.qml:176
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "Наступний"
 
-#: ../Pages/ScheduleViewPage.qml:279
+#: ../Pages/ScheduleViewPage.qml:255
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr "Нічого не заплановано... Додайте термін виконання для елементів, щоб вони з’явилися тут."
 
-#: ../Pages/ScheduleViewPage.qml:136
+#: ../Pages/ScheduleViewPage.qml:113
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "Прострочена"
@@ -574,12 +574,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Завершені завдання"
 
-#: ../Pages/TodoPage.qml:169
+#: ../Pages/TodoPage.qml:172
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Пошуковий термін 1, пошуковий термін 2, ..."
 
-#: ../Pages/TodoPage.qml:195
+#: ../Pages/TodoPage.qml:198
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Завдання"
@@ -694,12 +694,12 @@ msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Додати нове завдання..."
 
-#: ../Pages/TodoPage.qml:201
+#: ../Pages/TodoPage.qml:204
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Додати нове завдання..."
 
-#: ../Widgets/TodosWidget.qml:217
+#: ../Widgets/TodosWidget.qml:215
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr ""
@@ -1226,12 +1226,12 @@ msgctxt "MainWindow|"
 msgid "Synchronizing library..."
 msgstr "Синхронізація бібліотеки..."
 
-#: ../Pages/NotePage.qml:162
+#: ../Pages/NotePage.qml:164
 msgctxt "NotePage|"
 msgid "Main Page"
 msgstr "Головна сторінка"
 
-#: ../Pages/NotePage.qml:229
+#: ../Pages/NotePage.qml:231
 msgctxt "NotePage|"
 msgid "New Page"
 msgstr "Нова сторінка"
@@ -1351,7 +1351,7 @@ msgctxt "Translations|"
 msgid "Turkmen"
 msgstr "Туркменська"
 
-#: ../Actions/DeleteItem.qml:8
+#: ../Actions/DeleteItem.qml:11
 msgctxt "DeleteItem|"
 msgid "Delete"
 msgstr "Видалити"
@@ -1481,7 +1481,7 @@ msgctxt "RecurrenceDialog|"
 msgid "Recur relative to the date when marking as done"
 msgstr "Повторюється відносно дати під час позначення виконаного"
 
-#: ../Actions/RenameItem.qml:8
+#: ../Actions/RenameItem.qml:11
 msgctxt "RenameItem|"
 msgid "Rename"
 msgstr "Перейменувати"
@@ -1496,7 +1496,7 @@ msgctxt "SetDueThisWeek|"
 msgid "Set Due Next Week"
 msgstr "Запланувати наступний тиждень"
 
-#: ../Actions/SetDueTo.qml:8
+#: ../Actions/SetDueTo.qml:11
 msgctxt "SetDueTo|"
 msgid "Select Due Date"
 msgstr "Виберіть Термін виконання"
@@ -1566,42 +1566,42 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:205
+#: ../appstartup.cpp:195
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Керуйте своїми особистими даними."
 
-#: ../appstartup.cpp:211
+#: ../appstartup.cpp:201
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Увімкніть деякі оптимізації для сенсорних екранів."
 
-#: ../appstartup.cpp:214
+#: ../appstartup.cpp:204
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Запустіть лише фонову службу програми"
 
-#: ../appstartup.cpp:216
+#: ../appstartup.cpp:206
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Запустіть лише графічний інтерфейс програми та підключіться до існуючої фонової служби програми"
 
-#: ../appstartup.cpp:221
+#: ../appstartup.cpp:211
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Увімкніть консоль у Windows, щоб отримати вихідні дані налагодження"
 
-#: ../appstartup.cpp:372
+#: ../appstartup.cpp:362
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Відкрити"
 
-#: ../appstartup.cpp:438
+#: ../appstartup.cpp:428
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Вийти"
 
-#: ../Actions/DeleteCompletedChildren.qml:8
+#: ../Actions/DeleteCompletedChildren.qml:11
 msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
 msgstr "Видалити завершені елементи"
@@ -1863,7 +1863,7 @@ msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "Не вдалося підключитися до сервера. Будь ласка, перевірте ваше ім'я користувача, пароль і адресу сервера та повторіть спробу."
 
-#: ../Utils/ItemUtils.qml:174
+#: ../Utils/ItemUtils.qml:173
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Перемістити завдання в..."
@@ -1878,7 +1878,7 @@ msgctxt "MainWindow|"
 msgid "Move"
 msgstr "Рухатися"
 
-#: ../Actions/MoveTodo.qml:11
+#: ../Actions/MoveTodo.qml:13
 msgctxt "MoveTodo|"
 msgid "Move"
 msgstr "Рухатися"
@@ -2154,7 +2154,7 @@ msgstr "Використовуйте для ручного масштабува�
 "\n"
 "Потребує перезапуску програми."
 
-#: ../Utils/ItemUtils.qml:189
+#: ../Utils/ItemUtils.qml:188
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr ""
@@ -2174,7 +2174,7 @@ msgctxt "ProblemsPage|"
 msgid "Synchronization failed for library"
 msgstr ""
 
-#: ../Actions/PromoteTask.qml:12
+#: ../Actions/PromoteTask.qml:14
 msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr ""
@@ -2194,7 +2194,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Копиювати системну інформацію"
 
-#: ../appstartup.cpp:380
+#: ../appstartup.cpp:370
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr ""
@@ -2219,7 +2219,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr ""
 
-#: ../appstartup.cpp:317 ../appstartup.cpp:324
+#: ../appstartup.cpp:307 ../appstartup.cpp:314
 msgctxt "QObject|"
 msgid "unknown"
 msgstr ""
@@ -2229,52 +2229,52 @@ msgctxt "QuickNoteWindow|"
 msgid "Quick Notes"
 msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:46
+#: ../Windows/QuickNoteWindow.qml:49
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes Editor"
 msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:57
+#: ../Windows/QuickNoteWindow.qml:60
 msgctxt "QuickNoteWindow|"
 msgid "Open the main window"
 msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:70
+#: ../Windows/QuickNoteWindow.qml:73
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note Title"
 msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:133
+#: ../Windows/QuickNoteWindow.qml:137
 msgctxt "QuickNoteWindow|"
 msgid "Save"
 msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:140
+#: ../Windows/QuickNoteWindow.qml:144
 msgctxt "QuickNoteWindow|"
 msgid "Save the entered notes to the selected library. Press and hold the button to get more options for saving."
 msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:158
+#: ../Windows/QuickNoteWindow.qml:167
 msgctxt "QuickNoteWindow|"
 msgid "Save as Note"
 msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:169
+#: ../Windows/QuickNoteWindow.qml:180
 msgctxt "QuickNoteWindow|"
 msgid "Save as Todo List"
 msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:171
+#: ../Windows/QuickNoteWindow.qml:184
 msgctxt "QuickNoteWindow|"
 msgid "Quick Todo List"
 msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:161
+#: ../Windows/QuickNoteWindow.qml:171
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note"
 msgstr ""
 
-#: ../Windows/QuickNoteWindow.qml:83
+#: ../Windows/QuickNoteWindow.qml:86
 msgctxt "QuickNoteWindow|"
 msgid "Type your notes here..."
 msgstr ""
@@ -2314,12 +2314,12 @@ msgctxt "TodoListItem|"
 msgid "Due on %1"
 msgstr ""
 
-#: ../Actions/CopyTodo.qml:11
+#: ../Actions/CopyTodo.qml:13
 msgctxt "CopyTodo|"
 msgid "Copy"
 msgstr ""
 
-#: ../Actions/CopyTopLevelItem.qml:11
+#: ../Actions/CopyTopLevelItem.qml:13
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr ""
@@ -2425,12 +2425,12 @@ msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr ""
 
-#: ../Utils/ItemUtils.qml:205
+#: ../Utils/ItemUtils.qml:204
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
 msgstr ""
 
-#: ../Utils/ItemUtils.qml:222
+#: ../Utils/ItemUtils.qml:221
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
 msgstr ""
@@ -2455,12 +2455,12 @@ msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:297
+#: ../Pages/TodoPage.qml:295
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr ""
 
-#: ../Pages/TodoPage.qml:304
+#: ../Pages/TodoPage.qml:302
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr ""
@@ -2475,17 +2475,17 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
 msgstr ""
 
-#: ../../lib/application.cpp:203
+#: ../../lib/application.cpp:210
 msgctxt "Application|"
 msgid "Background Sync"
 msgstr ""
 
-#: ../../lib/application.cpp:207
+#: ../../lib/application.cpp:214
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
 msgstr ""
 
-#: ../../lib/application.cpp:211
+#: ../../lib/application.cpp:218
 msgctxt "Application|"
 msgid "Quit"
 msgstr ""
@@ -2626,7 +2626,7 @@ msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
 msgstr ""
 
-#: ../Pages/ScheduleViewPage.qml:56
+#: ../Pages/ScheduleViewPage.qml:43
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
 msgstr "Розпорядок"
@@ -2651,52 +2651,52 @@ msgctxt "StartPage|"
 msgid "Add an account"
 msgstr "Додати акаунт"
 
-#: ../Pages/LogViewPage.qml:78
+#: ../Pages/LogViewPage.qml:70
 msgctxt "LogViewPage|"
 msgid "Debugging information"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:80
+#: ../Pages/LogViewPage.qml:72
 msgctxt "LogViewPage|"
 msgid "Warning"
 msgstr "Увага"
 
-#: ../Pages/LogViewPage.qml:82
+#: ../Pages/LogViewPage.qml:74
 msgctxt "LogViewPage|"
 msgid "Error"
 msgstr "Помилка"
 
-#: ../Pages/LogViewPage.qml:84
+#: ../Pages/LogViewPage.qml:76
 msgctxt "LogViewPage|"
 msgid "Download"
 msgstr "Скачати"
 
-#: ../Pages/LogViewPage.qml:86
+#: ../Pages/LogViewPage.qml:78
 msgctxt "LogViewPage|"
 msgid "Upload"
 msgstr "Завантажити"
 
-#: ../Pages/LogViewPage.qml:88
+#: ../Pages/LogViewPage.qml:80
 msgctxt "LogViewPage|"
 msgid "Create local folder"
 msgstr "Створити локальну папку"
 
-#: ../Pages/LogViewPage.qml:90
+#: ../Pages/LogViewPage.qml:82
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
 msgstr "Створити віддалену папку"
 
-#: ../Pages/LogViewPage.qml:92
+#: ../Pages/LogViewPage.qml:84
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:94
+#: ../Pages/LogViewPage.qml:86
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:96
+#: ../Pages/LogViewPage.qml:88
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
 msgstr ""

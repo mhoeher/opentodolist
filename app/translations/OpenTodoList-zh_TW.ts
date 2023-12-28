@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fi">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>AboutPage</name>
     <message>
         <location filename="../Pages/AboutPage.qml" line="15"/>
         <source>About...</source>
-        <translation type="unfinished">Tietoja...</translation>
+        <translation type="unfinished">關於</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="33"/>
@@ -16,57 +16,58 @@
     <message>
         <location filename="../Pages/AboutPage.qml" line="40"/>
         <source>A todo and task managing application.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">一個待辦事項和任務管理的應用程式</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="68"/>
         <source>OpenTodoList is released under the terms of the &lt;a href=&apos;app-license&apos;&gt;GNU General Public License&lt;/a&gt; version 3 or (at your choice) any later version.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">OpenTodoList是根據&lt;a href=&apos;app-license&apos;&gt;GNU通用公眾授權條款&lt;/a&gt; 第三版或是任何更新的版本（由你選擇）發行。
+</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="85"/>
         <source>Report an Issue</source>
-        <translation type="unfinished">Ilmoita ongelmasta</translation>
+        <translation type="unfinished">回報問題</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="92"/>
         <source>Copy System Information</source>
-        <translation type="unfinished">Kopioi järjestelmän tiedot</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="114"/>
         <source>Third Party Libraries and Resources</source>
-        <translation type="unfinished">Kolmansien osapuolten kirjastot ja resurssit</translation>
+        <translation type="unfinished">第三方函式庫和資源</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="151"/>
         <source>Author:</source>
-        <translation type="unfinished">Tekijä:</translation>
+        <translation type="unfinished">作者：</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="156"/>
         <source>&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished">&lt;a href=&apos;%2&apos;&gt;%1&lt;/a&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="163"/>
         <source>License:</source>
-        <translation type="unfinished">Lisenssi:</translation>
+        <translation type="unfinished">授權：</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="168"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</source>
-        <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%2&lt;/a&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="174"/>
         <source>Download:</source>
-        <translation type="unfinished">Lataa:</translation>
+        <translation type="unfinished">下載：</translation>
     </message>
     <message>
         <location filename="../Pages/AboutPage.qml" line="178"/>
         <source>&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</source>
-        <translation type="unfinished">&lt;a href=&apos;%1&apos;&gt;%1&lt;/a&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -74,27 +75,27 @@
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="21"/>
         <source>Select Account Type</source>
-        <translation type="unfinished">Valitse tilin tyyppi</translation>
+        <translation type="unfinished">選擇帳號類型</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="56"/>
         <source>Account Type</source>
-        <translation type="unfinished">Tilin tyyppi</translation>
+        <translation type="unfinished">帳號類型</translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="62"/>
         <source>NextCloud</source>
-        <translation type="unfinished">NextCloud</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="65"/>
         <source>ownCloud</source>
-        <translation type="unfinished">ownCloud</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="68"/>
         <source>WebDAV</source>
-        <translation type="unfinished">WebDAV</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/AccountTypeSelectionPage.qml" line="71"/>
@@ -108,7 +109,7 @@
         <location filename="../Pages/AccountsPage.qml" line="19"/>
         <location filename="../Pages/AccountsPage.qml" line="41"/>
         <source>Accounts</source>
-        <translation type="unfinished">Tilit</translation>
+        <translation type="unfinished">帳號</translation>
     </message>
 </context>
 <context>
@@ -116,12 +117,12 @@
     <message>
         <location filename="../appstartup.cpp" line="195"/>
         <source>Manage your personal data.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">管理你的個人資料。</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="201"/>
         <source>Switch on some optimizations for touchscreens.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">開啟觸控螢幕最佳化。</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="204"/>
@@ -141,7 +142,7 @@
     <message>
         <location filename="../appstartup.cpp" line="362"/>
         <source>Open</source>
-        <translation type="unfinished">Avaa</translation>
+        <translation type="unfinished">開啟</translation>
     </message>
     <message>
         <location filename="../appstartup.cpp" line="370"/>
@@ -151,7 +152,7 @@
     <message>
         <location filename="../appstartup.cpp" line="428"/>
         <source>Quit</source>
-        <translation type="unfinished">Lopeta</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -169,7 +170,7 @@
     <message>
         <location filename="../../lib/application.cpp" line="218"/>
         <source>Quit</source>
-        <translation type="unfinished">Lopeta</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -177,22 +178,22 @@
     <message>
         <location filename="../Widgets/Attachments.qml" line="37"/>
         <source>Attach File</source>
-        <translation type="unfinished">Liitä tiedosto</translation>
+        <translation type="unfinished">附加檔案</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="52"/>
         <source>Delete Attachment?</source>
-        <translation type="unfinished">Poistetaanko liite?</translation>
+        <translation type="unfinished">刪除附加檔案？</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="56"/>
         <source>Are you sure you want to delete the attachment &lt;strong&gt;%1&lt;/strong&gt;? This action cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你確定你想要刪除這個附加檔案嗎？</translation>
     </message>
     <message>
         <location filename="../Widgets/Attachments.qml" line="70"/>
         <source>Attachments</source>
-        <translation type="unfinished">Liitteet</translation>
+        <translation type="unfinished">附加檔案</translation>
     </message>
 </context>
 <context>
@@ -200,42 +201,42 @@
     <message>
         <location filename="../Menues/ColorMenu.qml" line="15"/>
         <source>Color</source>
-        <translation type="unfinished">Väri</translation>
+        <translation type="unfinished">顏色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="19"/>
         <source>White</source>
-        <translation type="unfinished">Valkoinen</translation>
+        <translation type="unfinished">白色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="26"/>
         <source>Red</source>
-        <translation type="unfinished">Punainen</translation>
+        <translation type="unfinished">紅色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="33"/>
         <source>Green</source>
-        <translation type="unfinished">Vihreä</translation>
+        <translation type="unfinished">綠色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="40"/>
         <source>Blue</source>
-        <translation type="unfinished">Sininen</translation>
+        <translation type="unfinished">藍色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="47"/>
         <source>Yellow</source>
-        <translation type="unfinished">Keltainen</translation>
+        <translation type="unfinished">黃色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="54"/>
         <source>Orange</source>
-        <translation type="unfinished">Oranssi</translation>
+        <translation type="unfinished">橘色</translation>
     </message>
     <message>
         <location filename="../Menues/ColorMenu.qml" line="61"/>
         <source>Lilac</source>
-        <translation type="unfinished">Liila</translation>
+        <translation type="unfinished">紫丁香色</translation>
     </message>
 </context>
 <context>
@@ -243,17 +244,17 @@
     <message>
         <location filename="../Utils/Colors.qml" line="15"/>
         <source>System</source>
-        <translation type="unfinished">Järjestelmä</translation>
+        <translation type="unfinished">系統</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="16"/>
         <source>Light</source>
-        <translation type="unfinished">Vaalea</translation>
+        <translation type="unfinished">亮的</translation>
     </message>
     <message>
         <location filename="../Utils/Colors.qml" line="17"/>
         <source>Dark</source>
-        <translation type="unfinished">Tumma</translation>
+        <translation type="unfinished">暗的</translation>
     </message>
 </context>
 <context>
@@ -269,7 +270,7 @@
     <message>
         <location filename="../Actions/CopyTodo.qml" line="13"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopioi</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -277,7 +278,7 @@
     <message>
         <location filename="../Actions/CopyTopLevelItem.qml" line="13"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopioi</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -285,12 +286,12 @@
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="19"/>
         <source>Delete Account?</source>
-        <translation type="unfinished">Poistetaanko tili?</translation>
+        <translation type="unfinished">刪除帳號？</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteAccountDialog.qml" line="36"/>
         <source>Do you really want to remove the account &lt;strong&gt;%1&lt;/strong&gt;? This will remove all libraries belonging to the account from your device?&lt;br/&gt;&lt;br/&gt;&lt;i&gt;Note: You can restore them from the server by adding back the account.&lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你確定想要移除帳號&lt;strong&gt;%1&lt;/strong&gt;嗎？這將會從你的裝置中移除全部屬於此帳號的書庫。&lt;br/&gt;&lt;br/&gt;&lt;i&gt;注意：你可以藉由把帳號加回來從伺服器恢復它們。&lt;/i&gt;</translation>
     </message>
 </context>
 <context>
@@ -298,7 +299,7 @@
     <message>
         <location filename="../Actions/DeleteCompletedChildren.qml" line="11"/>
         <source>Delete Completed Items</source>
-        <translation type="unfinished">Poista valmistuneet tietueet</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -306,7 +307,7 @@
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="18"/>
         <source>Delete Completed Items?</source>
-        <translation type="unfinished">Poistetaanko valmistuneet tietueet?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Windows/DeleteCompletedItemsDialog.qml" line="42"/>
@@ -324,7 +325,7 @@
     <message>
         <location filename="../Actions/DeleteItem.qml" line="11"/>
         <source>Delete</source>
-        <translation type="unfinished">Poista</translation>
+        <translation type="unfinished">刪除</translation>
     </message>
 </context>
 <context>
@@ -332,37 +333,37 @@
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="19"/>
         <source>Delete Item?</source>
-        <translation type="unfinished">Poistetaanko tietue?</translation>
+        <translation type="unfinished">刪除項目？</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="32"/>
         <source>Do you really want to delete the image &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你確定你想要刪除這個圖片 &lt;strong&gt;%1&lt;/strong&gt;嗎？這沒辦法復原。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="36"/>
         <source>Do you really want to delete the todo list &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你確定你想要刪除這個待辦事項清單&lt;strong&gt;%1&lt;/strong&gt;嗎？這沒辦法復原。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="40"/>
         <source>Do you really want to delete the todo &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你確定你想要刪除這個待辦事項&lt;strong&gt;%1&lt;/strong&gt;嗎？這沒辦法復原。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="44"/>
         <source>Do you really want to delete the task &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你確定你想要刪除這個任務&lt;strong&gt;%1&lt;/strong&gt;嗎？這沒辦法復原。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="48"/>
         <source>Do you really want to delete the note &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你確定你想要刪除筆記&lt;strong&gt;%1&lt;/strong&gt;嗎？這沒辦法復原。</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteItemDialog.qml" line="52"/>
         <source>Do you really want to delete the page &lt;strong&gt;%1&lt;/strong&gt;? This cannot be undone.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你真的想要刪除此頁面&lt;strong&gt;%1&lt;/strong&gt;嗎？這不能被復原。</translation>
     </message>
 </context>
 <context>
@@ -370,17 +371,17 @@
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="19"/>
         <source>Delete Library?</source>
-        <translation type="unfinished">Poistetaanko kirjasto?</translation>
+        <translation type="unfinished">刪除書庫？</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="33"/>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from  the application? &lt;em&gt;This will remove any files belonging to the library.&lt;/em&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你確定想要從應用程式中移除書庫&lt;strong&gt;%1&lt;/strong&gt;嗎？ &lt;em&gt;這將會移除任何屬於此書庫的檔案。&lt;/em&gt;</translation>
     </message>
     <message>
         <location filename="../Windows/DeleteLibraryDialog.qml" line="40"/>
         <source>Do you really want to remove the library &lt;strong&gt;%1&lt;/strong&gt; from the application? Note that the files inside the library will not be removed, so you can restore the library later on.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你確定想要從應用程式中移除書庫&lt;strong&gt;%1&lt;/strong&gt;嗎？注意在此書庫中的檔案將不會被移除，所以你之後可以復原此書庫。</translation>
     </message>
 </context>
 <context>
@@ -389,12 +390,12 @@
         <location filename="../Pages/EditDropboxAccountPage.qml" line="27"/>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="67"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Yhteyden asetukset</translation>
+        <translation type="unfinished">連接設定</translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="75"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished">Ongelmia sisäänkirjautumisessa?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="86"/>
@@ -419,17 +420,17 @@
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="112"/>
         <source>Copy Link</source>
-        <translation type="unfinished">Kopioi linkki</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="116"/>
         <source>Copied!</source>
-        <translation type="unfinished">Kopioitu!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="125"/>
         <source>Name:</source>
-        <translation type="unfinished">Nimi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditDropboxAccountPage.qml" line="132"/>
@@ -443,52 +444,52 @@
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="23"/>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="59"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Muokkaa tiliä</translation>
+        <translation type="unfinished">編輯帳號</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="65"/>
         <source>Name:</source>
-        <translation type="unfinished">Nimi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="76"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Palvelimen osoite:</translation>
+        <translation type="unfinished">伺服器網址：</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="83"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.example.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="91"/>
         <source>Login</source>
-        <translation type="unfinished">Kirjaudu sisään</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="104"/>
         <source>User:</source>
-        <translation type="unfinished">Käyttäjä:</translation>
+        <translation type="unfinished">使用者：</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="111"/>
         <source>User Name</source>
-        <translation type="unfinished">Käyttäjätunnus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="117"/>
         <source>Password:</source>
-        <translation type="unfinished">Salasana:</translation>
+        <translation type="unfinished">密碼：</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="124"/>
         <source>Password</source>
-        <translation type="unfinished">Salasana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="133"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Poista varmennetarkistukset käytöstä</translation>
+        <translation type="unfinished">關閉證明確認</translation>
     </message>
     <message>
         <location filename="../Pages/EditNextCloudAccountPage.qml" line="142"/>
@@ -502,47 +503,47 @@
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="33"/>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="118"/>
         <source>Edit Account</source>
-        <translation type="unfinished">Muokkaa tiliä</translation>
+        <translation type="unfinished">編輯帳號</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="124"/>
         <source>Name:</source>
-        <translation type="unfinished">Nimi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="135"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Palvelimen osoite:</translation>
+        <translation type="unfinished">伺服器網址：</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="141"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.example.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="148"/>
         <source>User:</source>
-        <translation type="unfinished">Käyttäjä:</translation>
+        <translation type="unfinished">使用者：</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="154"/>
         <source>User Name</source>
-        <translation type="unfinished">Käyttäjätunnus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="161"/>
         <source>Password:</source>
-        <translation type="unfinished">Salasana:</translation>
+        <translation type="unfinished">密碼：</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="168"/>
         <source>Password</source>
-        <translation type="unfinished">Salasana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="178"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Poista varmennetarkistukset käytöstä</translation>
+        <translation type="unfinished">關閉證明確認</translation>
     </message>
     <message>
         <location filename="../Pages/EditWebDAVAccountPage.qml" line="186"/>
@@ -555,17 +556,17 @@
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="66"/>
         <source>&lt;strong&gt;%1&lt;/strong&gt; has been created.</source>
-        <translation type="unfinished">&lt;strong&gt;%1&lt;/strong&gt; on luotu.</translation>
+        <translation type="unfinished">&lt;strong&gt;%1&lt;/strong&gt; 已經被創造</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="72"/>
         <source>Open</source>
-        <translation type="unfinished">Avaa</translation>
+        <translation type="unfinished">開啟</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemCreatedNotification.qml" line="77"/>
         <source>Dismiss</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">拋棄</translation>
     </message>
 </context>
 <context>
@@ -573,47 +574,47 @@
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="32"/>
         <source>Due on</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">截止時間</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="71"/>
         <source>First due on %1.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最先到期%1。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="90"/>
         <source>No recurrence pattern set...</source>
-        <translation type="unfinished">Toistumiskaavaa ei ole asetettu...</translation>
+        <translation type="unfinished">沒有設定反復發生的模式……</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="92"/>
         <source>Recurs every day.</source>
-        <translation type="unfinished">Toistuu päivittäin.</translation>
+        <translation type="unfinished">每天反復發生。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="94"/>
         <source>Recurs every week.</source>
-        <translation type="unfinished">Toistuu viikottain.</translation>
+        <translation type="unfinished">每週反復發生。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="96"/>
         <source>Recurs every month.</source>
-        <translation type="unfinished">Toistuu kuukausittain.</translation>
+        <translation type="unfinished">每月反復發生。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="98"/>
         <source>Recurs every year.</source>
-        <translation type="unfinished">Toistuu vuosittain.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="100"/>
         <source>Recurs every %1 days.</source>
-        <translation type="unfinished">Toistuu %1 päivän välein.</translation>
+        <translation type="unfinished">每%1 天反復發生。</translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="103"/>
         <source>Recurs every %1 weeks.</source>
-        <translation type="unfinished">Toistuu %1 viikon välein.</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Widgets/ItemDueDateEditor.qml" line="106"/>
@@ -659,7 +660,7 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="14"/>
         <source>Synchronization Log</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">同步日誌</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="70"/>
@@ -679,7 +680,7 @@
     <message>
         <location filename="../Pages/LogViewPage.qml" line="76"/>
         <source>Download</source>
-        <translation type="unfinished">Lataa</translation>
+        <translation type="unfinished">下載</translation>
     </message>
     <message>
         <location filename="../Pages/LogViewPage.qml" line="78"/>
@@ -717,7 +718,7 @@
     <message>
         <location filename="../Actions/MoveTodo.qml" line="13"/>
         <source>Move</source>
-        <translation type="unfinished">Siirrä</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -726,12 +727,12 @@
         <location filename="../Pages/NewDropboxAccountPage.qml" line="21"/>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="55"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Yhteyden asetukset</translation>
+        <translation type="unfinished">連接設定</translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="63"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished">Ongelmia sisäänkirjautumisessa?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="74"/>
@@ -756,17 +757,17 @@
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="102"/>
         <source>Copy Link</source>
-        <translation type="unfinished">Kopioi linkki</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="106"/>
         <source>Copied!</source>
-        <translation type="unfinished">Kopioitu!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="115"/>
         <source>Name:</source>
-        <translation type="unfinished">Nimi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewDropboxAccountPage.qml" line="122"/>
@@ -779,37 +780,37 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="105"/>
         <source>Today</source>
-        <translation type="unfinished">Tänään</translation>
+        <translation type="unfinished">今天</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="106"/>
         <source>Tomorrow</source>
-        <translation type="unfinished">Huomenna</translation>
+        <translation type="unfinished">明天</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="107"/>
         <source>This Week</source>
-        <translation type="unfinished">Tämä viikko</translation>
+        <translation type="unfinished">這週</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="108"/>
         <source>Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">下週</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="109"/>
         <source>Select...</source>
-        <translation type="unfinished">Valitse...</translation>
+        <translation type="unfinished">選擇……</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="139"/>
         <source>Title:</source>
-        <translation type="unfinished">Otsikko:</translation>
+        <translation type="unfinished">標題：</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="144"/>
         <source>The title for your new item...</source>
-        <translation type="unfinished">Otsikko uudelle tietueelle...</translation>
+        <translation type="unfinished">新項目的標題……</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="150"/>
@@ -819,12 +820,12 @@
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="186"/>
         <source>Create in:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在……中創造：</translation>
     </message>
     <message>
         <location filename="../Windows/NewItemWithDueDateDialog.qml" line="227"/>
         <source>Due on:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">截止期限：</translation>
     </message>
 </context>
 <context>
@@ -832,47 +833,47 @@
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="82"/>
         <source>Create Library in Account</source>
-        <translation type="unfinished">Luo kirjasto tilille</translation>
+        <translation type="unfinished">在帳號裡創造書庫</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="91"/>
         <source>A library created in an account is synchronized with it. This allows to easily back up a library to a server and later on restore it from there. Additionally, such libraries can be shared with other users (if the server allows this).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">創造到一個帳號裡的一個書庫和它同步。這允許輕鬆的備份一個書庫到一個伺服器以及之後從那恢復它。此外，這樣的書庫可以被分享到其他使用者（如果伺服器允許的話）。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="99"/>
         <source>Existing Libraries</source>
-        <translation type="unfinished">Olemassa olevat kirjastot</translation>
+        <translation type="unfinished">已存在的書庫</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="107"/>
         <source>Select an existing library on the server to add it to the app.</source>
-        <translation type="unfinished">Valitse olemassa oleva kirjasto palvelimelta lisätäksesi sen sovellukseen.</translation>
+        <translation type="unfinished">選擇一個在伺服器上已存在的書庫，以加入到應用程式中。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="113"/>
         <source>No libraries were found on the server.</source>
-        <translation type="unfinished">Palvelimelta ei löytynyt kirjastoja.</translation>
+        <translation type="unfinished">在伺服器上沒有找到書庫。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="122"/>
         <source>Searching existing libraries...</source>
-        <translation type="unfinished">Etsitään olemassa olevia kirjastoja...</translation>
+        <translation type="unfinished">搜尋已存在的書庫……</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="165"/>
         <source>Create a New Library</source>
-        <translation type="unfinished">Luo uusi kirjasto</translation>
+        <translation type="unfinished">創造一個新書庫</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="173"/>
         <source>Create a new library, which will be synchronized with the server. Such a library can be added to the app on other devices as well to synchronize data.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">創造一個書庫，這將會被同步到伺服器。這樣的一個書庫可以被加入到在其他裝置的應用程式裡，也同步資料。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryFromAccountPage.qml" line="187"/>
         <source>My new library&apos;s name</source>
-        <translation type="unfinished">Uuden kirjaston nimi</translation>
+        <translation type="unfinished">我的新書庫的名稱</translation>
     </message>
 </context>
 <context>
@@ -880,42 +881,42 @@
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="74"/>
         <source>Select a Folder</source>
-        <translation type="unfinished">Valitse kansi</translation>
+        <translation type="unfinished">選擇資料夾</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="101"/>
         <source>Open a Folder as a Library</source>
-        <translation type="unfinished">Avaa kansio kirjastona</translation>
+        <translation type="unfinished">開啟一個作為書庫的資料夾</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="109"/>
         <source>You can use any folder as a location for a library.&lt;br/&gt;&lt;br/&gt;This is especially useful when you want to use another tool (like a sync client of a cloud provider) to sync your data with a server.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你可以使用任何資料夾作為一個書庫的一個位置。&lt;br/&gt;&lt;br/&gt;這尤其在當你想要用另一個工具（像是一個雲端提供者的一個同步客戶）同步你的資料到一個伺服器時有用。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="113"/>
         <source>Folder:</source>
-        <translation type="unfinished">Kansio:</translation>
+        <translation type="unfinished">資料夾：</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="118"/>
         <source>Path to a folder to use as a library</source>
-        <translation type="unfinished">Polku kansioon, jota tullaan käyttämään kirjastona</translation>
+        <translation type="unfinished">用來作為書庫的資料夾路徑</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="124"/>
         <source>Select</source>
-        <translation type="unfinished">Valitse</translation>
+        <translation type="unfinished">選擇</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="129"/>
         <source>Name:</source>
-        <translation type="unfinished">Nimi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryInFolderPage.qml" line="134"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished">Paikallisen kirjaston nimi</translation>
+        <translation type="unfinished">我的本地書庫名稱</translation>
     </message>
 </context>
 <context>
@@ -924,27 +925,27 @@
         <location filename="../Pages/NewLibraryPage.qml" line="23"/>
         <location filename="../Pages/NewLibraryPage.qml" line="63"/>
         <source>Create Library</source>
-        <translation type="unfinished">Luo kirjasto</translation>
+        <translation type="unfinished">創造書庫</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="70"/>
         <source>Local Library</source>
-        <translation type="unfinished">Paikallinen kirjasto</translation>
+        <translation type="unfinished">本地書庫</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="77"/>
         <source>Use Folder as Library</source>
-        <translation type="unfinished">Käytä kansiota kirjastona</translation>
+        <translation type="unfinished">使用資料夾作為書庫</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="89"/>
         <source>Add Libraries From Your Accounts</source>
-        <translation type="unfinished">Lisää kirjastot tileiltäsi</translation>
+        <translation type="unfinished">從你的帳號中加入書庫</translation>
     </message>
     <message>
         <location filename="../Pages/NewLibraryPage.qml" line="116"/>
         <source>Add Account</source>
-        <translation type="unfinished">Lisää tili</translation>
+        <translation type="unfinished">加入帳號</translation>
     </message>
 </context>
 <context>
@@ -952,22 +953,22 @@
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="62"/>
         <source>Create a Local Library</source>
-        <translation type="unfinished">Luo paikallinen kirjasto</translation>
+        <translation type="unfinished">創造一個本地書庫</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="70"/>
         <source>A local library is stored solely on your device - this makes it perfect for the privacy concise!&lt;br/&gt;&lt;br/&gt;Use it when you want to store information only locally and back up all your data regularly via other mechanisms. If you need to access your information across several devices, create a library which is synced instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">一個本地書庫被單獨的儲存在你的裝置上——這使隱私簡潔完美！&lt;br/&gt;&lt;br/&gt;當你只想要在本地儲存資訊和經由其他的機制定期的備份你的全部資料時，使用它。如果你需要垮越數個裝置存取你的資訊、創造一個同步的書庫代替。</translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="80"/>
         <source>Name:</source>
-        <translation type="unfinished">Nimi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewLocalLibraryPage.qml" line="85"/>
         <source>My Local Library Name</source>
-        <translation type="unfinished">Paikallisen kirjaston nimi</translation>
+        <translation type="unfinished">我的本地書庫名稱</translation>
     </message>
 </context>
 <context>
@@ -976,22 +977,22 @@
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="20"/>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="73"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Yhteyden asetukset</translation>
+        <translation type="unfinished">連接設定</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="79"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Palvelimen osoite:</translation>
+        <translation type="unfinished">伺服器網址：</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="93"/>
         <source>Login</source>
-        <translation type="unfinished">Kirjaudu sisään</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="109"/>
         <source>Trouble Signing In?</source>
-        <translation type="unfinished">Ongelmia sisäänkirjautumisessa?</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="120"/>
@@ -1001,7 +1002,7 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="128"/>
         <source>Log in Manually</source>
-        <translation type="unfinished">Kirjaudu manuaalisesti</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="134"/>
@@ -1011,57 +1012,57 @@
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="143"/>
         <source>Create App Password</source>
-        <translation type="unfinished">Luo sovelluksen salasana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="152"/>
         <source>Account Settings</source>
-        <translation type="unfinished">Tilin asetukset</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="162"/>
         <source>Copy Link</source>
-        <translation type="unfinished">Kopioi linkki</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="168"/>
         <source>Copied!</source>
-        <translation type="unfinished">Kopioitu!</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="177"/>
         <source>User:</source>
-        <translation type="unfinished">Käyttäjä:</translation>
+        <translation type="unfinished">使用者：</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="184"/>
         <source>User Name</source>
-        <translation type="unfinished">Käyttäjätunnus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="191"/>
         <source>Password:</source>
-        <translation type="unfinished">Salasana:</translation>
+        <translation type="unfinished">密碼：</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="198"/>
         <source>Password</source>
-        <translation type="unfinished">Salasana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="208"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Poista varmennetarkistukset käytöstä</translation>
+        <translation type="unfinished">關閉證明確認</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="212"/>
         <source>Name:</source>
-        <translation type="unfinished">Nimi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="225"/>
         <source>Account Name</source>
-        <translation type="unfinished">Tilin nimi</translation>
+        <translation type="unfinished">帳號名稱</translation>
     </message>
     <message>
         <location filename="../Pages/NewNextCloudAccountPage.qml" line="235"/>
@@ -1074,22 +1075,22 @@
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="43"/>
         <source>Todo List</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">待辦事項清單</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="48"/>
         <source>Todo</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">待辦事項</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="54"/>
         <source>Note</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">筆記</translation>
     </message>
     <message>
         <location filename="../Widgets/NewTopLevelItemButton.qml" line="58"/>
         <source>Image</source>
-        <translation type="unfinished">Kuva</translation>
+        <translation type="unfinished">圖片</translation>
     </message>
 </context>
 <context>
@@ -1098,52 +1099,52 @@
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="29"/>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="101"/>
         <source>Connection Settings</source>
-        <translation type="unfinished">Yhteyden asetukset</translation>
+        <translation type="unfinished">連接設定</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="107"/>
         <source>Server Address:</source>
-        <translation type="unfinished">Palvelimen osoite:</translation>
+        <translation type="unfinished">伺服器網址：</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="113"/>
         <source>https://myserver.example.com</source>
-        <translation type="unfinished">https://myserver.example.com</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="119"/>
         <source>User:</source>
-        <translation type="unfinished">Käyttäjä:</translation>
+        <translation type="unfinished">使用者：</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="125"/>
         <source>User Name</source>
-        <translation type="unfinished">Käyttäjätunnus</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="131"/>
         <source>Password:</source>
-        <translation type="unfinished">Salasana:</translation>
+        <translation type="unfinished">密碼：</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="137"/>
         <source>Password</source>
-        <translation type="unfinished">Salasana</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="146"/>
         <source>Disable Certificate Checks</source>
-        <translation type="unfinished">Poista varmennetarkistukset käytöstä</translation>
+        <translation type="unfinished">關閉證明確認</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="150"/>
         <source>Name:</source>
-        <translation type="unfinished">Nimi:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="163"/>
         <source>Account Name</source>
-        <translation type="unfinished">Tilin nimi</translation>
+        <translation type="unfinished">帳號名稱</translation>
     </message>
     <message>
         <location filename="../Pages/NewWebDAVAccountPage.qml" line="173"/>
@@ -1164,12 +1165,12 @@
     <message>
         <location filename="../Pages/NotePage.qml" line="164"/>
         <source>Main Page</source>
-        <translation type="unfinished">Pääsivu</translation>
+        <translation type="unfinished">主要頁面</translation>
     </message>
     <message>
         <location filename="../Pages/NotePage.qml" line="231"/>
         <source>New Page</source>
-        <translation type="unfinished">Uusi sivu</translation>
+        <translation type="unfinished">新的頁面</translation>
     </message>
 </context>
 <context>
@@ -1177,7 +1178,7 @@
     <message>
         <location filename="../../lib/utils/translations.cpp" line="91"/>
         <source>System Language</source>
-        <translation type="unfinished">Järjestelmän kieli</translation>
+        <translation type="unfinished">系統語言</translation>
     </message>
 </context>
 <context>
@@ -1186,12 +1187,12 @@
         <location filename="../Pages/ProblemsPage.qml" line="18"/>
         <location filename="../Pages/ProblemsPage.qml" line="28"/>
         <source>Problems Detected</source>
-        <translation type="unfinished">Ongelmia havaittu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="42"/>
         <source>Missing secrets for account</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">帳戶的密碼遺失</translation>
     </message>
     <message>
         <location filename="../Pages/ProblemsPage.qml" line="47"/>
@@ -1218,7 +1219,7 @@
         <location filename="../appstartup.cpp" line="307"/>
         <location filename="../appstartup.cpp" line="314"/>
         <source>unknown</source>
-        <translation type="unfinished">tuntematon</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1236,7 +1237,7 @@
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="60"/>
         <source>Open the main window</source>
-        <translation type="unfinished">Avaa pääikkuna</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="73"/>
@@ -1251,7 +1252,7 @@
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="137"/>
         <source>Save</source>
-        <translation type="unfinished">Tallenna</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Windows/QuickNoteWindow.qml" line="144"/>
@@ -1284,27 +1285,27 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="29"/>
         <source>Edit Recurrence</source>
-        <translation type="unfinished">Muokkaa toistoa</translation>
+        <translation type="unfinished">編輯反復發生</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="43"/>
         <source>Never</source>
-        <translation type="unfinished">Ei koskaan</translation>
+        <translation type="unfinished">從不</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="47"/>
         <source>Daily</source>
-        <translation type="unfinished">Päivittäin</translation>
+        <translation type="unfinished">每天</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="51"/>
         <source>Weekly</source>
-        <translation type="unfinished">Viikottain</translation>
+        <translation type="unfinished">每週</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="55"/>
         <source>Monthly</source>
-        <translation type="unfinished">Kuukausittain</translation>
+        <translation type="unfinished">每月</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="59"/>
@@ -1314,7 +1315,7 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="63"/>
         <source>Every N Days</source>
-        <translation type="unfinished">N päivän välein</translation>
+        <translation type="unfinished">每 N 天</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="67"/>
@@ -1329,12 +1330,12 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="97"/>
         <source>Recurs:</source>
-        <translation type="unfinished">Toistuu:</translation>
+        <translation type="unfinished">反復發生：</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="115"/>
         <source>Number of days:</source>
-        <translation type="unfinished">Päivien määrä:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="117"/>
@@ -1357,7 +1358,7 @@
     <message>
         <location filename="../Actions/RenameItem.qml" line="11"/>
         <source>Rename</source>
-        <translation type="unfinished">Nimeä uudelleen</translation>
+        <translation type="unfinished">重新命名</translation>
     </message>
 </context>
 <context>
@@ -1365,12 +1366,12 @@
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="22"/>
         <source>Rename Item</source>
-        <translation type="unfinished">Nimeä tietue uudelleen</translation>
+        <translation type="unfinished">重新命名項目</translation>
     </message>
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="33"/>
         <source>Enter item title...</source>
-        <translation type="unfinished">Kirjoita tietueen otsikko...</translation>
+        <translation type="unfinished">輸入項目標題……</translation>
     </message>
 </context>
 <context>
@@ -1378,12 +1379,12 @@
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="20"/>
         <source>Rename Library</source>
-        <translation type="unfinished">Nimeä kirjasto uudelleen</translation>
+        <translation type="unfinished">重新命名書庫</translation>
     </message>
     <message>
         <location filename="../Windows/RenameLibraryDialog.qml" line="37"/>
         <source>Enter library title...</source>
-        <translation type="unfinished">Kirjoita kirjaston otsikko...</translation>
+        <translation type="unfinished">輸入書庫標題……</translation>
     </message>
 </context>
 <context>
@@ -1399,42 +1400,42 @@
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="43"/>
         <source>Schedule</source>
-        <translation type="unfinished">Aikataulu</translation>
+        <translation type="unfinished">時程表</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="113"/>
         <source>Overdue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">逾期</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="136"/>
         <source>Today</source>
-        <translation type="unfinished">Tänään</translation>
+        <translation type="unfinished">今天</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="137"/>
         <source>Tomorrow</source>
-        <translation type="unfinished">Huomenna</translation>
+        <translation type="unfinished">明天</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="173"/>
         <source>Later This Week</source>
-        <translation type="unfinished">Myöhemmin tällä viikolla</translation>
+        <translation type="unfinished">這週稍候的時間</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="175"/>
         <source>Next Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">下週</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="176"/>
         <source>Coming Next</source>
-        <translation type="unfinished">Tulossa seuraavaksi</translation>
+        <translation type="unfinished">即將到來的</translation>
     </message>
     <message>
         <location filename="../Pages/ScheduleViewPage.qml" line="255"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
-        <translation type="unfinished">Mitään ei ole aikataulutettu... Aseta määräpäivä tietueille, jotta ne ilmestyvät tänne näkyviin.</translation>
+        <translation type="unfinished">沒有任何被計畫的事情……加入一個項目的截止期限，以在此顯示。</translation>
     </message>
 </context>
 <context>
@@ -1442,7 +1443,7 @@
     <message>
         <location filename="../Windows/SelectLibraryDialog.qml" line="22"/>
         <source>Select Library</source>
-        <translation type="unfinished">Valitse kirjasto</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1450,7 +1451,7 @@
     <message>
         <location filename="../Windows/SelectTopLevelItemDialog.qml" line="22"/>
         <source>Select Item</source>
-        <translation type="unfinished">Valitse tietue</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1506,22 +1507,22 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="41"/>
         <source>Settings</source>
-        <translation type="unfinished">Asetukset</translation>
+        <translation type="unfinished">設定</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="47"/>
         <source>User Interface</source>
-        <translation type="unfinished">Käyttöliittymä</translation>
+        <translation type="unfinished">使用者介面</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="55"/>
         <source>Language:</source>
-        <translation type="unfinished">Kieli:</translation>
+        <translation type="unfinished">語言：</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="119"/>
         <source>Theme:</source>
-        <translation type="unfinished">Teema:</translation>
+        <translation type="unfinished">主題：</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="143"/>
@@ -1541,22 +1542,22 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="162"/>
         <source>Font Size:</source>
-        <translation type="unfinished">Fontin koko:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="179"/>
         <source>Use custom font size</source>
-        <translation type="unfinished">Käytä mukautettua fontin kokoa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="188"/>
         <source>Desktop Mode</source>
-        <translation type="unfinished">Työpöytätila</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="197"/>
         <source>Use Compact Style</source>
-        <translation type="unfinished">Käytä kompaktia tyyliä</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="206"/>
@@ -1578,12 +1579,12 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="231"/>
         <source>Override Scaling Factor</source>
-        <translation type="unfinished">Ohita skaalauskerroin</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="238"/>
         <source>Scale Factor:</source>
-        <translation type="unfinished">Skaalauskerroin:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="258"/>
@@ -1618,7 +1619,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/StartPage.qml" line="90"/>
         <source>Accounts</source>
-        <translation type="unfinished">Tilit</translation>
+        <translation type="unfinished">帳號</translation>
     </message>
     <message>
         <location filename="../Pages/StartPage.qml" line="112"/>
@@ -1631,17 +1632,17 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="43"/>
         <source>There were errors when synchronizing the library. Please ensure that the library settings are up to date.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">當同步書庫時有錯誤。請確定書庫設定是最新的。</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="49"/>
         <source>Ignore</source>
-        <translation type="unfinished">Ohita</translation>
+        <translation type="unfinished">忽略</translation>
     </message>
     <message>
         <location filename="../Widgets/SyncErrorNotificationBar.qml" line="53"/>
         <source>View</source>
-        <translation type="unfinished">Näytä</translation>
+        <translation type="unfinished">查看</translation>
     </message>
 </context>
 <context>
@@ -1649,7 +1650,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TagsEditor.qml" line="34"/>
         <source>Add Tag</source>
-        <translation type="unfinished">Lisää tunniste</translation>
+        <translation type="unfinished">加入標籤</translation>
     </message>
 </context>
 <context>
@@ -1662,7 +1663,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TodoListItem.qml" line="132"/>
         <source>✔ No open todos - everything done</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">沒有開啟的待辦事項——所有事情做完了</translation>
     </message>
 </context>
 <context>
@@ -1670,17 +1671,17 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Pages/TodoPage.qml" line="172"/>
         <source>Search term 1, search term 2, ...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜尋項目1、項目2……</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="198"/>
         <source>Tasks</source>
-        <translation type="unfinished">Tehtävät</translation>
+        <translation type="unfinished">任務</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="204"/>
         <source>Add new task...</source>
-        <translation type="unfinished">Lisää uusi tehtävä...</translation>
+        <translation type="unfinished">加入新的任務</translation>
     </message>
     <message>
         <location filename="../Pages/TodoPage.qml" line="295"/>
@@ -1698,7 +1699,7 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/TodosWidget.qml" line="215"/>
         <source>Due on: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">截止期限 %1</translation>
     </message>
 </context>
 <context>
@@ -1706,17 +1707,17 @@ This requires a restart of the app.</source>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="44"/>
         <source>An update to OpenTodoList %1 is available.</source>
-        <translation type="unfinished">Päivitys OpenTodoListin versioon %1 on saatavilla.</translation>
+        <translation type="unfinished">可更新到 OpenTodoList %1 。</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="50"/>
         <source>Ignore</source>
-        <translation type="unfinished">Ohita</translation>
+        <translation type="unfinished">忽略</translation>
     </message>
     <message>
         <location filename="../Widgets/UpdateNotificationBar.qml" line="54"/>
         <source>Download</source>
-        <translation type="unfinished">Lataa</translation>
+        <translation type="unfinished">下載</translation>
     </message>
 </context>
 </TS>
