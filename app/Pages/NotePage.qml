@@ -39,6 +39,11 @@ ItemPage {
         copyTopLevelItemAction.trigger()
     }
 
+    function copyLinkToPage() {
+        let url = shareUtils.createDeepLink(page.item)
+        OTL.Application.copyToClipboard(url.toString())
+    }
+
     function addTag() {
         tagsEditor.addTag()
     }
@@ -81,8 +86,9 @@ ItemPage {
     restorePage: function (state) {
         d.restoreLibraryUid = OTL.Application.uuidFromString(state.library)
         d.restoreNoteUid = OTL.Application.uuidFromString(state.note)
-        OTL.Application.loadLibrary(d.restoreLibraryUid)
-        OTL.Application.loadItem(d.restoreNoteUid)
+        d.loadLibraryTransactionId = OTL.Application.loadLibrary(
+                    d.restoreLibraryUid)
+        d.loadNoteTransactionId = OTL.Application.loadItem(d.restoreNoteUid)
     }
     restoreUrl: Qt.resolvedUrl("./NotePage.qml")
 
@@ -90,7 +96,9 @@ ItemPage {
         id: d
 
         property var restoreLibraryUid
+        property var loadLibraryTransactionId
         property var restoreNoteUid
+        property var loadNoteTransactionId
     }
 
     DeleteItemDialog {
@@ -290,22 +298,28 @@ ItemPage {
     Actions.CopyTopLevelItem {
         id: copyTopLevelItemAction
         item: page.item
-        itemUtils: page.C.ApplicationWindow.window.itemUtils
+        itemUtils: page.C.ApplicationWindow.window?.itemUtils
     }
 
     Connections {
         target: OTL.Application
 
-        function onLibraryLoaded(uid, data) {
-            if (uid === d.restoreLibraryUid) {
+        function onLibraryLoaded(uid, data, transactionId) {
+            if (uid === d.restoreLibraryUid
+                    && transactionId === d.loadLibraryTransactionId) {
                 page.library = OTL.Application.libraryFromData(data)
             }
         }
 
-        function onItemLoaded(uid, data) {
-            if (uid === d.restoreNoteUid) {
+        function onItemLoaded(uid, data, parents, library, transactionId) {
+            if (uid === d.restoreNoteUid
+                    && transactionId === d.loadNoteTransactionId) {
                 page.item = OTL.Application.itemFromData(data)
             }
         }
+    }
+
+    OTL.ShareUtils {
+        id: shareUtils
     }
 }

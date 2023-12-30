@@ -3,11 +3,13 @@ import QtQuick
 import "../Controls" as C
 import "../Components" as Cmp
 import "../Widgets" as W
+import "../Utils" as U
 
 C.ApplicationWindow {
     id: window
 
     property alias stackView: stackView
+    property alias deepLinkHandler: deepLinkHandler
 
     function openInitialPage(page, props) {
         stackView.clear()
@@ -57,5 +59,10 @@ C.ApplicationWindow {
         isSecondaryWindow: true
 
         leftSidebar.enabled: false
+    }
+
+    U.DeepLinkHandler {
+        id: deepLinkHandler
+        stackView: stackView
     }
 }

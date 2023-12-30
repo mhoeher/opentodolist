@@ -37,6 +37,11 @@ ItemPage {
         copyTopLevelItemAction.trigger()
     }
 
+    function copyLinkToPage() {
+        let url = shareUtils.createDeepLink(page.item)
+        OTL.Application.copyToClipboard(url.toString())
+    }
+
     function addTag() {
         tagsEditor.addTag()
     }
@@ -78,8 +83,9 @@ ItemPage {
     restorePage: function (state) {
         d.restoreImageUid = OTL.Application.uuidFromString(state.image)
         d.restoreLibraryUid = OTL.Application.uuidFromString(state.library)
-        OTL.Application.loadLibrary(d.restoreLibraryUid)
-        OTL.Application.loadItem(d.restoreImageUid)
+        d.loadLibraryTransactionId = OTL.Application.loadLibrary(
+                    d.restoreLibraryUid)
+        d.loadImageTransactionId = OTL.Application.loadItem(d.restoreImageUid)
     }
     restoreUrl: Qt.resolvedUrl("./ImagePage.qml")
 
@@ -88,6 +94,8 @@ ItemPage {
 
         property var restoreLibraryUid
         property var restoreImageUid
+        property var loadLibraryTransactionId
+        property var loadImageTransactionId
     }
 
     OTL.ShareUtils {
@@ -195,14 +203,16 @@ ItemPage {
     Connections {
         target: OTL.Application
 
-        function onLibraryLoaded(uid, data) {
-            if (uid === d.restoreLibraryUid) {
+        function onLibraryLoaded(uid, data, transactionId) {
+            if (uid === d.restoreLibraryUid
+                    && transactionId === d.loadLibraryTransactionId) {
                 page.library = OTL.Application.libraryFromData(data)
             }
         }
 
-        function onItemLoaded(uid, data) {
-            if (uid === d.restoreImageUid) {
+        function onItemLoaded(uid, data, parents, library, transactionId) {
+            if (uid === d.restoreImageUid
+                    && transactionId === d.loadImageTransactionId) {
                 page.item = OTL.Application.itemFromData(data)
             }
         }

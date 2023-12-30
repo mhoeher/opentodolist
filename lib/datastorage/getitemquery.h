@@ -39,7 +39,8 @@ public:
 
 signals:
 
-    void itemLoaded(const QVariant& data);
+    void itemLoaded(const QVariant& data, const QVariantList& parents, const QVariant& library);
+    void itemNotFound();
 
 public slots:
 

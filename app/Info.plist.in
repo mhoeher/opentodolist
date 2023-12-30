@@ -38,5 +38,16 @@
 	<string>NSApplication</string>
 	<key>NSSupportsAutomaticGraphicsSwitching</key>
 	<true/>
+
+	<!-- Custom URL schemes that the app handles -->
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>opentodolist</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>

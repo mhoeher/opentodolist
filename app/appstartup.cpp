@@ -50,7 +50,8 @@ AppStartup::AppStartup()
       m_parser(),
       m_engine(nullptr),
       m_translations(nullptr),
-      m_qmlPlugin()
+      m_qmlPlugin(),
+      m_urlHandler()
 {
     m_qmlPlugin.registerTypes("OpenTodoList");
 }
@@ -163,6 +164,8 @@ void AppStartup::createApp(int& argc, char* argv[])
         guiApp->setWindowIcon(QIcon(":/icons/hicolor/128x128/apps/net.rpdev.OpenTodoList.png"));
         guiApp->setDesktopFileName("net.rpdev.OpenTodoList");
     }
+
+    m_urlHandler.initialize();
 }
 
 void AppStartup::setupFonts()

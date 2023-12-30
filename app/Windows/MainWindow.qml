@@ -20,6 +20,7 @@ C.ApplicationWindow {
 
     property ItemCreatedNotification itemCreatedNotification: null
     property int defaultFontSize: 12
+    property alias deepLinkHandler: deepLinkHandler
 
     title: qsTr("OpenTodoList") + " - " + applicationVersion
     visible: true
@@ -343,5 +344,10 @@ C.ApplicationWindow {
 
         property alias width: window.width
         property alias height: window.height
+    }
+
+    DeepLinkHandler {
+        id: deepLinkHandler
+        stackView: stackView
     }
 }

@@ -50,6 +50,9 @@ struct LibraryCacheEntry
     QByteArray toByteArray() const;
     static LibraryCacheEntry fromByteArray(const QByteArray& data, const QByteArray& id);
 
+    QByteArray serialize() const;
+    static LibraryCacheEntry deserialize(const QByteArray& data);
+
     QUuid id;
     QVariant data;
     QVariant metaData;

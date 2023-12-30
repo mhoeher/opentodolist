@@ -125,6 +125,8 @@ target_sources(
         utils/translations.h
         utils/updateservice.cpp
         utils/updateservice.h
+        utils/urlhandler.h
+        utils/urlhandler.cpp
 
         # Include SimpleCrypt source:
         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp

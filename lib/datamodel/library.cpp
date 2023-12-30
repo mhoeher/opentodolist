@@ -94,6 +94,35 @@ LibraryCacheEntry LibraryCacheEntry::fromByteArray(const QByteArray& data, const
 }
 
 /**
+ * @brief Serialize the cache entry.
+ *
+ * This serializes the data such that it can be stored as one data blob (e.g. for snapshoting the
+ * data).
+ */
+QByteArray LibraryCacheEntry::serialize() const
+{
+    QVariantMap map;
+    map["id"] = id.toByteArray();
+    map["data"] = toByteArray();
+    return QCborValue(QCborMap::fromVariantMap(map)).toCbor();
+}
+
+/**
+ * @brief Restore an entry previously created via the serialize() method.
+ */
+LibraryCacheEntry LibraryCacheEntry::deserialize(const QByteArray& data)
+{
+    LibraryCacheEntry result;
+    QCborParserError error;
+    auto cbor = QCborValue::fromCbor(data, &error);
+    if (error.error == QCborError::NoError) {
+        auto map = cbor.toMap().toVariantMap();
+        result = fromByteArray(map["data"].toByteArray(), map["id"].toByteArray());
+    }
+    return result;
+}
+
+/**
    @brief Set the name of the library.
  */
 Library::Library(QObject* parent) : Library(QString(), parent) {}

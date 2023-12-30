@@ -78,20 +78,27 @@ Column {
             C.ToolTip.delay: 500
             text: Markdown.markdownToHtml(root.item?.notes ?? "")
 
+            onLinkActivated: link => {
+                                 shareUtils.openLink(link)
+                                 startEditingTimer.stop()
+                             }
+
             onReleased: mouse => {
                             if (mouse.button === Qt.RightButton) {
                                 notesContextMenu.popup()
                             } else {
                                 if (selectedText === "") {
-                                    let link = linkAt(mouse.x, mouse.y)
-                                    if (hoveredLink === "") {
-                                        root.editing = true
-                                    } else {
-                                        shareUtils.openLink(hoveredLink)
-                                    }
+                                    startEditingTimer.start()
                                 }
                             }
                         }
+
+            Timer {
+                id: startEditingTimer
+                interval: 100
+                repeat: false
+                onTriggered: root.editing = true
+            }
 
             C.Menu {
                 id: notesContextMenu
