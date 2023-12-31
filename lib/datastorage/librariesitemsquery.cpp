@@ -29,9 +29,9 @@
 #include "datastorage/cache.h"
 #include "datastorage/librariesitemsquery.h"
 
-static Q_LOGGING_CATEGORY(log, "OpenTodoList.LibrariesItemsQuery", QtDebugMsg)
+static Q_LOGGING_CATEGORY(log, "OpenTodoList.LibrariesItemsQuery", QtDebugMsg);
 
-        LibrariesItemsQuery::LibrariesItemsQuery(QObject* parent)
+LibrariesItemsQuery::LibrariesItemsQuery(QObject* parent)
     : ItemsQuery(parent), m_includeCalculatedValues(false)
 {
     qRegisterMetaType<LibraryCacheEntry>();

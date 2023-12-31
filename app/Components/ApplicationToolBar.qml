@@ -14,258 +14,146 @@ C.ToolBar {
     id: headerToolBar
 
     property string title: ""
-    property var pageActions: {
-        []
-    }
+    property C.StackView stackView
+    property Widgets.ApplicationMenu appMenu
+    property ApplicationShortcuts appShortcuts
 
     property alias sidebarControl: sidebarControl
     property alias backToolButton: backToolButton
     property alias problemsButton: problemsButton
-    property alias busyIndicator: busyIndicator
-    property list<ToolBarAction> dynamicPageActions
-
-    function closeMenu() {
-        pageMenuToolButton.menu.close()
-    }
-
-    leftPadding: 10
-    rightPadding: 10
-
-    QtObject {
-        id: d
-
-        property int numVisibleDynamicPageMenuItems: {
-            return visibleDynamicPageActions.length - numVisibleDynamicToolBarButtons
-        }
-
-        property int numVisibleDynamicToolBarButtons: {
-            var numButtons = widthForDynamicPageToolButtons
-                    / (pageMenuToolButton.width + toolBarLayout.spacing)
-            numButtons = parseInt(numButtons)
-            // Cap to maximum number of available actions:
-            numButtons = Math.min(numButtons, visibleDynamicPageActions.length)
-            return numButtons
-        }
-
-        property int widthForDynamicPageToolButtons: {
-            // Calculate the space available for dynamic tool buttons:
-            var availableWidth = toolBarLayout.width
-            // We need some space for the "static" buttons:
-            availableWidth -= sidebarControl.width * (sidebarControl.visible ? 1 : 0)
-                    + problemsButton.width * (problemsButton.visible ? 1 : 0) + backToolButton.width
-                    * (backToolButton.visible ? 1 : 0) + busyIndicator.implicitWidth
-                    * (busyIndicator.visible ? 1 : 0) + pageMenuToolButton.width
-            // Reserve some "minimum" space for the label:
-            availableWidth -= Math.min(fontMetrics.averageCharacterWidth * 30,
-                                       fontMetrics.boundingRect(
-                                           pageTitleLabel.text).width)
-            availableWidth -= 3 * toolBarLayout.spacing
-
-            // Cap to 0:
-            return Math.max(availableWidth, 0)
-        }
-
-        property var visibleDynamicToolBarButtons
-        property var visibleDynamicPageMenuItems
-        // The list of all page actions which are visible
-        property var visibleDynamicPageActions
-
-        visibleDynamicPageActions: {
-            var result = []
-            for (var i = 0; i < dynamicPageActions.length; ++i) {
-                var action = dynamicPageActions[i]
-                if (action.visible) {
-                    result.push(action)
-                }
-            }
-            return result
-        }
-
-        visibleDynamicToolBarButtons: {
-            var result = []
-            for (var i = 0; i < numVisibleDynamicToolBarButtons; ++i) {
-                var action = visibleDynamicPageActions[i]
-                result.push(action)
-            }
-            return result
-        }
-
-        visibleDynamicPageMenuItems: {
-            var result = []
-            for (var i = 0; i < numVisibleDynamicPageMenuItems; ++i) {
-                var action = visibleDynamicPageActions[numVisibleDynamicToolBarButtons + i]
-                result.push(action)
-            }
-            return result
-        }
-    }
 
     FontMetrics {
         id: fontMetrics
         font: pageTitleLabel.font
     }
 
-    RowLayout {
-        id: toolBarLayout
-
+    Column {
         width: parent.width
-        height: parent.height
+        RowLayout {
+            id: toolBarLayout
 
-        C.ToolButton {
-            id: sidebarControl
-            symbol: Fonts.Icons.mdiMenu
-            Layout.alignment: Qt.AlignVCenter
-        }
+            width: parent.width
 
-        C.ToolButton {
-            id: backToolButton
-
-            symbol: {
-                switch (Qt.platform.os) {
-                case "ios":
-                case "macos":
-                    return Fonts.Icons.mdiArrowBackIosNew
-                default:
-                    return Fonts.Icons.mdiArrowBack
-                }
+            C.ToolButton {
+                id: sidebarControl
+                symbol: appShortcuts.leftSidebar.symbol
+                down: appShortcuts.leftSidebar.checked
+                onClicked: appShortcuts.leftSidebar.triggered()
+                Layout.alignment: Qt.AlignVCenter
             }
-            Layout.alignment: Qt.AlignVCenter
-        }
 
-        C.ToolButton {
-            id: problemsButton
+            C.ToolButton {
+                id: backToolButton
 
-            symbol: Fonts.Icons.mdiReportProblem
-            Material.foreground: Utils.Colors.negativeColor
-            Layout.alignment: Qt.AlignVCenter
-        }
-
-        C.ToolButton {
-            id: cacheAccessIndicator
-
-            symbol: Fonts.Icons.mdiCached
-            background: Item {}
-            opacity: OTL.Application.cache.numberOfRunningTransactions > 0 ? 1.0 : 0.0
-            Behavior on opacity {
-                NumberAnimation {
-                    duration: 200
+                symbol: {
+                    switch (Qt.platform.os) {
+                    case "ios":
+                    case "macos":
+                        return Fonts.Icons.mdiArrowBackIosNew
+                    default:
+                        return Fonts.Icons.mdiArrowBack
+                    }
                 }
-            }
-        }
-
-        C.BusyIndicator {
-            id: busyIndicator
-
-            implicitHeight: backToolButton.height
-            implicitWidth: implicitHeight
-            hoverEnabled: true
-
-            C.ToolTip {
-                text: qsTr("Synchronizing library...")
+                Layout.alignment: Qt.AlignVCenter
             }
 
             C.Label {
-                anchors.centerIn: parent
-                text: "" + stackView.syncProgress + "%"
-                visible: stackView.syncProgress >= 0
-            }
-        }
-
-        C.Label {
-            id: pageTitleLabel
-            Layout.fillWidth: true
-            Layout.alignment: Qt.AlignVCenter
-            wrapMode: Text.NoWrap
-
-            elide: Text.ElideRight
-            text: headerToolBar.title
-        }
-
-        Repeater {
-            model: d.visibleDynamicToolBarButtons
-
-            delegate: C.ToolButton {
-                hoverEnabled: true
-                action: modelData
-                menu: action.menu
-                symbol: action.symbol
-                visible: action.visible
+                id: pageTitleLabel
+                Layout.fillWidth: true
                 Layout.alignment: Qt.AlignVCenter
-                C.ToolTip.text: action.text
+                wrapMode: Text.NoWrap
+                leftPadding: 10
+                rightPadding: 10
+
+                elide: Text.ElideRight
+                text: headerToolBar.title
+            }
+
+            C.ToolButton {
+                id: problemsButton
+
+                symbol: Fonts.Icons.mdiReportProblem
+                Material.foreground: Utils.Colors.negativeColor
+                Layout.alignment: Qt.AlignVCenter
+
+                C.ToolTip.text: qsTr("Problems")
                 C.ToolTip.visible: Utils.AppSettings.desktopMode && hovered
-                                   && action.text !== ""
                 C.ToolTip.delay: Utils.AppSettings.tooltipDelay
                 C.ToolTip.timeout: Utils.AppSettings.tooltipTimeout
             }
-        }
 
-        C.ToolButton {
-            id: pageMenuToolButton
+            Repeater {
+                model: appMenu.menus
+                delegate: C.ToolButton {
+                    //hoverEnabled: true
+                    symbol: modelData.symbol
+                    menu: C.Menu {
+                        id: menuFromAppMenu
 
-            property int numPageActions: pageActions.length
+                        property var appMenuEntry: modelData
 
-            symbol: Fonts.Icons.mdiMoreVert
-            visible: d.numVisibleDynamicPageMenuItems > 0 || numPageActions > 0
-            Layout.alignment: Qt.AlignVCenter
-            property var pageMenuEntries: {
-                let result = []
-                let dynamicPageActions = d.visibleDynamicPageMenuItems
-                for (var i = 0; i < dynamicPageActions.length; ++i) {
-                    let item = dynamicPageActions[i]
-                    result.push({
-                                    "type": "item",
-                                    "item": item
-                                })
-                }
-                if (dynamicPageActions.length > 0 && pageActions.length > 0) {
-                    result.push({
-                                    "type": "separator"
-                                })
-                }
-                for (i = 0; i < pageActions.length; ++i) {
-                    let item = pageActions[i]
-                    result.push({
-                                    "type": "item",
-                                    "item": item
-                                })
-                }
-                return result
-            }
+                        title: modelData.title
+                        modal: true
+                        y: applicationToolBar.height
 
-            onPageMenuEntriesChanged: {
-                pageMenuEntriesModel.clear()
-                for (var i = 0; i < pageMenuEntries.length; ++i) {
-                    pageMenuEntriesModel.append(pageMenuEntries[i])
-                }
-            }
+                        Repeater {
+                            model: menuFromAppMenu.appMenuEntry.items
+                            delegate: DelegateChooser {
+                                role: "type"
 
-            ListModel {
-                id: pageMenuEntriesModel
-                dynamicRoles: true
-            }
+                                DelegateChoice {
+                                    roleValue: "separator"
+                                    C.MenuSeparator {
+                                        visible: false
+                                        height: 0
+                                    }
+                                }
 
-            menu: C.Menu {
-                y: headerToolBar.height
-                modal: true
-                Repeater {
-                    model: pageMenuEntriesModel
-                    delegate: DelegateChooser {
-                        role: "type"
-
-                        DelegateChoice {
-                            roleValue: "separator"
-                            C.MenuSeparator {}
-                        }
-
-                        DelegateChoice {
-                            roleValue: "item"
-                            C.MenuItem {
-                                action: item
-                                visible: action.enabled
-                                height: visible ? implicitHeight : 0
+                                DelegateChoice {
+                                    roleValue: "item"
+                                    C.MenuItem {
+                                        text: modelData.text
+                                        onTriggered: modelData.triggered()
+                                        enabled: modelData.enabled
+                                        visible: enabled
+                                        height: visible ? implicitHeight : 0
+                                    }
+                                }
                             }
                         }
                     }
+                    Layout.alignment: Qt.AlignVCenter
+                    C.ToolTip.text: modelData.title
+                    C.ToolTip.visible: Utils.AppSettings.desktopMode && hovered
+                                       && modelData.title !== ""
+                    C.ToolTip.delay: Utils.AppSettings.tooltipDelay
+                    C.ToolTip.timeout: Utils.AppSettings.tooltipTimeout
+                }
+            }
+        }
+
+        C.ProgressBar {
+            id: progressBar
+
+            width: parent.width
+            from: 0
+            to: 100
+            value: {
+                if (stackView?.syncRunning) {
+                    // If a sync is running, report the current sync prograss as-is:
+                    return stackView?.syncProgress ?? 0
+                } else {
+                    // Otherwise, always return 0:
+                    return 0
+                }
+            }
+
+            indeterminate: {
+                if (stackView?.syncRunning ?? false) {
+                    return (stackView?.syncProgress ?? 0) < 0
+                } else {
+                    // Also show indeterminate progress when cache accesses are queued:
+                    return OTL.Application.cache.numberOfRunningTransactions > 0 ? 1.0 : 0.0
                 }
             }
         }

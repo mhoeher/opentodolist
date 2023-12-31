@@ -37,6 +37,7 @@ public:
 signals:
 
     void libraryLoaded(const QVariant& data);
+    void libraryNotFound();
 
 public slots:
 

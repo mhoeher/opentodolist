@@ -16,15 +16,9 @@ QQC2.ToolButton {
 
     font.family: Fonts.Fonts.icons
     font.pointSize: Utils.AppSettings.defaultFontSize * 1.3
-    onClicked: {
-        if (menu) {
-            if (menu.visible) {
-                menu.close()
-            } else {
-                menu.open()
-            }
-        }
-    }
+    onClicked: if (menu) {
+                   menu.open()
+               }
     Material.background: backgroundColor
     Material.foreground: foregroundColor
 }

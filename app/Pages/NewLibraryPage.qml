@@ -21,9 +21,9 @@ C.Page {
     signal libraryCreated(var library)
 
     title: qsTr("Create Library")
-    onAccountSelected: page.openPage(newLibaryFromAccountPage, {
-                                         "account": account
-                                     })
+    onAccountSelected: account => page.openPage(newLibaryFromAccountPage, {
+                                                    "account": account
+                                                })
 
     Component {
         id: newLocalLibraryPage

@@ -1,6 +1,6 @@
 import QtQuick 2.10
 import QtQuick.Layouts 1.1
-import Qt.labs.settings 1.0
+import QtCore
 import "../Dialogs" as Dialogs
 
 import OpenTodoList 1.0 as OTL
@@ -39,7 +39,8 @@ C.Page {
         let uid = data.library
         if (uid) {
             d.restoreLibraryUid = OTL.Application.uuidFromString(uid)
-            OTL.Application.loadLibrary(d.restoreLibraryUid)
+            d.loadLibraryTransactionId = OTL.Application.loadLibrary(
+                        d.restoreLibraryUid)
         }
         let tag = data.tag
         if (tag) {
@@ -72,6 +73,11 @@ C.Page {
         deleteLibraryDialog.deleteLibrary(library)
     }
 
+    function copyLinkToPage() {
+        let url = shareUtils.createDeepLink(page.library)
+        OTL.Application.copyToClipboard(url.toString())
+    }
+
     function renameItem() {
         renameLibraryDialog.renameLibrary(library)
     }
@@ -82,13 +88,14 @@ C.Page {
     }
 
     function sort() {
-        sortByMenu.open()
+        sortByMenu.popup()
     }
 
     property bool syncRunning: {
         return library && OTL.Application.directoriesWithRunningSync.indexOf(
                     library.directory) >= 0
     }
+
     property int syncProgress: {
         let result = -1
         if (library) {
@@ -99,8 +106,6 @@ C.Page {
         }
         return result
     }
-
-    property alias pageActions: libraryActions.actions
 
     clip: true
     title: library?.name ?? ""
@@ -113,17 +118,11 @@ C.Page {
         category: "LibraryPage"
     }
 
-    LibraryPageActions {
-        id: libraryActions
-
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
-    }
-
     QtObject {
         id: d
 
         property var restoreLibraryUid
+        property var loadLibraryTransactionId
 
         function createNote(library, edit, tags) {
             var properties = {
@@ -173,6 +172,10 @@ C.Page {
                                            "library": page.library
                                        })
         }
+    }
+
+    OTL.ShareUtils {
+        id: shareUtils
     }
 
     RenameLibraryDialog {
@@ -259,7 +262,8 @@ C.Page {
 
         C.MenuItem {
             text: qsTr("Copy")
-            onTriggered: ItemUtils.copyTopLevelItem(itemContextMenu.item)
+            onTriggered: C.ApplicationWindow.window.itemUtils.copyTopLevelItem(
+                             itemContextMenu.item)
         }
 
         C.MenuItem {
@@ -505,7 +509,6 @@ C.Page {
         id: sortByMenu
 
         title: qsTr("Sort By")
-        anchors.centerIn: parent
         modal: true
 
         C.MenuItem {
@@ -545,10 +548,11 @@ C.Page {
     }
 
     Connections {
-        target: OTL.Application
+        target: page.library ? null : OTL.Application
 
-        function onLibraryLoaded(uid, data) {
-            if (uid === d.restoreLibraryUid) {
+        function onLibraryLoaded(uid, data, transactionId) {
+            if (uid === d.restoreLibraryUid
+                    && transactionId === d.loadLibraryTransactionId) {
                 page.library = OTL.Application.libraryFromData(data)
             }
         }

@@ -13,12 +13,12 @@ msgctxt "AboutPage|"
 msgid "About..."
 msgstr "À propos..."
 
-#: ../Pages/AboutPage.qml:29
+#: ../Pages/AboutPage.qml:33
 msgctxt "AboutPage|"
 msgid "OpenTodoList"
 msgstr "OpenTodoList"
 
-#: ../Pages/AboutPage.qml:36
+#: ../Pages/AboutPage.qml:40
 msgctxt "AboutPage|"
 msgid "A todo and task managing application."
 msgstr "Une application de gestion des tâches et listes de tâches."
@@ -48,22 +48,22 @@ msgctxt "AboutThirdPartyPage|"
 msgid "Download: <a href='%1'>%1</a>"
 msgstr "Télécharger : <a href='%1'>%1</a>"
 
-#: ../Widgets/Attachments.qml:33
+#: ../Widgets/Attachments.qml:37
 msgctxt "Attachments|"
 msgid "Attach File"
 msgstr "Joindre fichier"
 
-#: ../Widgets/Attachments.qml:48
+#: ../Widgets/Attachments.qml:52
 msgctxt "Attachments|"
 msgid "Delete Attachment?"
 msgstr "Supprimer pièce jointe ?"
 
-#: ../Widgets/Attachments.qml:52
+#: ../Widgets/Attachments.qml:56
 msgctxt "Attachments|"
 msgid "Are you sure you want to delete the attachment <strong>%1</strong>? This action cannot be undone."
 msgstr "Êtes-vous sûr de vouloir supprimer la pièce jointe <strong>%1</strong> ? Cette action ne peut pas être annulée."
 
-#: ../Widgets/Attachments.qml:66
+#: ../Widgets/Attachments.qml:70
 msgctxt "Attachments|"
 msgid "Attachments"
 msgstr "Fichiers joints"
@@ -443,37 +443,37 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Entrer le titre de la bibliothèque..."
 
-#: ../Pages/ScheduleViewPage.qml:160
+#: ../Pages/ScheduleViewPage.qml:136
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Aujourd'hui"
 
-#: ../Pages/ScheduleViewPage.qml:161
+#: ../Pages/ScheduleViewPage.qml:137
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Demain"
 
-#: ../Pages/ScheduleViewPage.qml:197
+#: ../Pages/ScheduleViewPage.qml:173
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "Plus tard cette semaine"
 
-#: ../Pages/ScheduleViewPage.qml:199
+#: ../Pages/ScheduleViewPage.qml:175
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "Semaine prochaine"
 
-#: ../Pages/ScheduleViewPage.qml:200
+#: ../Pages/ScheduleViewPage.qml:176
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "Prochainement"
 
-#: ../Pages/ScheduleViewPage.qml:279
+#: ../Pages/ScheduleViewPage.qml:255
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr "Rien de prévu... Ajoutez une date d'échéance aux éléments pour qu'ils apparaissent ici."
 
-#: ../Pages/ScheduleViewPage.qml:136
+#: ../Pages/ScheduleViewPage.qml:113
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "En retard"
@@ -575,12 +575,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Todos achevés"
 
-#: ../Pages/TodoPage.qml:169
+#: ../Pages/TodoPage.qml:172
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de recherche 1, terme de recherche 2, ...."
 
-#: ../Pages/TodoPage.qml:195
+#: ../Pages/TodoPage.qml:198
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Tâches"
@@ -695,13 +695,13 @@ msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Ajouter un nouveau todo..."
 
-#: ../Pages/TodoPage.qml:201
+#: ../Pages/TodoPage.qml:204
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Ajouter une nouvelle tâche..."
 
 #. Ou "Échéance :"
-#: ../Widgets/TodosWidget.qml:217
+#: ../Widgets/TodosWidget.qml:215
 msgctxt "TodosWidget|"
 msgid "Due on: %1"
 msgstr "Pour le: %1"
@@ -895,47 +895,47 @@ msgctxt "AboutPage|"
 msgid "(c) RPdev 2013-2020, version %1"
 msgstr "(c) RPdev 2013-2020, version %1"
 
-#: ../Pages/AboutPage.qml:64
+#: ../Pages/AboutPage.qml:68
 msgctxt "AboutPage|"
 msgid "OpenTodoList is released under the terms of the <a href='app-license'>GNU General Public License</a> version 3 or (at your choice) any later version."
 msgstr "OpenTodoList est publié sous les termes de la <a href='app-license'>GNU General Public License</a> version 3 ou (à votre choix) toute version ultérieure."
 
-#: ../Pages/AboutPage.qml:81
+#: ../Pages/AboutPage.qml:85
 msgctxt "AboutPage|"
 msgid "Report an Issue"
 msgstr "Signaler un problème"
 
-#: ../Pages/AboutPage.qml:110
+#: ../Pages/AboutPage.qml:114
 msgctxt "AboutPage|"
 msgid "Third Party Libraries and Resources"
 msgstr "Bibliothèques et ressources tierces"
 
-#: ../Pages/AboutPage.qml:147
+#: ../Pages/AboutPage.qml:151
 msgctxt "AboutPage|"
 msgid "Author:"
 msgstr "Auteur:"
 
-#: ../Pages/AboutPage.qml:152
+#: ../Pages/AboutPage.qml:156
 msgctxt "AboutPage|"
 msgid "<a href='%2'>%1</a>"
 msgstr "<a href='%2'>%1</a>"
 
-#: ../Pages/AboutPage.qml:159
+#: ../Pages/AboutPage.qml:163
 msgctxt "AboutPage|"
 msgid "License:"
 msgstr "Licence:"
 
-#: ../Pages/AboutPage.qml:164
+#: ../Pages/AboutPage.qml:168
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%2</a>"
 msgstr "<a href='%1'>%2</a>"
 
-#: ../Pages/AboutPage.qml:170
+#: ../Pages/AboutPage.qml:174
 msgctxt "AboutPage|"
 msgid "Download:"
 msgstr "Télécharger :"
 
-#: ../Pages/AboutPage.qml:174
+#: ../Pages/AboutPage.qml:178
 msgctxt "AboutPage|"
 msgid "<a href='%1'>%1</a>"
 msgstr "<a href='%1'>%1</a>"
@@ -1232,12 +1232,12 @@ msgctxt "MainWindow|"
 msgid "Synchronizing library..."
 msgstr "Synchronisation de la bibliothèque..."
 
-#: ../Pages/NotePage.qml:162
+#: ../Pages/NotePage.qml:164
 msgctxt "NotePage|"
 msgid "Main Page"
 msgstr "Page principale"
 
-#: ../Pages/NotePage.qml:229
+#: ../Pages/NotePage.qml:231
 msgctxt "NotePage|"
 msgid "New Page"
 msgstr "Nouvelle page"
@@ -1359,7 +1359,7 @@ msgctxt "Translations|"
 msgid "Turkmen"
 msgstr "Turkmène"
 
-#: ../Actions/DeleteItem.qml:8
+#: ../Actions/DeleteItem.qml:11
 msgctxt "DeleteItem|"
 msgid "Delete"
 msgstr "Supprimer"
@@ -1491,7 +1491,7 @@ msgctxt "RecurrenceDialog|"
 msgid "Recur relative to the date when marking as done"
 msgstr "Se répète une fois la tâche réalisée"
 
-#: ../Actions/RenameItem.qml:8
+#: ../Actions/RenameItem.qml:11
 msgctxt "RenameItem|"
 msgid "Rename"
 msgstr "Renommer"
@@ -1506,7 +1506,7 @@ msgctxt "SetDueThisWeek|"
 msgid "Set Due Next Week"
 msgstr "Pour la semaine prochaine"
 
-#: ../Actions/SetDueTo.qml:8
+#: ../Actions/SetDueTo.qml:11
 msgctxt "SetDueTo|"
 msgid "Select Due Date"
 msgstr "Choisir la date d'échéance"
@@ -1533,12 +1533,12 @@ msgctxt "TodosWidgetDelegate|"
 msgid "Swipe to mark done"
 msgstr "Faire glisser si réalisé"
 
-#: ../Menues/LibraryPageActions.qml:35
+#: ../Menues/LibraryPageActions.qml:39
 msgctxt "LibraryPageActions|"
 msgid "Sync Now"
 msgstr "Synchroniser maintenant"
 
-#: ../Menues/LibraryPageActions.qml:52
+#: ../Menues/LibraryPageActions.qml:56
 msgctxt "LibraryPageActions|"
 msgid "Sync Log"
 msgstr "Journal de synchronisation"
@@ -1578,42 +1578,42 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:205
+#: ../appstartup.cpp:195
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Gérer vos données personnelles."
 
-#: ../appstartup.cpp:211
+#: ../appstartup.cpp:201
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Activer les optimisations pour écrans tactiles."
 
-#: ../appstartup.cpp:214
+#: ../appstartup.cpp:204
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Exécuter uniquement le service d'arrière-plan de l'application"
 
-#: ../appstartup.cpp:216
+#: ../appstartup.cpp:206
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Exécutez uniquement l'interface graphique de l'application et connectez-vous à un service d'arrière-plan existant"
 
-#: ../appstartup.cpp:221
+#: ../appstartup.cpp:211
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Activez une console sous Windows pour recueillir les données de débogage"
 
-#: ../appstartup.cpp:372
+#: ../appstartup.cpp:362
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Ouvrir"
 
-#: ../appstartup.cpp:437
+#: ../appstartup.cpp:428
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Quitter"
 
-#: ../Actions/DeleteCompletedChildren.qml:8
+#: ../Actions/DeleteCompletedChildren.qml:11
 msgctxt "DeleteCompletedChildren|"
 msgid "Delete Completed Items"
 msgstr "Effacer les éléments terminés"
@@ -1875,7 +1875,7 @@ msgctxt "EditWebDAVAccountPage|"
 msgid "Failed to connect to the server. Please check your user name, password and the server address and retry."
 msgstr "La connexion au serveur a échoué. Veuillez vérifier votre nom d'utilisateur, votre mot de passe ainsi que l'adresse du serveur et réessayer."
 
-#: ../Utils/ItemUtils.qml:174
+#: ../Utils/ItemUtils.qml:173
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
 msgstr "Déplacer ToDo dans ..."
@@ -1890,7 +1890,7 @@ msgctxt "MainWindow|"
 msgid "Move"
 msgstr "Déplacer"
 
-#: ../Actions/MoveTodo.qml:11
+#: ../Actions/MoveTodo.qml:13
 msgctxt "MoveTodo|"
 msgid "Move"
 msgstr "Déplacer"
@@ -2169,7 +2169,7 @@ msgstr "Utilisez cette option pour adapter manuellement l'interface utilisateur.
 "\n"
 "Cela nécessite un redémarrage de l'application."
 
-#: ../Utils/ItemUtils.qml:189
+#: ../Utils/ItemUtils.qml:188
 msgctxt "ItemUtils|"
 msgid "Convert Task to Todo and Move Into..."
 msgstr "Convertir une tâche en Todo et la déplacer dans..."
@@ -2189,7 +2189,7 @@ msgctxt "ProblemsPage|"
 msgid "Synchronization failed for library"
 msgstr "La synchronisation a échoué pour la bibliothèque"
 
-#: ../Actions/PromoteTask.qml:12
+#: ../Actions/PromoteTask.qml:14
 msgctxt "PromoteTask|"
 msgid "Promote"
 msgstr "Promouvoir"
@@ -2204,12 +2204,12 @@ msgctxt "WebDAVSynchronizer|"
 msgid "Failed to create sync lock:"
 msgstr "Échec de la création d'un verrou de synchronisation :"
 
-#: ../Pages/AboutPage.qml:88
+#: ../Pages/AboutPage.qml:92
 msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Copier les Informations Système"
 
-#: ../appstartup.cpp:379
+#: ../appstartup.cpp:370
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Note Rapide"
@@ -2234,7 +2234,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Annuler"
 
-#: ../appstartup.cpp:317 ../appstartup.cpp:324
+#: ../appstartup.cpp:307 ../appstartup.cpp:314
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "inconnu"
@@ -2244,52 +2244,52 @@ msgctxt "QuickNoteWindow|"
 msgid "Quick Notes"
 msgstr "Notes Rapides"
 
-#: ../Windows/QuickNoteWindow.qml:46
+#: ../Windows/QuickNoteWindow.qml:49
 msgctxt "QuickNoteWindow|"
 msgid "Quick Notes Editor"
 msgstr "Éditeur de Notes Rapides"
 
-#: ../Windows/QuickNoteWindow.qml:57
+#: ../Windows/QuickNoteWindow.qml:60
 msgctxt "QuickNoteWindow|"
 msgid "Open the main window"
 msgstr "Ouvrir la fenêtre principale"
 
-#: ../Windows/QuickNoteWindow.qml:70
+#: ../Windows/QuickNoteWindow.qml:73
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note Title"
 msgstr "Titre de la Note Rapide"
 
-#: ../Windows/QuickNoteWindow.qml:133
+#: ../Windows/QuickNoteWindow.qml:137
 msgctxt "QuickNoteWindow|"
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: ../Windows/QuickNoteWindow.qml:140
+#: ../Windows/QuickNoteWindow.qml:144
 msgctxt "QuickNoteWindow|"
 msgid "Save the entered notes to the selected library. Press and hold the button to get more options for saving."
 msgstr "Sauvegarder les notes saisies dans la bibliothèque sélectionnée. Maintenez le bouton enfoncé pour obtenir d'autres options d'enregistrement."
 
-#: ../Windows/QuickNoteWindow.qml:158
+#: ../Windows/QuickNoteWindow.qml:167
 msgctxt "QuickNoteWindow|"
 msgid "Save as Note"
 msgstr "Sauvegarder comme Note"
 
-#: ../Windows/QuickNoteWindow.qml:169
+#: ../Windows/QuickNoteWindow.qml:180
 msgctxt "QuickNoteWindow|"
 msgid "Save as Todo List"
 msgstr "Sauvegarder comme Liste des Tâches"
 
-#: ../Windows/QuickNoteWindow.qml:171
+#: ../Windows/QuickNoteWindow.qml:184
 msgctxt "QuickNoteWindow|"
 msgid "Quick Todo List"
 msgstr "Liste des Tâches Rapide"
 
-#: ../Windows/QuickNoteWindow.qml:161
+#: ../Windows/QuickNoteWindow.qml:171
 msgctxt "QuickNoteWindow|"
 msgid "Quick Note"
 msgstr "Note Rapide"
 
-#: ../Windows/QuickNoteWindow.qml:83
+#: ../Windows/QuickNoteWindow.qml:86
 msgctxt "QuickNoteWindow|"
 msgid "Type your notes here..."
 msgstr "Saisissez vos notes ici..."
@@ -2329,12 +2329,12 @@ msgctxt "TodoListItem|"
 msgid "Due on %1"
 msgstr "Pour le %1"
 
-#: ../Actions/CopyTodo.qml:11
+#: ../Actions/CopyTodo.qml:13
 msgctxt "CopyTodo|"
 msgid "Copy"
 msgstr "Copier"
 
-#: ../Actions/CopyTopLevelItem.qml:11
+#: ../Actions/CopyTopLevelItem.qml:13
 msgctxt "CopyTopLevelItem|"
 msgid "Copy"
 msgstr "Copier"
@@ -2440,12 +2440,12 @@ msgctxt "SettingsPage|"
 msgid "Desktop Mode"
 msgstr "Mode bureau"
 
-#: ../Utils/ItemUtils.qml:205
+#: ../Utils/ItemUtils.qml:204
 msgctxt "ItemUtils|"
 msgid "Copy Item Into..."
 msgstr "Copier l'élément dans..."
 
-#: ../Utils/ItemUtils.qml:222
+#: ../Utils/ItemUtils.qml:221
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
 msgstr "Copier la tâche dans..."
@@ -2470,12 +2470,12 @@ msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr "Afficher à la fin"
 
-#: ../Pages/TodoPage.qml:297
+#: ../Pages/TodoPage.qml:295
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr "Montrer les terminés"
 
-#: ../Pages/TodoPage.qml:304
+#: ../Pages/TodoPage.qml:302
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr "Afficher à la fin"
@@ -2490,17 +2490,17 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
 msgstr "Dropbox"
 
-#: ../../lib/application.cpp:203
+#: ../../lib/application.cpp:210
 msgctxt "Application|"
 msgid "Background Sync"
 msgstr "Synchronisation en arrière plan"
 
-#: ../../lib/application.cpp:207
+#: ../../lib/application.cpp:214
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
 msgstr "L'application poursuit la synchronisation de vos données en arrière plan"
 
-#: ../../lib/application.cpp:211
+#: ../../lib/application.cpp:218
 msgctxt "Application|"
 msgid "Quit"
 msgstr "Quitter"
@@ -2641,7 +2641,7 @@ msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
 msgstr "Bibliothèque"
 
-#: ../Pages/ScheduleViewPage.qml:56
+#: ../Pages/ScheduleViewPage.qml:43
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
 msgstr "Planifier"
@@ -2666,52 +2666,52 @@ msgctxt "StartPage|"
 msgid "Add an account"
 msgstr "Ajouter un compte"
 
-#: ../Pages/LogViewPage.qml:78
+#: ../Pages/LogViewPage.qml:70
 msgctxt "LogViewPage|"
 msgid "Debugging information"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:80
+#: ../Pages/LogViewPage.qml:72
 msgctxt "LogViewPage|"
 msgid "Warning"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:82
+#: ../Pages/LogViewPage.qml:74
 msgctxt "LogViewPage|"
 msgid "Error"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:84
+#: ../Pages/LogViewPage.qml:76
 msgctxt "LogViewPage|"
 msgid "Download"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:86
+#: ../Pages/LogViewPage.qml:78
 msgctxt "LogViewPage|"
 msgid "Upload"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:88
+#: ../Pages/LogViewPage.qml:80
 msgctxt "LogViewPage|"
 msgid "Create local folder"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:90
+#: ../Pages/LogViewPage.qml:82
 msgctxt "LogViewPage|"
 msgid "Create remote folder"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:92
+#: ../Pages/LogViewPage.qml:84
 msgctxt "LogViewPage|"
 msgid "Deleting locally"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:94
+#: ../Pages/LogViewPage.qml:86
 msgctxt "LogViewPage|"
 msgid "Deleting remotely"
 msgstr ""
 
-#: ../Pages/LogViewPage.qml:96
+#: ../Pages/LogViewPage.qml:88
 msgctxt "LogViewPage|"
 msgid "Unknown log message type"
 msgstr ""
@@ -2721,7 +2721,7 @@ msgctxt "TodosWidgetDelegate|"
 msgid "More Actions..."
 msgstr ""
 
-#: ../Menues/LibraryPageActions.qml:62
+#: ../Menues/LibraryPageActions.qml:66
 msgctxt "LibraryPageActions|"
 msgid "Open Library Folder"
 msgstr ""

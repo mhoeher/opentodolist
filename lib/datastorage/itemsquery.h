@@ -25,6 +25,7 @@
 #include <QObject>
 #include <QSet>
 #include <QSharedPointer>
+#include <QUuid>
 #include <QVariant>
 
 class Cache;
@@ -45,11 +46,15 @@ class ItemsQuery : public QObject
     friend class ItemsQueryRunnable;
     friend class Cache;
 
+    Q_PROPERTY(QUuid queryUid READ queryUid WRITE setQueryUid NOTIFY queryUidChanged FINAL)
+
 public:
     explicit ItemsQuery(QObject* parent = nullptr);
     ~ItemsQuery() override;
 
     bool isNonDBQuery() const;
+
+    QUuid queryUid() const;
 
 signals:
 
@@ -73,6 +78,8 @@ signals:
      * It contains a list of UIDs of the libraries which have been changed.
      */
     void librariesChanged(QVariantList libraries);
+
+    void queryUidChanged();
 
 protected:
     Cache* cache() const;
@@ -131,6 +138,7 @@ private:
     QSharedPointer<QLMDB::Database> m_global;
     QSharedPointer<QLMDB::Database> m_items;
     QSharedPointer<QLMDB::Database> m_children;
+    QUuid m_uid;
     bool m_dataChanged;
     bool m_isNonDBQuery;
     QSet<QByteArray> m_changedLibrariesUids;
@@ -138,6 +146,7 @@ private:
     QHash<QUuid, QUuid> m_parentsMap; // Maps from item UID -> parent UID
 
     void finish();
+    void setQueryUid(const QUuid& newUid);
 };
 
 #endif // DATASTORAGE_ITEMSQUERY_H_

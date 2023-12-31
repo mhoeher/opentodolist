@@ -19,10 +19,11 @@ ItemPage {
     signal closePage
     signal openPage(var component, var properties)
 
-    property var goBack: itemNotesEditor.editing ? function () {
-        itemNotesEditor.finishEditing()
-    } : undefined
-    property alias pageActions: libraryActions.actions
+    property var goBack: {
+        if (itemNotesEditor.editing) {
+            return () => itemNotesEditor.finishEditing()
+        }
+    }
 
     function deleteItem() {
         confirmDeleteDialog.deleteItem(item)
@@ -34,6 +35,11 @@ ItemPage {
 
     function copyItem() {
         copyTopLevelItemAction.trigger()
+    }
+
+    function copyLinkToPage() {
+        let url = shareUtils.createDeepLink(page.item)
+        OTL.Application.copyToClipboard(url.toString())
     }
 
     function addTag() {
@@ -57,6 +63,14 @@ ItemPage {
         dueDateSelectionDialog.open()
     }
 
+    function openInNewWindow() {
+        openStackViewWindow(restoreUrl, {
+                                "item": OTL.Application.cloneItem(page.item),
+                                "library": OTL.Application.cloneLibrary(
+                                               page.library)
+                            })
+    }
+
     title: Markdown.markdownToPlainText(item.title)
     topLevelItem: item
 
@@ -69,8 +83,9 @@ ItemPage {
     restorePage: function (state) {
         d.restoreImageUid = OTL.Application.uuidFromString(state.image)
         d.restoreLibraryUid = OTL.Application.uuidFromString(state.library)
-        OTL.Application.loadLibrary(d.restoreLibraryUid)
-        OTL.Application.loadItem(d.restoreImageUid)
+        d.loadLibraryTransactionId = OTL.Application.loadLibrary(
+                    d.restoreLibraryUid)
+        d.loadImageTransactionId = OTL.Application.loadItem(d.restoreImageUid)
     }
     restoreUrl: Qt.resolvedUrl("./ImagePage.qml")
 
@@ -79,17 +94,12 @@ ItemPage {
 
         property var restoreLibraryUid
         property var restoreImageUid
+        property var loadLibraryTransactionId
+        property var loadImageTransactionId
     }
 
     OTL.ShareUtils {
         id: shareUtils
-    }
-
-    LibraryPageActions {
-        id: libraryActions
-
-        library: page.library
-        onOpenPage: page.openPage(component, properties)
     }
 
     DeleteItemDialog {
@@ -187,19 +197,22 @@ ItemPage {
     Actions.CopyTopLevelItem {
         id: copyTopLevelItemAction
         item: page.item
+        itemUtils: page.C.ApplicationWindow.window.itemUtils
     }
 
     Connections {
         target: OTL.Application
 
-        function onLibraryLoaded(uid, data) {
-            if (uid === d.restoreLibraryUid) {
+        function onLibraryLoaded(uid, data, transactionId) {
+            if (uid === d.restoreLibraryUid
+                    && transactionId === d.loadLibraryTransactionId) {
                 page.library = OTL.Application.libraryFromData(data)
             }
         }
 
-        function onItemLoaded(uid, data) {
-            if (uid === d.restoreImageUid) {
+        function onItemLoaded(uid, data, parents, library, transactionId) {
+            if (uid === d.restoreImageUid
+                    && transactionId === d.loadImageTransactionId) {
                 page.item = OTL.Application.itemFromData(data)
             }
         }

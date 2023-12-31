@@ -20,7 +20,10 @@
 #include <qlmdb/database.h>
 #include <qlmdb/transaction.h>
 
+#include <QQueue>
+
 #include "datamodel/item.h"
+#include "datamodel/library.h"
 #include "datastorage/getitemquery.h"
 
 GetItemQuery::GetItemQuery(QObject* parent) : ItemsQuery(parent), m_uid() {}
@@ -38,13 +41,39 @@ void GetItemQuery::setUid(const QUuid& uid)
 void GetItemQuery::run()
 {
     QLMDB::Transaction t(*context(), QLMDB::Transaction::ReadOnly);
-    auto uid = m_uid.toByteArray();
-    auto data = items()->get(t, uid);
-    if (!data.isNull()) {
-        auto entry = ItemCacheEntry::fromByteArray(data, uid);
-        if (entry.valid) {
-            calculateValues(t, &entry);
-            emit itemLoaded(QVariant::fromValue(entry));
+
+    QQueue<QUuid> uids;
+    QVariant result;
+    QVariantList parents;
+    QVariant library;
+
+    uids.enqueue(m_uid);
+
+    while (!uids.isEmpty()) {
+        auto uid = uids.dequeue().toByteArray();
+        auto data = items()->get(t, uid);
+        if (!data.isNull()) {
+            auto entry = ItemCacheEntry::fromByteArray(data, uid);
+            if (entry.valid) {
+                calculateValues(t, &entry);
+                if (result.isNull()) {
+                    result = QVariant::fromValue(entry);
+                } else {
+                    parents.append(QVariant::fromValue(entry));
+                }
+                uids.enqueue(entry.parentId);
+            } else {
+                auto libEntry = LibraryCacheEntry::fromByteArray(data, uid);
+                if (libEntry.valid) {
+                    library = QVariant::fromValue(libEntry);
+                }
+            }
         }
+    }
+
+    if (result.isNull()) {
+        emit itemNotFound();
+    } else {
+        emit itemLoaded(result, parents, library);
     }
 }

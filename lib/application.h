@@ -117,13 +117,16 @@ public:
     Q_INVOKABLE void deleteItem(Item* item);
     Q_INVOKABLE void deleteDoneTodos(TodoList* todoList);
     Q_INVOKABLE void deleteDoneTasks(Todo* todo);
-    Q_INVOKABLE void loadLibrary(const QUuid& uid);
+    Q_INVOKABLE QUuid loadLibrary(const QUuid& uid);
     Q_INVOKABLE Library* libraryFromData(const QVariant& data);
-    Q_INVOKABLE void loadItem(const QUuid& uid);
+    Q_INVOKABLE QUuid loadItem(const QUuid& uid);
     Q_INVOKABLE Item* itemFromData(const QVariant& data);
     Q_INVOKABLE Item* cloneItem(Item* item);
+    Q_INVOKABLE Library* cloneLibrary(Library* library);
     Q_INVOKABLE QString saveItem(Item* item);
     Q_INVOKABLE void restoreItem(const QString& data);
+    Q_INVOKABLE void markAllItemsAsDone(Item* item);
+    Q_INVOKABLE void markAllItemsAsUndone(Item* item);
 
     Q_INVOKABLE void saveValue(const QString& name, const QVariant& value);
     Q_INVOKABLE QVariant loadValue(const QString& name, const QVariant& defaultValue = QVariant());
@@ -166,6 +169,8 @@ public:
     createNextCloudLoginFlow(bool ignoreSslErrors) const;
 
     Q_INVOKABLE void syncAllLibraries();
+
+    Q_INVOKABLE void aboutQt() const;
 
 #ifdef Q_OS_ANDROID
     Q_INVOKABLE void finishActivity();
@@ -237,16 +242,58 @@ signals:
      *
      * This signal is emitted to indicate that the @p data of the library with the given @p uid
      * has been loaded. Use the libraryFromData() method to create an item from the serialized data.
+     * The @p transactionId is the UID returned by the loadLibrary() method.
      */
-    void libraryLoaded(const QUuid& uid, const QVariant& data);
+    void libraryLoaded(const QUuid& uid, const QVariant& data, const QUuid& transactionId);
+
+    /**
+     * @brief Indicates that a given library was not found.
+     *
+     * This signal is emitted if the library with the given @p uid was not found. The
+     * @p transactionId is the UID returned by the loadLibrary() method.
+     */
+    void libraryNotFound(const QUuid& uid, const QUuid& transactionId);
 
     /**
      * @brief The data of an item has been loaded.
      *
      * This signal is emitted to indicate that the @p data of the item with the given @p uid
      * has been loaded. Use the itemFromData() method to create an item from the serialized data.
+     *
+     * The @p parents contains the data of the parent items of the item, with the first being the
+     * direct parent and the last one being the top level item that the item belongs to.
+     *
+     * @p library is the data of the library the item belongs to.
+     *
+     * The @p transactionId is the UID returned by the loadItem() method.
      */
-    void itemLoaded(const QUuid& uid, const QVariant& data);
+    void itemLoaded(const QUuid& uid, const QVariant& data, const QVariantList& parents,
+                    const QVariant& library, const QUuid& transactionId);
+
+    /**
+     * @brief An item could not be found in the cache.
+     *
+     * This signal is emitted as a response to the loadItem() method when the given item cannot be
+     * found. The @p uid is the uid of the item searched for. The @p transactionId is the UID
+     * returned by the loadItem() method.
+     */
+    void itemNotFound(const QUuid& uid, const QUuid& transactionId);
+
+    /**
+     * @brief The application received a link to a library that shall be opened.
+     *
+     * This signal is emitted if the app received a deep link in the form of the given @p url
+     * to the library with the @p uid.
+     */
+    void openLinkToLibrary(const QUrl& url, const QUuid& uid);
+
+    /**
+     * @brief The application received a link to an item that shall be opened.
+     *
+     * This signal is emitted if the app received a deep link in the form of the given @p url
+     * to the item with the @p uid.
+     */
+    void openLinkToItem(const QUrl& url, const QUuid& uid);
 
     void useMonochromeTrayIconChanged();
 
@@ -269,6 +316,7 @@ private:
     bool m_useMonochromeTrayIcon;
 
     void initialize();
+    void disableIOSBackup();
 
     void connectItemToCache(Item* item);
 

@@ -25,6 +25,8 @@
 
 class PlatformShareUtils;
 class FileEditObserver;
+class Item;
+class Library;
 
 class ShareUtils : public QObject
 {
@@ -35,6 +37,9 @@ public:
     virtual ~ShareUtils();
 
     bool canOpenFolders() const;
+
+    Q_INVOKABLE QUrl createDeepLink(Item* item);
+    Q_INVOKABLE QUrl createDeepLink(Library* library);
 
 public slots:
 

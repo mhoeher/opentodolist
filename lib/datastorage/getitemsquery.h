@@ -108,9 +108,10 @@ signals:
      * This signal is emitted to indicate that the requested items have
      * been loaded from the cache. The @p items list contains the cache
      * entries, which can be turned to item objects by calling Item::decache()
-     * on each entry.
+     * on each entry. The @p itemId is the ID of the query itself. This can be used to distinguish
+     * from which query the data originates.
      */
-    void itemsAvailable(QVariantList items);
+    void itemsAvailable(QVariantList items, const QUuid& itemId);
 
     // ItemsQuery interface
 protected:

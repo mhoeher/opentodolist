@@ -38,20 +38,17 @@ C.Page {
         return result
     }
 
-    property alias pageActions: libraryActions.actions
-    property var undo: {
-        if (d.savedItemStates.length > 0) {
-            return function () {
-                let list = d.savedItemStates.slice()
-                OTL.Application.restoreItem(list.pop())
-                d.savedItemStates = list
-            }
-        } else {
-            return null
-        }
-    }
-
     signal openPage(var component, var properties)
+
+    property var copyLinkToPage: {
+        if (page.library) {
+            return () => {
+                let url = shareUtils.createDeepLink(page.library)
+                OTL.Application.copyToClipboard(url.toString())
+            }
+        }
+        return null
+    }
 
     title: library ? library.name : qsTr("Schedule")
 
@@ -66,7 +63,8 @@ C.Page {
         let libraryUid = state.library
         if (libraryUid) {
             d.restoreLibraryUid = OTL.Application.uuidFromString(libraryUid)
-            OTL.Application.loadLibrary(d.restoreLibraryUid)
+            d.loadLibraryTransactionId = OTL.Application.loadLibrary(
+                        d.restoreLibraryUid)
         }
     }
     restoreUrl: Qt.resolvedUrl("./ScheduleViewPage.qml")
@@ -97,16 +95,6 @@ C.Page {
         TodoPage {
             library: page.library
         }
-    }
-
-    LibraryPageActions {
-        id: libraryActions
-
-        library: page.library
-        syncNowFunction: function () {
-            d.triggerRefresh()
-        }
-        onOpenPage: page.openPage(component, properties)
     }
 
     C.ItemDelegate {
@@ -149,9 +137,9 @@ C.Page {
 
         property int hasScheduledItems: items.count > 0
         property var locale: Qt.locale()
-        property var savedItemStates: []
 
         property var restoreLibraryUid
+        property var loadLibraryTransactionId
 
         function d2s(date) {
             return date.toLocaleDateString(locale, "yyyy-MM-dd")
@@ -300,15 +288,10 @@ C.Page {
             }
         }
 
-        onTodoClicked: {
-            let clone = OTL.Application.cloneItem(todo)
-            d.openItemInPage(clone)
-        }
-        onItemSaved: {
-            let list = d.savedItemStates.slice()
-            list.push(itemData)
-            d.savedItemStates = list
-        }
+        onTodoClicked: todo => {
+                           let clone = OTL.Application.cloneItem(todo)
+                           d.openItemInPage(clone)
+                       }
         itemsModel: sortedItems
         section {
             property: "effectiveDueToSpan"
@@ -399,8 +382,9 @@ C.Page {
     Connections {
         target: OTL.Application
 
-        function onLibraryLoaded(uid, data) {
-            if (uid === d.restoreLibraryUid) {
+        function onLibraryLoaded(uid, data, transactionId) {
+            if (uid === d.restoreLibraryUid
+                    && transactionId === d.loadLibraryTransactionId) {
                 page.library = OTL.Application.libraryFromData(data)
             }
         }

@@ -47,7 +47,7 @@ Column {
         }
 
         onClicked: mouse => {
-                       dueDateSelectionDialog.selectedDate = root.item.dueTo
+                       dueDateSelectionDialog.selectedDate = root.item.effectiveDueTo
                        dueDateSelectionDialog.open()
                    }
 

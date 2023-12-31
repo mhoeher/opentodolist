@@ -29,9 +29,6 @@ C.SwipeDelegate {
     signal itemPressedAndHold
     signal itemClicked
 
-    // The item has been saved (for later undo)
-    signal itemSaved(var itemData)
-
     width: parent ? parent.width : implicitWidth
     padding: 0
     topPadding: AppSettings.effectiveFontMetrics.height / (AppSettings.useCompactTodoLists ? 8 : 2)
@@ -71,7 +68,6 @@ C.SwipeDelegate {
                     return
                 }
 
-                let data = OTL.Application.saveItem(swipeDelegate.item)
                 switch (swipeDelegate.item.itemType) {
                 case "Task":
                 case "Todo":
@@ -85,7 +81,6 @@ C.SwipeDelegate {
                 default:
                     return
                 }
-                swipeDelegate.itemSaved(data)
             }
         }
         Column {
@@ -312,7 +307,7 @@ C.SwipeDelegate {
     Connections {
         target: OTL.Application
 
-        function onItemLoaded(uid, data) {
+        function onItemLoaded(uid, dataparents, library, transactionId) {
             switch (swipeDelegate.item.itemType) {
             case "Todo":
                 if (uid === swipeDelegate.item.todoListUid) {
@@ -376,14 +371,17 @@ C.SwipeDelegate {
     Actions.RenameItem {
         id: renameAction
         item: swipeDelegate.item
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
     Actions.SetDueTo {
         id: setDueToAction
         item: swipeDelegate.item
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
     Actions.DeleteItem {
         id: deleteAction
         item: swipeDelegate.item
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
     Actions.SetDueToday {
         id: setDueTodayAction
@@ -415,11 +413,13 @@ C.SwipeDelegate {
         item: swipeDelegate.item
         library: swipeDelegate.library
         enabled: item.itemType === "Todo"
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
     Actions.CopyTodo {
         id: copyTodoAction
         item: swipeDelegate.item
         enabled: item.itemType === "Todo"
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
     Actions.PromoteTask {
         id: promoteTaskAction
@@ -427,6 +427,7 @@ C.SwipeDelegate {
         library: swipeDelegate.library
         enabled: item.itemType === "Task"
         todoList: swipeDelegate.parentItem
+        itemUtils: swipeDelegate.C.ApplicationWindow.window.itemUtils
     }
 
     Tooltips.MarkFutureInstanceAsDone {

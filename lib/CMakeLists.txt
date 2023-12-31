@@ -57,6 +57,8 @@ target_sources(
         datastorage/movetodoquery.h
         datastorage/promotetaskquery.cpp
         datastorage/promotetaskquery.h
+        datastorage/updateitemquery.cpp
+        datastorage/updateitemquery.h
         fileutils.cpp
         fileutils.h
         models/itemsmodel.cpp
@@ -123,6 +125,8 @@ target_sources(
         utils/translations.h
         utils/updateservice.cpp
         utils/updateservice.h
+        utils/urlhandler.h
+        utils/urlhandler.cpp
 
         # Include SimpleCrypt source:
         ${CMAKE_CURRENT_SOURCE_DIR}/../3rdparty/simplecrypt/simplecrypt.cpp
@@ -137,6 +141,7 @@ if(IOS)
             utils/iosplatformshareutils.mm
             utils/ios/shareutilsdocviewcontroller.h
             utils/ios/shareutilsdocviewcontroller.mm
+            utils/ios/application.mm
     )
 elseif(ANDROID)
     target_sources(

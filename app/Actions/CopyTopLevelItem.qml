@@ -3,11 +3,13 @@ import OpenTodoList 1.0 as OTL
 import "../Components" as Components
 import "../Fonts" as Fonts
 import "../Utils" as Utils
+import "../Controls" as C
 
 Components.ItemAction {
     property OTL.Library library: null
+    required property Utils.ItemUtils itemUtils
 
     symbol: Fonts.Icons.mdiContentCopy
     text: qsTr("Copy")
-    onTriggered: Utils.ItemUtils.copyTopLevelItem(item)
+    onTriggered: itemUtils.copyTopLevelItem(item)
 }

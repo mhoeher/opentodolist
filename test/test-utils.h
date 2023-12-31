@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Martin Hoeher <martin@rpdev.net>
+ * Copyright 2022-2023 Martin Hoeher <martin@rpdev.net>
  +
  * This file is part of OpenTodoList.
  *
@@ -20,14 +20,18 @@
 #ifndef TEST_UTILS_H_
 #define TEST_UTILS_H_
 
+#include <QMap>
+#include <QSignalSpy>
 #include <QString>
+#include <QTest>
 #include <QUrl>
 #include <QVector>
-#include <QMap>
-#include <QTest>
 
 #include <tuple>
 
+#include "datamodel/item.h"
+#include "datastorage/cache.h"
+#include "datastorage/getitemquery.h"
 #include "sync/webdavaccount.h"
 
 /**
@@ -106,6 +110,30 @@ inline void addWebDAVServerTestUrls()
     if (count == 0) {
         QSKIP("No suitable test servers defined - skipping test");
     }
+}
+
+/**
+ * @brief Get an item from the cache by its uid.
+ * @param cache The cache to read the item from.
+ * @param uid The UID of the item to retrieve.
+ * @return A shared pointer to the loaded item.
+ */
+template<typename ItemType>
+inline QSharedPointer<ItemType> getItemFromCacheByUid(Cache* cache, QUuid uid)
+{
+    auto q = new GetItemQuery;
+    q->setUid(uid);
+    QSignalSpy itemLoaded(q, &GetItemQuery::itemLoaded);
+    cache->run(q);
+    if (!itemLoaded.wait()) {
+        return nullptr;
+    }
+    ItemPtr item(Item::decache(itemLoaded.value(0).value(0)));
+    if (item == nullptr) {
+        return nullptr;
+    }
+    auto result = item.objectCast<ItemType>();
+    return result;
 }
 
 #endif // TEST_UTILS_H_

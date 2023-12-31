@@ -36,6 +36,7 @@ private slots:
     void attachments();
     void recurrence();
     void testIsFutureInstance();
+    void test_bug_647();
     void cleanupTestCase() {}
 };
 
@@ -562,6 +563,28 @@ void ComplexItemTest::testIsFutureInstance()
     // Item is due the day after - definitely future!
     item.setDueTo(QDateTime::currentDateTime().addDays(2));
     QVERIFY(item.isFutureInstance());
+}
+
+/**
+ * @brief Test for bug report https://gitlab.com/rpdev/opentodolist/-/issues/647.
+ */
+void ComplexItemTest::test_bug_647()
+{
+    ComplexItem item;
+    item.setDueTo(QDateTime::currentDateTime().addDays(1));
+    auto dueDate = item.dueTo();
+    dueDate = item.dueTo();
+    item.setRecurrencePattern(ComplexItem::RecurWeekly);
+    item.setRecurrenceSchedule(ComplexItem::RelativeToCurrentDate);
+    item.markCurrentOccurrenceAsDone();
+    QVERIFY(item.effectiveDueTo() != item.dueTo());
+
+    // The user marked the first occurrence as done, but then reselected the
+    // original due to date as new due to. Expect the due to (and effective due to)
+    // to be reset to the selected one:
+    item.setDueTo(dueDate);
+    QVERIFY(item.dueTo() == dueDate);
+    QVERIFY(item.effectiveDueTo() == dueDate);
 }
 
 QTEST_MAIN(ComplexItemTest)

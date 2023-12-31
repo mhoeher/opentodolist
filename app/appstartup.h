@@ -38,9 +38,6 @@
 #include <QScreen>
 #include <QSslSocket>
 #include <QSysInfo>
-#ifdef Q_OS_MACOS
-#    include <QMenuBar>
-#endif
 
 #ifdef OPENTODOLIST_WITH_KNOTIFICATIONS
 #    include <KStatusNotifierItem>
@@ -69,6 +66,7 @@
 #    include "../lib/opentodolist_version.h"
 #endif
 #include "utils/translations.h"
+#include "utils/urlhandler.h"
 
 class AppStartup : public QObject
 {
@@ -93,14 +91,12 @@ private:
 #endif
     QPointer<QMenu> m_trayMenu;
     static QVector<QtMessageHandler> s_prevMessageHandler;
-#ifdef Q_OS_MACOS
-    QMenuBar* m_menuBar;
-#endif
 
     QCommandLineParser m_parser;
     QQmlApplicationEngine* m_engine;
     OpenTodoList::Translations* m_translations;
     OpenTodoListQmlExtensionsPlugin m_qmlPlugin;
+    UrlHandler m_urlHandler;
 
     void setupGlobals();
     void createApp(int& argc, char* argv[]);

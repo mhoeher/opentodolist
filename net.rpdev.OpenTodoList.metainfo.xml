@@ -41,6 +41,28 @@
 
   <releases>
     <!-- Format releases according to this: https://www.freedesktop.org/software/appstream/docs/sect-Metadata-Releases.html#spec-releases-example -->
+    <release version="3.47.0" date="2023-12-31">
+        <description>
+            <p>This is the next minor release of the app, bringing a mixture of features and bug fixes. In addition to the issues solved in this release, the app comes with a redesigned tool bar and a menu on some platforms (macOS, Windows and Linux distributions supporting a global app menu).</p>
+        </description>
+        <issues>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/554">#554: Add deep links to libraries and items.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/637">#637: Automate uploading to the Google Play Store.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/642">#642: Exclude libraries from backup on iOS.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/648">#648: Support for Android 14.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/545">#545: Add some screenshots to the README.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/561">#561: Updates screenshots in App Store and Play Store.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/647">#647: Fixed an issue where the due date of an item could not be changed.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/636">#636: Update to Qt 6.6.1</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/646">#646: On recurring items, when changing the due date, show the current next due date, not the original one.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/645">#645: Fix an issue with misalignment of the header of the date selection dialog.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/644">#644: Update to Qt 6.6 Flatpak runtime.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/502">#502: Allow opening items in a new window.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/643">#643: Fix an issue where todo lists show wrong items when reopening it on app startup.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/639">#639: Allow marking all items within a todo list or todo as done or undone.</issue>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/641">#641: Fix an issue where the Dropbox sync stops after a while.</issue>
+        </issues>
+    </release>
     <release version="3.46.1" date="2023-10-23">
         <description>
             <p>This is a feature release, which mainly fixes some smaller issues, but also brings in some nice new goodies.</p>

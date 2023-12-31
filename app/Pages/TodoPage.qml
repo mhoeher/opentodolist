@@ -1,5 +1,5 @@
 import QtQuick 2.5
-import Qt.labs.settings 1.0
+import QtCore
 
 import OpenTodoList 1.0 as OTL
 
@@ -33,7 +33,7 @@ ItemPage {
     }
 
     function deleteCompletedItems() {
-        ItemUtils.deleteCompletedItems(item)
+        C.ApplicationWindow.window.itemUtils.deleteCompletedItems(item)
     }
 
     function renameItem() {
@@ -46,6 +46,11 @@ ItemPage {
 
     function copyItem() {
         copyTodoAction.trigger()
+    }
+
+    function copyLinkToPage() {
+        let url = shareUtils.createDeepLink(page.item)
+        OTL.Application.copyToClipboard(url.toString())
     }
 
     function setProgress() {
@@ -73,20 +78,24 @@ ItemPage {
         d.attachFiles(fileUrls)
     }
 
-    property var goBack: editingNotes ? function () {
-        todosWidget.headerItem.item.itemNotesEditor.finishEditing()
-    } : undefined
-
-    property var undo: {
-        if (d.savedTaskStates.length > 0) {
+    property var goBack: {
+        if (editingNotes) {
             return function () {
-                let list = d.savedTaskStates.slice()
-                OTL.Application.restoreItem(list.pop())
-                d.savedTaskStates = list
+                todosWidget.headerItem.item.itemNotesEditor.finishEditing()
             }
         } else {
-            return null
+            return undefined
         }
+    }
+
+    function openInNewWindow() {
+        openStackViewWindow(restoreUrl, {
+                                "item": OTL.Application.cloneItem(page.item),
+                                "todoList": OTL.Application.cloneItem(
+                                                page.todoList),
+                                "library": OTL.Application.cloneLibrary(
+                                               page.library)
+                            })
     }
 
     title: Markdown.markdownToPlainText(item.title)
@@ -104,9 +113,11 @@ ItemPage {
         d.restoreLibraryUid = OTL.Application.uuidFromString(state.library)
         d.restoreTodoListUid = OTL.Application.uuidFromString(state.todoList)
         d.restoreTodoUid = OTL.Application.uuidFromString(state.todo)
-        OTL.Application.loadLibrary(d.restoreLibraryUid)
-        OTL.Application.loadItem(d.restoreTodoListUid)
-        OTL.Application.loadItem(d.restoreTodoUid)
+        d.loadLibraryTransactionId = OTL.Application.loadLibrary(
+                    d.restoreLibraryUid)
+        d.loadTodoListTransactionId = OTL.Application.loadItem(
+                    d.restoreTodoListUid)
+        d.loadTodoTransactionId = OTL.Application.loadItem(d.restoreTodoUid)
     }
 
     restoreUrl: Qt.resolvedUrl("./TodoPage.qml")
@@ -116,11 +127,12 @@ ItemPage {
 
         property bool editingNotes: false
 
-        property var savedTaskStates: []
-
         property var restoreLibraryUid
         property var restoreTodoListUid
         property var restoreTodoUid
+        property var loadLibraryTransactionId
+        property var loadTodoListTransactionId
+        property var loadTodoTransactionId
 
         signal attach
         signal attachFiles(var fileUrls)
@@ -130,6 +142,7 @@ ItemPage {
         id: moveTodoAction
         library: page.library
         item: page.item
+        itemUtils: page.C.ApplicationWindow.window.itemUtils
     }
 
     Actions.SetManualProgressAction {
@@ -206,11 +219,6 @@ ItemPage {
                 }
                 var task = OTL.Application.addTask(page.library, page.item,
                                                    properties)
-            }
-            onItemSaved: {
-                let list = d.savedTaskStates.slice()
-                list.push(itemData)
-                d.savedTaskStates = list
             }
 
             headerComponent: Column {
@@ -313,21 +321,25 @@ ItemPage {
     Actions.CopyTodo {
         id: copyTodoAction
         item: page.item
+        itemUtils: page.C.ApplicationWindow.window.itemUtils
     }
 
     Connections {
         target: OTL.Application
 
-        function onLibraryLoaded(uid, data) {
-            if (uid === d.restoreLibraryUid) {
+        function onLibraryLoaded(uid, data, transactionId) {
+            if (uid === d.restoreLibraryUid
+                    && transactionId === d.loadLibraryTransactionId) {
                 page.library = OTL.Application.libraryFromData(data)
             }
         }
 
-        function onItemLoaded(uid, data) {
-            if (uid === d.restoreTodoListUid) {
+        function onItemLoaded(uid, data, parents, library, transactionId) {
+            if (uid === d.restoreTodoListUid
+                    && transactionId === d.loadTodoListTransactionId) {
                 page.todoList = OTL.Application.itemFromData(data)
-            } else if (uid === d.restoreTodoUid) {
+            } else if (uid === d.restoreTodoUid
+                       && transactionId === d.loadTodoTransactionId) {
                 page.item = OTL.Application.itemFromData(data)
             }
         }

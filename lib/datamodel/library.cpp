@@ -94,6 +94,35 @@ LibraryCacheEntry LibraryCacheEntry::fromByteArray(const QByteArray& data, const
 }
 
 /**
+ * @brief Serialize the cache entry.
+ *
+ * This serializes the data such that it can be stored as one data blob (e.g. for snapshoting the
+ * data).
+ */
+QByteArray LibraryCacheEntry::serialize() const
+{
+    QVariantMap map;
+    map["id"] = id.toByteArray();
+    map["data"] = toByteArray();
+    return QCborValue(QCborMap::fromVariantMap(map)).toCbor();
+}
+
+/**
+ * @brief Restore an entry previously created via the serialize() method.
+ */
+LibraryCacheEntry LibraryCacheEntry::deserialize(const QByteArray& data)
+{
+    LibraryCacheEntry result;
+    QCborParserError error;
+    auto cbor = QCborValue::fromCbor(data, &error);
+    if (error.error == QCborError::NoError) {
+        auto map = cbor.toMap().toVariantMap();
+        result = fromByteArray(map["data"].toByteArray(), map["id"].toByteArray());
+    }
+    return result;
+}
+
+/**
    @brief Set the name of the library.
  */
 Library::Library(QObject* parent) : Library(QString(), parent) {}
@@ -175,6 +204,23 @@ Library* Library::decache(const LibraryCacheEntry& entry, QObject* parent)
 Library* Library::decache(const QVariant& entry, QObject* parent)
 {
     return decache(entry.value<LibraryCacheEntry>(), parent);
+}
+
+/**
+ * @brief Clone the library.
+ *
+ * This returns a clone of the library, i.e. a new instance of the Library class with the
+ * same attributes.
+ *
+ * The caller assumes ownership of the returned library.
+ */
+Library* Library::clone()
+{
+    auto result = Library::decache(this->encache());
+    if (result) {
+        result->setCache(cache());
+    }
+    return result;
 }
 
 void Library::setName(const QString& name)

@@ -22,6 +22,8 @@ C.ItemDelegate {
     signal symbolClicked
     signal rightSymbolClicked
 
+    symbol: action?.symbol ?? ""
+
     topPadding: 0
     bottomPadding: 0
     leftPadding: 0

@@ -33,3 +33,4 @@ app/android/.idea/
 /xwindeployqt
 .vscode
 __pycache__
+/.venv

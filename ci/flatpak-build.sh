@@ -3,9 +3,10 @@
 set -e
 
 if [ -n "$CI" ]; then
-    echo "$FLATPAK_SIGNING_KEY" > flatpak-signing-key.asc
-    gpg2 --import ./flatpak-signing-key.asc
-    rm flatpak-signing-key.asc
+    # Download secret files
+    export SECURE_FILES_DOWNLOAD_PATH=.secure-files
+    curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    gpg2 --import $SECURE_FILES_DOWNLOAD_PATH/flatpak-signing-key.asc
 fi
 
 appstream-util validate-relax net.rpdev.OpenTodoList.metainfo.xml

@@ -1,5 +1,5 @@
 import QtQuick 2.5
-import Qt.labs.settings 1.0
+import QtCore
 
 import "../Components"
 import "../Controls" as C
@@ -12,28 +12,18 @@ import OpenTodoList 1.0 as OTL
 C.Pane {
     id: sidebar
 
+    property ApplicationShortcuts appShortcuts
+
     property alias numberOfLibraries: librariesModel.count
 
     property bool compact: false
 
     property C.StackView stack: null
 
-    signal newLibrary
-    signal aboutPageRequested
-    signal settingsPageRequested
-    signal accountsPageRequested
     signal close
     signal showLibrary(var library, var attributes)
     signal showItem(var library, var item)
     signal showSchedule(var library)
-
-    function showSettings() {
-        sidebar.settingsPageRequested()
-    }
-
-    function showAccounts() {
-        sidebar.accountsPageRequested()
-    }
 
     clip: true
     padding: 0
@@ -52,6 +42,8 @@ C.Pane {
         anchors.fill: parent
 
         ListView {
+            id: listView
+
             width: scrollView.availableWidth
             model: sortFilterModel
             implicitWidth: childrenRect.width
@@ -73,17 +65,14 @@ C.Pane {
                 width: parent.width
 
                 LibrarySideBarButton {
-                    text: qsTr("New Library")
-                    symbol: Icons.mdiAdd
+                    action: appShortcuts.newLibrary
                     highlighted: d.bottommostPage instanceof Pages.NewLibraryPage
-                    onClicked: sidebar.newLibrary()
                 }
 
                 LibrarySideBarButton {
-                    text: qsTr("Accounts")
-                    symbol: Icons.mdiAccountCircle
+                    action: appShortcuts.accounts
+
                     highlighted: d.bottommostPage instanceof Pages.AccountsPage
-                    onClicked: sidebar.showAccounts()
                 }
 
                 LibrarySideBarButton {
@@ -93,16 +82,12 @@ C.Pane {
                 }
 
                 LibrarySideBarButton {
+                    action: sidebar.appShortcuts.settings
                     text: qsTr("Settings")
-                    symbol: Icons.mdiSettings
-                    onClicked: sidebar.showSettings()
                 }
 
                 LibrarySideBarButton {
-                    text: qsTr("Translate The App...")
-                    symbol: Icons.mdiTranslate
-                    onClicked: shareUtils.openLink(
-                                   "https://poeditor.com/join/project/ztvOymGNxn")
+                    action: appShortcuts.translateTheApp
                 }
 
                 LibrarySideBarButton {
@@ -114,37 +99,8 @@ C.Pane {
                 }
 
                 LibrarySideBarButton {
-                    text: qsTr("About...")
-                    symbol: Icons.mdiInfo
+                    action: appShortcuts.aboutApp
                     highlighted: d.bottommostPage instanceof Pages.AboutPage
-                    onClicked: sidebar.aboutPageRequested()
-                }
-
-                LibrarySideBarButton {
-                    visible: isDebugBuild
-                    text: qsTr("Create Default Library")
-                    onClicked: {
-                        var lib = OTL.Application.addLocalLibrary("My Library")
-
-                        var note = OTL.Application.addNote(lib, {})
-                        note.title = "A Note"
-                        note.notes = "* This is a note\n* It stores arbitrary text"
-
-                        var todoList = OTL.Application.addTodoList(lib, {})
-                        todoList.title = "A Todo List"
-                        todoList.notes = "* Todo lists contain todos.\n"
-                                + "* Todos in turn can contain tasks."
-
-                        var todo1 = OTL.Application.addTodo(lib, todoList, {})
-                        todo1.title = "A todo"
-
-                        var todo2 = OTL.Application.addTodo(lib, todoList, {})
-                        todo2.title = "Another Todo"
-
-                        var image = OTL.Application.addImage(lib, {})
-                        image.title = "An Image"
-                        image.image = ":/sample.png"
-                    }
                 }
             }
         }
@@ -186,7 +142,7 @@ C.Pane {
                 return true
             }
 
-            width: parent.width
+            width: listView.width
 
             Settings {
                 id: perLibrarySettings
@@ -270,7 +226,7 @@ C.Pane {
                 visible: !librarySection.collapsed
                          && librarySection.scheduleEnabled
                 highlighted: d.bottommostPage instanceof Pages.ScheduleViewPage
-                             && d.bottommostPage.library.uid === library.uid
+                             && d.bottommostPage?.library?.uid === library.uid
                 leftColorSwatch.color: library.color
                 onClicked: sidebar.showSchedule(library)
             }
@@ -366,38 +322,6 @@ C.Pane {
                     }
                 }
             }
-        }
-    }
-
-    Connections {
-        target: sidebar
-
-        function onNewLibrary() {
-            sidebar.close()
-        }
-
-        function onAboutPageRequested() {
-            sidebar.close()
-        }
-
-        function onSettingsPageRequested() {
-            sidebar.close()
-        }
-
-        function onAccountsPageRequested() {
-            sidebar.close()
-        }
-
-        function onShowLibrary() {
-            sidebar.close()
-        }
-
-        function onShowSchedule() {
-            sidebar.close()
-        }
-
-        function onShowItem() {
-            sidebar.close()
         }
     }
 

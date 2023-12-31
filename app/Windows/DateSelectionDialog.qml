@@ -21,50 +21,49 @@ CenteredDialog {
             grid.month = selectedDate.getMonth()
         }
     }
-    header: C.ToolBar {
-        RowLayout {
-            anchors.horizontalCenter: parent.horizontalCenter
-            C.ToolButton {
-                symbol: Icons.mdiFirstPage
-                onClicked: grid.year -= 1
-            }
+    header: RowLayout {
+        anchors.horizontalCenter: parent.horizontalCenter
+        C.ToolButton {
+            symbol: Icons.mdiFirstPage
+            onClicked: grid.year -= 1
+        }
 
-            C.ToolButton {
-                symbol: Icons.mdiKeyboardArrowLeft
-                onClicked: {
-                    var month = grid.month
-                    if (month === 0) {
-                        grid.year -= 1
-                        grid.month = 11
-                    } else {
-                        grid.month -= 1
-                    }
+        C.ToolButton {
+            symbol: Icons.mdiKeyboardArrowLeft
+            onClicked: {
+                var month = grid.month
+                if (month === 0) {
+                    grid.year -= 1
+                    grid.month = 11
+                } else {
+                    grid.month -= 1
                 }
             }
+        }
 
-            C.Label {
-                Layout.fillWidth: true
-                horizontalAlignment: Text.AlignHCenter
-                text: grid.locale.monthName(grid.month) + " " + grid.year
-            }
+        C.Label {
+            Layout.fillWidth: true
+            horizontalAlignment: Text.AlignHCenter
+            font.bold: true
+            text: grid.locale.monthName(grid.month) + " " + grid.year
+        }
 
-            C.ToolButton {
-                symbol: Icons.mdiKeyboardArrowRight
-                onClicked: {
-                    var month = grid.month
-                    if (month === 11) {
-                        grid.year += 1
-                        grid.month = 0
-                    } else {
-                        grid.month += 1
-                    }
+        C.ToolButton {
+            symbol: Icons.mdiKeyboardArrowRight
+            onClicked: {
+                var month = grid.month
+                if (month === 11) {
+                    grid.year += 1
+                    grid.month = 0
+                } else {
+                    grid.month += 1
                 }
             }
+        }
 
-            C.ToolButton {
-                symbol: Icons.mdiLastPage
-                onClicked: grid.year += 1
-            }
+        C.ToolButton {
+            symbol: Icons.mdiLastPage
+            onClicked: grid.year += 1
         }
     }
 

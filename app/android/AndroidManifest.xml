@@ -6,6 +6,7 @@
     <!-- %%INSERT_PERMISSIONS -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
 
     <!-- The following comment will be replaced upon deployment with default features based on the dependencies of the application.
          Remove the comment if you do not require these default features. -->
@@ -13,7 +14,7 @@
 
     <supports-screens android:largeScreens="true" android:normalScreens="true" android:anyDensity="true" android:smallScreens="true"/>
 
-    <application android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="OpenTodoList" android:allowNativeHeapPointerTagging="false" android:allowBackup="false" android:usesCleartextTraffic="true" android:icon="@mipmap/ic_launcher">
+    <application android:name="org.qtproject.qt.android.bindings.QtApplication" android:hardwareAccelerated="true" android:label="OpenTodoList" android:allowNativeHeapPointerTagging="false" android:allowBackup="false" android:usesCleartextTraffic="true" android:icon="@mipmap/ic_launcher" android:theme="@android:style/Theme.NoTitleBar">
         <activity android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density" android:name="net.rpdev.OpenTodoList.MainActivity" android:label="OpenTodoList" android:screenOrientation="unspecified" android:launchMode="singleTop" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -40,7 +41,8 @@
         </activity>
 
         <!-- For adding service(s) please check: https://wiki.qt.io/AndroidServices -->
-        <service android:name="net.rpdev.OpenTodoList.BackgroundService" android:process=":qt_service">
+        <service android:name="net.rpdev.OpenTodoList.BackgroundService" android:process=":qt_service" android:foregroundServiceType="dataSync"
+        >
             <meta-data android:name="android.app.background_running" android:value="true"/>
             <meta-data android:name="android.app.arguments" android:value="--service"/>
             <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>

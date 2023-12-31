@@ -71,11 +71,13 @@
 #include "datastorage/insertorupdateitemsquery.h"
 #include "datastorage/movetodoquery.h"
 #include "datastorage/promotetaskquery.h"
+#include "datastorage/updateitemquery.h"
 #include "rep_backgroundservice_replica.h"
 #include "sync/account.h"
 #include "sync/synchronizer.h"
 #include "utils/jsonutils.h"
 #include "utils/keystore.h"
+#include "utils/urlhandler.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg);
 
@@ -166,7 +168,20 @@ void Application::initialize()
     m_useMonochromeTrayIcon =
             m_settings->value("useMonochromeTrayIcon", m_useMonochromeTrayIcon).toBool();
     m_settings->endGroup();
+
+    disableIOSBackup();
+
+    auto const* urlHandler = UrlHandler::instance();
+    if (urlHandler) {
+        connect(urlHandler, &UrlHandler::libraryLinkReceived, this,
+                &Application::openLinkToLibrary);
+        connect(urlHandler, &UrlHandler::itemLinkReceived, this, &Application::openLinkToItem);
+    }
 }
+
+#ifndef Q_OS_IOS
+void Application::disableIOSBackup() {}
+#endif
 
 /**
  * @brief Internally add the @p library.
@@ -836,16 +851,25 @@ void Application::deleteDoneTasks(Todo* todo)
  * item data is available, the libraryLoaded() signal is emitted.
  *
  * If the uid is null, this method has no effect.
+ *
+ * The method returns a UID which is emitted along the libraryLoaded() signal such that
+ * listeners know they can stop waiting for the signal.
+ *
+ * If the library with the given uid cannot be found, the libraryNotFound() signal is emitted.
  */
-void Application::loadLibrary(const QUuid& uid)
+QUuid Application::loadLibrary(const QUuid& uid)
 {
+    auto transactionId = QUuid::createUuid();
     if (!uid.isNull()) {
         auto q = new GetLibraryQuery();
         q->setUid(uid);
         connect(q, &GetLibraryQuery::libraryLoaded, this,
-                [=](const QVariant& data) { emit this->libraryLoaded(uid, data); });
+                [=](const QVariant& data) { emit this->libraryLoaded(uid, data, transactionId); });
+        connect(q, &GetLibraryQuery::libraryNotFound, this,
+                [=]() { emit this->libraryNotFound(uid, transactionId); });
         m_cache->run(q);
     }
+    return transactionId;
 }
 
 /**
@@ -870,19 +894,28 @@ Library* Application::libraryFromData(const QVariant& data)
  * @brief Request loading an item from the cache.
  *
  * This method triggers loading the item with the given @p uid from the cache. Once the
- * item data is available, the itemLoaded() signal is emitted.
+ * item data is available, the itemLoaded() signal is emitted. In case no item with the given UID
+ * can be found, the itemNotFound() signal is emitted.
  *
  * If the uid is null, this method has no effect.
+ *
+ * The method returns a UID which is emitted along the associated signals.
  */
-void Application::loadItem(const QUuid& uid)
+QUuid Application::loadItem(const QUuid& uid)
 {
+    auto transactionId = QUuid::createUuid();
     if (!uid.isNull()) {
         auto q = new GetItemQuery();
         q->setUid(uid);
         connect(q, &GetItemQuery::itemLoaded, this,
-                [=](const QVariant& data) { emit this->itemLoaded(uid, data); });
+                [=](const QVariant& data, const QVariantList& parents, const QVariant& library) {
+                    emit this->itemLoaded(uid, data, parents, library, transactionId);
+                });
+        connect(q, &GetItemQuery::itemNotFound, this,
+                [=]() { emit this->itemNotFound(uid, transactionId); });
         m_cache->run(q);
     }
+    return transactionId;
 }
 
 /**
@@ -915,7 +948,26 @@ Item* Application::cloneItem(Item* item)
     Item* result = nullptr;
     if (item != nullptr) {
         result = item->clone();
-        if (result->cache() == nullptr) {
+        if (result && result->cache() == nullptr) {
+            result->setCache(m_cache);
+        }
+    }
+    return result;
+}
+
+/**
+ * @brief Clone a library.
+ *
+ * This creates a clone of the given @p library. In addition, the resulting library will be setup to
+ * track changes in the library cache, so whenever there are any updates (e.g. due to sync) the
+ * library gets updated as well.
+ */
+Library* Application::cloneLibrary(Library* library)
+{
+    Library* result = nullptr;
+    if (library != nullptr) {
+        result = library->clone();
+        if (result && result->cache() == nullptr) {
             result->setCache(m_cache);
         }
     }
@@ -951,6 +1003,32 @@ void Application::restoreItem(const QString& data)
     if (item != nullptr) {
         auto q = new InsertOrUpdateItemsQuery();
         q->add(item.data(), InsertOrUpdateItemsQuery::Save);
+        m_cache->run(q);
+    }
+}
+
+/**
+ * @brief Mark all items within an @p item recursively as done.
+ */
+void Application::markAllItemsAsDone(Item* item)
+{
+    if (item) {
+        auto q = new UpdateItemQuery;
+        q->setUid(item->uid());
+        q->setScript(UpdateItemQuery::MarkAllTodosAndTasksAsDone);
+        m_cache->run(q);
+    }
+}
+
+/**
+ * @brief Mark all items within an @p item recursively as undone.
+ */
+void Application::markAllItemsAsUndone(Item* item)
+{
+    if (item) {
+        auto q = new UpdateItemQuery;
+        q->setUid(item->uid());
+        q->setScript(UpdateItemQuery::MarkAllTodosAndTasksAsUndone);
         m_cache->run(q);
     }
 }
@@ -1285,6 +1363,11 @@ void Application::syncAllLibraries()
             runSyncForLibrary(library);
         }
     }
+}
+
+void Application::aboutQt() const
+{
+    QMetaObject::invokeMethod(QCoreApplication::instance(), "aboutQt");
 }
 
 #ifdef Q_OS_ANDROID

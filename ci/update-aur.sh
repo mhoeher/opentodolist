@@ -10,15 +10,24 @@ cd $THIS_DIR/../
 if [ -n "$CI" ]; then
     command -v ssh-agent >/dev/null || yum install -y --nogpgcheck openssh-clients
     command -v git >/dev/null || yum install -y --nogpgcheck git
+    command -v which >/dev/null || yum install -y --nogpgcheck which
+    command -v curl >/dev/null || yum install -y --nogpgcheck curl
+fi
+
+if [ -n "$CI" ]; then
+    # Download secret files
+    export SECURE_FILES_DOWNLOAD_PATH=.secure-files
+    curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+    chmod go-rwx $SECURE_FILES_DOWNLOAD_PATH/id_aur
+
+    # Load SSH private key (required for release):
+    eval $(ssh-agent -s)
+    ssh-add $SECURE_FILES_DOWNLOAD_PATH/id_aur
 fi
 
 # Get latest tag (we do not include extra information, we release just on a plain
 # tag granularity):
 LATEST_TAG="$(git describe --tags | cut -f 1 -d '-')"
-
-# Load SSH private key (required for release):
-eval $(ssh-agent -s)
-echo "$AUR_KEY" | tr -d '\r' | ssh-add -
 
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh

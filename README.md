@@ -6,14 +6,61 @@ OpenTodoList is a todo list and note taking application. Organize todo lists,
 notes and images in libraries, which can be stored either completely local
 on the device you are working on (and hence ensure no information leaks out
 to untrusted third parties) or use the built in synchronization features which
-allows you to synchronize your libraries across devices using your self-hosted
-NextCloud or ownCloud server (or other WebDAV servers). In addition, a library
+allows you to synchronize your libraries across devices. Currently, the following
+backend servers are supported for synchronization:
+
+* NextCloud
+* ownCloud
+* Generic WebDAV servers - note that due to limitations of some servers,
+  the sync might not be working optimally or at all, this is a limitation of the
+  server that the app cannot do anything about. Feel free to raise an issue in
+  case you think your server is still capable to run a sync properly 😉
+* Dropbox
+
+In addition, a library
 is just a directory holding the items of your library as simple files - this
 allows you to use any kind of third party synchronization tool (like DropBox)
 to sync your information.
 
+Currently, the app is available on the following platforms:
 
-## Download 
+* Android
+* iOS
+* Linux (pre-build as AppImage, via Flatpak and Snap)
+* macOS
+* Windows
+
+The app is developed on top of the Qt framework - so even if a system is not
+listed explicitly above, you might still be able to compile the app for it on
+your own.
+
+<a
+    href="doc/screenshots/Android Tablet/library.png"
+    alt="Libraries are used to organize items."
+    ><img src="doc/screenshots/Android Tablet/library.png" height="300px"
+/></a>
+<a
+    href="doc/screenshots/Android Tablet/todolist.png"
+    alt="Todo lists collect todos - you can have arbitrary many todo lists per library."
+    ><img src="doc/screenshots/Android Tablet/todolist.png" height="300px"
+/></a>
+<a
+    href="doc/screenshots/Android Tablet/todo.png"
+    alt="Todos are single tasks that can be marked as done - they can be further broken down into tasks."
+    ><img src="doc/screenshots/Android Tablet/todo.png" height="300px"
+/></a>
+<a
+    href="doc/screenshots/Android Tablet/note.png"
+    alt="Notes are used to collect text - you can add additional pages to each note, making them notebooks."
+    ><img src="doc/screenshots/Android Tablet/note.png" height="300px"
+/></a>
+<a
+    href="doc/screenshots/Android Tablet/image.png"
+    alt="Images can be added to libraries as well - you can add additional text to them, too."
+    ><img src="doc/screenshots/Android Tablet/image.png" height="300px"
+/></a>
+
+## Download
 
 ### Android
 
@@ -30,7 +77,10 @@ To add the IzzyOnDroid F-Droid repository to your device, follow the instruction
 
 The app is available on the iOS App Store:
 
-<a href="https://apps.apple.com/us/app/opentodolist/id1490013766?mt=8"><img src="https://linkmaker.itunes.apple.com/en-gb/badge-lrg.svg?releaseDate=2020-01-02&kind=iossoftware&bubble=ios_apps" width='135px' height='40'/></a>
+[<img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+alt="Demo of the Nextcloud iOS files app"
+height="40">](https://apps.apple.com/us/app/opentodolist/id1490013766)
+
 
 
 ### Desktop Systems

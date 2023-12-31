@@ -33,6 +33,7 @@
 ItemsModel::ItemsModel(QObject* parent)
     : QAbstractListModel(parent),
       m_cache(),
+      m_currentItemsQuery(),
       m_items(),
       m_ids(),
       m_fetchTimer(),
@@ -573,6 +574,7 @@ void ItemsModel::fetch()
             }
             return result;
         });
+        m_currentItemsQuery = q->queryUid();
         connect(q, &GetItemsQuery::itemsAvailable, this, &ItemsModel::update, Qt::QueuedConnection);
         m_cache->run(q);
     }
@@ -634,8 +636,11 @@ void ItemsModel::triggerFetch()
     m_fetchTimer.start();
 }
 
-void ItemsModel::update(const QVariantList& items)
+void ItemsModel::update(const QVariantList& items, const QUuid& queryUid)
 {
+    if (queryUid != m_currentItemsQuery) {
+        return;
+    }
     m_updating = true;
 #if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0))
     auto idsToDelete = QSet<QUuid>::fromList(m_ids);

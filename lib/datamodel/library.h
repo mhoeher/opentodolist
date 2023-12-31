@@ -50,6 +50,9 @@ struct LibraryCacheEntry
     QByteArray toByteArray() const;
     static LibraryCacheEntry fromByteArray(const QByteArray& data, const QByteArray& id);
 
+    QByteArray serialize() const;
+    static LibraryCacheEntry deserialize(const QByteArray& data);
+
     QUuid id;
     QVariant data;
     QVariant metaData;
@@ -91,6 +94,7 @@ public:
     LibraryCacheEntry encache() const;
     static Library* decache(const LibraryCacheEntry& entry, QObject* parent = nullptr);
     static Library* decache(const QVariant& entry, QObject* parent = nullptr);
+    Library* clone();
 
     /**
      * @brief The name of the libary as used in the user interface.

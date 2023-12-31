@@ -3,7 +3,7 @@ import QtQuick.Window 2.3
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Material 2.12
 import Qt.labs.qmlmodels 1.0
-import Qt.labs.settings 1.0
+import QtCore
 
 import "../Components"
 import "../Controls" as C
@@ -20,6 +20,7 @@ C.ApplicationWindow {
 
     property ItemCreatedNotification itemCreatedNotification: null
     property int defaultFontSize: 12
+    property alias deepLinkHandler: deepLinkHandler
 
     title: qsTr("OpenTodoList") + " - " + applicationVersion
     visible: true
@@ -61,31 +62,23 @@ C.ApplicationWindow {
     header: ApplicationToolBar {
         id: applicationToolBar
 
-        sidebarControl.visible: librariesSideBar.compact && stackView.depth <= 1
-        sidebarControl.checked: dynamicLeftDrawer.visible
-        sidebarControl.onClicked: dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible
+        stackView: stackView
+        appMenu: appMenu
+        appShortcuts: applicationShortcuts
 
-        backToolButton.visible: stackView.depth > 1
+        sidebarControl.visible: applicationShortcuts.leftSidebar.enabled
+                                && stackView.depth <= 1
+
+        backToolButton.visible: stackView?.depth > 1
         backToolButton.onClicked: stackView.goBack()
 
         problemsButton.visible: OTL.Application.problemManager.problems.length > 0
         problemsButton.onClicked: stackView.replace(problemsPage)
 
-        busyIndicator.visible: stackView.syncRunning
-
-        pageActions: {
-            if (stackView.currentItem && stackView.currentItem.pageActions) {
-                return stackView.currentItem.pageActions
-            } else {
-                return []
-            }
-        }
-        dynamicPageActions: applicationToolBarActions.dynamicPageActions
-
         Binding {
             target: applicationToolBar
             property: "title"
-            value: stackView.currentItem ? stackView.currentItem.title : ""
+            value: stackView?.currentItem?.title ?? ""
         }
     }
 
@@ -125,50 +118,22 @@ C.ApplicationWindow {
         }
     }
 
+    ApplicationMenu {
+        id: appMenu
+        shortcuts: applicationShortcuts
+    }
+
     ApplicationShortcuts {
         id: applicationShortcuts
 
-        settingsShortcut.onActivated: librariesSideBar.showSettings()
-        quitShortcut.onActivated: Qt.quit()
-        closeShortcut.onActivated: window.close()
-        closeShortcut.enabled: Qt.platform.os != "android"
-                               && Qt.platform.os != "ios"
-        findShortcut.enabled: {
-            let currentItem = stackView.currentItem
-            if (currentItem && typeof (currentItem.find) === "function") {
-                return true
-            }
-            return false
-        }
-        undoShortcut.enabled: {
-            let currentItem = stackView.currentItem
-            if (currentItem && typeof (currentItem.undo) === "function") {
-                return true
-            }
-            return false
-        }
-        undoShortcut.onActivated: {
-            let currentItem = stackView.currentItem
-            currentItem.undo()
-        }
-        goBackShortcut.onActivated: {
-            if (stackView.canGoBack) {
-                stackView.goBack()
-            } else {
-                // We are at the top of the stack. If the window is in fullscreen mode, go to
-                // "default" mode (which should usually be "windowed" on most systems).
-                if (window.visibility === Window.FullScreen) {
-                    window.visibility = Window.AutomaticVisibility
-                }
-            }
-        }
-        openShortcut.enabled: !!window.itemCreatedNotification
-        openShortcut.onActivated: window.itemCreatedNotification.trigger()
-    }
+        stackView: stackView
+        window: window
 
-    ApplicationToolBarActions {
-        id: applicationToolBarActions
-        shortcuts: applicationShortcuts
+        leftSidebar.enabled: librariesSideBar?.compact
+        leftSidebar.checked: dynamicLeftDrawer?.visible ?? false
+        leftSidebar.onTriggered: dynamicLeftDrawer.visible = !dynamicLeftDrawer.visible
+
+        onNewLibraryCreated: library => viewLibrary(library)
     }
 
     Component.onCompleted: {
@@ -210,33 +175,13 @@ C.ApplicationWindow {
         id: librariesSideBar
 
         anchors.fill: parent
+        appShortcuts: applicationShortcuts
         compact: window.width < 600
         stack: stackView
-        onShowLibrary: window.viewLibrary(library, attributes)
+        onShowLibrary: (library, attributes) => window.viewLibrary(library,
+                                                                   attributes)
         onShowItem: (library, item) => window.viewItem(library, item)
-        onShowSchedule: window.viewSchedule(library)
-        onNewLibrary: {
-            stackView.clear()
-            stackView.push(newLibraryPage)
-        }
-        onAboutPageRequested: {
-            stackView.clear()
-            stackView.push(Qt.resolvedUrl("../Pages/AboutPage.qml"))
-        }
-        onSettingsPageRequested: {
-            for (var i = 0; i < stackView.depth; ++i) {
-                let page = stackView.get(i)
-                if (page instanceof SettingsPage) {
-                    stackView.pop(page)
-                    return
-                }
-            }
-            stackView.push(Qt.resolvedUrl("../Pages/SettingsPage.qml"))
-        }
-        onAccountsPageRequested: {
-            stackView.clear()
-            stackView.push(Qt.resolvedUrl("../Pages/AccountsPage.qml"))
-        }
+        onShowSchedule: library => window.viewSchedule(library)
 
         parent: compact ? dynamicLeftDrawer.contentItem : staticLeftSideBar
         onClose: dynamicLeftDrawer.close()
@@ -252,8 +197,7 @@ C.ApplicationWindow {
                       + "library</a>. Libraries are used to store "
                       + "different kinds of items like notes, todo lists " + "and images.")
             onLinkActivated: if (link === "#newLibrary") {
-                                 stackView.clear()
-                                 stackView.push(newLibraryPage)
+                                 applicationShortcuts.newLibrary.triggered()
                              }
         }
     }
@@ -261,38 +205,9 @@ C.ApplicationWindow {
     C.StackView {
         id: stackView
 
-        property bool hasSync: !!currentItem
-                               && (typeof (currentItem.syncRunning) === "boolean")
-        property bool syncRunning: !!currentItem && !!currentItem.syncRunning
-        property int syncProgress: {
-            if (currentItem) {
-                if (currentItem.syncProgress !== undefined) {
-                    return currentItem.syncProgress
-                }
-            }
-            return -1
-        }
-
         property bool hasPageMenu: !!currentItem && !!currentItem.pageMenu
-        property bool canGoBack: currentItem != null
-                                 && (depth > 1
-                                     || typeof (currentItem.goBack) === "function")
 
         property bool hasItem: currentItem && currentItem.item !== undefined
-        property bool hasColor: hasItem && currentItem.item.color !== undefined
-        property bool isCheckable: hasItem
-                                   && currentItem.item.done !== undefined
-        property bool isChecked: isCheckable ? currentItem.item.done : false
-
-        function goBack(page) {
-            if (page !== undefined && page !== null) {
-                stackView.pop(page)
-            } else if (typeof (currentItem.goBack) === "function") {
-                currentItem.goBack()
-            } else {
-                stackView.pop()
-            }
-        }
 
         anchors {
             left: staticLeftSideBar.right
@@ -305,7 +220,9 @@ C.ApplicationWindow {
         visible: depth > 0
         stackId: "mainWindow"
         startPageComponent: Qt.resolvedUrl("../Pages/StartPage.qml")
-        onCurrentItemChanged: applicationToolBar.closeMenu()
+        onCurrentItemChanged: {
+            librariesSideBar.close()
+        }
     }
 
     DropArea {
@@ -357,46 +274,12 @@ C.ApplicationWindow {
         y: window.header.height
     }
 
-    Connections {
-        target: stackView.currentItem
-        ignoreUnknownSignals: true
-
-        function onClosePage() {
-            stackView.goBack()
-        }
-
-        function onReturnToPage(page) {
-            stackView.goBack(page)
-        }
-
-        function onOpenPage(component, properties) {
-            stackView.push(component, properties)
-        }
-
-        function onClearAndOpenPage(component, properties) {
-            stackView.clear()
-            stackView.push(component, properties)
-        }
-    }
-
     UpdateNotificationBar {}
 
     Component {
         id: problemsPage
 
         ProblemsPage {}
-    }
-
-    Component {
-        id: newLibraryPage
-
-        NewLibraryPage {
-            onLibraryCreated: {
-                if (library) {
-                    viewLibrary(library, "")
-                }
-            }
-        }
     }
 
     Connections {
@@ -461,5 +344,10 @@ C.ApplicationWindow {
 
         property alias width: window.width
         property alias height: window.height
+    }
+
+    DeepLinkHandler {
+        id: deepLinkHandler
+        stackView: stackView
     }
 }
