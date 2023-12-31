@@ -77,6 +77,7 @@
 #include "sync/synchronizer.h"
 #include "utils/jsonutils.h"
 #include "utils/keystore.h"
+#include "utils/urlhandler.h"
 
 static Q_LOGGING_CATEGORY(log, "OpenTodoList.Application", QtDebugMsg);
 
@@ -169,6 +170,13 @@ void Application::initialize()
     m_settings->endGroup();
 
     disableIOSBackup();
+
+    auto const* urlHandler = UrlHandler::instance();
+    if (urlHandler) {
+        connect(urlHandler, &UrlHandler::libraryLinkReceived, this,
+                &Application::openLinkToLibrary);
+        connect(urlHandler, &UrlHandler::itemLinkReceived, this, &Application::openLinkToItem);
+    }
 }
 
 #ifndef Q_OS_IOS
@@ -843,16 +851,25 @@ void Application::deleteDoneTasks(Todo* todo)
  * item data is available, the libraryLoaded() signal is emitted.
  *
  * If the uid is null, this method has no effect.
+ *
+ * The method returns a UID which is emitted along the libraryLoaded() signal such that
+ * listeners know they can stop waiting for the signal.
+ *
+ * If the library with the given uid cannot be found, the libraryNotFound() signal is emitted.
  */
-void Application::loadLibrary(const QUuid& uid)
+QUuid Application::loadLibrary(const QUuid& uid)
 {
+    auto transactionId = QUuid::createUuid();
     if (!uid.isNull()) {
         auto q = new GetLibraryQuery();
         q->setUid(uid);
         connect(q, &GetLibraryQuery::libraryLoaded, this,
-                [=](const QVariant& data) { emit this->libraryLoaded(uid, data); });
+                [=](const QVariant& data) { emit this->libraryLoaded(uid, data, transactionId); });
+        connect(q, &GetLibraryQuery::libraryNotFound, this,
+                [=]() { emit this->libraryNotFound(uid, transactionId); });
         m_cache->run(q);
     }
+    return transactionId;
 }
 
 /**
@@ -877,19 +894,28 @@ Library* Application::libraryFromData(const QVariant& data)
  * @brief Request loading an item from the cache.
  *
  * This method triggers loading the item with the given @p uid from the cache. Once the
- * item data is available, the itemLoaded() signal is emitted.
+ * item data is available, the itemLoaded() signal is emitted. In case no item with the given UID
+ * can be found, the itemNotFound() signal is emitted.
  *
  * If the uid is null, this method has no effect.
+ *
+ * The method returns a UID which is emitted along the associated signals.
  */
-void Application::loadItem(const QUuid& uid)
+QUuid Application::loadItem(const QUuid& uid)
 {
+    auto transactionId = QUuid::createUuid();
     if (!uid.isNull()) {
         auto q = new GetItemQuery();
         q->setUid(uid);
         connect(q, &GetItemQuery::itemLoaded, this,
-                [=](const QVariant& data) { emit this->itemLoaded(uid, data); });
+                [=](const QVariant& data, const QVariantList& parents, const QVariant& library) {
+                    emit this->itemLoaded(uid, data, parents, library, transactionId);
+                });
+        connect(q, &GetItemQuery::itemNotFound, this,
+                [=]() { emit this->itemNotFound(uid, transactionId); });
         m_cache->run(q);
     }
+    return transactionId;
 }
 
 /**

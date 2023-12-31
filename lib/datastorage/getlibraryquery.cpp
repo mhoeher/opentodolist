@@ -42,6 +42,8 @@ void GetLibraryQuery::run()
         auto entry = LibraryCacheEntry::fromByteArray(data, uid);
         if (entry.valid) {
             emit libraryLoaded(QVariant::fromValue(entry));
+            return;
         }
     }
+    emit libraryNotFound();
 }

@@ -40,6 +40,16 @@ C.Page {
 
     signal openPage(var component, var properties)
 
+    property var copyLinkToPage: {
+        if (page.library) {
+            return () => {
+                let url = shareUtils.createDeepLink(page.library)
+                OTL.Application.copyToClipboard(url.toString())
+            }
+        }
+        return null
+    }
+
     title: library ? library.name : qsTr("Schedule")
 
     savePage: function () {
@@ -53,7 +63,8 @@ C.Page {
         let libraryUid = state.library
         if (libraryUid) {
             d.restoreLibraryUid = OTL.Application.uuidFromString(libraryUid)
-            OTL.Application.loadLibrary(d.restoreLibraryUid)
+            d.loadLibraryTransactionId = OTL.Application.loadLibrary(
+                        d.restoreLibraryUid)
         }
     }
     restoreUrl: Qt.resolvedUrl("./ScheduleViewPage.qml")
@@ -128,6 +139,7 @@ C.Page {
         property var locale: Qt.locale()
 
         property var restoreLibraryUid
+        property var loadLibraryTransactionId
 
         function d2s(date) {
             return date.toLocaleDateString(locale, "yyyy-MM-dd")
@@ -370,8 +382,9 @@ C.Page {
     Connections {
         target: OTL.Application
 
-        function onLibraryLoaded(uid, data) {
-            if (uid === d.restoreLibraryUid) {
+        function onLibraryLoaded(uid, data, transactionId) {
+            if (uid === d.restoreLibraryUid
+                    && transactionId === d.loadLibraryTransactionId) {
                 page.library = OTL.Application.libraryFromData(data)
             }
         }

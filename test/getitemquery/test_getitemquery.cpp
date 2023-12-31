@@ -120,10 +120,32 @@ void GetItemQueryTest::run()
         QSignalSpy itemLoaded(q, &GetItemQuery::itemLoaded);
         cache.run(q);
         QVERIFY(itemLoaded.wait());
-        ItemPtr item(Item::decache(itemLoaded.value(0).value(0)));
+        auto cacheEntry = itemLoaded.value(0).value(0).value<ItemCacheEntry>();
+        ItemPtr item(Item::decache(cacheEntry));
         QVERIFY(item != nullptr);
         QCOMPARE(item->uid(), task.uid());
         QCOMPARE(item->title(), task.title());
+
+        // Check if recursive extraction of all parent items work (we pick task as it is furthest
+        // down the chain, but as the implementation is generic, it should work for any other item
+        // as well).
+        cacheEntry = itemLoaded.value(0).value(1).toList().value(0).value<ItemCacheEntry>();
+        ItemPtr todoItem(Item::decache(cacheEntry));
+        QVERIFY(todoItem != nullptr);
+        QCOMPARE(todoItem->uid(), todo.uid());
+        QCOMPARE(todoItem->title(), todo.title());
+
+        cacheEntry = itemLoaded.value(0).value(1).toList().value(1).value<ItemCacheEntry>();
+        ItemPtr todoListItem(Item::decache(cacheEntry));
+        QVERIFY(todoListItem != nullptr);
+        QCOMPARE(todoListItem->uid(), todoList.uid());
+        QCOMPARE(todoListItem->title(), todoList.title());
+
+        auto libraryCacheEntry = itemLoaded.value(0).value(2).value<LibraryCacheEntry>();
+        QSharedPointer<Library> libPtr(Library::decache(libraryCacheEntry));
+        QVERIFY(libPtr != nullptr);
+        QCOMPARE(libPtr->uid(), lib.uid());
+        QCOMPARE(libPtr->name(), lib.name());
     }
 
     {

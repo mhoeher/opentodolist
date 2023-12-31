@@ -121,6 +121,10 @@ P.MenuBar {
         }
 
         ActionMenuItem {
+            action: menuBar.shortcuts.copyDeepLink
+        }
+
+        ActionMenuItem {
             action: menuBar.shortcuts.move
         }
 

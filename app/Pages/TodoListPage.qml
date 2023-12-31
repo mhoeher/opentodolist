@@ -40,6 +40,11 @@ ItemPage {
         copyTopLevelItemAction.trigger()
     }
 
+    function copyLinkToPage() {
+        let url = shareUtils.createDeepLink(page.item)
+        OTL.Application.copyToClipboard(url.toString())
+    }
+
     function find() {
         filterBar.edit.forceActiveFocus()
     }
@@ -89,8 +94,10 @@ ItemPage {
     restorePage: function (state) {
         d.restoreLibraryUid = OTL.Application.uuidFromString(state.library)
         d.restoreTodoListUid = OTL.Application.uuidFromString(state.todoList)
-        OTL.Application.loadLibrary(d.restoreLibraryUid)
-        OTL.Application.loadItem(d.restoreTodoListUid)
+        d.loadLibraryTransactionId = OTL.Application.loadLibrary(
+                    d.restoreLibraryUid)
+        d.loadTodoListTransactionId = OTL.Application.loadItem(
+                    d.restoreTodoListUid)
     }
 
     restoreUrl: Qt.resolvedUrl("./TodoListPage.qml")
@@ -106,6 +113,8 @@ ItemPage {
 
         property var restoreLibraryUid
         property var restoreTodoListUid
+        property var loadLibraryTransactionId
+        property var loadTodoListTransactionId
 
         property bool editingNotes: false
 
@@ -374,14 +383,16 @@ ItemPage {
     Connections {
         target: OTL.Application
 
-        function onLibraryLoaded(uid, data) {
-            if (uid === d.restoreLibraryUid) {
+        function onLibraryLoaded(uid, data, transactionId) {
+            if (uid === d.restoreLibraryUid
+                    && transactionId == d.loadLibraryTransactionId) {
                 page.library = OTL.Application.libraryFromData(data)
             }
         }
 
-        function onItemLoaded(uid, data) {
-            if (uid === d.restoreTodoListUid) {
+        function onItemLoaded(uid, data, parents, library, transactionId) {
+            if (uid === d.restoreTodoListUid
+                    && transactionId === d.loadTodoListTransactionId) {
                 page.item = OTL.Application.itemFromData(data)
             }
         }
@@ -389,5 +400,9 @@ ItemPage {
 
     Tooltips.AllSubtasksDone {
         item: page.item
+    }
+
+    OTL.ShareUtils {
+        id: shareUtils
     }
 }

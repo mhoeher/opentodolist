@@ -307,7 +307,7 @@ C.SwipeDelegate {
     Connections {
         target: OTL.Application
 
-        function onItemLoaded(uid, data) {
+        function onItemLoaded(uid, dataparents, library, transactionId) {
             switch (swipeDelegate.item.itemType) {
             case "Todo":
                 if (uid === swipeDelegate.item.todoListUid) {

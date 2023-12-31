@@ -243,7 +243,8 @@ private:
     void setupChangedSignal();
 
     void onCacheChanged();
-    void onItemDataLoadedFromCache(const QVariant& entry);
+    void onItemDataLoadedFromCache(const QVariant& entry, const QVariantList& parents,
+                                   const QVariant& library);
     void onChanged();
     void setUpdateAt();
     void setChildrenUpdatedAt(const QDateTime& childrenUpdatedAt);

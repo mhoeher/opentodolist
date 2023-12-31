@@ -66,6 +66,7 @@
 #    include "../lib/opentodolist_version.h"
 #endif
 #include "utils/translations.h"
+#include "utils/urlhandler.h"
 
 class AppStartup : public QObject
 {
@@ -95,6 +96,7 @@ private:
     QQmlApplicationEngine* m_engine;
     OpenTodoList::Translations* m_translations;
     OpenTodoListQmlExtensionsPlugin m_qmlPlugin;
+    UrlHandler m_urlHandler;
 
     void setupGlobals();
     void createApp(int& argc, char* argv[]);

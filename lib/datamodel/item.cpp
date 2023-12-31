@@ -742,7 +742,7 @@ void Item::onCacheChanged()
     }
 }
 
-void Item::onItemDataLoadedFromCache(const QVariant& entry)
+void Item::onItemDataLoadedFromCache(const QVariant& entry, const QVariantList&, const QVariant&)
 {
     ItemPtr item(Item::decache(entry));
     if (item != nullptr) {

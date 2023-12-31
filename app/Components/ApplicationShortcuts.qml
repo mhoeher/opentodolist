@@ -71,6 +71,14 @@ Item {
         onTriggered: stackView.currentItem.copyItem()
     }
 
+    property C.Action copyDeepLink: C.Action {
+        text: qsTr("Copy Link To Page")
+        shortcut: "Ctrl+Shift+K"
+        symbol: Fonts.Icons.mdiContentCopy
+        enabled: typeof (stackView?.currentItem?.copyLinkToPage) === "function"
+        onTriggered: stackView.currentItem.copyLinkToPage()
+    }
+
     property C.Action createSampleLibrary: C.Action {
         text: qsTr("Create Sample Library")
         onTriggered: {

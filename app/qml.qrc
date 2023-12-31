@@ -172,5 +172,6 @@
         <file>Widgets/ApplicationMenu.qml</file>
         <file>Controls/ProgressBar.qml</file>
         <file>Windows/StackViewWindow.qml</file>
+        <file>Utils/DeepLinkHandler.qml</file>
     </qresource>
 </RCC>

@@ -22,6 +22,8 @@
 #include <QDesktopServices>
 #include <QUrl>
 
+#include "utils/urlhandler.h"
+
 #if defined(Q_OS_IOS)
 #    include "iosplatformshareutils.h"
 #elif defined(Q_OS_ANDROID)
@@ -76,6 +78,30 @@ ShareUtils::~ShareUtils() {}
 bool ShareUtils::canOpenFolders() const
 {
     return m_platformShareUtils->canOpenFolders();
+}
+
+/**
+ * @brief Create a deep link to the given @p item.
+ */
+QUrl ShareUtils::createDeepLink(Item* item)
+{
+    QUrl result;
+    if (item != nullptr) {
+        result = UrlHandler::createDeepLink(*item);
+    }
+    return result;
+}
+
+/**
+ * @brief Create a deep link to the given @p library.
+ */
+QUrl ShareUtils::createDeepLink(Library* library)
+{
+    QUrl result;
+    if (library != nullptr) {
+        result = UrlHandler::createDeepLink(*library);
+    }
+    return result;
 }
 
 /**
