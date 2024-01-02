@@ -437,37 +437,37 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "输入资料库标题..."
 
-#: ../Pages/ScheduleViewPage.qml:136
+#: ../Pages/ScheduleViewPage.qml:148
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "今天"
 
-#: ../Pages/ScheduleViewPage.qml:137
+#: ../Pages/ScheduleViewPage.qml:149
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "明天"
 
-#: ../Pages/ScheduleViewPage.qml:173
+#: ../Pages/ScheduleViewPage.qml:185
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "本周晚些时候"
 
-#: ../Pages/ScheduleViewPage.qml:175
+#: ../Pages/ScheduleViewPage.qml:187
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "下周"
 
-#: ../Pages/ScheduleViewPage.qml:176
+#: ../Pages/ScheduleViewPage.qml:188
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "下一步"
 
-#: ../Pages/ScheduleViewPage.qml:255
+#: ../Pages/ScheduleViewPage.qml:267
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr "尚未安排任何时间...在项目中添加截止日期，以便它们出现在此处。"
 
-#: ../Pages/ScheduleViewPage.qml:113
+#: ../Pages/ScheduleViewPage.qml:124
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "逾期"
@@ -569,12 +569,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "完成的待办事项"
 
-#: ../Pages/TodoPage.qml:172
+#: ../Pages/TodoPage.qml:182
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "搜索词1，搜索词2，..."
 
-#: ../Pages/TodoPage.qml:198
+#: ../Pages/TodoPage.qml:208
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "任务"
@@ -689,7 +689,7 @@ msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "添加新的待办事项..."
 
-#: ../Pages/TodoPage.qml:204
+#: ../Pages/TodoPage.qml:214
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "添加新任务..."
@@ -1561,37 +1561,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:195
+#: ../appstartup.cpp:198
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "管理您的个人数据。"
 
-#: ../appstartup.cpp:201
+#: ../appstartup.cpp:204
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "打开一些针对触摸屏的优化。"
 
-#: ../appstartup.cpp:204
+#: ../appstartup.cpp:207
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "仅运行应用后台服务"
 
-#: ../appstartup.cpp:206
+#: ../appstartup.cpp:209
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "仅运行应用图形界面并连接至现有应用的后台服务"
 
-#: ../appstartup.cpp:211
+#: ../appstartup.cpp:214
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "在 Windows 上启用一个终端来获取调试输出"
 
-#: ../appstartup.cpp:362
+#: ../appstartup.cpp:365
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "打开"
 
-#: ../appstartup.cpp:428
+#: ../appstartup.cpp:431
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "退出"
@@ -2191,7 +2191,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "复制系统信息"
 
-#: ../appstartup.cpp:370
+#: ../appstartup.cpp:373
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "快捷笔记"
@@ -2216,7 +2216,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "撤销"
 
-#: ../appstartup.cpp:307 ../appstartup.cpp:314
+#: ../appstartup.cpp:310 ../appstartup.cpp:317
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "未知"
@@ -2452,12 +2452,12 @@ msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr "显示在末尾"
 
-#: ../Pages/TodoPage.qml:295
+#: ../Pages/TodoPage.qml:305
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr "显示已完成"
 
-#: ../Pages/TodoPage.qml:302
+#: ../Pages/TodoPage.qml:312
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr "显示在末尾"
@@ -2472,17 +2472,17 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
 msgstr ""
 
-#: ../../lib/application.cpp:210
+#: ../../lib/application.cpp:218
 msgctxt "Application|"
 msgid "Background Sync"
 msgstr ""
 
-#: ../../lib/application.cpp:214
+#: ../../lib/application.cpp:222
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
 msgstr ""
 
-#: ../../lib/application.cpp:218
+#: ../../lib/application.cpp:226
 msgctxt "Application|"
 msgid "Quit"
 msgstr ""
@@ -2623,7 +2623,7 @@ msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
 msgstr ""
 
-#: ../Pages/ScheduleViewPage.qml:43
+#: ../Pages/ScheduleViewPage.qml:53
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
 msgstr ""
@@ -2726,5 +2726,15 @@ msgstr ""
 #: ../Windows/RecurrenceDialog.qml:119
 msgctxt "RecurrenceDialog|"
 msgid "Number of months:"
+msgstr ""
+
+#: ../Utils/DeepLinkHandler.qml:56
+msgctxt "DeepLinkHandler|"
+msgid "Uuups... seems that's a dead end..."
+msgstr ""
+
+#: ../Utils/DeepLinkHandler.qml:62
+msgctxt "DeepLinkHandler|"
+msgid "Sorry, that link does not lead to any page or item that is present on this device. Check if the library or item to which the link points is synchronized on this device and try again."
 msgstr ""
 

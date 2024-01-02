@@ -443,37 +443,37 @@ msgctxt "RenameLibraryDialog|"
 msgid "Enter library title..."
 msgstr "Entrer le titre de la bibliothèque..."
 
-#: ../Pages/ScheduleViewPage.qml:136
+#: ../Pages/ScheduleViewPage.qml:148
 msgctxt "ScheduleViewPage|"
 msgid "Today"
 msgstr "Aujourd'hui"
 
-#: ../Pages/ScheduleViewPage.qml:137
+#: ../Pages/ScheduleViewPage.qml:149
 msgctxt "ScheduleViewPage|"
 msgid "Tomorrow"
 msgstr "Demain"
 
-#: ../Pages/ScheduleViewPage.qml:173
+#: ../Pages/ScheduleViewPage.qml:185
 msgctxt "ScheduleViewPage|"
 msgid "Later This Week"
 msgstr "Plus tard cette semaine"
 
-#: ../Pages/ScheduleViewPage.qml:175
+#: ../Pages/ScheduleViewPage.qml:187
 msgctxt "ScheduleViewPage|"
 msgid "Next Week"
 msgstr "Semaine prochaine"
 
-#: ../Pages/ScheduleViewPage.qml:176
+#: ../Pages/ScheduleViewPage.qml:188
 msgctxt "ScheduleViewPage|"
 msgid "Coming Next"
 msgstr "Prochainement"
 
-#: ../Pages/ScheduleViewPage.qml:255
+#: ../Pages/ScheduleViewPage.qml:267
 msgctxt "ScheduleViewPage|"
 msgid "Nothing scheduled... Add a due date to items for them to appear here."
 msgstr "Rien de prévu... Ajoutez une date d'échéance aux éléments pour qu'ils apparaissent ici."
 
-#: ../Pages/ScheduleViewPage.qml:113
+#: ../Pages/ScheduleViewPage.qml:124
 msgctxt "ScheduleViewPage|"
 msgid "Overdue"
 msgstr "En retard"
@@ -575,12 +575,12 @@ msgctxt "TodoListPage|"
 msgid "Completed Todos"
 msgstr "Todos achevés"
 
-#: ../Pages/TodoPage.qml:172
+#: ../Pages/TodoPage.qml:182
 msgctxt "TodoPage|"
 msgid "Search term 1, search term 2, ..."
 msgstr "Terme de recherche 1, terme de recherche 2, ...."
 
-#: ../Pages/TodoPage.qml:198
+#: ../Pages/TodoPage.qml:208
 msgctxt "TodoPage|"
 msgid "Tasks"
 msgstr "Tâches"
@@ -695,7 +695,7 @@ msgctxt "TodoListPage|"
 msgid "Add new todo..."
 msgstr "Ajouter un nouveau todo..."
 
-#: ../Pages/TodoPage.qml:204
+#: ../Pages/TodoPage.qml:214
 msgctxt "TodoPage|"
 msgid "Add new task..."
 msgstr "Ajouter une nouvelle tâche..."
@@ -1578,37 +1578,37 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "WebDAV"
 msgstr "WebDAV"
 
-#: ../appstartup.cpp:195
+#: ../appstartup.cpp:198
 msgctxt "AppStartup|"
 msgid "Manage your personal data."
 msgstr "Gérer vos données personnelles."
 
-#: ../appstartup.cpp:201
+#: ../appstartup.cpp:204
 msgctxt "AppStartup|"
 msgid "Switch on some optimizations for touchscreens."
 msgstr "Activer les optimisations pour écrans tactiles."
 
-#: ../appstartup.cpp:204
+#: ../appstartup.cpp:207
 msgctxt "AppStartup|"
 msgid "Only run the app background service"
 msgstr "Exécuter uniquement le service d'arrière-plan de l'application"
 
-#: ../appstartup.cpp:206
+#: ../appstartup.cpp:209
 msgctxt "AppStartup|"
 msgid "Only run the app GUI and connect to an existing app background service"
 msgstr "Exécutez uniquement l'interface graphique de l'application et connectez-vous à un service d'arrière-plan existant"
 
-#: ../appstartup.cpp:211
+#: ../appstartup.cpp:214
 msgctxt "AppStartup|"
 msgid "Enable a console on Windows to gather debug output"
 msgstr "Activez une console sous Windows pour recueillir les données de débogage"
 
-#: ../appstartup.cpp:362
+#: ../appstartup.cpp:365
 msgctxt "AppStartup|"
 msgid "Open"
 msgstr "Ouvrir"
 
-#: ../appstartup.cpp:428
+#: ../appstartup.cpp:431
 msgctxt "AppStartup|"
 msgid "Quit"
 msgstr "Quitter"
@@ -2209,7 +2209,7 @@ msgctxt "AboutPage|"
 msgid "Copy System Information"
 msgstr "Copier les Informations Système"
 
-#: ../appstartup.cpp:370
+#: ../appstartup.cpp:373
 msgctxt "AppStartup|"
 msgid "Quick Note"
 msgstr "Note Rapide"
@@ -2234,7 +2234,7 @@ msgctxt "MainWindow|"
 msgid "Undo"
 msgstr "Annuler"
 
-#: ../appstartup.cpp:307 ../appstartup.cpp:314
+#: ../appstartup.cpp:310 ../appstartup.cpp:317
 msgctxt "QObject|"
 msgid "unknown"
 msgstr "inconnu"
@@ -2470,12 +2470,12 @@ msgctxt "TodoListPage|"
 msgid "Show At The End"
 msgstr "Afficher à la fin"
 
-#: ../Pages/TodoPage.qml:295
+#: ../Pages/TodoPage.qml:305
 msgctxt "TodoPage|"
 msgid "Show Completed"
 msgstr "Montrer les terminés"
 
-#: ../Pages/TodoPage.qml:302
+#: ../Pages/TodoPage.qml:312
 msgctxt "TodoPage|"
 msgid "Show At The End"
 msgstr "Afficher à la fin"
@@ -2490,17 +2490,17 @@ msgctxt "AccountTypeSelectionPage|"
 msgid "Dropbox"
 msgstr "Dropbox"
 
-#: ../../lib/application.cpp:210
+#: ../../lib/application.cpp:218
 msgctxt "Application|"
 msgid "Background Sync"
 msgstr "Synchronisation en arrière plan"
 
-#: ../../lib/application.cpp:214
+#: ../../lib/application.cpp:222
 msgctxt "Application|"
 msgid "App continues to sync your data in the background"
 msgstr "L'application poursuit la synchronisation de vos données en arrière plan"
 
-#: ../../lib/application.cpp:218
+#: ../../lib/application.cpp:226
 msgctxt "Application|"
 msgid "Quit"
 msgstr "Quitter"
@@ -2641,7 +2641,7 @@ msgctxt "NewItemWithDueDateDialog|"
 msgid "Library"
 msgstr "Bibliothèque"
 
-#: ../Pages/ScheduleViewPage.qml:43
+#: ../Pages/ScheduleViewPage.qml:53
 msgctxt "ScheduleViewPage|"
 msgid "Schedule"
 msgstr "Planifier"
@@ -2744,5 +2744,15 @@ msgstr ""
 #: ../Windows/RecurrenceDialog.qml:119
 msgctxt "RecurrenceDialog|"
 msgid "Number of months:"
+msgstr ""
+
+#: ../Utils/DeepLinkHandler.qml:56
+msgctxt "DeepLinkHandler|"
+msgid "Uuups... seems that's a dead end..."
+msgstr ""
+
+#: ../Utils/DeepLinkHandler.qml:62
+msgctxt "DeepLinkHandler|"
+msgid "Sorry, that link does not lead to any page or item that is present on this device. Check if the library or item to which the link points is synchronized on this device and try again."
 msgstr ""
 
