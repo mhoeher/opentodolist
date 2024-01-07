@@ -114,42 +114,42 @@
 <context>
     <name>AppStartup</name>
     <message>
-        <location filename="../appstartup.cpp" line="195"/>
+        <location filename="../appstartup.cpp" line="198"/>
         <source>Manage your personal data.</source>
         <translation type="unfinished">Gérer vos données personnelles.</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="201"/>
+        <location filename="../appstartup.cpp" line="204"/>
         <source>Switch on some optimizations for touchscreens.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="204"/>
+        <location filename="../appstartup.cpp" line="207"/>
         <source>Only run the app background service</source>
         <translation type="unfinished">Exécuter uniquement le service d&apos;arrière-plan de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="206"/>
+        <location filename="../appstartup.cpp" line="209"/>
         <source>Only run the app GUI and connect to an existing app background service</source>
         <translation type="unfinished">Exécutez uniquement l&apos;interface graphique de l&apos;application et connectez-vous à un service d&apos;arrière-plan existant</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="211"/>
+        <location filename="../appstartup.cpp" line="214"/>
         <source>Enable a console on Windows to gather debug output</source>
         <translation type="unfinished">Activez une console sous Windows pour recueillir les données de débogage</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="362"/>
+        <location filename="../appstartup.cpp" line="365"/>
         <source>Open</source>
         <translation type="unfinished">Ouvrir</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="370"/>
+        <location filename="../appstartup.cpp" line="373"/>
         <source>Quick Note</source>
         <translation type="unfinished">Note Rapide</translation>
     </message>
     <message>
-        <location filename="../appstartup.cpp" line="428"/>
+        <location filename="../appstartup.cpp" line="431"/>
         <source>Quit</source>
         <translation type="unfinished">Quitter</translation>
     </message>
@@ -157,17 +157,17 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../../lib/application.cpp" line="210"/>
+        <location filename="../../lib/application.cpp" line="218"/>
         <source>Background Sync</source>
         <translation type="unfinished">Synchronisation en arrière plan</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="214"/>
+        <location filename="../../lib/application.cpp" line="222"/>
         <source>App continues to sync your data in the background</source>
         <translation type="unfinished">L&apos;application poursuit la synchronisation de vos données en arrière plan</translation>
     </message>
     <message>
-        <location filename="../../lib/application.cpp" line="218"/>
+        <location filename="../../lib/application.cpp" line="226"/>
         <source>Quit</source>
         <translation type="unfinished">Quitter</translation>
     </message>
@@ -278,6 +278,19 @@
         <location filename="../Actions/CopyTopLevelItem.qml" line="13"/>
         <source>Copy</source>
         <translation type="unfinished">Copier</translation>
+    </message>
+</context>
+<context>
+    <name>DeepLinkHandler</name>
+    <message>
+        <location filename="../Utils/DeepLinkHandler.qml" line="56"/>
+        <source>Uuups... seems that&apos;s a dead end...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Utils/DeepLinkHandler.qml" line="62"/>
+        <source>Sorry, that link does not lead to any page or item that is present on this device. Check if the library or item to which the link points is synchronized on this device and try again.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1160,19 +1173,6 @@
     </message>
 </context>
 <context>
-    <name>NotePage</name>
-    <message>
-        <location filename="../Pages/NotePage.qml" line="164"/>
-        <source>Main Page</source>
-        <translation type="unfinished">Page principale</translation>
-    </message>
-    <message>
-        <location filename="../Pages/NotePage.qml" line="231"/>
-        <source>New Page</source>
-        <translation type="unfinished">Nouvelle page</translation>
-    </message>
-</context>
-<context>
     <name>OpenTodoList::Translations</name>
     <message>
         <location filename="../../lib/utils/translations.cpp" line="91"/>
@@ -1215,8 +1215,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../appstartup.cpp" line="307"/>
-        <location filename="../appstartup.cpp" line="314"/>
+        <location filename="../appstartup.cpp" line="310"/>
+        <location filename="../appstartup.cpp" line="317"/>
         <source>unknown</source>
         <translation type="unfinished">inconnu</translation>
     </message>
@@ -1397,42 +1397,42 @@
 <context>
     <name>ScheduleViewPage</name>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="43"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="53"/>
         <source>Schedule</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="113"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="124"/>
         <source>Overdue</source>
         <translation type="unfinished">En retard</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="136"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="148"/>
         <source>Today</source>
         <translation type="unfinished">Aujourd&apos;hui</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="137"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="149"/>
         <source>Tomorrow</source>
         <translation type="unfinished">Demain</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="173"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="185"/>
         <source>Later This Week</source>
         <translation type="unfinished">Plus tard cette semaine</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="175"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="187"/>
         <source>Next Week</source>
         <translation type="unfinished">Semaine prochaine</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="176"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="188"/>
         <source>Coming Next</source>
         <translation type="unfinished">Prochainement</translation>
     </message>
     <message>
-        <location filename="../Pages/ScheduleViewPage.qml" line="255"/>
+        <location filename="../Pages/ScheduleViewPage.qml" line="267"/>
         <source>Nothing scheduled... Add a due date to items for them to appear here.</source>
         <translation type="unfinished">Rien de prévu... Ajoutez une date d&apos;échéance aux éléments pour qu&apos;ils apparaissent ici.</translation>
     </message>
@@ -1672,27 +1672,27 @@ Cela nécessite un redémarrage de l&apos;application.</translation>
 <context>
     <name>TodoPage</name>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="172"/>
+        <location filename="../Pages/TodoPage.qml" line="182"/>
         <source>Search term 1, search term 2, ...</source>
         <translation type="unfinished">Terme de recherche 1, terme de recherche 2, ....</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="198"/>
+        <location filename="../Pages/TodoPage.qml" line="208"/>
         <source>Tasks</source>
         <translation type="unfinished">Tâches</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="204"/>
+        <location filename="../Pages/TodoPage.qml" line="214"/>
         <source>Add new task...</source>
         <translation type="unfinished">Ajouter une nouvelle tâche...</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="295"/>
+        <location filename="../Pages/TodoPage.qml" line="305"/>
         <source>Show Completed</source>
         <translation type="unfinished">Montrer les terminés</translation>
     </message>
     <message>
-        <location filename="../Pages/TodoPage.qml" line="302"/>
+        <location filename="../Pages/TodoPage.qml" line="312"/>
         <source>Show At The End</source>
         <translation type="unfinished">Afficher à la fin</translation>
     </message>
