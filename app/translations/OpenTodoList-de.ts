@@ -285,12 +285,12 @@
     <message>
         <location filename="../Utils/DeepLinkHandler.qml" line="56"/>
         <source>Uuups... seems that&apos;s a dead end...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hoppla … es sieht so aus, als ob es hier nicht weitergeht …</translation>
     </message>
     <message>
         <location filename="../Utils/DeepLinkHandler.qml" line="62"/>
         <source>Sorry, that link does not lead to any page or item that is present on this device. Check if the library or item to which the link points is synchronized on this device and try again.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Entschuldigung, diese Verknüpfung verweist auf keine Seite oder keinen Eintrag, der auf diesem Gerät vorhanden ist. Bitte überprüfen Sie, ob die Bibliothek oder der Eintrag, auf die oder den die Verknüpfung verweist, auf diesem Gerät synchronisiert ist und versuchen Sie es erneut.</translation>
     </message>
 </context>
 <context>
@@ -649,7 +649,7 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="173"/>
         <source>Move Todo Into...</source>
-        <translation type="unfinished">Verschiebe Todo zu...</translation>
+        <translation type="unfinished">Verschiebe Todo zu ...</translation>
     </message>
     <message>
         <location filename="../Utils/ItemUtils.qml" line="188"/>
@@ -664,7 +664,7 @@
     <message>
         <location filename="../Utils/ItemUtils.qml" line="221"/>
         <source>Copy Todo Into...</source>
-        <translation type="unfinished">Todo kopieren in...</translation>
+        <translation type="unfinished">Todo kopieren in ...</translation>
     </message>
 </context>
 <context>
@@ -1339,12 +1339,12 @@
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="117"/>
         <source>Number of weeks:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wochenzahl:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="119"/>
         <source>Number of months:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anzahl der Monate:</translation>
     </message>
     <message>
         <location filename="../Windows/RecurrenceDialog.qml" line="141"/>
@@ -1370,7 +1370,7 @@
     <message>
         <location filename="../Windows/RenameItemDialog.qml" line="33"/>
         <source>Enter item title...</source>
-        <translation type="unfinished">Titel für den Eintrag...</translation>
+        <translation type="unfinished">Titel für den Eintrag ...</translation>
     </message>
 </context>
 <context>
@@ -1531,7 +1531,7 @@
     <message>
         <location filename="../Pages/SettingsPage.qml" line="148"/>
         <source>Monochrome Icon</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Einfarbiges Icon</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="156"/>
@@ -1563,9 +1563,9 @@
         <source>Reduce space between components and reduce the font size.
 
 &lt;em&gt;Requires a restart of the app.&lt;/em&gt;</source>
-        <translation type="unfinished">Abstände zwischen den Komponenten verringern und Schriftgröße reduzieren
+        <translation type="unfinished">Abstände zwischen den Komponenten verringern und Schriftgröße reduzieren.
 
-&lt;em&gt;Benötigt Neustart der Anwendung.&lt;/em&gt;</translation>
+&lt;em&gt;Benötigt einen Neustart der Anwendung.&lt;/em&gt;</translation>
     </message>
     <message>
         <location filename="../Pages/SettingsPage.qml" line="214"/>

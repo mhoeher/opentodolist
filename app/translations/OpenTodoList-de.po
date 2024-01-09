@@ -426,7 +426,7 @@ msgstr "Eintrag umbenennen"
 #: ../Windows/RenameItemDialog.qml:33
 msgctxt "RenameItemDialog|"
 msgid "Enter item title..."
-msgstr "Titel für den Eintrag..."
+msgstr "Titel für den Eintrag ..."
 
 #: ../Windows/RenameLibraryDialog.qml:20
 msgctxt "RenameLibraryDialog|"
@@ -491,7 +491,7 @@ msgstr "Überprüfen"
 #: ../Widgets/SyncIndicatorBar.qml:63
 msgctxt "SyncIndicatorBar|"
 msgid "Synchronizing library..."
-msgstr "Synchronisation der Bibliothek läuft..."
+msgstr "Synchronisation der Bibliothek läuft ..."
 
 #: ../Pages/SyncLibrarySelectionPage.qml:17
 msgctxt "SyncLibrarySelectionPage|"
@@ -1871,7 +1871,7 @@ msgstr "Verbindung zum Server fehlgeschlagen. Bitte überprüfe Deinen Benutzern
 #: ../Utils/ItemUtils.qml:173
 msgctxt "ItemUtils|"
 msgid "Move Todo Into..."
-msgstr "Verschiebe Todo zu..."
+msgstr "Verschiebe Todo zu ..."
 
 #: ../Widgets/LibrariesSideBar.qml:107
 msgctxt "LibrariesSideBar|"
@@ -2128,9 +2128,9 @@ msgctxt "SettingsPage|"
 msgid "Reduce space between components and reduce the font size.\n"
 "\n"
 "<em>Requires a restart of the app.</em>"
-msgstr "Abstände zwischen den Komponenten verringern und Schriftgröße reduzieren\n"
+msgstr "Abstände zwischen den Komponenten verringern und Schriftgröße reduzieren.\n"
 "\n"
-"<em>Benötigt Neustart der Anwendung.</em>"
+"<em>Benötigt einen Neustart der Anwendung.</em>"
 
 #: ../Pages/SettingsPage.qml:214
 msgctxt "SettingsPage|"
@@ -2440,7 +2440,7 @@ msgstr "Artikel kopieren in..."
 #: ../Utils/ItemUtils.qml:221
 msgctxt "ItemUtils|"
 msgid "Copy Todo Into..."
-msgstr "Todo kopieren in..."
+msgstr "Todo kopieren in ..."
 
 #: ../Pages/NewLibraryInFolderPage.qml:74
 msgctxt "NewLibraryInFolderPage|"
@@ -2726,25 +2726,25 @@ msgstr "Synchronisation erneut versuchen"
 #: ../Pages/SettingsPage.qml:148
 msgctxt "SettingsPage|"
 msgid "Monochrome Icon"
-msgstr ""
+msgstr "Einfarbiges Icon"
 
 #: ../Windows/RecurrenceDialog.qml:117
 msgctxt "RecurrenceDialog|"
 msgid "Number of weeks:"
-msgstr ""
+msgstr "Wochenzahl:"
 
 #: ../Windows/RecurrenceDialog.qml:119
 msgctxt "RecurrenceDialog|"
 msgid "Number of months:"
-msgstr ""
+msgstr "Anzahl der Monate:"
 
 #: ../Utils/DeepLinkHandler.qml:56
 msgctxt "DeepLinkHandler|"
 msgid "Uuups... seems that's a dead end..."
-msgstr ""
+msgstr "Hoppla … es sieht so aus, als ob es hier nicht weitergeht …"
 
 #: ../Utils/DeepLinkHandler.qml:62
 msgctxt "DeepLinkHandler|"
 msgid "Sorry, that link does not lead to any page or item that is present on this device. Check if the library or item to which the link points is synchronized on this device and try again."
-msgstr ""
+msgstr "Entschuldigung, diese Verknüpfung verweist auf keine Seite oder keinen Eintrag, der auf diesem Gerät vorhanden ist. Bitte überprüfen Sie, ob die Bibliothek oder der Eintrag, auf die oder den die Verknüpfung verweist, auf diesem Gerät synchronisiert ist und versuchen Sie es erneut."
 
