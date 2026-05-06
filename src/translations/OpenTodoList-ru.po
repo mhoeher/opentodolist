@@ -565,12 +565,12 @@ msgstr "Поисковый запрос 1, поисковый запрос 2, ..
 #: ../qml/Pages/TodoListPage.qml:253
 msgctxt "TodoListPage|"
 msgid "Todos"
-msgstr "Todos"
+msgstr "Задачи"
 
 #: ../Pages/TodoListPage.qml:290
 msgctxt "TodoListPage|"
 msgid "Completed Todos"
-msgstr "Завершенные Todos"
+msgstr "Завершенные задачи"
 
 #: ../qml/Pages/TodoPage.qml:181
 msgctxt "TodoPage|"
@@ -1809,7 +1809,7 @@ msgstr "Ошибка подключения к серверу. Пожалуйс�
 #: ../qml/Pages/AccountsPage.qml:18 ../qml/Pages/AccountsPage.qml:40
 msgctxt "AccountsPage|"
 msgid "Accounts"
-msgstr "Аккаунты"
+msgstr "Учётные записи"
 
 #: ../qml/Pages/EditWebDAVAccountPage.qml:32
 #: ../qml/Pages/EditWebDAVAccountPage.qml:116
@@ -2469,7 +2469,7 @@ msgstr "Показывать в конце"
 #: ../qml/Actions/ResetDueTo.qml:8
 msgctxt "ResetDueTo|"
 msgid "Reset Due To"
-msgstr "Сбросить из-за"
+msgstr "Убрать срок выполнения"
 
 #: ../qml/Pages/AccountTypeSelectionPage.qml:70
 msgctxt "AccountTypeSelectionPage|"
@@ -2751,7 +2751,7 @@ msgstr ""
 #: ../qml/Components/Tooltips/AllSubtasksDone.qml:20
 msgctxt "AllSubtasksDone|"
 msgid "Mark as Done"
-msgstr ""
+msgstr "Отметить завершённой"
 
 #: ../qml/Components/Tooltips/AllSubtasksDone.qml:30
 msgctxt "AllSubtasksDone|"
@@ -2771,7 +2771,7 @@ msgstr "Редактировать"
 #: ../qml/Widgets/ApplicationMenu.qml:158
 msgctxt "ApplicationMenu|"
 msgid "Navigate"
-msgstr ""
+msgstr "Навигация"
 
 #: ../qml/Widgets/ApplicationMenu.qml:197
 msgctxt "ApplicationMenu|"
@@ -2806,27 +2806,27 @@ msgstr ""
 #: ../qml/Components/ApplicationShortcuts.qml:59
 msgctxt "ApplicationShortcuts|"
 msgid "Backup"
-msgstr ""
+msgstr "Сделать резервную копию"
 
 #: ../qml/Components/ApplicationShortcuts.qml:66
 msgctxt "ApplicationShortcuts|"
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: ../qml/Components/ApplicationShortcuts.qml:73
 msgctxt "ApplicationShortcuts|"
 msgid "Copy"
-msgstr ""
+msgstr "Копировать"
 
 #: ../qml/Components/ApplicationShortcuts.qml:81
 msgctxt "ApplicationShortcuts|"
 msgid "Copy Link To Page"
-msgstr ""
+msgstr "Копировать ссылку страницы"
 
 #: ../qml/Components/ApplicationShortcuts.qml:89
 msgctxt "ApplicationShortcuts|"
 msgid "Create Sample Library"
-msgstr ""
+msgstr "Создать образец библиотеки"
 
 #: ../qml/Components/ApplicationShortcuts.qml:159
 msgctxt "ApplicationShortcuts|"
@@ -2896,47 +2896,47 @@ msgstr ""
 #: ../qml/Components/ApplicationShortcuts.qml:274
 msgctxt "ApplicationShortcuts|"
 msgid "Quit"
-msgstr ""
+msgstr "Закрыть OpenTodoList"
 
 #: ../qml/Components/ApplicationShortcuts.qml:280
 msgctxt "ApplicationShortcuts|"
 msgid "Rename"
-msgstr ""
+msgstr "Переименовать"
 
 #: ../qml/Components/ApplicationShortcuts.qml:288
 msgctxt "ApplicationShortcuts|"
 msgid "Preferences"
-msgstr ""
+msgstr "Настройки программы"
 
 #: ../qml/Components/ApplicationShortcuts.qml:309
 msgctxt "ApplicationShortcuts|"
 msgid "Scroll to Top"
-msgstr ""
+msgstr "Пролистать вверх"
 
 #: ../qml/Components/ApplicationShortcuts.qml:316
 msgctxt "ApplicationShortcuts|"
 msgid "Scroll to Bottom"
-msgstr ""
+msgstr "Пролистать вниз"
 
 #: ../qml/Components/ApplicationShortcuts.qml:323
 msgctxt "ApplicationShortcuts|"
 msgid "Set Color"
-msgstr ""
+msgstr "Установить цвет"
 
 #: ../qml/Components/ApplicationShortcuts.qml:330
 msgctxt "ApplicationShortcuts|"
 msgid "Set Progress"
-msgstr ""
+msgstr "Установить прогресс"
 
 #: ../qml/Components/ApplicationShortcuts.qml:337
 msgctxt "ApplicationShortcuts|"
 msgid "Sort"
-msgstr ""
+msgstr "Отсортировать"
 
 #: ../qml/Components/ApplicationShortcuts.qml:345
 msgctxt "ApplicationShortcuts|"
 msgid "Sync Now"
-msgstr ""
+msgstr "Синхронизировать"
 
 #: ../qml/Components/ApplicationShortcuts.qml:358
 msgctxt "ApplicationShortcuts|"
@@ -3021,22 +3021,22 @@ msgstr ""
 #: ../qml/Windows/SelectTodoDialog.qml:22
 msgctxt "SelectTodoDialog|"
 msgid "Select Todo"
-msgstr ""
+msgstr "Выбрать задачу"
 
 #: ../qml/Windows/SelectTodoDialog.qml:42
 msgctxt "SelectTodoDialog|"
 msgid "Todo List:"
-msgstr ""
+msgstr "Список задач:"
 
 #: ../qml/Windows/SelectTodoDialog.qml:64
 msgctxt "SelectTodoDialog|"
 msgid "Todo:"
-msgstr ""
+msgstr "Задачи:"
 
 #: ../qml/Pages/SettingsPage.qml:143
 msgctxt "SettingsPage|"
 msgid "Custom Primary Color:"
-msgstr ""
+msgstr "Пользовательский основной цвет:"
 
 #: ../qml/Pages/SettingsPage.qml:151 ../qml/Pages/SettingsPage.qml:171
 msgctxt "SettingsPage|"
@@ -3046,5 +3046,5 @@ msgstr ""
 #: ../qml/Pages/SettingsPage.qml:165
 msgctxt "SettingsPage|"
 msgid "Custom Secondary Color:"
-msgstr ""
+msgstr "Пользовательский вторичный цвет:"
 

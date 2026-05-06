@@ -48,6 +48,16 @@
 
   <releases>
     <!-- Format releases according to this: https://www.freedesktop.org/software/appstream/docs/sect-Metadata-Releases.html#spec-releases-example -->
+    <release version="3.51.1" date="2026-05-05">
+        <description>
+            <p>This is a bug fix release, which fixes a regression in OpenTodoList 3.51.0 where localization did not work correctly.</p>
+            <p>Additionally, this release updates the translations downloaded from POEditor.</p>
+            <p>This release of the app contains the following changes:</p>
+        </description>
+        <issues>
+            <issue url="https://gitlab.com/rpdev/opentodolist/-/issues/706">#706: Fix regression in OpenTodoList 3.51.0's localization.</issue>
+        </issues>
+    </release>
     <release version="3.51.0" date="2026-05-02">
         <description>
             <p>This release of the app adds support for recipes, allowing you to keep ingredients, utilities, steps and yields together with your other items.</p>

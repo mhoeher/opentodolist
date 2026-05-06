@@ -577,7 +577,7 @@ qt_add_translations(
     TS_FILES
         ${TS_FILES}
     RESOURCE_PREFIX
-        "/qt/qml/OpenTodoList/translations"
+        "/qt/qml/net/rpdev/OpenTodoList/translations"
     PLURALS_TS_FILE
         translations/OpenTodoList-en.ts
 )
